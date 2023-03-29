@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 26, 2023 at 12:39 PM
+-- Generation Time: Mar 29, 2023 at 05:14 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.2
 
@@ -49,7 +49,8 @@ INSERT INTO `branches` (`branch`) VALUES
 
 CREATE TABLE `clients` (
   `c_id` int(11) NOT NULL,
-  `u_id` int(11) NOT NULL,
+  `u_id` int(11) DEFAULT NULL,
+  `pay_id` int(11) DEFAULT NULL,
   `c_name` varchar(255) NOT NULL,
   `c_phone` varchar(30) NOT NULL,
   `c_address` varchar(255) NOT NULL,
@@ -85,7 +86,7 @@ CREATE TABLE `orders` (
   `o_id` int(11) NOT NULL,
   `p_id` int(11) DEFAULT NULL,
   `c_id` int(11) DEFAULT NULL,
-  `delivered` tinyint(1) NOT NULL
+  `status` enum('successful','pending','failed','') NOT NULL DEFAULT 'pending'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -104,11 +105,47 @@ CREATE TABLE `packages` (
   `p_longitude` decimal(11,8) NOT NULL,
   `p_latitude` decimal(10,8) NOT NULL,
   `to_district` varchar(255) NOT NULL,
+  `fragile` tinyint(1) NOT NULL DEFAULT 0,
   `o_price` float NOT NULL DEFAULT 0,
   `cost` float NOT NULL,
-  `f_price` float NOT NULL,
-  `p_timestamp` timestamp NOT NULL DEFAULT current_timestamp()
+  `f_price` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `payment`
+--
+
+CREATE TABLE `payment` (
+  `pay_id` int(11) NOT NULL,
+  `c_id` int(11) NOT NULL,
+  `card_numb` varchar(50) NOT NULL,
+  `exp_date` date NOT NULL,
+  `cvv` int(11) NOT NULL,
+  `postal_code` varchar(50) NOT NULL,
+  `timestamp` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `privileges`
+--
+
+CREATE TABLE `privileges` (
+  `privilege` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `privileges`
+--
+
+INSERT INTO `privileges` (`privilege`) VALUES
+('BranchManager'),
+('CEO'),
+('client'),
+('worker');
 
 -- --------------------------------------------------------
 
@@ -118,10 +155,17 @@ CREATE TABLE `packages` (
 
 CREATE TABLE `users` (
   `u_id` int(11) NOT NULL,
-  `username` varchar(255) NOT NULL,
+  `email` varchar(100) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `status` enum('CEO','BranchManager','worker','client') NOT NULL
+  `type` varchar(50) NOT NULL DEFAULT 'client'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`u_id`, `email`, `password`, `type`) VALUES
+(1, 'test@hotmail.com', '098f6bcd4621d373cade4e832627b4f6', 'client');
 
 -- --------------------------------------------------------
 
@@ -156,7 +200,8 @@ ALTER TABLE `branches`
 ALTER TABLE `clients`
   ADD PRIMARY KEY (`c_id`),
   ADD KEY `u_id` (`u_id`),
-  ADD KEY `c_district` (`c_district`);
+  ADD KEY `c_district` (`c_district`),
+  ADD KEY `pay_id` (`pay_id`);
 
 --
 -- Indexes for table `deliveries`
@@ -182,10 +227,23 @@ ALTER TABLE `packages`
   ADD PRIMARY KEY (`p_id`);
 
 --
+-- Indexes for table `payment`
+--
+ALTER TABLE `payment`
+  ADD PRIMARY KEY (`pay_id`);
+
+--
+-- Indexes for table `privileges`
+--
+ALTER TABLE `privileges`
+  ADD PRIMARY KEY (`privilege`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`u_id`);
+  ADD PRIMARY KEY (`u_id`),
+  ADD KEY `users_ibfk_1` (`type`);
 
 --
 -- Indexes for table `workers`
@@ -224,10 +282,16 @@ ALTER TABLE `packages`
   MODIFY `p_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `payment`
+--
+ALTER TABLE `payment`
+  MODIFY `pay_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `u_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `u_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `workers`
@@ -244,7 +308,8 @@ ALTER TABLE `workers`
 --
 ALTER TABLE `clients`
   ADD CONSTRAINT `clients_ibfk_1` FOREIGN KEY (`u_id`) REFERENCES `users` (`u_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `clients_ibfk_2` FOREIGN KEY (`c_district`) REFERENCES `branches` (`branch`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `clients_ibfk_2` FOREIGN KEY (`c_district`) REFERENCES `branches` (`branch`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `clients_ibfk_3` FOREIGN KEY (`pay_id`) REFERENCES `payment` (`pay_id`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
 -- Constraints for table `deliveries`
@@ -260,6 +325,12 @@ ALTER TABLE `deliveries`
 ALTER TABLE `orders`
   ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`c_id`) REFERENCES `clients` (`c_id`) ON DELETE SET NULL ON UPDATE CASCADE,
   ADD CONSTRAINT `orders_ibfk_2` FOREIGN KEY (`p_id`) REFERENCES `packages` (`p_id`) ON DELETE SET NULL ON UPDATE CASCADE;
+
+--
+-- Constraints for table `users`
+--
+ALTER TABLE `users`
+  ADD CONSTRAINT `users_ibfk_1` FOREIGN KEY (`type`) REFERENCES `privileges` (`privilege`) ON UPDATE CASCADE;
 
 --
 -- Constraints for table `workers`

@@ -13,19 +13,31 @@
         require('connection.php');
         extract($_POST); //$email and $password
 
+        //insert code for duplicate check
         $email = $_POST['email'];
         $email = mysqli_real_escape_string($link, $email); //strip email from escape charcters
 
         $pass = $_POST['password'];
         $password = md5($pass);
 
+        $c_name=$_POST['name'];
+        $c_phone=$_POST['phone'];
+        $c_address=$_POST['address'];
+        $c_address = mysqli_real_escape_string($link, $c_address);
+        /*GPS
+        $c_longitude=$_POST['longitude'];
+        $c_latitude=$_POST['latitude'];*/
+        $c_district=$_POST['district'];
+        $guest=false;
+
         $query = "INSERT into users(email,password) values('$email','$password')";
         if (mysqli_query($link, $query)) {
             // this returns the id that mysql used for the new tuple
-            //if succeful ->Login
+            //if successful ->Login
             //require('connection.php');
 
-
+            $query = "INSERT into clients(email,password) values('$email','$password')";
+ 
             //LOGIN CODE
             $query = "SELECT * FROM users WHERE email = '$email';";
 
