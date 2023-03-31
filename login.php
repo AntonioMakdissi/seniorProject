@@ -8,6 +8,7 @@
 
 <body>
 	<?php
+
 	if (isset($_POST['email']) && isset($_POST['password'])) {
 		require('connection.php');
 		extract($_POST); //$email and $password
@@ -19,11 +20,7 @@
 
 		if (($result) && (mysqli_num_rows($result) == 1)) {
 			$u_info = mysqli_fetch_assoc($result);
-			/*debugging
-			echo $u_info['email'];
-			echo $u_info['passwd'];
-			echo md5($password);
-		*/
+
 			if (($u_info['email'] == $email) &&
 				($u_info['password'] == md5($password))
 			) {
@@ -34,15 +31,15 @@
 				$_SESSION['type'] = $u_info['type'];
 				//get his other information?
 				if ($_SESSION['type'] == 'client') {
-					//client page
+					header('Location: client.php');
 				} else if ($_SESSION['type'] == 'CEO') {
-					//CEO page
+					header('Location: ceo.php'); //CEO page
 				} else if ($_SESSION['type'] == 'worker') {
-					//worker page
+					header('Location: worker.php'); //worker page
 				} else if ($_SESSION['type'] == 'BranchManager') {
-					//BranchManager page
+					header('Location: manager.php'); //BranchManager page
 				}
-				header('Location: index.html'); //to be revised
+				header('Location: login.html'); //to be revised
 			} else {
 				header('Location: login.html'); //if wrong password
 			}
