@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin']) {
-	header('Location: login.html');
+	header('Location: ../login.html');
 }
 ?>
 <!DOCTYPE html>
@@ -21,37 +21,37 @@ if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin']) {
 <body>
 <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<div class="w3-display-container w3-text-white">
+<div >
             <img src="main.jfif" alt="anime list" style="width:100%">
 			<div class="textimg">
 			<p class="w3-sofia font-effect-fire  w3-container" 
-        style="font-size: xx-large;" ><a href="main.php">Welcome to your Watchlist <?= $_SESSION['u_name'] ?></a></p>
+        style="font-size: xx-large;" ><a href="main.php">Welcome to your deliveries <?= $_SESSION['c_name'] ?></a></p>
 		<h3>List of series you watched:</h3>
         <table border ="border"> 
     <thead>
         <tr> 
-            <th>Series name </th>
-            <th>Number of episodes</th>
-            <th>Episode length </th>
+            <th>Order number </th>
+            <th>date</th>
+            <th>cost</th>
 </tr>
 </thead>
 <tbody>
 	<?php
 	require_once('connection.php');
-	$uid = $_SESSION['u_id'];
-	$query = "SELECT * FROM series NATURAL JOIN watched WHERE u_id='$uid' ORDER BY name";
+	$c_id = $_SESSION['c_id'];
+	$query = "SELECT * FROM orders NATURAL JOIN packages WHERE c_id='$c_id' ORDER BY date";
 	$result = mysqli_query($link, $query);
 	if (($result) && (mysqli_num_rows($result) > 0)) {
 		// echo 'List of series you watched:';
-		// echo '<ul>';
+		
 		while ($row = mysqli_fetch_assoc($result)) {
-			// echo '<li>' . $row['name'] . '-' . $row['ep_nbr'] . '-' . $row['ep_length'] . '</li>';
-			$n = $row["name"];
+			/*return removed space*/
+			$n = $row["o_id"];
 			$n=str_replace(" ","%20",$n);
 			echo "<tr>   
-<td>" . $row["name"] . "</td>
-<td>" . $row["ep_nbr"] . "</td>
-<td>" . $row["ep_length"] . "</td>
+<td>" . $row["o_id"] . "</td>
+<td>" . $row["date"] . "</td>
+<td>" . $row["cost"] . "</td>
 <td> <a class='btn btn-primary btn-sm' name='n' value='$n' href=http://localhost/web_project/removeseries.php?name=" . $n . ">Remove</a> </td>
 							
 </tr>";
@@ -61,13 +61,14 @@ if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin']) {
 		</tbody>
 </table>
 <?php
+/*
 require_once('connection.php');
-$uid = $_SESSION['u_id'];
-$query = "SELECT * FROM series NATURAL JOIN watched WHERE u_id='$uid' ORDER BY name";
+$c_id = $_SESSION['c_id'];
+$query = "SELECT * FROM series NATURAL JOIN watched WHERE c_id='$c_id' ORDER BY name";
 $result = mysqli_query($link, $query);
 if (($result) && (mysqli_num_rows($result) > 0)) {
 		echo '<hr />';
-		$query = "SELECT SUM(ep_nbr*ep_length) AS total FROM series NATURAL JOIN watched WHERE u_id='$uid'";
+		$query = "SELECT SUM(ep_nbr*ep_length) AS total FROM series NATURAL JOIN watched WHERE c_id='$c_id'";
 		$result = mysqli_query($link, $query);
 		$row = mysqli_fetch_assoc($result);
 		echo "You have watched for: ";
@@ -80,7 +81,7 @@ if (($result) && (mysqli_num_rows($result) > 0)) {
 		}
 	}
 	mysqli_close($link);
-	?>
+	*/?>
 	<br/>
 	<button name="addSeries" class="w3-container w3-blue">
 		<a href="seriesList.php">Add series</a></button>
