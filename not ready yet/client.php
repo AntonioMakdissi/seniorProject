@@ -42,17 +42,14 @@ if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin']) {
 	$query = "SELECT * FROM orders NATURAL JOIN packages WHERE c_id='$c_id' ORDER BY date";
 	$result = mysqli_query($link, $query);
 	if (($result) && (mysqli_num_rows($result) > 0)) {
-		// echo 'List of series you watched:';
 		
 		while ($row = mysqli_fetch_assoc($result)) {
-			/*return removed space*/
-			$n = $row["o_id"];
-			$n=str_replace(" ","%20",$n);
+			
 			echo "<tr>   
 <td>" . $row["o_id"] . "</td>
 <td>" . $row["date"] . "</td>
 <td>" . $row["cost"] . "</td>
-<td> <a class='btn btn-primary btn-sm' name='n' value='$n' href=http://localhost/web_project/removeseries.php?name=" . $n . ">Remove</a> </td>
+
 							
 </tr>";
 		}

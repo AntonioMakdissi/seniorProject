@@ -1,3 +1,8 @@
+<?php
+session_start();
+if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin']) {
+  header('Location: ../login.html');
+} ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -39,7 +44,7 @@
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
 
-  
+
 </head>
 
 <body>
@@ -61,8 +66,8 @@
           <li><a href="client.html" class="active">Home</a></li>
           <li><a href="about.html">About</a></li>
           <li><a href="services.html">Services</a></li>
-          <li><a href="pricing.html">Pricing</a></li>
-          <li><a href="track.html">Track</a></li>
+          <li><a href="php/history.php">History</a></li>
+          <li><a href="php/track.php">Track</a></li>
           <li><a href="contact.html">Contact</a></li>
           <li><a class="get-a-quote" href="get-a-quote.html">Make an order</a></li>
         </ul>
@@ -717,7 +722,7 @@
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
   <!--  Modified scripts-->
-<script src="index.js"></script>
+  <script src="index.js"></script>
 
 </body>
 

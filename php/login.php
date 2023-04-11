@@ -45,7 +45,7 @@
 					$_SESSION['c_timestamp'] = $u_info['c_timestamp'];
 					//$_SESSION['guest'] = $u_info['guest'];
 					//$_SESSION['rating'] = $u_info['rating'];
-					header('Location: client.php');
+					header('Location: ../client.php');
 					//$c_id = $_SESSION['c_id'];
 					//echo "$c_id";
 				} else {
@@ -54,17 +54,20 @@
 					$u_info = mysqli_fetch_assoc($result);
 					$_SESSION['w_id'] = $u_info['w_id'];
 					if ($_SESSION['type'] == 'CEO') {
-						//header('Location: ceo.php'); //CEO page
-						echo "CEO";
+						header('Location: ../CEO.php'); //CEO page
+						//echo "CEO";
 					} else if ($_SESSION['type'] == 'worker') {
-						//header('Location: worker.php'); //worker page
-						echo "worker";
+						header('Location: ../worker.php'); //worker page
+						//echo "worker";
 					} else if ($_SESSION['type'] == 'BranchManager') {
-						//header('Location: manager.php'); //BranchManager page
-						echo "manager";
+						header('Location: ../manager.php'); //BranchManager page
+						//echo "manager";
+					} else if ($_SESSION['type'] == 'IT') {
+						header('Location: ../IT.php'); //BranchManager page
+						//echo "manager";
 					}
 				}
-				//header('Location: ../login.html'); //to be revised
+				header('Location: ../login.html'); //to be revised
 				//echo "1";
 			} else {
 				header('Location: ../login.html'); //if wrong password

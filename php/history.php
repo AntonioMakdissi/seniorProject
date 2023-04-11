@@ -7,7 +7,7 @@ if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin']) {
 <html>
 
 <head>
-  <title>Track</title>
+  <title>History</title>
   <meta charset="UTF-8" />
   <style>
     table {
@@ -28,35 +28,35 @@ if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin']) {
 
 <body>
 
-  <h2>Track your order</h2>
+  <h2>Orders history</h2>
 
 
   <table border="border">
     <thead>
       <tr>
+        <th>Order number </th>
         <th>Date and time</th>
-        <th>Location</th>
-        <th>By</th>
+        <th>Cost</th>
+        <th>Status</th>
       </tr>
     </thead>
     <tbody>
       <?php
       require_once('connection.php');
       $c_id = $_SESSION['c_id'];
-      $query = "SELECT * FROM orders NATURAL JOIN deliveries WHERE c_id='$c_id' ORDER BY timestamp";
+      $query = "SELECT * FROM orders NATURAL JOIN packages WHERE c_id='$c_id' ORDER BY date";
       $result = mysqli_query($link, $query);
       if (($result) && (mysqli_num_rows($result) > 0)) {
 
         while ($row = mysqli_fetch_assoc($result)) {
-          if(is_null($row["w_id"])){
-            $row["w_id"]=$_SESSION['c_name'] . "(you)";
-          }
 
           echo "<tr>   
-							<td>" . $row["timestamp"] . "</td>
-							<td>" . $row["current_location"] . "</td>
-							<td>" . $row["w_id"] . "</td>
-							</tr>";
+<td>#" . $row["o_id"] . "</td>
+<td>" . $row["date"] . "</td>
+<td>" . $row["cost"] . "$</td>
+<td>" . $row["status"] . "</td>
+							
+</tr>";
         }
       }
       ?>
