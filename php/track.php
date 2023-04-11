@@ -5,20 +5,14 @@ if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin']) {
 }
 ?>
 <!DOCTYPE html>
-<style>
-	.textimg {
-		position: absolute;
-		top: 5px;
-		left: 20px;
-	}
-</style>
+
 <html>
 
 <head>
-	<title>Watchlist</title>
+	<title>Track</title>
 	<meta charset="UTF-8" />
 </head>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia&effect=fire">
+<!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia&effect=fire"> -->
 
 <body>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -61,12 +55,7 @@ if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin']) {
 				</tbody>
 			</table>			
 			<br />
-			<button name="addSeries" class="w3-container w3-blue">
-				<a href="seriesList.php">Add series</a></button>
-			<br />
-			</br>
-			<button name="logout" class="w3-container w3-blue">
-				<a href="logout.php">Logout</a></button>
+			
 
 </body>
 
