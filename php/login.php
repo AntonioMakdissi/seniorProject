@@ -67,13 +67,16 @@
 						//echo "manager";
 					}
 				}
-				header('Location: ../login.html'); //to be revised
+				//header('Location: ../login.html'); //to be revised
 				//echo "1";
 			} else {
-				header('Location: ../login.html'); //if wrong password
+				echo '<script>alert("Check email or password")</script>';
+				//header('Location: ../login.html'); //if wrong password
 			}
 		} else {
+			echo '<script>alert("Please sign up first!")</script>';
 			header('Location: ../login.html'); //no return
+			
 		}
 		mysqli_close($link); //close if error
 	} else {
