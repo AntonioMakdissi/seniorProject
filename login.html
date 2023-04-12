@@ -114,14 +114,18 @@
                       <input type="text" name="address" class="form-control" id="address" placeholder="Enter address">
                     </div>
                     <!-- edit this -->
-                    <div>
-                      <label for="district">Choose an option:</label>
-                      <select id="district" name="district">
+                    <div class="form-group">
+                      <label for="district"><i class="fa fa-industry"></i> Sector</label>
+                      <select id="district" name="district" class="form-control "  required style="border: border;">
+                        <option value="" selected disabled hidden>Select your district</option>
                         <option value="Batroun">Batroun</option>
-                        <option value="option2">Option 2</option>
-                        <option value="option3">Option 3</option>
-                        <option value="option4">Option 4</option>
-                        <option value="option5">Option 5</option>
+                        <option value="Koura">Koura</option>
+                        <option value="Beirut">Beirut</option>
+                        <option value="Tripoli">Tripoli</option>
+                        <option value="Akkar">Akkar</option>
+                        <option value="Mount Lebanon">Mount Lebanon</option>
+                        <option value="Bekaa">Bekaa</option>
+                        <option value="South Lebanon">South Lebanon</option>
                       </select>
                     </div>
                     <!-- to write js code to get values from database -->
