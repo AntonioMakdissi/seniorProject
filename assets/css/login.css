@@ -69,6 +69,14 @@ header {
         border-bottom-color: #007bff;
         color: #007bff;
       }
+      /* .district{
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-top: 18px;
+        padding-bottom: 18px;
+        margin-right: 10px;
+        background: none;
+      } */
       .form-container .form-group label {
         font-weight: bold;
         font-size: 1.2rem;
