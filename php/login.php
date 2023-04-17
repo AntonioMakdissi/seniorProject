@@ -67,7 +67,7 @@
 						//echo "manager";
 					}
 				}
-				header('Location: ../login.html'); //to be revised
+				//header('Location: ../login.html'); //to be revised
 				//echo "1";
 			} else {
 				header('Location: ../login.html'); //if wrong password
