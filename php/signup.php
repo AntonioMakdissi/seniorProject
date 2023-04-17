@@ -66,15 +66,42 @@
                             $_SESSION['type'] = $u_info['type'];
                             //get his other information?
                             if ($_SESSION['type'] == 'client') {
-                                header('Location: client.php');
-                            } else if ($_SESSION['type'] == 'CEO') {
-                                header('Location: ceo.php'); //CEO page
-                            } else if ($_SESSION['type'] == 'worker') {
-                                header('Location: worker.php'); //worker page
-                            } else if ($_SESSION['type'] == 'BranchManager') {
-                                header('Location: manager.php'); //BranchManager page
+                                $query = "SELECT * FROM clients WHERE u_id = '$u_id';"; //get its info
+                                $result = mysqli_query($link, $query);
+                                $u_info = mysqli_fetch_assoc($result);
+                                $_SESSION['c_id'] = $u_info['c_id'];
+                                $_SESSION['c_name'] = $u_info['c_name'];
+                                $_SESSION['c_address'] = $u_info['c_address'];
+                                $_SESSION['c_longitude'] = $u_info['c_longitude'];
+                                $_SESSION['c_latitude'] = $u_info['c_latitude'];
+                                $_SESSION['c_district'] = $u_info['c_district'];
+                                $_SESSION['c_timestamp'] = $u_info['c_timestamp'];
+                                //$_SESSION['guest'] = $u_info['guest'];
+                                //$_SESSION['rating'] = $u_info['rating'];
+                                header('Location: ../client.php');
+                                //$c_id = $_SESSION['c_id'];
+                                //echo "$c_id";
+                            } else {
+                                $query = "SELECT * FROM workers WHERE u_id = '$u_id';"; //get its info
+                                $result = mysqli_query($link, $query);
+                                $u_info = mysqli_fetch_assoc($result);
+                                $_SESSION['w_id'] = $u_info['w_id'];
+                                if ($_SESSION['type'] == 'CEO') {
+                                    header('Location: ../CEO.php'); //CEO page
+                                    //echo "CEO";
+                                } else if ($_SESSION['type'] == 'worker') {
+                                    header('Location: ../worker.php'); //worker page
+                                    //echo "worker";
+                                } else if ($_SESSION['type'] == 'BranchManager') {
+                                    header('Location: ../manager.php'); //BranchManager page
+                                    //echo "manager";
+                                } else if ($_SESSION['type'] == 'IT') {
+                                    header('Location: ../IT.php'); //BranchManager page
+                                    //echo "manager";
+                                }
                             }
-                            header('Location: login.html'); //to be revised
+                            //header('Location: ../login.html'); //to be revised
+                            //echo "1";
                         } else {
                             //header('Location: login.html');
                             echo "-2";
@@ -88,6 +115,8 @@
                     echo "-1";
                 }
             }
+        } else {
+            echo '<script>alert("Already have an account!")</script>';
         }
     } else {
         //header('Location: login.html');

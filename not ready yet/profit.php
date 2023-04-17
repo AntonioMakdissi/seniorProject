@@ -37,7 +37,9 @@ if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin']) {
         <th>Order number </th>
         <th>Date and time</th>
         <th>Cost</th>
-        <th>Status</th>
+        <th>Profit</th>
+        <th>Price for customer</th>
+        <th>status</th>
       </tr>
     </thead>
     <tbody>
@@ -53,7 +55,9 @@ if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin']) {
           echo "<tr>   
 <td>#" . $row["o_id"] . "</td>
 <td>" . $row["date"] . "</td>
-<td>" . $row["f_price"] . "$</td>
+<td>" . $row["cost"] . "$</td>
+<td>" . $row["charge"] . "</td>
+<td>" . $row["f_price"] . "</td>
 <td>" . $row["status"] . "</td>
 							
 </tr>";

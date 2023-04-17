@@ -31,4 +31,4 @@ if (($result) && (mysqli_num_rows($result) < 1)) {
     }
 }
 echo '<script>alert("Already added!")</script>';
-header('Location: seriesList.php');
+//header('Location: seriesList.php');
