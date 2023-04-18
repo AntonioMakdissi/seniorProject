@@ -43,6 +43,7 @@ if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin']) {
       <?php
       require_once('connection.php');
       $c_id = $_SESSION['c_id'];
+      //$o_id = $_GET['o_id'];
       $query = "SELECT * FROM orders NATURAL JOIN deliveries WHERE c_id='$c_id' ORDER BY timestamp";
       $result = mysqli_query($link, $query);
       if (($result) && (mysqli_num_rows($result) > 0)) {

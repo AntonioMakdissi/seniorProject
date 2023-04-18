@@ -53,6 +53,12 @@
 					$result = mysqli_query($link, $query);
 					$u_info = mysqli_fetch_assoc($result);
 					$_SESSION['w_id'] = $u_info['w_id'];
+					$_SESSION['name'] = $u_info['name'];
+					$_SESSION['phone'] = $u_info['phone'];
+					$_SESSION['branch'] = $u_info['branch'];
+					$_SESSION['dateOfBirth'] = $u_info['dateOfBirth'];
+					$_SESSION['salary'] = $u_info['salary'];
+					$_SESSION['timestamp'] = $u_info['timestamp'];
 					if ($_SESSION['type'] == 'CEO') {
 						header('Location: ../CEO.php'); //CEO page
 						//echo "CEO";

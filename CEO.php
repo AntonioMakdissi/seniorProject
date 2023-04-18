@@ -1,4 +1,8 @@
-
+<?php
+session_start();
+if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin']) {
+  header('Location: ../login.html');
+} ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -393,10 +397,3 @@ margin-top: 10px;
 </body>
 </html>
 
-<?php
-session_start();
-if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin']) {
-  header('Location: login.html');
-} 
-header('Location: php/viewWorker.php');
-?>
