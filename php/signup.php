@@ -72,6 +72,7 @@
                                 $_SESSION['c_id'] = $u_info['c_id'];
                                 $_SESSION['c_name'] = $u_info['c_name'];
                                 $_SESSION['c_address'] = $u_info['c_address'];
+                                $_SESSION['phone'] = $u_info['phone'];
                                 $_SESSION['c_longitude'] = $u_info['c_longitude'];
                                 $_SESSION['c_latitude'] = $u_info['c_latitude'];
                                 $_SESSION['c_district'] = $u_info['c_district'];

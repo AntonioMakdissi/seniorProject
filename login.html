@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 
@@ -128,7 +129,7 @@
                         <option value="Bekaa">Bekaa</option>
                         <option value="South Lebanon">South Lebanon</option>
 
-                        <!-- <?php
+                        <!--<?php
 
                         require_once('connection.php');
                         $query = "SELECT * FROM branches WHERE NOT 'still at client' OR 'delivered' ORDER BY branch;";
@@ -140,7 +141,7 @@
                               $row["w_id"] = $_SESSION['c_name'] . "(you)";
                             }*/
 
-                            echo "<option value= " . $row["branch"] ." </option>";
+                            echo "<option value= " . $row["branch"] .">". $row["branch"] . " </option>";
                           }
                         }
 

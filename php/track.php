@@ -30,6 +30,18 @@ if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin']) {
 
   <h2>Track your order</h2>
 
+  <select>
+
+  <?php require_once('connection.php');
+      $c_id = $_SESSION['c_id'];
+      $query = "SELECT o_id FROM orders NATURAL JOIN packages WHERE c_id='$c_id' ORDER BY date";
+      $result = mysqli_query($link, $query);
+      if (($result) && (mysqli_num_rows($result) > 0)) {
+
+        while ($row = mysqli_fetch_assoc($result)) { ?>
+    <option value="South Lebanon">South Lebanon</option>
+    <option value="Lebanon"> Lebanon</option><?}}?>
+  </select>
 
   <table border="border">
     <thead>
@@ -49,8 +61,8 @@ if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin']) {
       if (($result) && (mysqli_num_rows($result) > 0)) {
 
         while ($row = mysqli_fetch_assoc($result)) {
-          if(is_null($row["w_id"])){
-            $row["w_id"]=$_SESSION['c_name'] . "(you)";
+          if (is_null($row["w_id"])) {
+            $row["w_id"] = $_SESSION['c_name'] . "(you)";
           }
 
           echo "<tr>   

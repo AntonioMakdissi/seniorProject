@@ -82,7 +82,7 @@ if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin']) {
     <div class="container">
       <div class="row gy-4 d-flex justify-content-between">
         <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center">
-          <h2 data-aos="fade-up">Your Lightning Fast Delivery Partner</h2>
+          <h2 data-aos="fade-up">Your Lightning Fast Delivery Partner, <?= $_SESSION['c_name'] ?>!</h2>
           <p data-aos="fade-up" data-aos-delay="100">Welcome to our delivery company website! We provide fast and reliable delivery services for all your needs. Trust us to deliver your items on time and in great condition. Thank you for choosing us.</p>
 
           <form action="#" class="form-search d-flex align-items-stretch mb-3" data-aos="fade-up" data-aos-delay="200">

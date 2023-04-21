@@ -48,6 +48,28 @@ require_once 'connection.php';
 		LIMIT 1;";
 		$result = mysqli_query($link, $query);
 		$row = mysqli_fetch_assoc($result);
-		$rating = $row['w_id'] ;
-        echo "$rating ";
+		$emp = $row['w_id'] ;
+        echo "$emp ";
+
+		//number of workers
+		$query = "SELECT COUNT(w_id) AS workers FROM workers";
+		$result = mysqli_query($link, $query);
+		$row = mysqli_fetch_assoc($result);
+		$workers = $row['workers'] ;
+        echo "$workers ";
+
+		//number of clients
+		$query = "SELECT COUNT(c_id) AS clients FROM clients";
+		$result = mysqli_query($link, $query);
+		$row = mysqli_fetch_assoc($result);
+		$clients = $row['clients'] ;
+        echo "$clients ";
+
+		//number of branches
+		$query = "SELECT COUNT(branch) AS branches FROM branches";
+		$result = mysqli_query($link, $query);
+		$row = mysqli_fetch_assoc($result);
+		$branches = $row['branches'] ;
+        echo "$branches ";
+
 
