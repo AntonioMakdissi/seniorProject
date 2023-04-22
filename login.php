@@ -1,4 +1,6 @@
+<?php
 
+require_once('php/connection.php'); ?>
 <!DOCTYPE html>
 <html>
 
@@ -16,9 +18,7 @@
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
-    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
 
 </head>
 
@@ -78,8 +78,7 @@
                     </div>
                     <div class="form-group">
                       <label for="password"><i class="fa fa-lock"></i> Password</label>
-                      <input type="password" required name="password" class="form-control" id="password"
-                        placeholder="Enter password">
+                      <input type="password" required name="password" class="form-control" id="password" placeholder="Enter password">
                     </div>
                     <button type="submit" class="btn  btn-block">Sign In</button>
                   </form>
@@ -107,8 +106,7 @@
                     </div>
                     <div class="form-group">
                       <label for="password"><i class="fa fa-lock"></i> Password</label>
-                      <input type="password" required name="password" class="form-control" id="password"
-                        placeholder="Enter password">
+                      <input type="password" required name="password" class="form-control" id="password" placeholder="Enter password">
                     </div>
                     <div class="form-group">
                       <label for="address"><i class="fa fa-map-marker"></i> Address</label>
@@ -117,48 +115,30 @@
                     <!-- edit this -->
                     <div class="form-group">
                       <label for="district"><i class="fa fa-industry"></i> Sector</label>
-                      <br/>
-                      <select id="district" name="district"  required style="width: 100%; padding: 8px 12px; font-size: 16px; line-height: 1.5; color: #555; background-color: #fff; border: 1px solid #ccc; border-radius: 4px; box-shadow: inset 0 1px 1px rgba(0,0,0,.075); transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;" >
+                      <br />
+                      <select id="district" name="district" required style="width: 100%; padding: 8px 12px; font-size: 16px; line-height: 1.5; color: #555; background-color: #fff; border: 1px solid #ccc; border-radius: 4px; box-shadow: inset 0 1px 1px rgba(0,0,0,.075); transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;">
                         <option value="" selected disabled hidden>Select your district</option>
-                        <option value="Batroun">Batroun</option>
-                        <option value="Koura">Koura</option>
-                        <option value="Beirut">Beirut</option>
-                        <option value="Tripoli">Tripoli</option>
-                        <option value="Akkar">Akkar</option>
-                        <option value="Mount Lebanon">Mount Lebanon</option>
-                        <option value="Bekaa">Bekaa</option>
-                        <option value="South Lebanon">South Lebanon</option>
-
-                        <!--<?php
-
-                        require_once('connection.php');
-                        $query = "SELECT * FROM branches WHERE NOT 'still at client' OR 'delivered' ORDER BY branch;";
-                        $result = mysqli_query($link, $query);
-                        if (($result) && (mysqli_num_rows($result) > 0)) {
-
-                          while ($row = mysqli_fetch_assoc($result)) {
-                            /*if (is_null($row["w_id"])) {
-                              $row["w_id"] = $_SESSION['c_name'] . "(you)";
-                            }*/
-
-                            echo "<option value= " . $row["branch"] .">". $row["branch"] . " </option>";
-                          }
+                        <?php
+                        require_once('php/branches.php');
+                        $all = all_branches($link);
+                        foreach ($all as $branch) {
+                          echo "<option value= " . $branch . ">" . $branch . " </option>";;
                         }
 
-                        ?> -->
+                        ?>
 
                       </select>
                     </div>
-                    <!-- to write js code to get values from database -->
+
                     <div class="form-group">
                       <label for="phone_number"><i class="fa fa-phone"></i> Phone Number</label>
                       <input type="tel" class="form-control" name="phone" id="phone" required placeholder="Enter phone number" pattern="[0-9+\\-]*" onkeypress="return event.charCode >= 48 && event.charCode <= 57 || event.keyCode === 43 || event.keyCode === 45">
                     </div>
-                    
-                    
-                    
-                    
-                    
+
+
+
+
+
                     <button type="submit" class="btn  btn-block">Sign Up</button>
                   </form>
                   <div class="divider">
@@ -180,7 +160,7 @@
     </section>
   </main>
   <script>
-    window.addEventListener('scroll', function () {
+    window.addEventListener('scroll', function() {
       const navbar = document.getElementById('header');
       if (window.scrollY > 0) {
         navbar.style.backgroundColor = '#0e1d34';

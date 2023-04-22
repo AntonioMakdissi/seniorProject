@@ -32,15 +32,17 @@ if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin']) {
 
   <select>
 
-  <?php require_once('connection.php');
-      $c_id = $_SESSION['c_id'];
-      $query = "SELECT o_id FROM orders NATURAL JOIN packages WHERE c_id='$c_id' ORDER BY date";
-      $result = mysqli_query($link, $query);
-      if (($result) && (mysqli_num_rows($result) > 0)) {
+    <?php
+    require_once('connection.php');
+    $c_id = $_SESSION['c_id'];
+    $query = "SELECT o_id FROM orders WHERE c_id='$c_id' ORDER BY o_id";
+    $result = mysqli_query($link, $query);
+    if (($result) && (mysqli_num_rows($result) > 0)) {
 
-        while ($row = mysqli_fetch_assoc($result)) { ?>
-    <option value="South Lebanon">South Lebanon</option>
-    <option value="Lebanon"> Lebanon</option><?}}?>
+      while ($row = mysqli_fetch_assoc($result)) { ?>
+        <option value=<?php echo $row["o_id"] ?>> <?php echo $row["o_id"] ?></option>
+    <?php }
+    } ?>
   </select>
 
   <table border="border">
