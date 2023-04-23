@@ -336,9 +336,9 @@ require_once('php/stats.php');
 
             <label class="form-label" for="worker-department">Worker Department:</label>
             <select class="form-input" id="worker-department" name="worker-department" required>
-              <option value="sales">Sales</option>
-              <option value="marketing">Marketing</option>
-              <option value="operations">Operations</option>
+              <option value="worker">Worker</option>
+              <option value="Manager">Manager</option>
+              <option value="IT">IT</option>
             </select>
 
             <div class="form-group">
@@ -384,8 +384,6 @@ require_once('php/stats.php');
       <div class="card">
         <div class="card-body">
           <form class="new-branch-form" action="/submit-form" method="post">
-            <label class="form-label" for="branch-name">Branch Name:</label>
-            <input class="form-input" type="text" id="branch-name" name="branch-name" required>
 
             <label class="form-label" for="branch-location">Branch Location:</label>
             <input class="form-input" type="text" id="branch-location" name="branch-location" required>
