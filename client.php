@@ -13,7 +13,9 @@ require_once('php/stats.php');
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title><?= $_SESSION['c_name'] ?></title>
+  <title>
+    <?= $_SESSION['c_name'] ?>
+  </title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -24,7 +26,9 @@ require_once('php/stats.php');
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+    rel="stylesheet">
 
   <!-- Vendor CSS Files -->
   <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -44,6 +48,32 @@ require_once('php/stats.php');
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
+  <style>.form-check-input[type="checkbox"] {
+  width: 25px;
+  height: 25px;
+  margin-right: 10px;
+  vertical-align: middle;
+}
+
+.form-check-input[type="checkbox"]:checked {
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+.form-check-input[type="checkbox"]:checked:before {
+  content: "\2714";
+  color: #fff;
+  font-size: 16px;
+  line-height: 1;
+  text-align: center;
+  display: block;
+  vertical-align: middle;
+}
+
+.form-check-label {
+  vertical-align: middle;
+}
+</style>
 </head>
 
 <body>
@@ -84,8 +114,12 @@ require_once('php/stats.php');
         <div class="container position-relative">
           <div class="row d-flex justify-content-center">
             <div class="col-lg-6 text-center">
-              <h2>Welcome <?= $_SESSION['c_name'] ?>!</h2>
-              <p>Welcome to our premium delivery company website! We pride ourselves in providing swift and dependable delivery services to meet all your needs. With us, you can trust that your items will be delivered promptly and in impeccable condition. Thank you for entrusting us with your delivery needs.</p>
+              <h2>Welcome
+                <?= $_SESSION['c_name'] ?>!
+              </h2>
+              <p>Welcome to our premium delivery company website! We pride ourselves in providing swift and dependable
+                delivery services to meet all your needs. With us, you can trust that your items will be delivered
+                promptly and in impeccable condition. Thank you for entrusting us with your delivery needs.</p>
             </div>
           </div>
         </div>
@@ -117,8 +151,8 @@ require_once('php/stats.php');
 
           <div class="col-lg-7">
             <form action="forms/quote.php" method="post" class="php-email-form">
-              <h3>Get a quote</h3>
-              <p>Vel nobis odio laboriosam et hic voluptatem. Inventore vitae totam. Rerum repellendus enim linead sero park flows.</p>
+              <h3>Make an order</h3>
+              <p>To place an order, please fill out the order form and submit it.</p>
               <div class="row gy-4">
 
                 <div class="col-md-6">
@@ -130,11 +164,25 @@ require_once('php/stats.php');
                 </div>
 
                 <div class="col-md-6">
-                  <input type="text" name="weight" class="form-control" placeholder="Total Weight (kg)" required>
+                  <input type="text" name="width" class="form-control" placeholder="Total width (cm)" required>
                 </div>
 
                 <div class="col-md-6">
-                  <input type="text" name="dimensions" class="form-control" placeholder="Dimensions (cm)" required>
+                  <input type="text" name="height" class="form-control" placeholder="Total height (cm)" required>
+                </div>
+
+                <div class="col-md-6">
+                  <input type="text" name="weight" class="form-control" placeholder="Total Weight (kg)" required>
+                </div>
+
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" id="fragile" name="fragile">
+                      <label class="form-check-label" for="fragile">Is your item fragile?</label>
+                    </div>
+                  </div>
+
                 </div>
 
                 <div class="col-lg-12">
@@ -150,7 +198,7 @@ require_once('php/stats.php');
                 </div>
 
                 <div class="col-md-12">
-                  <input type="text" class="form-control" name="phone" placeholder="Phone" required>
+                <input type="tel" class="form-control" name="phone" id="phone" required placeholder="Phone number" pattern="[0-9+\\-]*" onkeypress="return event.charCode >= 48 && event.charCode <= 57 || event.keyCode === 43 || event.keyCode === 45">
                 </div>
 
                 <div class="col-md-12">
@@ -160,15 +208,15 @@ require_once('php/stats.php');
                 <div class="col-md-12 text-center">
                   <div class="loading">Loading</div>
                   <div class="error-message"></div>
-                  <div class="sent-message">Your quote request has been sent successfully. Thank you!</div>
+                  <div class="sent-message">Your order request has been sent successfully. Thank you!</div>
 
-                  <button type="submit">Get a quote</button>
+                  <button type="submit">Make an order</button>
                 </div>
 
               </div>
             </form>
           </div><!-- End Quote Form -->
-
+          </section>
   </main><!-- End #main -->
 
   <!-- ======= Footer ======= -->
@@ -180,7 +228,8 @@ require_once('php/stats.php');
           <a href="index.html" class="logo d-flex align-items-center">
             <span>Logis</span>
           </a>
-          <p>Cras fermentum odio eu feugiat lide par naso tierra. Justo eget nada terra videa magna derita valies darta donna mare fermentum iaculis eu non diam phasellus.</p>
+          <p>Cras fermentum odio eu feugiat lide par naso tierra. Justo eget nada terra videa magna derita valies darta
+            donna mare fermentum iaculis eu non diam phasellus.</p>
           <div class="social-links d-flex mt-4">
             <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
             <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
@@ -242,7 +291,8 @@ require_once('php/stats.php');
   </footer><!-- End Footer -->
   <!-- End Footer -->
 
-  <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+  <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i
+      class="bi bi-arrow-up-short"></i></a>
 
   <div id="preloader"></div>
 
