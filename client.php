@@ -26,7 +26,9 @@ require_once('php/stats.php');
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+    rel="stylesheet">
 
   <!-- Vendor CSS Files -->
   <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -60,7 +62,7 @@ require_once('php/stats.php');
     }
 
     .form-check-input[type="checkbox"]:checked:before {
-      content: "\2714";
+      /* content: "\2714"; */
       color: #fff;
       font-size: 16px;
       line-height: 1;
@@ -155,14 +157,26 @@ require_once('php/stats.php');
               <div class="row gy-4">
 
                 <div class="col-md-6">
-                  <input type="text" name="to_name" class="form-control" placeholder="To" required>
+                  <input type="text" name="to_name" class="form-control" placeholder="Recipient's name" required>
+                </div>
+
+                <div class="col-md-6">
+                  <input type="tel" class="form-control" name="to_phone" id="phone" required
+                    placeholder="Recipient Phone number" pattern="[0-9+\\-]*"
+                    onkeypress="return event.charCode >= 48 && event.charCode <= 57 || event.keyCode === 43 || event.keyCode === 45">
+                </div>
+
+
+                <div class="col-md-6">
+                  <input type="text" name="to_address" class="form-control" placeholder="Recipient's Address" required>
                 </div>
 
                 <div class="col-md-6">
 
-                  <label for="district"><i class="fa fa-industry"></i> Sector</label>
-                  <br />
-                  <select id="district" name="to_district" required style="width: 100%; padding: 8px 12px; font-size: 16px; line-height: 1.5; color: #555; background-color: #fff; border: 1px solid #ccc; border-radius: 4px; box-shadow: inset 0 1px 1px rgba(0,0,0,.075); transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;">
+
+
+                  <select id="district" name="to_district" required
+                    style="width: 100%; padding: 8px 12px; font-size: 16px; line-height: 1.5; color: #888; background-color: #fff; border: 1px solid #ccc; border-radius: 4px; box-shadow: inset 0 1px 1px rgba(0,0,0,.075); transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;">
                     <option value="" selected disabled hidden>Delivery district</option>
                     <?php
                     require_once('php/branches.php');
@@ -170,7 +184,8 @@ require_once('php/stats.php');
                     foreach ($all as $branch) {
                       $n = trim($branch);
                       $to_district = str_replace(" ", "%20", $n);
-                      echo "<option value= " . $to_district . ">" . $branch . " </option>";;
+                      echo "<option value= " . $to_district . ">" . $branch . " </option>";
+                      ;
                     }
 
                     ?>
@@ -179,21 +194,36 @@ require_once('php/stats.php');
                 </div>
 
                 <div class="col-md-6">
-                  <input type="text" name="to_address" class="form-control" placeholder="Delivery Address" required>
+                  <input type="tel" name="width" class="form-control" placeholder="Total width (cm)" required
+                    pattern="[0-9+\\-]*"
+                    onkeypress="return event.charCode >= 48 && event.charCode <= 57 || event.keyCode === 43 || event.keyCode === 45">
                 </div>
 
                 <div class="col-md-6">
-                  <input type="tel" name="width" class="form-control" placeholder="Total width (cm)" required>
+                  <input type="tel" name="height" class="form-control" placeholder="Total height (cm)" required
+                    pattern="[0-9+\\-]*"
+                    onkeypress="return event.charCode >= 48 && event.charCode <= 57 || event.keyCode === 43 || event.keyCode === 45">
                 </div>
 
                 <div class="col-md-6">
-                  <input type="tel" name="height" class="form-control" placeholder="Total height (cm)" required>
+                  <input type="tel" name="weight" class="form-control" placeholder="Total Weight (kg)" required
+                    pattern="[0-9+\\-]*"
+                    onkeypress="return event.charCode >= 48 && event.charCode <= 57 || event.keyCode === 43 || event.keyCode === 45">
                 </div>
 
-                <div class="col-md-6">
-                  <input type="tel" name="weight" class="form-control" placeholder="Total Weight (kg)" required>
+
+
+                <div class="col-md-12 ">
+                  <input type="tel" class="form-control" name="o_price"
+                    placeholder="Do you want to get paid? Recipient pays us $">
                 </div>
 
+
+
+                <div class="col-md-12">
+                  <textarea class="form-control" name="message" rows="6" placeholder="Message" required></textarea>
+                </div>
+                
                 <!-- debug here -->
                 <div class="col-md-12">
                   <div class="form-group">
@@ -212,19 +242,6 @@ require_once('php/stats.php');
                     </div>
                   </div>
                 </div>
-
-                <div class="col-md-12 ">
-                  <input type="tel" class="form-control" name="o_price" placeholder="Pick money (if any)">
-                </div>
-
-                <div class="col-md-12">
-                  <input type="tel" class="form-control" name="to_phone" id="phone" required placeholder="Reciepient Phone number" pattern="[0-9+\\-]*" onkeypress="return event.charCode >= 48 && event.charCode <= 57 || event.keyCode === 43 || event.keyCode === 45">
-                </div>
-
-                <div class="col-md-12">
-                  <textarea class="form-control" name="message" rows="6" placeholder="Message" required></textarea>
-                </div>
-
                 <div class="col-md-12 text-center">
                   <div class="loading">Loading</div>
                   <div class="error-message"></div>
@@ -311,7 +328,8 @@ require_once('php/stats.php');
   </footer><!-- End Footer -->
   <!-- End Footer -->
 
-  <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+  <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i
+      class="bi bi-arrow-up-short"></i></a>
 
   <div id="preloader"></div>
 

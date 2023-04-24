@@ -53,7 +53,7 @@ if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin']) {
     }
 
     body {
-      background: url('https://th.bing.com/th/id/R.ea4192babfe60404ef0dafb21484f282?rik=doxyDdbyqpjM2Q&pid=ImgRaw&r=0') center center fixed no-repeat;
+      background: url('https://th.bing.com/th/id/R.44a3fe74fe0a5a6437a615b58c87bdc8?rik=q0SXGZNCCdHWZg&pid=ImgRaw&r=0') center center fixed no-repeat;
       background-size: cover;
       position: relative;
     }
@@ -65,7 +65,7 @@ if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin']) {
       left: 0;
       bottom: 0;
       right: 0;
-      background-color: rgba(255, 255, 255, 0.01);
+      background-color: rgba(255, 255, 255, 0.000001);
       /* Change opacity as needed */
     }
 

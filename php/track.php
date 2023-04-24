@@ -2,16 +2,16 @@
 session_start();
 if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin']) {
   header('Location: ../login.html');
-} 
+}
 require_once 'connection.php';
-require_once('employee.php');?>
+require_once('employee.php'); ?>
 <!DOCTYPE html>
 <html>
 
 <head>
   <title>Track</title>
   <meta charset="UTF-8" />
-  <link href="../assets/css/main.css" rel="stylesheet">
+  <!-- <link href="../assets/css/main.css" rel="stylesheet"> -->
   <style>
     .container {
       margin-top: 50px;
@@ -44,7 +44,7 @@ require_once('employee.php');?>
     }
 
     .table tbody tr {
-      background-color: #fff;
+      background-color: #DDD;
       border-radius: 4px;
       box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
     }
@@ -53,8 +53,8 @@ require_once('employee.php');?>
       background-color: #f5f5f5;
     }
 
-    body {
-      background: url('https://th.bing.com/th/id/R.ea4192babfe60404ef0dafb21484f282?rik=doxyDdbyqpjM2Q&pid=ImgRaw&r=0') center center fixed no-repeat;
+    /* body {
+      background: url('https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.freepik.com%2Ffree-photos-vectors%2Fdelivery-background&psig=AOvVaw0shZ7MQLitq24V_A4oIsVy&ust=1682429356126000&source=images&cd=vfe&ved=0CBEQjRxqFwoTCPCT0PvPwv4CFQAAAAAdAAAAABAD') center center fixed no-repeat;
       background-size: cover;
       position: relative;
     }
@@ -67,15 +67,28 @@ require_once('employee.php');?>
       bottom: 0;
       right: 0;
       background-color: rgba(255, 255, 255, 0.01);
-      /* Change opacity as needed */
+      /* Change opacity as needed *
+    } */
+
+    body {
+      margin: 0;
+      padding: 0;
     }
 
     .navbar {
       position: relative;
       z-index: 9999;
+      background-color: #0e1d34;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+      justify-content: flex-end;
     }
 
     .navbar ul {
+
       display: flex;
       flex-direction: row;
       list-style: none;
@@ -83,6 +96,49 @@ require_once('employee.php');?>
       padding: 0;
       justify-content: flex-end;
     }
+
+    .navbar ul li {
+      margin-left: 20px;
+    }
+
+    .navbar ul li:first-child {
+      margin-left: 0;
+    }
+
+    .navbar ul li a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 18px;
+      transition: all 0.3s ease-in-out;
+    }
+
+    .navbar ul li a:hover {
+      color: #1c8adb;
+    }
+
+    .navbar .get-a-quote,
+    .navbar .get-a-quote:focus {
+      background: #0d42ff;
+      padding: 8px 20px;
+      border-radius: 4px;
+      margin: 15px;
+      color: #fff;
+    }
+
+    .navbar .get-a-quote:hover,
+    .navbar .get-a-quote:focus:hover {
+      color: #fff;
+      background: rgba(13, 66, 255, 0.8);
+    }
+
+    .h1 {
+      color: #fff;
+      font-size: 28px;
+      font-weight: bold;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
 
     select {
       cursor: pointer;
@@ -94,15 +150,66 @@ require_once('employee.php');?>
       border: none;
       border-radius: 5px;
       width: 200px;
+      background-color: #DDD;
+      /* light gray */
     }
+
 
     select::-ms-expand {
       display: none;
+    }
+
+    .li {
+      color: black;
+    }
+
+    .rating {
+      display: flex;
+      flex-direction: row-reverse;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .rating input[type="radio"] {
+      display: none;
+    }
+
+    .rating label {
+      display: inline-block;
+      color: #BBB;
+      cursor: pointer;
+      transition: color 0.2s, text-shadow 0.2s;
+      margin-right: 5px;
+      font-size: 20px;
+      text-shadow: 0px 0px 5px rgba(255, 255, 255, 0.7);
+    }
+
+    .rating label:hover,
+    .rating label:hover~label,
+    .rating input[type="radio"]:checked~label {
+      color: #333;
+      text-shadow: none;
+    }
+
+    .rating label:before {
+      content: "\2605";
+      text-shadow: 0px 0px 5px rgba(255, 255, 255, 0.7);
+    }
+
+    .rating label:hover:before,
+    .rating label:hover~label:before,
+    .rating input[type="radio"]:checked~label:before {
+      content: "\2605";
+      color: #ffca08;
+      text-shadow: none;
     }
   </style>
 </head>
 
 <body>
+
+
   <header id="header" class="header d-flex align-items-center fixed-top">
     <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
 
@@ -124,9 +231,8 @@ require_once('employee.php');?>
 
 
 
-
   <div class="container" style="margin-top: 10px">
-    <h1 style="color: white">Track your order</h1>
+    <h1 style="color: Black">Track your order</h1>
 
     <!-- <div style="display: flex; justify-content: center;">
  
@@ -134,7 +240,7 @@ require_once('employee.php');?>
   <option value="" disabled selected>Select your order id</option> -->
 
     <!-- get orders id -->
-    <?php
+    <!-- <php
     require_once('connection.php');
     $c_id = $_SESSION['c_id'];
     $query = "SELECT o_id FROM orders WHERE c_id='$c_id' ORDER BY o_id";
@@ -145,18 +251,60 @@ require_once('employee.php');?>
         <form method="post" action="track.php">
           <select style="position: relative; display: inline-block;  margin: 20px;">
             <option value="" disabled selected>Select your order id</option>
-            <?php
+            <php
             while ($row = mysqli_fetch_assoc($result)) { ?>
-              <option value=<?php echo $row["o_id"] ?>> #<?php echo $row["o_id"] ?></option>
-            <?php } ?>
+              <option value=<php echo $row["o_id"] ?>> #<php echo $row["o_id"] ?></option>
+            <php } ?>
           </select>
           <input type="submit" value="Track">
         </form>
       </div>
-    <?php
+    <php
     } else {
       echo "You don't have any orders yet!";
-    } ?>
+    } ?> -->
+
+    <?php
+    require_once('connection.php');
+    $c_id = $_SESSION['c_id'];
+    $query = "SELECT o_id FROM orders WHERE c_id='$c_id' ORDER BY o_id";
+    $result = mysqli_query($link, $query);
+    if (($result) && (mysqli_num_rows($result) > 0)) {
+      ?>
+      <div style="display: flex; justify-content: center;">
+        <select id="order-select" style="position: relative; display: inline-block;  margin: 20px;">
+          <option value="" disabled selected>Select your order id</option>
+          <?php
+          while ($row = mysqli_fetch_assoc($result)) { ?>
+            <option value=<?php echo $row["o_id"] ?>> #<?php echo $row["o_id"] ?></option>
+          <?php } ?>
+        </select>
+      </div>
+      <script>
+        // listen for changes in the select element
+        document.getElementById('order-select').addEventListener('change', function () {
+          var orderId = this.value;
+          if (orderId) {
+            // make an AJAX request to track.php with the selected order ID
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', 'track.php');
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.onload = function () {
+              if (xhr.status === 200) {
+                console.log(xhr.responseText);
+                // handle the response here
+              }
+            };
+            xhr.send('order_id=' + orderId);
+          }
+        });
+      </script>
+      <?php
+    } else {
+      echo "You don't have any orders yet!";
+    }
+    ?>
+
 
 
 
@@ -177,18 +325,17 @@ require_once('employee.php');?>
         }
         require_once('connection.php');
         $c_id = $_SESSION['c_id'];
-        
+
         $query = "SELECT * FROM orders NATURAL JOIN deliveries WHERE c_id='$c_id' AND o_id='$o_id' ORDER BY timestamp";
         $result = mysqli_query($link, $query);
         if (($result) && (mysqli_num_rows($result) > 0)) {
 
           while ($row = mysqli_fetch_assoc($result)) {
-            $emp=0;
+            $emp = 0;
             if (is_null($row["w_id"])) {
               $emp = $_SESSION['c_name'] . "(you)";
-            }
-            else{ 
-              $emp= getEmpById($link,$row["w_id"]);
+            } else {
+              $emp = getEmpById($link, $row["w_id"]);
             }
 
             echo "<tr>   
@@ -204,20 +351,23 @@ require_once('employee.php');?>
 
 
     <!-- rating -->
-      </br>
-    <form action="rating.php" method="post">
-      <fieldset>
-        <legend>Rate our company:</legend>
-        <input type="radio" id="star5" name="rating" value="5" />5<label for="star5" title="5 stars">&#9733;</label>
-        <input type="radio" id="star4" name="rating" value="4" />4<label for="star4" title="4 stars">&#9733;</label>
-        <input type="radio" id="star3" name="rating" value="3" />3<label for="star3" title="3 stars">&#9733;</label>
-        <input type="radio" id="star2" name="rating" value="2" />2<label for="star2" title="2 stars">&#9733;</label>
-        <input type="radio" id="star1" name="rating" value="1" />1<label for="star1" title="1 star">&#9733;</label>
-      </fieldset>
-      <input type="submit" value="Submit Rating">
-    </form>
-
-    </br>
+    <script>
+      $(document).ready(function () {
+        $('input[type="radio"]').click(function () {
+          $.post('rating.php', { rating: $(this).val() });
+        });
+      });
+    </script>
+    <fieldset class="rating">
+      <legend>Rate our company:</legend>
+      <input type="radio" id="star5" name="rating" value="5" /><label for="star5" title="5 stars">5 stars</label>
+      <input type="radio" id="star4" name="rating" value="4" /><label for="star4" title="4 stars">4 stars</label>
+      <input type="radio" id="star3" name="rating" value="3" /><label for="star3" title="3 stars">3 stars</label>
+      <input type="radio" id="star2" name="rating" value="2" /><label for="star2" title="2 stars">2 stars</label>
+      <input type="radio" id="star1" name="rating" value="1" /><label for="star1" title="1 star">1 star</label>
+    </fieldset>
+    <!-- <input type="submit" value="Submit Rating">
+    </form> -->
     <?php
     if (isset($_SESSION['message'])) {
       echo $_SESSION['message'];
