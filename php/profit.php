@@ -45,8 +45,7 @@ if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin']) {
     <tbody>
       <?php
       require_once('connection.php');
-      $c_id = $_SESSION['c_id'];
-      $query = "SELECT * FROM orders NATURAL JOIN packages WHERE c_id='$c_id' ORDER BY date";
+      $query = "SELECT * FROM orders NATURAL JOIN packages ORDER BY date";
       $result = mysqli_query($link, $query);
       if (($result) && (mysqli_num_rows($result) > 0)) {
 

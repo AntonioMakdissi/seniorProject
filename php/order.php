@@ -4,20 +4,23 @@ if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin']) {
     header('Location: ../login.html');
 }
 require_once 'connection.php';
-extract($_GET);
+extract($_POST);
+
+$to_district = str_replace("%20"," ", $_POST['to_district']);
+
 $c_id = $_SESSION['c_id'];
 
 $cost = 5; //standard cost
-$charge=5;
+$charge = 5;
 
 
 
 if ($fragile) { //extra for fragile
     $cost = $cost + 5;
-    $charge=$charge+5;
+    $charge = $charge + 5;
 }
 
-$f_price=$o_price+$cost+$charge;
+$f_price = $o_price + $cost + $charge;
 
 /*$name = $_GET['name'];
 $name = str_replace("%20"," ",$name);*/
@@ -26,8 +29,8 @@ $name = str_replace("%20"," ",$name);*/
 $query = "INSERT into packages(width, height, weight, message, to_address, p_longitude, p_latitude, to_district, fragile, o_price, cost, f_price, pay_at_delivery) 
 values('$width','$height','$weight', '$message', '$to_address', '$p_longitude', '$p_latitude', '$to_district', '$fragile', '$o_price', '$cost', '$f_price', '$pay_at_delivery')";
 */
-$query = "INSERT into packages(width, height, weight, message, to_name,to_address,to_district, fragile, o_price, cost, charge, f_price, pay_at_delivery) 
-values('$width','$height','$weight', '$message', '$to_name','$to_address', '$to_district', '$fragile', '$o_price', '$cost', '$charge', '$f_price', '$pay_at_delivery')";
+$query = "INSERT into packages(width, height, weight, message, to_name, to_phone, to_address,to_district, fragile, o_price, cost, charge, f_price, pay_at_delivery) 
+values('$width','$height','$weight', '$message', '$to_name', '$to_phone', '$to_address', '$to_district', '$fragile', '$o_price', '$cost', '$charge', '$f_price', '$pay_at_delivery')";
 
 if (mysqli_query($link, $query)) {
     //echo mysqli_insert_id($link); //debug
@@ -42,10 +45,10 @@ if (mysqli_query($link, $query)) {
         //insert to deliveries too if successful
         $query = "INSERT INTO deliveries (o_id) VALUES ('$o_id');";
         if (mysqli_query($link, $query)) {
-            echo mysqli_insert_id($link);
+            //echo mysqli_insert_id($link);
+            echo "order placed";
         }
     }
 } else {
-    echo "-1";
-    
+    echo "order failed";
 }

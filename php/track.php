@@ -2,7 +2,9 @@
 session_start();
 if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin']) {
   header('Location: ../login.html');
-} ?>
+} 
+require_once 'connection.php';
+require_once('employee.php');?>
 <!DOCTYPE html>
 <html>
 
@@ -130,46 +132,6 @@ if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin']) {
  
   <select style="position: relative; display: inline-block;  margin: 20px;">
   <option value="" disabled selected>Select your order id</option> -->
-    <!-- <php
-    require_once('connection.php');
-    $c_id = $_SESSION['c_id'];
-    $query = "SELECT o_id FROM orders WHERE c_id='$c_id' ORDER BY o_id";
-    $result = mysqli_query($link, $query);
-    if (($result) && (mysqli_num_rows($result) > 0)) {
-
-      while ($row = mysqli_fetch_assoc($result)) { ?>
-        <option value=<php echo $row["o_id"] ?>> <php echo $row["o_id"] ?></option>
-      <php }
-    } ?>
-    </select>
-  </div>
-  <table class="table table-striped">
-    <thead>
-      <tr> -->
-
-    <!-- get orders id -->
-    <!-- <php
-        require_once('connection.php');
-        $c_id = $_SESSION['c_id'];
-        $query = "SELECT o_id FROM orders WHERE c_id='$c_id' ORDER BY o_id";
-        $result = mysqli_query($link, $query);
-        if (($result) && (mysqli_num_rows($result) > 0)) {
-          ?>
-          <form method="post" action="track.php">
-            <select id="mySelect" name="mySelect">
-              <php
-              while ($row = mysqli_fetch_assoc($result)) { ?>
-                <option value=<php echo $row["o_id"] ?>> <php echo $row["o_id"] ?></option>
-              <php } ?>
-            </select>
-            <!-- <input type="submit" value="Track"> --
-          </form>
-          <php
-        } else {
-          echo "You don't have any orders yet!";
-        } > -->
-
-
 
     <!-- get orders id -->
     <?php
@@ -178,118 +140,114 @@ if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin']) {
     $query = "SELECT o_id FROM orders WHERE c_id='$c_id' ORDER BY o_id";
     $result = mysqli_query($link, $query);
     if (($result) && (mysqli_num_rows($result) > 0)) {
-      ?>
+    ?>
       <div style="display: flex; justify-content: center;">
         <form method="post" action="track.php">
-          
-
-            <select style="position: relative; display: inline-block;  margin: 20px;">
-              <option value="" disabled selected>Select your order id</option>
-              <?php
-              while ($row = mysqli_fetch_assoc($result)) { ?>
-                <option value=<?php echo $row["o_id"] ?>> <?php echo $row["o_id"] ?></option>
-              <?php } ?>
-            </select>
-            <!-- <input type="submit" value="Track"> -->
+          <select style="position: relative; display: inline-block;  margin: 20px;">
+            <option value="" disabled selected>Select your order id</option>
+            <?php
+            while ($row = mysqli_fetch_assoc($result)) { ?>
+              <option value=<?php echo $row["o_id"] ?>> #<?php echo $row["o_id"] ?></option>
+            <?php } ?>
+          </select>
+          <input type="submit" value="Track">
         </form>
-              </div>
-        <?php
+      </div>
+    <?php
     } else {
       echo "You don't have any orders yet!";
     } ?>
 
 
 
-      <table class="table table-striped">
-        <thead>
-          <tr>
+    <table class="table table-striped">
+      <thead>
+        <tr>
 
-            <th>Date and time</th>
-            <th>Location</th>
-            <th>By</th>
-          </tr>
-        </thead>
-        <tbody>
-          <?php
-          $o_id = 0;
-          if (isset($_POST['mySelect'])) {
-            $o_id = $_POST['mySelect'];
-          }
-          require_once('connection.php');
-          $c_id = $_SESSION['c_id'];
-          //$o_id = $_GET['o_id'];
-          $query = "SELECT * FROM orders NATURAL JOIN deliveries WHERE c_id='$c_id' AND o_id='$o_id' ORDER BY timestamp";
-          $result = mysqli_query($link, $query);
-          if (($result) && (mysqli_num_rows($result) > 0)) {
+          <th>Date and time</th>
+          <th>Location</th>
+          <th>By</th>
+        </tr>
+      </thead>
+      <tbody>
+        <?php
+        $o_id = 0;
+        if (isset($_POST['mySelect'])) {
+          $o_id = $_POST['mySelect'];
+        }
+        require_once('connection.php');
+        $c_id = $_SESSION['c_id'];
+        
+        $query = "SELECT * FROM orders NATURAL JOIN deliveries WHERE c_id='$c_id' AND o_id='$o_id' ORDER BY timestamp";
+        $result = mysqli_query($link, $query);
+        if (($result) && (mysqli_num_rows($result) > 0)) {
 
-            while ($row = mysqli_fetch_assoc($result)) {
-              if (is_null($row["w_id"])) {
-                $row["w_id"] = $_SESSION['c_name'] . "(you)";
-              }
+          while ($row = mysqli_fetch_assoc($result)) {
+            $emp=0;
+            if (is_null($row["w_id"])) {
+              $emp = $_SESSION['c_name'] . "(you)";
+            }
+            else{ 
+              $emp= getEmpById($link,$row["w_id"]);
+            }
 
-              echo "<tr>   
+            echo "<tr>   
 							<td>" . $row["timestamp"] . "</td>
 							<td>" . $row["current_location"] . "</td>
-							<td>" . $row["w_id"] . "</td>
+							<td>" . $emp . "</td>
 							</tr>";
-            }
           }
-          ?>
-        </tbody>
-      </table>
-    
+        }
+        ?>
+      </tbody>
+    </table>
+
 
     <!-- rating -->
-    <!-- <form action="rating.php" method="post">
-          <fieldset>
-            <legend>Rate our company:</legend>
-            <input type="radio" id="star5" name="rating" value="5" />5<label for="star5" title="5 stars">&#9733;</label>
-            <input type="radio" id="star4" name="rating" value="4" />4<label for="star4" title="4 stars">&#9733;</label>
-            <input type="radio" id="star3" name="rating" value="3" />3<label for="star3" title="3 stars">&#9733;</label>
-            <input type="radio" id="star2" name="rating" value="2" />2<label for="star2" title="2 stars">&#9733;</label>
-            <input type="radio" id="star1" name="rating" value="1" />1<label for="star1" title="1 star">&#9733;</label>
-          </fieldset>
-          <input type="submit" value="Submit Rating">
-        </form>
+      </br>
+    <form action="rating.php" method="post">
+      <fieldset>
+        <legend>Rate our company:</legend>
+        <input type="radio" id="star5" name="rating" value="5" />5<label for="star5" title="5 stars">&#9733;</label>
+        <input type="radio" id="star4" name="rating" value="4" />4<label for="star4" title="4 stars">&#9733;</label>
+        <input type="radio" id="star3" name="rating" value="3" />3<label for="star3" title="3 stars">&#9733;</label>
+        <input type="radio" id="star2" name="rating" value="2" />2<label for="star2" title="2 stars">&#9733;</label>
+        <input type="radio" id="star1" name="rating" value="1" />1<label for="star1" title="1 star">&#9733;</label>
+      </fieldset>
+      <input type="submit" value="Submit Rating">
+    </form>
 
-        </br>
-        <php
-        if (isset($_SESSION['message'])) {
-          echo $_SESSION['message'];
-          unset($_SESSION['message']);
-        }
-        ?> -->
+    </br>
+    <?php
+    if (isset($_SESSION['message'])) {
+      echo $_SESSION['message'];
+      unset($_SESSION['message']);
+    }
+    ?>
 
 </body>
 
 </html>
-<<<<<<< HEAD <<<<<<< HEAD <!-- code to connect select with table const select=document.getElementById('filter-select');
-  const table=document.getElementById('table'); select.addEventListener('change', (event)=> {
+<!-- code to connect select with table const select=document.getElementById('filter-select'); const table=document.getElementById('table'); select.addEventListener('change', (event)=> {
   const filterValue = event.target.value;
 
   // Loop through each row of the table body
-  for (let i = 0; i < table.tBodies[0].rows.length; i++) { const row=table.tBodies[0].rows[i]; // If the filter value
-    is "all" or matches the data in the first cell of the row, show the row, otherwise hide it if (filterValue==='all'
-    || row.cells[0].textContent===filterValue) { row.style.display='' ; } else { row.style.display='none' ; } } }); -->
+  for (let i = 0; i < table.tBodies[0].rows.length; i++) { const row=table.tBodies[0].rows[i]; // If the filter value is "all" or matches the data in the first cell of the row, show the row, otherwise hide it if (filterValue==='all' || row.cells[0].textContent===filterValue) { row.style.display='' ; } else { row.style.display='none' ; } } }); -->
 
 
-    <!-- script -->
-    <script>
-      function updateTable() {
-        var selectedValue = document.getElementById("mySelect").value;
-        // Use the selected value to fetch data from the server and update the table
-        // Example code to update the table with different content based on the selected value:
-        var table = document.getElementById("trackTable");
-        for (var i = 1; i < table.rows.length; i++) {
-          var row = table.rows[i];
-          var cells = row.cells;
-          for (var j = 0; j < cells.length; j++) {
-            cells[j].innerHTML = "Option " + selectedValue + " - Value " + i + "-" + (j + 1);
-          }
-        }
+<!-- script -->
+<script>
+  function updateTable() {
+    var selectedValue = document.getElementById("mySelect").value;
+    // Use the selected value to fetch data from the server and update the table
+    // Example code to update the table with different content based on the selected value:
+    var table = document.getElementById("trackTable");
+    for (var i = 1; i < table.rows.length; i++) {
+      var row = table.rows[i];
+      var cells = row.cells;
+      for (var j = 0; j < cells.length; j++) {
+        cells[j].innerHTML = "Option " + selectedValue + " - Value " + i + "-" + (j + 1);
       }
-
-    </script>
-
-
-    </script>
+    }
+  }
+</script>

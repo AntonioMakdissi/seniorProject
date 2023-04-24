@@ -149,7 +149,7 @@ require_once('php/stats.php');
           <div class="col-lg-5 quote-bg" style="background-image: url(assets/img/quote-bg.jpg);"></div>
 
           <div class="col-lg-7">
-            <form action="php/order.php" method="post" class="php-email-form">
+            <form action="order.php" method="post" class="php-email-form">
               <h3>Make an order</h3>
               <p>To place an order, please fill out the order form and submit it.</p>
               <div class="row gy-4">
@@ -159,42 +159,25 @@ require_once('php/stats.php');
                 </div>
 
                 <div class="col-md-6">
-
-                  <label for="district"><i class="fa fa-industry"></i> Sector</label>
-                  <br />
-                  <select id="district" name="to_district" required style="width: 100%; padding: 8px 12px; font-size: 16px; line-height: 1.5; color: #555; background-color: #fff; border: 1px solid #ccc; border-radius: 4px; box-shadow: inset 0 1px 1px rgba(0,0,0,.075); transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;">
-                    <option value="" selected disabled hidden>Delivery district</option>
-                    <?php
-                    require_once('php/branches.php');
-                    $all = all_branches($link);
-                    foreach ($all as $branch) {
-                      $n = trim($branch);
-                      $to_district = str_replace(" ", "%20", $n);
-                      echo "<option value= " . $to_district . ">" . $branch . " </option>";;
-                    }
-
-                    ?>
-
-                  </select>
+                  <input type="text" name="address" class="form-control" placeholder="City of Departure" required>
                 </div>
 
                 <div class="col-md-6">
-                  <input type="text" name="to_address" class="form-control" placeholder="Delivery Address" required>
+                  <input type="text" name="delivery" class="form-control" placeholder="Delivery City" required>
                 </div>
 
                 <div class="col-md-6">
-                  <input type="tel" name="width" class="form-control" placeholder="Total width (cm)" required>
+                  <input type="text" name="width" class="form-control" placeholder="Total width (cm)" required>
                 </div>
 
                 <div class="col-md-6">
-                  <input type="tel" name="height" class="form-control" placeholder="Total height (cm)" required>
+                  <input type="text" name="height" class="form-control" placeholder="Total height (cm)" required>
                 </div>
 
                 <div class="col-md-6">
-                  <input type="tel" name="weight" class="form-control" placeholder="Total Weight (kg)" required>
+                  <input type="text" name="weight" class="form-control" placeholder="Total Weight (kg)" required>
                 </div>
 
-                <!-- debug here -->
                 <div class="col-md-12">
                   <div class="form-group">
                     <div class="form-check">
@@ -202,23 +185,23 @@ require_once('php/stats.php');
                       <label class="form-check-label" for="fragile">Is your item fragile?</label>
                     </div>
                   </div>
+
+                </div>
+
+                <div class="col-lg-12">
+                  <h4>Your Personal Details</h4>
                 </div>
 
                 <div class="col-md-12">
-                  <div class="form-group">
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" id="pay_at_delivery" name="pay_at_delivery">
-                      <label class="form-check-label" for="pay_at_delivery">pay_at_delivery?</label>
-                    </div>
-                  </div>
+                  <input type="text" name="name" class="form-control" placeholder="Name" required>
                 </div>
 
                 <div class="col-md-12 ">
-                  <input type="tel" class="form-control" name="o_price" placeholder="Pick money (if any)">
+                  <input type="email" class="form-control" name="email" placeholder="Email" required>
                 </div>
 
                 <div class="col-md-12">
-                  <input type="tel" class="form-control" name="to_phone" id="phone" required placeholder="Reciepient Phone number" pattern="[0-9+\\-]*" onkeypress="return event.charCode >= 48 && event.charCode <= 57 || event.keyCode === 43 || event.keyCode === 45">
+                  <input type="tel" class="form-control" name="phone" id="phone" required placeholder="Phone number" pattern="[0-9+\\-]*" onkeypress="return event.charCode >= 48 && event.charCode <= 57 || event.keyCode === 43 || event.keyCode === 45">
                 </div>
 
                 <div class="col-md-12">

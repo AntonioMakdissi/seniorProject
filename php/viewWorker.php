@@ -136,6 +136,7 @@ position: relative;
                 <th>Worker ID </th>
                 <th>name</th>
                 <th>dateOfBirth</th>
+                <th>Phone</th>
                 <th>branch</th>
                 <th>salary</th>
                 <th>date joined</th>
@@ -145,7 +146,6 @@ position: relative;
         <tbody>
             <?php
             require_once('connection.php');
-            $c_id = $_SESSION['c_id'];
             $query = "SELECT * FROM workers ";
             $result = mysqli_query($link, $query);
             if (($result) && (mysqli_num_rows($result) > 0)) {
@@ -157,6 +157,7 @@ position: relative;
 <td>#" . $row["w_id"] . "</td>
 <td>" . $row["name"] . "</td>
 <td>" . $row["dateOfBirth"] . "</td>
+<td>" . $row["phone"] . "</td>
 <td>" . $row["branch"] . "</td>
 <td>" . $row["salary"] . "$</td>
 <td>" . $row["timestamp"] . "</td> 

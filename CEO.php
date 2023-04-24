@@ -6,6 +6,7 @@ if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin']) {
 
 require_once 'php/connection.php';
 require_once('php/stats.php');
+require_once('php/employee.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -314,7 +315,9 @@ require_once('php/stats.php');
             </tr>
             <tr>
               <td>Employee with most deliveries</td>
-              <td><?php echo mvp($link); ?></td>
+              <td><?php 
+              $emp = mvp($link); 
+              echo getEmpById($link,$emp);?></td>
             </tr>
           </tbody>
         </table>
