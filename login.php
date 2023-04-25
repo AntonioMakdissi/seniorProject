@@ -80,8 +80,11 @@ require_once('php/connection.php'); ?>
                       <label for="password"><i class="fa fa-lock"></i> Password</label>
                       <input type="password" required name="password" class="form-control" id="password" placeholder="Enter password">
                     </div>
+                    
+                    <div class="error-message"></div>
                     <button type="submit" class="btn  btn-block">Sign In</button>
                   </form>
+                  <!--  -->
                   <div class="divider">
                     <hr>
                     <span class="text-muted">OR</span>
@@ -93,9 +96,10 @@ require_once('php/connection.php'); ?>
                     <button class="btn btn-google"><i class="fab fa-google"></i></button>
                   </div>
                 </div>
+
                 <!-- Signup Form -->
                 <div class="tab-pane fade" id="signup">
-                  <form method="POST" action="php/signup.php">
+                  <form method="POST" action="php/signup.php" >
                     <div class="form-group">
                       <label for="name"><i class="fa fa-user"></i> Name</label>
                       <input type="text" class="form-control" required id="name" name="name" placeholder="Enter name">
@@ -135,12 +139,11 @@ require_once('php/connection.php'); ?>
                       <input type="tel" class="form-control" name="phone" id="phone" required placeholder="Enter phone number" pattern="[0-9+\\-]*" onkeypress="return event.charCode >= 48 && event.charCode <= 57 || event.keyCode === 43 || event.keyCode === 45">
                     </div>
 
-
-
-
+                    <div class="error-message"></div>
 
                     <button type="submit" class="btn  btn-block">Sign Up</button>
                   </form>
+                  <!--  -->
                   <div class="divider">
                     <hr>
                     <span class="text-muted">OR</span>

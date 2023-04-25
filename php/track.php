@@ -240,7 +240,7 @@ require_once('employee.php'); ?>
   <option value="" disabled selected>Select your order id</option> -->
 
     <!-- get orders id -->
-    <!-- <php
+    <?php
     require_once('connection.php');
     $c_id = $_SESSION['c_id'];
     $query = "SELECT o_id FROM orders WHERE c_id='$c_id' ORDER BY o_id";
@@ -249,22 +249,22 @@ require_once('employee.php'); ?>
     ?>
       <div style="display: flex; justify-content: center;">
         <form method="post" action="track.php">
-          <select style="position: relative; display: inline-block;  margin: 20px;">
+          <select name="o_id" style="position: relative; display: inline-block;  margin: 20px;">
             <option value="" disabled selected>Select your order id</option>
-            <php
+            <?php
             while ($row = mysqli_fetch_assoc($result)) { ?>
-              <option value=<php echo $row["o_id"] ?>> #<php echo $row["o_id"] ?></option>
-            <php } ?>
+              <option name="o_id" value=<?php echo $row["o_id"] ?>> #<?php echo $row["o_id"] ?></option>
+            <?php } ?>
           </select>
           <input type="submit" value="Track">
         </form>
       </div>
-    <php
+    <?php
     } else {
       echo "You don't have any orders yet!";
-    } ?> -->
+    } ?>
 
-    <?php
+    <!-- <php
     require_once('connection.php');
     $c_id = $_SESSION['c_id'];
     $query = "SELECT o_id FROM orders WHERE c_id='$c_id' ORDER BY o_id";
@@ -274,10 +274,10 @@ require_once('employee.php'); ?>
       <div style="display: flex; justify-content: center;">
         <select id="order-select" style="position: relative; display: inline-block;  margin: 20px;">
           <option value="" disabled selected>Select your order id</option>
-          <?php
+          <php
           while ($row = mysqli_fetch_assoc($result)) { ?>
-            <option value=<?php echo $row["o_id"] ?>> #<?php echo $row["o_id"] ?></option>
-          <?php } ?>
+            <option value=<php echo $row["o_id"] ?>> #<php echo $row["o_id"] ?></option>
+          <php } ?>
         </select>
       </div>
       <script>
@@ -299,11 +299,11 @@ require_once('employee.php'); ?>
           }
         });
       </script>
-      <?php
+      <php
     } else {
       echo "You don't have any orders yet!";
     }
-    ?>
+    ?> -->
 
 
 
@@ -320,12 +320,12 @@ require_once('employee.php'); ?>
       <tbody>
         <?php
         $o_id = 0;
-        if (isset($_POST['mySelect'])) {
-          $o_id = $_POST['mySelect'];
+        if (isset($_POST['o_id'])) {
+          $o_id = $_POST['o_id'];
         }
         require_once('connection.php');
         $c_id = $_SESSION['c_id'];
-
+        
         $query = "SELECT * FROM orders NATURAL JOIN deliveries WHERE c_id='$c_id' AND o_id='$o_id' ORDER BY timestamp";
         $result = mysqli_query($link, $query);
         if (($result) && (mysqli_num_rows($result) > 0)) {
@@ -360,14 +360,16 @@ require_once('employee.php'); ?>
     </script>
     <fieldset class="rating">
       <legend>Rate our company:</legend>
+      <form method="post" action="rating.php">
       <input type="radio" id="star5" name="rating" value="5" /><label for="star5" title="5 stars">5 stars</label>
       <input type="radio" id="star4" name="rating" value="4" /><label for="star4" title="4 stars">4 stars</label>
       <input type="radio" id="star3" name="rating" value="3" /><label for="star3" title="3 stars">3 stars</label>
       <input type="radio" id="star2" name="rating" value="2" /><label for="star2" title="2 stars">2 stars</label>
       <input type="radio" id="star1" name="rating" value="1" /><label for="star1" title="1 star">1 star</label>
     </fieldset>
-    <!-- <input type="submit" value="Submit Rating">
-    </form> -->
+    <input type="submit" value="Submit Rating">
+    </form>
+    </br>
     <?php
     if (isset($_SESSION['message'])) {
       echo $_SESSION['message'];

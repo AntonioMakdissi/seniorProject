@@ -82,12 +82,12 @@
 			}
 		} else {
 			echo '<script>alert("Please sign up first!")</script>';
-			header('Location: ../login.html'); //no return
+			//header('Location: ../login.php'); //no return
 
 		}
 		mysqli_close($link); //close if error
 	} else {
-		header('Location: ../login.html'); //if no email and password
+		header('Location: ../login.php'); //if no email and password
 
 	}
 
