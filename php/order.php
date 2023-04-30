@@ -6,29 +6,31 @@ if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin']) {
 require_once 'connection.php';
 extract($_POST);
 
-$to_district = str_replace("%20"," ", $_POST['to_district']);
+//check checkboxes
+$fragile = isset($_POST['fragile']) ? true : false;
+$pay_at_delivery = isset($_POST['pay_at_delivery']) ? true : false;
+
+
+$to_district = str_replace("%20", " ", $_POST['to_district']);
 
 $c_id = $_SESSION['c_id'];
 
-$cost = 5; //standard cost
-$charge = 5;
-
-
+$cost = 5; //standard cost on us
+$charge = 5; //charge on customer
 
 if ($fragile) { //extra for fragile
     $cost = $cost + 5;
     $charge = $charge + 5;
 }
 
+//if price not set 
+if ($o_price=="") {
+    $o_price = 0;
+}
+
 $f_price = $o_price + $cost + $charge;
 
-/*$name = $_GET['name'];
-$name = str_replace("%20"," ",$name);*/
 
-/*code with GPS
-$query = "INSERT into packages(width, height, weight, message, to_address, p_longitude, p_latitude, to_district, fragile, o_price, cost, f_price, pay_at_delivery) 
-values('$width','$height','$weight', '$message', '$to_address', '$p_longitude', '$p_latitude', '$to_district', '$fragile', '$o_price', '$cost', '$f_price', '$pay_at_delivery')";
-*/
 $query = "INSERT into packages(width, height, weight, message, to_name, to_phone, to_address,to_district, fragile, o_price, cost, charge, f_price, pay_at_delivery) 
 values('$width','$height','$weight', '$message', '$to_name', '$to_phone', '$to_address', '$to_district', '$fragile', '$o_price', '$cost', '$charge', '$f_price', '$pay_at_delivery')";
 
@@ -46,9 +48,29 @@ if (mysqli_query($link, $query)) {
         $query = "INSERT INTO deliveries (o_id) VALUES ('$o_id');";
         if (mysqli_query($link, $query)) {
             //echo mysqli_insert_id($link);
-            echo "order placed";
+            //echo "order placed";
+            //$_SESSION['sms'] = "done";
+            echo "OK";
+            //header('client.php');
+        } else {
+            //mysqli_rollback($link);
+            echo "Failed to insert into deliveries";
         }
+    } else {
+        //mysqli_rollback($link);
+        echo "Failed to insert into orders";
     }
 } else {
-    echo "order failed";
+    //mysqli_rollback($link);
+    echo "Failed to insert into packages";
 }
+
+
+
+/*$name = $_GET['name'];
+$name = str_replace("%20"," ",$name);*/
+
+/*code with GPS
+$query = "INSERT into packages(width, height, weight, message, to_address, p_longitude, p_latitude, to_district, fragile, o_price, cost, f_price, pay_at_delivery) 
+values('$width','$height','$weight', '$message', '$to_address', '$p_longitude', '$p_latitude', '$to_district', '$fragile', '$o_price', '$cost', '$f_price', '$pay_at_delivery')";
+*/

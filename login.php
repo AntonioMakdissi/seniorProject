@@ -71,7 +71,8 @@ require_once('php/connection.php'); ?>
               <div class="tab-content mt-3">
                 <!-- Login Form -->
                 <div class="tab-pane fade show active" id="login">
-                  <form method="POST" action="php/login.php">
+                <!-- <form method="POST" action="php/login.php" class="php-email-form" >  -->
+                  <form method="POST" action="php/login.php" > 
                     <div class="form-group">
                       <label for="email"><i class="fa fa-envelope"></i> Email</label>
                       <input type="email" required class="form-control" name="email" id="email" placeholder="Enter email">
@@ -80,9 +81,18 @@ require_once('php/connection.php'); ?>
                       <label for="password"><i class="fa fa-lock"></i> Password</label>
                       <input type="password" required name="password" class="form-control" id="password" placeholder="Enter password">
                     </div>
-                    
-                    <div class="error-message"></div>
-                    <button type="submit" class="btn  btn-block">Sign In</button>
+
+                    <div class="col-md-12 text-center">
+
+                      <div class="loading">Loading</div>
+
+                      <div class="sent-message"> </div>
+
+                      <div class="error-message"></div>
+
+                      <button type="submit" class="btn  btn-block">Sign In</button>
+                    </div>
+
                   </form>
                   <!--  -->
                   <div class="divider">
@@ -99,7 +109,8 @@ require_once('php/connection.php'); ?>
 
                 <!-- Signup Form -->
                 <div class="tab-pane fade" id="signup">
-                  <form method="POST" action="php/signup.php" >
+                  <!-- <form method="POST" action="php/signup.php" class="php-email-form"> -->
+                  <form method="POST" action="php/signup.php">
                     <div class="form-group">
                       <label for="name"><i class="fa fa-user"></i> Name</label>
                       <input type="text" class="form-control" required id="name" name="name" placeholder="Enter name">
@@ -139,9 +150,14 @@ require_once('php/connection.php'); ?>
                       <input type="tel" class="form-control" name="phone" id="phone" required placeholder="Enter phone number" pattern="[0-9+\\-]*" onkeypress="return event.charCode >= 48 && event.charCode <= 57 || event.keyCode === 43 || event.keyCode === 45">
                     </div>
 
-                    <div class="error-message"></div>
+                    <div class="col-md-12 text-center">
+                      <div class="loading">Loading</div>
 
-                    <button type="submit" class="btn  btn-block">Sign Up</button>
+                      <div class="sent-message"></div>
+
+                      <div class="error-message"></div>
+
+                      <button type="submit" class="btn  btn-block">Sign Up</button>
                   </form>
                   <!--  -->
                   <div class="divider">
@@ -177,6 +193,9 @@ require_once('php/connection.php'); ?>
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+
+
 </body>
 
 </html>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 12, 2023 at 11:26 AM
+-- Generation Time: Apr 25, 2023 at 08:47 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.2
 
@@ -69,8 +69,9 @@ CREATE TABLE `clients` (
 --
 
 INSERT INTO `clients` (`c_id`, `u_id`, `pay_id`, `c_name`, `c_phone`, `c_address`, `c_longitude`, `c_latitude`, `c_district`, `c_timestamp`, `guest`, `rating`) VALUES
-(6, 8, NULL, 'test01', 'test01', 'test01', NULL, NULL, 'Batroun', '2023-03-31 12:18:06', 0, NULL),
-(7, 9, NULL, 'zaher', 'zaher', 'zaher', NULL, NULL, 'Batroun', '2023-04-03 06:04:07', 0, NULL);
+(6, 8, NULL, 'test01', 'test01', 'test01', NULL, NULL, 'Batroun', '2023-03-31 12:18:06', 0, 4),
+(7, 9, NULL, 'zaher', 'zaher', 'zaher', NULL, NULL, 'Batroun', '2023-04-03 06:04:07', 0, 4),
+(8, 10, NULL, 'client', '555', 'client', NULL, NULL, 'Akkar', '2023-04-23 13:49:36', 0, 4);
 
 -- --------------------------------------------------------
 
@@ -91,7 +92,13 @@ CREATE TABLE `deliveries` (
 --
 
 INSERT INTO `deliveries` (`d_id`, `w_id`, `o_id`, `current_location`, `timestamp`) VALUES
-(1, NULL, 1, 'still at client', '2023-04-10 08:07:13');
+(1, NULL, 1, 'still at client', '2023-04-10 08:07:13'),
+(2, 3, 1, 'Beirut', '2023-04-18 07:19:56'),
+(3, NULL, 4, 'still at client', '2023-04-24 08:11:32'),
+(4, NULL, 5, 'still at client', '2023-04-24 08:24:39'),
+(5, NULL, 6, 'still at client', '2023-04-24 08:40:13'),
+(6, NULL, 7, 'still at client', '2023-04-24 08:41:23'),
+(7, NULL, 8, 'still at client', '2023-04-24 08:43:42');
 
 -- --------------------------------------------------------
 
@@ -127,7 +134,13 @@ CREATE TABLE `orders` (
 
 INSERT INTO `orders` (`o_id`, `p_id`, `c_id`, `status`, `date`) VALUES
 (1, 1, 6, 'pending', '2023-04-10 07:17:10'),
-(2, 2, 7, 'successful', '2023-04-10 07:59:42');
+(2, 2, 7, 'successful', '2023-04-10 07:59:42'),
+(3, 1, 6, 'pending', '2023-04-23 15:14:54'),
+(4, 6, 6, 'pending', '2023-04-24 08:11:32'),
+(5, 8, 6, 'pending', '2023-04-24 08:24:39'),
+(6, 12, 6, 'pending', '2023-04-24 08:40:13'),
+(7, 13, 6, 'pending', '2023-04-24 08:41:22'),
+(8, 14, 6, 'pending', '2023-04-24 08:43:42');
 
 -- --------------------------------------------------------
 
@@ -142,6 +155,7 @@ CREATE TABLE `packages` (
   `weight` float NOT NULL,
   `message` text DEFAULT NULL,
   `to_name` varchar(255) DEFAULT NULL,
+  `to_phone` varchar(100) DEFAULT NULL,
   `to_address` varchar(255) NOT NULL,
   `p_longitude` decimal(11,8) DEFAULT NULL,
   `p_latitude` decimal(10,8) DEFAULT NULL,
@@ -149,6 +163,7 @@ CREATE TABLE `packages` (
   `fragile` tinyint(1) NOT NULL DEFAULT 0,
   `o_price` float NOT NULL DEFAULT 0,
   `cost` float NOT NULL,
+  `charge` float NOT NULL DEFAULT 5,
   `f_price` float NOT NULL,
   `pay_at_delivery` tinyint(1) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -157,9 +172,14 @@ CREATE TABLE `packages` (
 -- Dumping data for table `packages`
 --
 
-INSERT INTO `packages` (`p_id`, `width`, `height`, `weight`, `message`, `to_name`, `to_address`, `p_longitude`, `p_latitude`, `to_district`, `fragile`, `o_price`, `cost`, `f_price`, `pay_at_delivery`) VALUES
-(1, 30, 30, 5, 'to my love', NULL, 'kfaraaka', NULL, NULL, 'Al Koura', 0, 0, 5, 5, 1),
-(2, 50, 100, 20, NULL, NULL, 'kfarsaroun', NULL, NULL, 'Al Koura', 0, 0, 7, 7, 1);
+INSERT INTO `packages` (`p_id`, `width`, `height`, `weight`, `message`, `to_name`, `to_phone`, `to_address`, `p_longitude`, `p_latitude`, `to_district`, `fragile`, `o_price`, `cost`, `charge`, `f_price`, `pay_at_delivery`) VALUES
+(1, 30, 30, 5, 'to my love', NULL, NULL, 'kfaraaka', NULL, NULL, 'Al Koura', 0, 0, 5, 5, 5, 1),
+(2, 50, 100, 20, NULL, NULL, NULL, 'kfarsaroun', NULL, NULL, 'Al Koura', 0, 0, 7, 5, 7, 1),
+(6, 33, 33, 33, 'p', 'fawz', '33', 'rr', NULL, NULL, 'Akkar', 0, 33.33, 10, 10, 53.33, 0),
+(8, 33, 33, 33, 'rr', 'fawze', '33', 'rr', NULL, NULL, 'Beirut', 0, 33.33, 10, 10, 53.33, 0),
+(12, 33, 33, 33, 'f', 'fawz', '33', 'rr', NULL, NULL, 'Al Koura', 0, 33.33, 10, 10, 53.33, 0),
+(13, 33, 33, 33, 'f4 ggg', 'fawz ff', '33', 'rr', NULL, NULL, 'Al Koura', 0, 33.33, 10, 10, 53.33, 0),
+(14, 33, 33, 33, 'f4 ggg', 'fawz ff', '33', 'rr', NULL, NULL, 'Al Koura', 0, 33.33, 10, 10, 53.33, 0);
 
 -- --------------------------------------------------------
 
@@ -232,7 +252,8 @@ INSERT INTO `users` (`u_id`, `email`, `password`, `type`) VALUES
 (2, 'IT@hotmail.com', 'cd32106bcb6de321930cf34574ea388c', 'IT'),
 (3, 'worker1@hotmail.com', 'ebad64149cc767ba26ef069819279fd5', 'worker'),
 (8, 'test01@wow', '0e698a8ffc1a0af622c7b4db3cb750cc', 'client'),
-(9, 'zaher@hotmail.com', '2a4e7d2de385a10968b001de2bc66adf', 'client');
+(9, 'zaher@hotmail.com', '2a4e7d2de385a10968b001de2bc66adf', 'client'),
+(10, 'client@client.com', '62608e08adc29a8d6dbc9754e659f125', 'client');
 
 -- --------------------------------------------------------
 
@@ -257,7 +278,8 @@ CREATE TABLE `workers` (
 
 INSERT INTO `workers` (`w_id`, `u_id`, `name`, `phone`, `branch`, `dateOfBirth`, `salary`, `timestamp`) VALUES
 (1, 1, 'CEO', '71787766', 'Beirut', '1993-04-01', NULL, '2023-04-10 09:13:59'),
-(2, 2, 'IT', '71787767', 'Beirut', '1993-04-01', 1000, '2023-04-10 09:15:38');
+(2, 2, 'IT', '71787767', 'Beirut', '1993-04-01', 1000, '2023-04-10 09:15:38'),
+(3, 3, 'worker1', '3543345', 'Beirut', '1993-04-01', 1000, '2023-04-12 16:25:08');
 
 --
 -- Indexes for dumped tables
@@ -352,25 +374,25 @@ ALTER TABLE `workers`
 -- AUTO_INCREMENT for table `clients`
 --
 ALTER TABLE `clients`
-  MODIFY `c_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `c_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `deliveries`
 --
 ALTER TABLE `deliveries`
-  MODIFY `d_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `d_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `o_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `o_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `packages`
 --
 ALTER TABLE `packages`
-  MODIFY `p_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `p_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `payment`
@@ -382,13 +404,13 @@ ALTER TABLE `payment`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `u_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `u_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `workers`
 --
 ALTER TABLE `workers`
-  MODIFY `w_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `w_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Constraints for dumped tables

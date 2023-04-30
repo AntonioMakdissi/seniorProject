@@ -113,15 +113,15 @@
                     }
                     mysqli_close($link);
                 } else {
-                    echo "-1";
+                    echo "Error inserting user information";
                 }
             }
         } else {
-            echo '<script>alert("Already have an account!")</script>';
+            echo "Already have an account!";
         }
     } else {
         //header('Location: login.html');
-        echo "-1";
+        echo "Error connecting to database";
     }
 
     ?>

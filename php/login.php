@@ -8,7 +8,6 @@
 
 <body>
 	<?php
-
 	if (isset($_POST['email']) && isset($_POST['password'])) {
 		require('connection.php');
 		extract($_POST); //$email and $password
@@ -46,9 +45,11 @@
 					$_SESSION['c_timestamp'] = $u_info['c_timestamp'];
 					//$_SESSION['guest'] = $u_info['guest'];
 					//$_SESSION['rating'] = $u_info['rating'];
+					//echo "OK";
+					// ob_end_clean(); // clear output buffer
+					echo "<script>window.location.href='../client.php';</script>";
 					header('Location: ../client.php');
-					//$c_id = $_SESSION['c_id'];
-					//echo "$c_id";
+					exit;
 				} else {
 					$query = "SELECT * FROM workers WHERE u_id = '$u_id';"; //get its info
 					$result = mysqli_query($link, $query);
@@ -61,6 +62,7 @@
 					$_SESSION['salary'] = $u_info['salary'];
 					$_SESSION['timestamp'] = $u_info['timestamp'];
 					if ($_SESSION['type'] == 'CEO') {
+						//echo "OK";
 						header('Location: ../CEO.php'); //CEO page
 						//echo "CEO";
 					} else if ($_SESSION['type'] == 'worker') {
@@ -74,20 +76,17 @@
 						//echo "manager";
 					}
 				}
-				//header('Location: ../login.html'); //to be revised
-				//echo "1";
 			} else {
-				echo '<script>alert("Check email or password")</script>';
+				echo "Check email or password";
 				//header('Location: ../login.html'); //if wrong password
 			}
 		} else {
-			echo '<script>alert("Please sign up first!")</script>';
-			//header('Location: ../login.php'); //no return
 
+			echo "Please sign up first!";
 		}
 		mysqli_close($link); //close if error
 	} else {
-		header('Location: ../login.php'); //if no email and password
+		echo "Error fetching information"; //if no email and password
 
 	}
 
