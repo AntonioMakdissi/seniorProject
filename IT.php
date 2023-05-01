@@ -96,15 +96,17 @@ if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin']) {
 
                                     <!-- <php
                                     require_once('php/message.php');
-                                    $all = viewMessages($link,$_SESSION['w_id']);
-                                    $i=0;
-                                    foreach ($all as $messager) {
-                                        
-                                        
-                                        echo "<td>" . $messager . " </td>";;
+                                    $all = viewMessages($link, $_SESSION['w_id']);
+                                    for ($i = 0; $i < count($all[0]); ++$i) {
+                                        echo "<tr>";
+                                        echo "<td>" . $all[0][$i] . "</td>";
+                                        echo "<td>" . $all[1][$i] . "</td>";
+                                        echo "<td>" . $all[2][$i] . "</td>";
+                                        echo "<td>" . $all[3][$i] . "</td>";
+                                        echo "</tr>";
                                     }
-
                                     ?> -->
+
                                     <div class="flex justify-center items-center">
                                         <button class="bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700">Done</button>
                                     </div>
