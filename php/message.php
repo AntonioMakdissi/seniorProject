@@ -1,15 +1,20 @@
 <?php
 require_once 'connection.php';
-session_start();
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin']) {
     header('Location: login.html');
 }
-extract($_POST);
 
-$query = "INSERT INTO messages('send_id', 'receive_id', 'message') VALUES ('$send_id','$receive_id','$message')";
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    extract($_POST);
 
-if (mysqli_query($link, $query)) {
-    echo "done";
+    $query = "INSERT INTO messages('send_id', 'receive_id', 'message') VALUES ('$send_id','$receive_id','$message')";
+
+    if (mysqli_query($link, $query)) {
+        echo "done";
+    }
 }
 
 function viewMessages($link, $receive_id)
@@ -27,6 +32,9 @@ function viewMessages($link, $receive_id)
             $messages[3][$i] = $row['timestamp'];
             ++$i;
         }
+    }
+    else{
+        return -1;//no messages
     }
     return $messages;
 }

@@ -1,7 +1,7 @@
 <?php
 session_start();
-if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin']) {
-  header('Location: ../login.html');
+if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin'] || $_SESSION['type'] != 'CEO') {
+  header('Location: ../login.php');
 }
 
 require_once 'php/connection.php';

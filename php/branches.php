@@ -1,9 +1,11 @@
 <?php
-// session_start();
-// if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin'] || $_SESSION['type']!='CEO') {
-//     header('Location: login.html');
-// }
 require_once 'connection.php';
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin']) {
+    header('Location: login.html');
+}
 
 //total deliveries
 function all_branches($link)
