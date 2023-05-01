@@ -12,7 +12,7 @@ if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin']) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet">
     <title>IT Page</title>
-    <link rel="stylesheet" href="assets/css/it.css">
+    <link rel="stylesheet" href="../assets/css/it.css">
 </head>
 
 <body class="bg-gray-100">
@@ -29,13 +29,16 @@ if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin']) {
             <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
             <nav id="navbar" class="navbar">
                 <ul>
-                    <li><a href="#" id="hireLink">Hire worker</a></li>
-                    <li><a href="#" id="fireLink">Fire worker</a></li>
-                    <li><a href="#" id="branchLink">Add branch</a></li>
+                    <li><a href="#hire" class="nav-link">Hire worker</a></li>
+                    <li><a href="#fire" class="nav-link">Fire worker</a></li>
+                    <li><a href="#branch" class="nav-link">Add branch</a></li>
                     <li><a class="get-a-quote" href="logout.php">Logout</a></li>
                 </ul>
             </nav>
-            
+
+
+
+
 
         </div>
     </header>
@@ -117,20 +120,12 @@ if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin']) {
 
                     </table>
                 </div>
-                <!-- <div>
-                    <label class="block text-sm font-medium text-white-700">Action</label>
-                    <select name="action" onclick="toggleForms()"
-                        class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-lg focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                        required>
-                        <option value="hire">Hire</option>
-                        <option value="fire">Fire</option>
-                    </select>
-                </div> -->
+
                 <div id="hire" style="display: none;">
                     <form id="hireForm" action="php/hire.php" method="post"
                         class="php-email-form grid grid-cols-1 gap-6 md:grid-cols-2" style="padding-top: 20px;">
                         <h2 class="text-3xl font-bold mb-6">Add/Delete Worker</h2>
-                        </br>
+                        <br>
                         <div>
                             <label class="block text-sm font-medium text-white-700">Name</label>
                             <input type="text" name="name"
@@ -170,52 +165,43 @@ if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin']) {
                         </div>
 
                         <!-- <label for="dateOfBirth">Enter date of birth:</label>
-                    <input type="date" name="dateOfBirth" id="dateOfBirth"> -->
-                        <div>
+                     <input type="date" name="dateOfBirth" id="dateOfBirth"> -->
+                        <!-- <div>
                             <label class="block text-sm font-medium text-white-700">Sector</label>
-                            <select id="district" name="district" required
+                            <select id="district" name="district" required title="District"
                                 class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                                 <option value="" selected disabled hidden>Select district</option>
-                                <?php
-                            require_once('php/branches.php');
-                            $all = all_branches($link);
-                            foreach ($all as $branch) {
-                                $n = trim($branch);
-                                $district = str_replace(" ", "%20", $n);
-                                echo "<option value= " . $district . ">" . $branch . " </option>";
-                                ;
-                            }
+                                <php
+                                require_once('php/branches.php');
+                                $all = all_branches($link);
+                                foreach ($all as $branch) {
+                                    $n = trim($branch);
+                                    $district = str_replace(" ", "%20", $n);
+                                    echo "<option value= " . $district . ">" . $branch . " </option>";
+                                    ;
+                                }
 
-                            ?>
+                                ?>
                             </select>
-                        </div>
+                        </div> -->
                         <div>
                             <label class="block text-sm font-medium text-white-700">Type</label>
                             <select name="type" id="type"
                                 class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                                required>
+                                required title="Type">
                                 <option value="" selected disabled hidden>Select the type</option>
                                 <option value="worker">Worker</option>
                                 <option value="BranchManager">Manager</option>
                             </select>
                         </div>
 
-                        <div id="branch-location-container" style="display:none;">
+                        <!-- <div id="branch-location-container" style="display:none;">
                             <label class="block text-sm font-medium text-white-700">Branch location</label>
-                            <select name="branch_location"
+                            <select name="branch_location" title="Branch location"
                                 class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                                <!-- Your options go here -->
+                                
                                 <option value="" selected disabled hidden>Select the branch location</option>
                             </select>
-                        </div>
-
-
-                        <!-- <div>
-                    <label class="block text-sm font-medium text-white-700">Action</label>
-                    <select name="action" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-lg focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
-                        <option value="hire">Hire</option>
-                        <option value="fire">Fire</option>
-                        </select>
                         </div> -->
 
                         <div class="md:col-span-2">
@@ -234,7 +220,17 @@ if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin']) {
                     <form id="fireForm" action="php/fireworker.php" method="post"
                         class="php-email-form grid grid-cols-1 gap-6 md:grid-cols-2" style="padding-top: 20px;">
                         <h2 class="text-3xl font-bold mb-6">Add/Delete Worker</h2>
-                        </br>
+                        <br>
+                        <div class="md:col-span-2 mb-6">
+    <label class="block text-sm font-medium text-white-700 mb-2">Search Worker by Name:</label>
+    <div class="flex">
+        <input type="text" id="searchWorker" placeholder="Enter worker name"
+            class="mt-1 flex-8 py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+        <button type="button" id="searchButton" style="margin-left:1%;"
+            class=" mt-1 flex-4 py-2 px-4 bg-indigo-600 text-white font-semibold rounded-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Search</button>
+    </div>
+</div>
+
                         <div class="shadow-lg border-b border-gray-200 sm:rounded-lg mb-8">
                             <table class="min-w-full divide-y divide-gray-200">
                                 <thead class="bg-gray-800">
@@ -358,14 +354,14 @@ if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin']) {
                                 class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                                 required placeholder="Enter branch location">
                         </div>
-                        <div>
+                        <!-- <div>
                             <label class="block text-sm font-medium text-white-700">Branch Manager</label>
                             <select id="manager" name="manager"
                                 class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                                 <option value="" selected disabled hidden>Select Branch Manager</option>
-                                <!-- Add your PHP code to generate options here -->
+                                
                             </select>
-                        </div>
+                        </div> -->
                         <div class="md:col-span-2">
                             <button type="submit"
                                 class="w-full py-2 px-4 bg-indigo-600 text-white font-semibold rounded-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Add
@@ -379,64 +375,86 @@ if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin']) {
 
     <script src="assets/vendor/php-email-form/validate.js"></script>
     <script>
-        document.getElementById('type').addEventListener('change', function () {
-            const branchLocationContainer = document.getElementById('branch-location-container');
-            if (this.value === 'BranchManager') {
-                branchLocationContainer.style.display = 'block';
-            } else {
-                branchLocationContainer.style.display = 'none';
+        document.addEventListener('DOMContentLoaded', function () {
+            const typeElement = document.getElementById('type');
+            if (typeElement) {
+                typeElement.addEventListener('change', function () {
+                    const branchLocationContainer = document.getElementById('branch-location-container');
+                    if (this.value === 'BranchManager') {
+                        branchLocationContainer.style.display = 'block';
+                    } else {
+                        branchLocationContainer.style.display = 'none';
+                    }
+                });
             }
         });
     </script>
+
     <!-- <script>
-        function toggleForms() {
-            const actionSelect = document.querySelector('select[name="action"]');
-            const selectedAction = actionSelect.value;
-
-            const hireForm = document.getElementById('hireForm');
-            const fireForm = document.getElementById('fireForm');
-
-            if (selectedAction === 'hire') {
-                hireForm.style.display = 'grid';
-                fireForm.style.display = 'none';
-            } else if (selectedAction === 'fire') {
-                hireForm.style.display = 'none';
-                fireForm.style.display = 'grid';
-            }
-        }
-    </script> -->
-
-<script>
+  document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('hireLink').addEventListener('click', function (event) {
-    event.preventDefault();
-    showDiv('hire');
-});
-
-document.getElementById('fireLink').addEventListener('click', function (event) {
-    event.preventDefault();
-    showDiv('fire');
-});
-
-document.getElementById('branchLink').addEventListener('click', function (event) {
-    event.preventDefault();
-    showDiv('branch');
-});
-
-function showDiv(divId) {
-    const divs = ['hire', 'fire', 'branch'];
-    
-    divs.forEach(function (id) {
-        const div = document.getElementById(id);
-        
-        if (id === divId) {
-            div.style.display = 'block';
-        } else {
-            div.style.display = 'none';
-        }
+        event.preventDefault();
+        console.log('Click event triggered');
+        showDiv('hire');
     });
-}
 
-</script>
+    document.getElementById('fireLink').addEventListener('click', function (event) {
+        event.preventDefault();
+        console.log('Click event triggered');
+        showDiv('fire');
+    });
+
+    document.getElementById('branchLink').addEventListener('click', function (event) {
+        event.preventDefault();
+        console.log('Click event triggered');
+        showDiv('branch');
+    });
+    function showDiv(divId) {
+        const divs = ['hire', 'fire', 'branch'];
+
+        divs.forEach(function (id) {
+            const div = document.getElementById(id);
+
+            if (id === divId) {
+                div.style.display = 'grid';
+            } else {
+                div.style.display = 'none';
+            }
+        });
+    }
+});
+
+
+</script> -->
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const navLinks = document.querySelectorAll('.nav-link');
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', function (event) {
+                    event.preventDefault();
+                    showDiv(link.getAttribute('href').substring(1));
+                });
+            });
+
+            function showDiv(divId) {
+                const divs = ['hire', 'fire', 'branch'];
+
+                divs.forEach(function (id) {
+                    const div = document.getElementById(id);
+
+                    if (id === divId) {
+                        div.style.display = 'block';
+                    } else {
+                        div.style.display = 'none';
+                    }
+                });
+            }
+        });
+
+
+    </script>
 </body>
 
 </html>
