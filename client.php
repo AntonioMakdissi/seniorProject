@@ -65,8 +65,9 @@ require_once('php/stats.php');
       font-size: 16px;
       line-height: 1;
       text-align: center;
+      /* vertical-align: middle; */
       display: block;
-      vertical-align: middle;
+
     }
 
     .form-check-label {

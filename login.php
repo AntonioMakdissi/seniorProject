@@ -71,8 +71,8 @@ require_once('php/connection.php'); ?>
               <div class="tab-content mt-3">
                 <!-- Login Form -->
                 <div class="tab-pane fade show active" id="login">
-                <!-- <form method="POST" action="php/login.php" class="php-email-form" >  -->
-                  <form method="POST" action="php/login.php" > 
+                  <!-- <form method="POST" action="php/login.php" class="php-email-form" >  -->
+                  <form method="POST" action="php/login.php">
                     <div class="form-group">
                       <label for="email"><i class="fa fa-envelope"></i> Email</label>
                       <input type="email" required class="form-control" name="email" id="email" placeholder="Enter email">
@@ -137,7 +137,9 @@ require_once('php/connection.php'); ?>
                         require_once('php/branches.php');
                         $all = all_branches($link);
                         foreach ($all as $branch) {
-                          echo "<option value= " . $branch . ">" . $branch . " </option>";;
+                          $n = trim($branch);
+                          $to_district = str_replace(" ", "%20", $n);
+                          echo "<option value= " . $to_district . ">" . $branch . " </option>";;
                         }
 
                         ?>

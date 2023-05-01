@@ -28,7 +28,7 @@
         /*GPS
         $c_longitude=$_POST['longitude'];
         $c_latitude=$_POST['latitude'];*/
-        $c_district = $_POST['district'];
+        $c_district = str_replace("%20", " ", $_POST['district']);
         $guest = false;
 
 
