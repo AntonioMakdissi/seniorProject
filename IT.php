@@ -94,7 +94,7 @@ if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin']) {
                                 <td class="px-6 py-4 whitespace-nowrap">Hire</td>
                                 <td class="px-6 py-4 whitespace-nowrap">
 
-                                    <?php
+                                    <!-- <php
                                     require_once('php/message.php');
                                     $all = viewMessages($link,$_SESSION['w_id']);
                                     $i=0;
@@ -104,7 +104,7 @@ if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin']) {
                                         echo "<td>" . $messager . " </td>";;
                                     }
 
-                                    ?>
+                                    ?> -->
                                     <div class="flex justify-center items-center">
                                         <button class="bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700">Done</button>
                                     </div>
