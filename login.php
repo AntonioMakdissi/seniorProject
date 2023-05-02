@@ -41,7 +41,7 @@ require_once('php/connection.php'); ?>
           <li><a href="about.html">About</a></li>
           <li><a href="services.html">Services</a></li>
           <li><a href="pricing.html">Pricing</a></li>
-          <li><a href="login.html">Login</a></li>
+          <li><a href="login.php">Login</a></li>
           <li><a href="contact.html">Contact</a></li>
           <li><a class="get-a-quote" href="get-a-quote.html">Get a Quote</a></li>
         </ul>
