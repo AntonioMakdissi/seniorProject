@@ -22,38 +22,35 @@ if (isset($_POST['submit'])) {
   }
 } else {
 
-  $query = "SELECT * FROM workers NATURAL JOIN users WHERE type != 'CEO' ORDER BY w_id ASC";
+  $query = "SELECT * FROM workers NATURAL JOIN users ORDER BY w_id ASC";
 }
 $result = mysqli_query($link, $query);
+$_SESSION['result'] = $result;
 $_POST = array();
 
-if (($result) && (mysqli_num_rows($result) > 0)) {
-
-  // $i = 0;
-  // while ($row = mysqli_fetch_assoc($result)) {
-
-  //   $messages[0][$i] = $row["timestamp"];
-  //   $messages[1][$i] = $row['w_id'];
-  //   $messages[2][$i] = $row['name'];
-  //   $messages[3][$i] = $row["salary"];
-  //   $messages[4][$i] = $row["branch"];
-  //   $messages[5][$i] = $row['type'];
-  //   $messages[6][$i] = $row['phone'];
-  //   $messages[7][$i] = $row['dateOfBirth'];
-  //   ++$i;
-  // }
-  // return $messages;
-
-  return $row = mysqli_fetch_assoc($result);
-} else {
-  return -1;
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+  header('Location: ../IT.php#fire');
 }
 
-?>
 
-<!-- to use in html -->
-<form action="contact.php" method="POST">
-  <input name="worker" type="text" placeholder="Search...">
-  <input name="submit" type="submit" value="Search" />
+// if (($result) && (mysqli_num_rows($result) > 0)) {
 
-</form>
+//   // $i = 0;
+//   // while ($row = mysqli_fetch_assoc($result)) {
+
+//   //   $messages[0][$i] = $row["timestamp"];
+//   //   $messages[1][$i] = $row['w_id'];
+//   //   $messages[2][$i] = $row['name'];
+//   //   $messages[3][$i] = $row["salary"];
+//   //   $messages[4][$i] = $row["branch"];
+//   //   $messages[5][$i] = $row['type'];
+//   //   $messages[6][$i] = $row['phone'];
+//   //   $messages[7][$i] = $row['dateOfBirth'];
+//   //   ++$i;
+//   // }
+//   // return $messages;
+
+//   $output = mysqli_fetch_assoc($result);
+// } else {
+//   $output=-1;
+// }

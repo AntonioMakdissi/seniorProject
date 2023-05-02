@@ -3,7 +3,8 @@ session_start();
 if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin'] || $_SESSION['type'] != 'IT') {
     header('Location: login.php');
 }
-include_once("php/connection.php");
+require_once("php/connection.php");
+include_once 'php/search.php';
 ?>
 <html lang="en">
 
@@ -13,6 +14,23 @@ include_once("php/connection.php");
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet">
     <title>IT Page</title>
     <link rel="stylesheet" href="assets/css/it.css">
+    <!-- Favicons -->
+    <link href="assets/img/favicon.png" rel="icon">
+    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+    <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+
 </head>
 
 <body class="bg-gray-100">
@@ -120,13 +138,13 @@ include_once("php/connection.php");
                     } else {
                         for ($i = 0; $i < count($all[0]); ++$i) {
                             if ($i % 2 == 0) {
-                                echo "</br>";
+                                //echo "</br>";
                             }
                             $m_id = $all[0][$i]; //m_id
                             echo "<div class='message'>
-                            <h3 class='message-author'>" . $all[3][$i] + $all[2][$i] . /*send_id+name*/ "</h3> 
-                            <p class='message-content'>" . $all[3][$i] ./*message*/ "</p>
-                            <p class='message-timestamp'>" . $all[4][$i] ./*timestamp*/ "</p>
+                            <h3 class='message-author'>" . $all[3][$i] . " " . $all[2][$i] . /*send_id+name*/ "</h3> 
+                            <p class='message-content'>" . $all[4][$i] ./*message*/ "</p>
+                            <p class='message-timestamp'>" . $all[5][$i] ./*timestamp*/ "</p>
                             <button class='btn-msg'>Delete</button>
                         </div>";
                         }
@@ -209,56 +227,62 @@ include_once("php/connection.php");
                     </form>
                 </div>
                 <div id="fire" style="display: none;">
-                    <form id="fireForm" action="php/fireworker.php" method="post" class="php-email-form grid grid-cols-1 gap-6 md:grid-cols-2" style="padding-top: 20px;">
-                        <h2 class="text-3xl font-bold mb-6">Delete Worker</h2>
-                        <br>
-                        <div class="md:col-span-2 mb-6">
-                            <label class="block text-sm font-medium text-white-700 mb-2">Search Worker by Name:</label>
-                            <div class="flex">
-                                <input type="text" id="searchWorker" placeholder="Enter worker name" class="mt-1 flex-8 py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                                <button type="button" id="searchButton" style="margin-left:1%;" class=" mt-1 flex-4 py-2 px-4 bg-indigo-600 text-white font-semibold rounded-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Search</button>
-                            </div>
+                    <!-- <form id="fireForm" action="php/search.php" method="post" class="php-email-form grid grid-cols-1 gap-6 md:grid-cols-2" style="padding-top: 20px;"> -->
+                    <h2 class="text-3xl font-bold mb-6">Delete Worker</h2>
+                    <br>
+                    <div class="md:col-span-2 mb-6">
+                        <label class="block text-sm font-medium text-white-700 mb-2">Search Worker by Name:</label>
+                        <div class="flex">
+                            <form id="searchForm" action="php/search.php" method="post">
+                                <input name="worker" type="text" id="searchWorker" placeholder="Enter worker name" class="mt-1 flex-8 py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                <button name="submit" type="submit" id="searchButton" style="margin-left:1%;" class=" mt-1 flex-4 py-2 px-4 bg-indigo-600 text-white font-semibold rounded-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Search</button>
+                            </form>
                         </div>
+                    </div>
 
-                        <div class="shadow-lg border-b border-gray-200 sm:rounded-lg mb-8">
-                            <table class="min-w-full divide-y divide-gray-200">
-                                <thead class="bg-gray-800">
-                                    <tr>
-                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
-                                            Date</th>
-                                        <!-- <th
+                    <div class="shadow-lg border-b border-gray-200 sm:rounded-lg mb-8">
+                        <table class="min-w-full divide-y divide-gray-200">
+                            <thead class="bg-gray-800">
+                                <tr>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
+                                        Date</th>
+                                    <!-- <th
                                             class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
                                             Time</th> -->
-                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
-                                            ID</th>
-                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
-                                            Name</th>
-                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
-                                            Salary</th>
-                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
-                                            Sector</th>
-                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
-                                            Type</th>
-                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
-                                            Phone Number</th>
-                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
-                                            DOB</th>
-                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody class="bg-white divide-y divide-gray-200">
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
+                                        ID</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
+                                        Name</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
+                                        Salary</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
+                                        Sector</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
+                                        Type</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
+                                        Phone Number</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
+                                        DOB</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white divide-y divide-gray-200">
 
-                                    <?php
-                                    require_once('php/connection.php');
-                                    $query = "SELECT * FROM workers NATURAL JOIN users";
-                                    $result = mysqli_query($link, $query);
-                                    if (($result) && (mysqli_num_rows($result) > 0)) {
+                                <?php
+                                require_once('php/connection.php');
 
-                                        while ($row = mysqli_fetch_assoc($result)) {
+                                if (isset($_SESSION['result'])) {
+                                    $result = $_SESSION['result'];
+                                }
 
-                                            $rmid = $row["w_id"];
-                                            echo "<tr>   
+
+                                if (($result) && (mysqli_num_rows($result) > 0)) {
+
+                                    while ($row = mysqli_fetch_assoc($result)) {
+
+                                        $rmid = $row["w_id"];
+                                        echo "<tr>   
                                             <td class=\"px-6 py-4 whitespace-nowrap\">" . $row["timestamp"] . "</td>
                                                 <td class=\"px-6 py-4 whitespace-nowrap\">#" . $row["w_id"] . "</td>
                                                 <td class=\"px-6 py-4 whitespace-nowrap\">" . $row["name"] . "</td>
@@ -266,14 +290,20 @@ include_once("php/connection.php");
                                                 <td class=\"px-6 py-4 whitespace-nowrap\">" . $row["branch"] . "</td>
                                                 <td class=\"px-6 py-4 whitespace-nowrap\">" . $row["type"] . "</td>
                                                 <td class=\"px-6 py-4 whitespace-nowrap\">" . $row["phone"] . "</td>
-                                                <td class=\"px-6 py-4 whitespace-nowrap\">" . $row["dateOfBirth"] . "</td>
+                                                <td class=\"px-6 py-4 whitespace-nowrap\">" . $row["dateOfBirth"] . "</td>";
+                                        if ($row["type"] == 'CEO') {
+                                            echo "<td class=\"px-6 py-4 whitespace-nowrap\"></td>                
+                                            </tr>";
+                                        } else {
+                                            echo "
                                                 <td class=\"px-6 py-4 whitespace-nowrap\"> <a  name='n' value=$rmid href=http://localhost/seniorProject/php/fireworker.php?rmid=" . $rmid . "> <button type=\"submit\" class=\"btn-danger\">Fire</button></a> </td>                
                                                 </tr>";
                                         }
                                     }
-                                    ?>
+                                }
+                                ?>
 
-                                    <!-- <div class="flex justify-center items-center">
+                                <!-- <div class="flex justify-center items-center">
                                         <div class="loading">Loading</div>
 
                                         <div class="sent-message">Worker fired successfully!</div>
@@ -284,11 +314,11 @@ include_once("php/connection.php");
                                     </div> -->
 
 
-                                </tbody>
+                            </tbody>
 
-                            </table>
-                        </div>
-                    </form>
+                        </table>
+                    </div>
+                    <!-- </form> -->
                 </div>
 
                 <div id="branch" style="display: none;">
@@ -332,7 +362,7 @@ include_once("php/connection.php");
                     </div>
 
                     <!-- Add Branch Form -->
-                    <form class="php-email-form grid grid-cols-1 gap-6 md:grid-cols-2" style="padding-bottom: 100px;">
+                    <form action="php/addbranch.php" method="post" class="php-email-form grid grid-cols-1 gap-6 md:grid-cols-2" style="padding-bottom: 100px;">
 
                         <div>
                             <label class="block text-sm font-medium text-white-700">Branch Location</label>

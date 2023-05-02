@@ -36,15 +36,20 @@ function setSalary($link, $w_id, $salary)
 
 function promoteManager($link, $w_id, $branch)
 {
-	$query = "UPDATE `workers` SET `branch`='$branch','salary' = 'salary' * 1.1 WHERE w_id= '$w_id' ";
+	$query = "UPDATE workers SET branch='$branch',salary = 'salary' * 1.1 WHERE w_id= '$w_id' ";
 
 	if (mysqli_query($link, $query)) {
 		$u_id = getEmpUId($link, $w_id);
-		$query = "UPDATE `users` SET `type`='BranchManager' WHERE u_id = '$u_id' ";
+
+		$query = "UPDATE users SET type='BranchManager' WHERE u_id = '$u_id' ";
 
 		if (mysqli_query($link, $query)) {
-			echo "done";
+			return "OK";
+		} else {
+			return "Error updating record: " . mysqli_error($link);
 		}
+	} else {
+		return "Error updating record: " . mysqli_error($link);
 	}
 }
 
