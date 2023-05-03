@@ -393,3 +393,11 @@ select {
   background-color: #ffbe31;
   color: #ffffff;
 }
+
+/* Add this to your CSS file */
+@layer utilities {
+  .bg-custom-primary {
+    background-color: #0e1d34;
+  }
+}
+

@@ -1,0 +1,284 @@
+
+.container {
+  margin-top: 50px;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.table {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  border-collapse: separate;
+  border-spacing: 0 10px;
+}
+
+.table th,
+.table td {
+  padding: 12px;
+  vertical-align: middle;
+  text-align: center;
+}
+
+.table th {
+  background-color: #f5f5f5;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.table tbody tr {
+  background-color: #fff;
+  border-radius: 4px;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+  background-color: #f5f5f5;
+}
+
+
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+.hero {
+  width: 100%;
+  height: 100%;
+  background-color: #0e1d34;
+  background-image: url("../img/hero-bg.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  /* color: rgba(255, 255, 255, 0.8); */
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+
+/* body {
+  background: url('https://th.bing.com/th/id/R.ea4192babfe60404ef0dafb21484f282?rik=doxyDdbyqpjM2Q&pid=ImgRaw&r=0') center center fixed no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+body::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(255, 255, 255, 0.01);
+  /* Change opacity as needed /
+} */
+
+.navbar {
+  position: relative;
+  z-index: 9999;
+}
+
+.navbar ul {
+  display: flex;
+  flex-direction: row;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  justify-content: flex-end;
+}
+
+.custom-button {
+  background-color: #dc3545;
+  border-color: #dc3545;
+  color: #fff;
+  padding: 0.375rem 0.75rem;
+  border-radius: 0.25rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  position: relative;
+  z-index: 9999;
+}
+
+.custom-button:hover {
+  background-color: #c82333;
+  border-color: #bd2130;
+  color: #fff;
+}
+
+.custom-button:focus {
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.5);
+}
+
+.search-container {
+  display: flex;
+  align-items: center;
+  background-color: #0e1d34;
+  padding: 1rem;
+  border-radius: 0.5rem;
+}
+
+.search-label {
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 500;
+  margin-right: 1rem;
+}
+
+.search-input {
+  border: none;
+  border-bottom: 2px solid #fff;
+  background-color: transparent;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 500;
+  outline: none;
+  flex: 1;
+  margin-right: 1rem;
+  padding: 0.5rem;
+  transition: all 0.3s ease-in-out;
+}
+
+.search-input::placeholder {
+  color: #9fa9b9;
+  font-weight: 400;
+}
+
+.show-all-button, .search-button {
+  padding: 0.5rem 1rem;
+  border: 2px solid #fff;
+  border-radius: 0.375rem;
+  background-color: transparent;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.show-all-button:hover, .search-button:hover {
+  background-color: #fff;
+  color: #0e1d34;
+}
+
+.show-all-button {
+  margin-right: 1rem;
+}
+
+
+#header {
+  background-color: #0e1d34;
+}
+
+/* Navbar lists positioning */
+#navbar ul {
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* Navbar logo positioning */
+.logo {
+  margin-right: auto;
+  padding: auto;
+}
+
+/* Sticky navbar */
+.header.fixed-top {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1030;
+}
+
+/* Mobile nav toggle */
+.mobile-nav-toggle {
+  font-size: 24px;
+  cursor: pointer;
+  display: none;
+}
+
+@media (max-width: 991px) {
+  .mobile-nav-toggle {
+    display: inline;
+  }
+
+  #navbar {
+    display: none;
+  }
+
+  #navbar.mobile-nav-show {
+    display: block;
+  }
+}
+
+/* Navbar list items styling */
+#navbar ul li {
+  margin-left: 1.5rem;
+}
+
+/* Navbar list items link colors */
+#navbar ul li a {
+  color: #ffffff;
+}
+
+/* Navbar list items link hover colors */
+#navbar ul li a:hover {
+  color: #cccccc;
+}
+
+/* Get a quote button styling */
+.get-a-quote {
+  background-color: #0d42ff;
+  color: #0e1d34;
+  padding: 8px 16px;
+  border-radius: 4px;
+  margin-left: 1.5rem;
+  margin-right: 2rem;
+}
+
+/* Get a quote button hover styling */
+.get-a-quote:hover {
+  background-color: #0a0d13;
+  color: #0e1d34;
+}
+
+.header .logo img {
+  max-height: 40px;
+  margin-right: 6px;
+}
+
+.header .logo h1 {
+  font-size: 30px;
+  margin: 0;
+  font-weight: 700;
+  color: #fff;
+  font-family: var(--font-primary);
+}
+
+.footer .footer-info .logo {
+line-height: 0;
+margin-bottom: 25px;
+}
+
+.footer .footer-info .logo img {
+max-height: 40px;
+margin-right: 6px;
+}
+
+.footer .footer-info .logo span {
+font-size: 30px;
+font-weight: 700;
+letter-spacing: 1px;
+color: #fff;
+font-family: var(--font-primary);
+}
