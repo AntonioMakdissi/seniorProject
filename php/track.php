@@ -264,50 +264,6 @@ require_once('employee.php'); ?>
       echo "You don't have any orders yet!";
     } ?>
 
-    <!-- <php
-    require_once('connection.php');
-    $c_id = $_SESSION['c_id'];
-    $query = "SELECT o_id FROM orders WHERE c_id='$c_id' ORDER BY o_id";
-    $result = mysqli_query($link, $query);
-    if (($result) && (mysqli_num_rows($result) > 0)) {
-      ?>
-      <div style="display: flex; justify-content: center;">
-        <select id="order-select" style="position: relative; display: inline-block;  margin: 20px;">
-          <option value="" disabled selected>Select your order id</option>
-          <php
-          while ($row = mysqli_fetch_assoc($result)) { ?>
-            <option value=<php echo $row["o_id"] ?>> #<php echo $row["o_id"] ?></option>
-          <php } ?>
-        </select>
-      </div>
-      <script>
-        // listen for changes in the select element
-        document.getElementById('order-select').addEventListener('change', function () {
-          var orderId = this.value;
-          if (orderId) {
-            // make an AJAX request to track.php with the selected order ID
-            var xhr = new XMLHttpRequest();
-            xhr.open('POST', 'track.php');
-            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-            xhr.onload = function () {
-              if (xhr.status === 200) {
-                console.log(xhr.responseText);
-                // handle the response here
-              }
-            };
-            xhr.send('order_id=' + orderId);
-          }
-        });
-      </script>
-      <php
-    } else {
-      echo "You don't have any orders yet!";
-    }
-    ?> -->
-
-
-
-
     <table class="table table-striped">
       <thead>
         <tr>

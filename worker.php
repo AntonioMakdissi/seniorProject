@@ -115,7 +115,7 @@ require_once('php/stats.php');
           <div class="row d-flex justify-content-center">
             <div class="col-lg-6 text-center">
               <h2>Welcome
-                <?= $_SESSION['c_name'] ?>!
+                <?= $_SESSION['name'] ?>!
               </h2>
               <p>Welcome to our premium delivery company website! We pride ourselves in providing swift and dependable
                 delivery services to meet all your needs. With us, you can trust that your items will be delivered

@@ -191,7 +191,7 @@ require_once("php/connection.php");
                                 $all = all_branches($link);
                                 foreach ($all as $branch) {
                                     $n = trim($branch);
-                                    $district = str_replace(" ", "%20", $n);
+                                    $district = str_replace(" ", "%20", $n);//not text type so space aren't sent in url
                                     echo "<option value= " . $district . ">" . $branch . " </option>";;
                                 }
 
@@ -207,13 +207,14 @@ require_once("php/connection.php");
                             </select>
                         </div>
 
+                        <!-- cool idea but not used here
                         <div id="branch-location-container" style="display:none;">
                             <label class="block text-sm font-medium text-white-700">Branch location</label>
                             <select name="branch_location" title="Branch location" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
 
                                 <option value="" selected disabled hidden>Select the branch location</option>
                             </select>
-                        </div>
+                        </div> -->
 
                         <div class="md:col-span-2">
                             <div class="loading">Loading</div>
