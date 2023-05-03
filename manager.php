@@ -149,8 +149,8 @@ require_once('php/stats.php');
   </thead>
   <tbody>
     <?php
-
-    $query = "SELECT * FROM orders NATURAL JOIN packages ORDER BY date";
+    $current_location = $_SESSION['branch'];
+    $query = "SELECT * FROM orders NATURAL JOIN packages NATURAL JOIN deliveries WHERE current_location='$current_location' ORDER BY date";
     $result = mysqli_query($link, $query);
     if (($result) && (mysqli_num_rows($result) > 0)) {
 

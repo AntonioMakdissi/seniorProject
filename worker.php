@@ -134,8 +134,39 @@ require_once('php/stats.php');
       </nav>
     </div><!-- End Breadcrumbs -->
 
+    <table border="border">
+      <thead>
+        <tr>
+          <th>Order number </th>
+          <th>Date and time</th>
+          <th>Cost</th>
+          <th>Price for customer</th>
+          <th>status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <?php
+        $current_location = $_SESSION['branch'];
+        $query = "SELECT * FROM orders NATURAL JOIN packages NATURAL JOIN deliveries WHERE current_location='$current_location' ORDER BY date";
+        $result = mysqli_query($link, $query);
+        if (($result) && (mysqli_num_rows($result) > 0)) {
 
-    
+          while ($row = mysqli_fetch_assoc($result)) {
+
+            echo "<tr>   
+<td>#" . $row["o_id"] . "</td>
+<td>" . $row["date"] . "</td>
+<td>" . $row["cost"] . "$</td>
+<td>" . $row["f_price"] . "</td>
+<td>" . $row["status"] . "</td>
+            
+</tr>";
+          }
+        }
+        ?>
+      </tbody>
+    </table>
+
 
   </main><!-- End #main -->
 
