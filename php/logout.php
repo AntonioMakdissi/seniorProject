@@ -1,4 +1,5 @@
 <?php
 	session_start();
 	session_destroy();
-	header('Location: ../index.html');
+	header('Location: ../login.php');
+	//header('Location: ../index.html');

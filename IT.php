@@ -4,7 +4,7 @@ if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin'] || $_SESSION['type']
     header('Location: login.php');
 }
 require_once("php/connection.php");
-include_once 'php/search.php';
+//include_once 'php/search.php';
 ?>
 <html lang="en">
 
@@ -48,9 +48,9 @@ include_once 'php/search.php';
             <nav id="navbar" class="navbar">
                 <ul>
                     <li><a href="#hire" class="nav-link">Hire worker</a></li>
-                    <li><a href="#fire" class="nav-link">Fire worker</a></li>
+                    <li><a href="php/viewWorker.php" class="nav-link">Fire worker</a></li>
                     <li><a href="#branch" class="nav-link">Add branch</a></li>
-                    <li><a class="get-a-quote" href="logout.php">Logout</a></li>
+                    <li><a class="get-a-quote" href="php/logout.php">Logout</a></li>
                 </ul>
             </nav>
 
@@ -245,7 +245,7 @@ include_once 'php/search.php';
                             <thead class="bg-gray-800">
                                 <tr>
                                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
-                                        Date</th>
+                                        Date Joined</th>
                                     <!-- <th
                                             class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
                                             Time</th> -->
@@ -269,7 +269,7 @@ include_once 'php/search.php';
                             </thead>
                             <tbody class="bg-white divide-y divide-gray-200">
 
-                                <?php
+                                <!-- <php
                                 require_once('php/connection.php');
 
                                 if (isset($_SESSION['result'])) {
@@ -301,7 +301,7 @@ include_once 'php/search.php';
                                         }
                                     }
                                 }
-                                ?>
+                                ?> -->
 
                                 <!-- <div class="flex justify-center items-center">
                                         <div class="loading">Loading</div>

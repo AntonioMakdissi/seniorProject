@@ -26,11 +26,11 @@ if (isset($_POST['submit'])) {
 }
 $result = mysqli_query($link, $query);
 $_SESSION['result'] = $result;
-$_POST = array();
+//$_POST = array();
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-  header('Location: ../IT.php#fire');
-}
+//if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+  header('Location: test.php');
+//}
 
 
 // if (($result) && (mysqli_num_rows($result) > 0)) {
