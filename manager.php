@@ -137,26 +137,33 @@ require_once('php/stats.php');
     <h2>Branch Orders</h2>
 
 
-<table border="border">
-  <thead>
-    <tr>
-      <th>Order number </th>
-      <th>Date and time</th>
-      <th>Cost</th>
-      <th>Price for customer</th>
-      <th>status</th>
-    </tr>
-  </thead>
-  <tbody>
-    <?php
-    $current_location = $_SESSION['branch'];
-    $query = "SELECT * FROM orders NATURAL JOIN packages NATURAL JOIN deliveries WHERE current_location='$current_location' ORDER BY date";
-    $result = mysqli_query($link, $query);
-    if (($result) && (mysqli_num_rows($result) > 0)) {
+    <table border="border">
+      <thead>
+        <tr>
+          <th>Order number </th>
+          <th>From</th>
+          <th>Phone number</th>
+          <th>Address</th>
+          <th>To</th>
+          <th>Phone number</th>
+          <th>Last stop</th>
+          <th>Drop off address</th>
+          <th>Price for customer</th>
+          <th>Cash?</th>
+          <th>Status</th>
+          <th>Date and time</th>
+        </tr>
+      </thead>
+      <tbody>
+        <?php
+        $current_location = $_SESSION['branch'];
+        $query = "SELECT * FROM orders NATURAL JOIN packages NATURAL JOIN deliveries WHERE current_location='$current_location' ORDER BY date";
+        $result = mysqli_query($link, $query);
+        if (($result) && (mysqli_num_rows($result) > 0)) {
 
-      while ($row = mysqli_fetch_assoc($result)) {
+          while ($row = mysqli_fetch_assoc($result)) {
 
-        echo "<tr>   
+            echo "<tr>   
 <td>#" . $row["o_id"] . "</td>
 <td>" . $row["date"] . "</td>
 <td>" . $row["cost"] . "$</td>
@@ -164,11 +171,11 @@ require_once('php/stats.php');
 <td>" . $row["status"] . "</td>
             
 </tr>";
-      }
-    }
-    ?>
-  </tbody>
-</table>
+          }
+        }
+        ?>
+      </tbody>
+    </table>
 
 
   </main><!-- End #main -->

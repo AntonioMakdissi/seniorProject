@@ -220,7 +220,7 @@ require_once('php/employee.php');
         <ul>
           <li><a href="CEO.php" class="active">Home</a></li>
           <li><a href="php/viewWorker.php">Workers</a></li>
-          <li><a href="#branches">Branches</a></li>
+          <li><a href="addBranches.php">Branches</a></li>
           <li><a href="php/profit.php">Statistics</a></li>
           <li><a href="#IT_message">Contact</a></li>
           <li><a  class="get-a-quote" href="php/logout.php">Logout</a></li>
