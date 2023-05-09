@@ -142,7 +142,7 @@ require_once('php/stats.php');
           <th>Phone number</th>
           <th>Address</th>
           <th>To</th>
-          <th>Phone number</th>          
+          <th>Phone number</th>
           <th>Last stop</th>
           <th>Drop off address</th>
           <th>Price for customer</th>
@@ -154,22 +154,37 @@ require_once('php/stats.php');
       <tbody>
         <?php
         $current_location = $_SESSION['branch'];
-        $query = "SELECT * FROM orders NATURAL JOIN packages NATURAL JOIN deliveries WHERE current_location='$current_location' ORDER BY date";
+        $query = "SELECT * FROM orders NATURAL JOIN packages NATURAL JOIN deliveries NATURAL JOIN clients WHERE current_location='$current_location' ORDER BY date";
         $result = mysqli_query($link, $query);
-        if (($result) && (mysqli_num_rows($result) > 0)) {
-
-          while ($row = mysqli_fetch_assoc($result)) {
-
-            echo "<tr>   
-<td>#" . $row["o_id"] . "</td>
-<td>" . $row["date"] . "</td>
-<td>" . $row["cost"] . "$</td>
-<td>" . $row["f_price"] . "</td>
-<td>" . $row["status"] . "</td>
-            
-</tr>";
+        if ($result) {
+          if (mysqli_num_rows($result) > 0) {
+            while ($row = mysqli_fetch_assoc($result)) {
+              $cash = 'yes';
+              if ($row["pay_at_delivery"] == 0) {
+                $cash = 'no';
+              }
+              echo "<tr>
+          <td>#" . $row["o_id"] . "</td>
+          <td>" . $row["c_name"] . "</td>
+          <td>" . $row["c_phone"] . "</td>
+          <td>" . $row["c_address"] . "</td>
+          <td>" . $row["to_name"] . "</td>
+          <td>" . $row["to_phone"] . "</td>
+          <td>" . $row["to_district"] . "</td>
+          <td>" . $row["to_address"] . "</td>
+          <td>" . $row["f_price"] . "$</td>
+          <td>" . $cash . "</td>
+          <td>" . $row["status"] . "</td>
+          <td>" . $row["timestamp"] . "</td>
+        </tr>";
+            }
+          } else {
+            echo "No results found.";
           }
+        } else {
+          echo "Error: " . mysqli_error($link);
         }
+
         ?>
       </tbody>
     </table>

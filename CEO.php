@@ -97,7 +97,7 @@ require_once('php/employee.php');
     .hire-fire-form {
       display: flex;
       flex-direction: column;
-      align-items: center;
+      alignems: center;
     }
 
     .form-group {
@@ -205,10 +205,10 @@ require_once('php/employee.php');
 <body>
 
   <!-- ======= Header ======= -->
-  <header id="header" class="header d-flex align-items-center fixed-top">
-    <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+  <header id="header" class="header d-flex alignems-center fixed-top">
+    <div class="container-fluid container-xl d-flex alignems-center justify-content-between">
 
-      <a href="index.html" class="logo d-flex align-items-center">
+      <a href="index.html" class="logo d-flex alignems-center">
         <!-- Uncomment the line below if you also wish to use an image logo -->
         <!-- <img src="assets/img/logo.png" alt=""> -->
         <h1 style="font-family: 'Libre Baskerville', serif;">SpeedRun</h1>
@@ -223,7 +223,7 @@ require_once('php/employee.php');
           <li><a href="addBranches.php">Branches</a></li>
           <li><a href="php/profit.php">Statistics</a></li>
           <li><a href="#IT_message">Contact</a></li>
-          <li><a  class="get-a-quote" href="php/logout.php">Logout</a></li>
+          <li><a class="get-a-quote" href="php/logout.php">Logout</a></li>
         </ul>
       </nav><!-- .navbar -->
 
@@ -232,7 +232,7 @@ require_once('php/employee.php');
   <!-- End Header -->
 
   <!-- ======= Hero Section ======= -->
-  <section id="hero" class="hero d-flex align-items-center">
+  <section id="hero" class="hero d-flex alignems-center">
     <div class="container">
       <div class="row gy-4 d-flex justify-content-between">
         <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center">
@@ -244,28 +244,28 @@ require_once('php/employee.php');
           <div class="row gy-4" data-aos="fade-up" data-aos-delay="400">
 
             <div class="col-lg-3 col-6">
-              <div class="stats-item text-center w-100 h-100">
+              <div class="statsem text-center w-100 h-100">
                 <span data-purecounter-start="0" data-purecounter-end=<?php echo nbr_clients($link); ?> data-purecounter-duration="1" class="purecounter"></span>
                 <p>Clients</p>
               </div>
             </div><!-- End Stats Item -->
 
             <div class="col-lg-3 col-6">
-              <div class="stats-item text-center w-100 h-100">
+              <div class="statsem text-center w-100 h-100">
                 <span data-purecounter-start="0" data-purecounter-end=<?php echo total_deliveries($link); ?> data-purecounter-duration="1" class="purecounter"></span>
                 <p>Deliveries</p>
               </div>
             </div><!-- End Stats Item -->
 
             <div class="col-lg-3 col-6">
-              <div class="stats-item text-center w-100 h-100">
+              <div class="statsem text-center w-100 h-100">
                 <span data-purecounter-start="0" data-purecounter-end=<?php echo nbr_branches($link); ?> data-purecounter-duration="1" class="purecounter"></span>
                 <p>Branches</p>
               </div>
             </div><!-- End Stats Item -->
 
             <div class="col-lg-3 col-6">
-              <div class="stats-item text-center w-100 h-100">
+              <div class="statsem text-center w-100 h-100">
                 <span data-purecounter-start="0" data-purecounter-end=<?php echo nbr_workers($link); ?> data-purecounter-duration="1" class="purecounter"></span>
                 <p>Workers</p>
               </div>
@@ -315,9 +315,9 @@ require_once('php/employee.php');
             </tr>
             <tr>
               <td>Employee with most deliveries</td>
-              <td><?php 
-              $emp = mvp($link); 
-              echo getEmpById($link,$emp);?></td>
+              <td><?php
+                  $emp = mvp($link);
+                  echo getEmpById($link, $emp); ?></td>
             </tr>
           </tbody>
         </table>
@@ -377,10 +377,25 @@ require_once('php/employee.php');
       </script>
     </div>
     <div data-aos="fade-up">
-      <label class="form-label" for="message-it">Message IT:</label>
-      <textarea class="form-input" id="message-it" name="message-it" rows="4"></textarea>
+      <div class="col-lg-7">
+        <form action="php/message.php" method="post" class="php-email-form">
+          <label class="form-label" for="message">Message:</label>
+          TO:<input type="text" name="receive_id">
+          <textarea class="form-input" id="message" name="message" rows="4"></textarea>
 
-      <button class="form-button" type="submit">Submit</button>
+          
+          <div class="col-md-12 text-center">
+            <div class="loading">Loading</div>
+
+            <div class="sent-message">Your order request has been sent successfully. Thank you!</div>
+
+            <div class="error-message"></div>
+
+            <button class="form-button" type="submit">Send</button>
+          </div>
+
+      </div>
+      </form>
     </div>
 
     <div data-aos="fade-up">
