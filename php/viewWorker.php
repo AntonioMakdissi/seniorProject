@@ -39,13 +39,21 @@ if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin'] || ($_SESSION['type'
 <body class="bg-gray-100">
   <header id="header" class="header d-flex align-items-center fixed-top">
     <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
-
-      <a href="IT.php" class="logo d-flex align-items-center">
+    <?php
+        if ($_SESSION['type'] == 'CEO') {
+          ?>
+      <a href="../CEO.php" class="logo d-flex align-items-center" >
         <!-- Uncomment the line below if you also wish to use an image logo -->
         <!-- <img src="assets/img/logo.png" alt=""> -->
         <h1 style="font-family: 'Libre Baskerville', serif; padding-left: 20px;">SpeedRun</h1>
       </a>
-
+      <?php } else { ?>
+        <a href="../IT.php" class="logo d-flex align-items-center">
+        <!-- Uncomment the line below if you also wish to use an image logo -->
+        <!-- <img src="assets/img/logo.png" alt=""> -->
+        <h1 style="font-family: 'Libre Baskerville', serif; padding-left: 20px; padding-top: 20px;">SpeedRun</h1>
+      </a>
+      <?php } ?>
       <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
       <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
       <nav id="navbar" class="navbar">

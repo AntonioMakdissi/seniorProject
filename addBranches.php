@@ -21,10 +21,12 @@ require_once("php/connection.php");
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+        rel="stylesheet">
 
     <!-- Vendor CSS Files -->
-    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"> -->
     <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
     <link href="assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
     <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
@@ -47,9 +49,9 @@ require_once("php/connection.php");
             <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
             <nav id="navbar" class="navbar">
                 <ul>
-                    <li><a href="#hire" class="nav-link">Hire worker</a></li>
-                    <li><a href="php/viewWorker.php" class="nav-link">Fire worker</a></li>
-                    <li><a href="#branch" class="nav-link">Add branch</a></li>
+                    <li><a href="hire.php">Hire worker</a></li>
+                    <li><a href="php/viewWorker.php">Fire worker</a></li>
+                    <li><a href="addBranches.php">Add branch</a></li>
                     <li><a class="get-a-quote" href="php/logout.php">Logout</a></li>
                 </ul>
             </nav>
@@ -68,27 +70,38 @@ require_once("php/connection.php");
                     <table class="min-w-full divide-y divide-gray-200">
                         <thead class="bg-gray-800">
                             <tr>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
+                                <th
+                                    class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
                                     Date</th>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
+                                <th
+                                    class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
                                     Time</th>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
+                                <th
+                                    class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
                                     Name</th>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
+                                <th
+                                    class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
                                     password</th>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
+                                <th
+                                    class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
                                     Salary</th>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
+                                <th
+                                    class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
                                     Sector</th>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
+                                <th
+                                    class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
                                     Type</th>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
+                                <th
+                                    class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
                                     Phone Number</th>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
+                                <th
+                                    class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
                                     DOB</th>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
+                                <th
+                                    class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
                                     Action</th>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
+                                <th
+                                    class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
                                 </th>
                             </tr>
                         </thead>
@@ -106,7 +119,8 @@ require_once("php/connection.php");
                                 <td class="px-6 py-4 whitespace-nowrap">Hire</td>
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     <div class="flex justify-center items-center">
-                                        <button class="bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700">Done</button>
+                                        <button
+                                            class="bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700">Done</button>
                                     </div>
                                 </td>
                             </tr>
@@ -142,9 +156,9 @@ require_once("php/connection.php");
                             }
                             $m_id = $all[0][$i]; //m_id
                             echo "<div class='message'>
-                            <h3 class='message-author'>" . $all[3][$i] . " " . $all[2][$i] . /*send_id+name*/ "</h3> 
-                            <p class='message-content'>" . $all[4][$i] ./*message*/ "</p>
-                            <p class='message-timestamp'>" . $all[5][$i] ./*timestamp*/ "</p>
+                            <h3 class='message-author'>" . $all[3][$i] . " " . $all[2][$i] . /*send_id+name*/"</h3> 
+                            <p class='message-content'>" . $all[4][$i] . /*message*/"</p>
+                            <p class='message-timestamp'>" . $all[5][$i] . /*timestamp*/"</p>
                             <button class='btn-msg'>Delete</button>
                         </div>";
                         }
@@ -152,15 +166,33 @@ require_once("php/connection.php");
                     ?>
                 </div>
 
-                <div id="branch" >
+                <div id="branch">
                     <!-- Add Branch Table -->
                     <h1 class="text-4xl font-bold mb-6" style="padding-left:1%;">Branch Management</h1>
                     <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg mb-8">
                         <table class="min-w-full divide-y divide-gray-200">
                             <thead class="bg-gray-800">
                                 <tr>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
-                                     
+                                    <th
+                                        class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
+                                        Date</th>
+                                    <th
+                                        class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
+                                        Time</th>
+                                    <th
+                                        class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
+                                        Branch Location</th>
+                                    <th
+                                        class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
+                                        Branch Manager Name</th>
+                                    <th
+                                        class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
+                                        Branch Manager Email</th>
+                                    <th
+                                        class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
+                                        Branch Manager Status</th>
+                                    <th
+                                        class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
                                     </th>
                                 </tr>
                             </thead>
@@ -173,7 +205,8 @@ require_once("php/connection.php");
                                 <td class="px-6 py-4 whitespace-nowrap">New</td>
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     <div class="flex justify-center items-center">
-                                        <button class="bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700">Done</button>
+                                        <button
+                                            class="bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700">Done</button>
                                     </div>
                                 </td>
 
@@ -182,15 +215,19 @@ require_once("php/connection.php");
                     </div>
 
                     <!-- Add Branch Form -->
-                    <form action="php/addbranch.php" method="post" class="php-email-form grid grid-cols-1 gap-6 md:grid-cols-2" style="padding-bottom: 100px;">
+                    <form action="php/addbranch.php" method="post"
+                        class="php-email-form grid grid-cols-1 gap-6 md:grid-cols-2" style="padding-bottom: 100px;">
 
                         <div>
                             <label class="block text-sm font-medium text-white-700">Branch Location</label>
-                            <input type="text" name="branch_location" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required placeholder="Enter branch location">
+                            <input type="text" name="branch_location"
+                                class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                required placeholder="Enter branch location">
                         </div>
                         <div>
                             <label class="block text-sm font-medium text-white-700">Branch Manager</label>
-                            <select id="manager" name="manager" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                            <select id="manager" name="manager"
+                                class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                                 <option value="" selected disabled hidden>Select Branch Manager</option>
                                 <?php
                                 require_once('php/employee.php');
@@ -202,7 +239,8 @@ require_once("php/connection.php");
                                         $id = $all[0][$col];
                                         $n = trim($all[1][$col]);
 
-                                        echo "<option value= " . $id . ">" . $n . " </option>";;
+                                        echo "<option value= " . $id . ">" . $n . " </option>";
+                                        ;
                                     }
                                 }
                                 ?>
@@ -217,7 +255,8 @@ require_once("php/connection.php");
 
                             <div class="error-message"></div>
 
-                            <button type="submit" class="w-full py-2 px-4 bg-indigo-600 text-white font-semibold rounded-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Add
+                            <button type="submit"
+                                class="w-full py-2 px-4 bg-indigo-600 text-white font-semibold rounded-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Add
                                 Branch</button>
                         </div>
                     </form>
@@ -228,10 +267,10 @@ require_once("php/connection.php");
 
     <script src="assets/vendor/php-email-form/validate.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const typeElement = document.getElementById('type');
             if (typeElement) {
-                typeElement.addEventListener('change', function() {
+                typeElement.addEventListener('change', function () {
                     const branchLocationContainer = document.getElementById('branch-location-container');
                     if (this.value === 'BranchManager') {
                         branchLocationContainer.style.display = 'block';
@@ -244,11 +283,11 @@ require_once("php/connection.php");
     </script>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const navLinks = document.querySelectorAll('.nav-link');
 
             navLinks.forEach(link => {
-                link.addEventListener('click', function(event) {
+                link.addEventListener('click', function (event) {
                     event.preventDefault();
                     showDiv(link.getAttribute('href').substring(1));
                 });
@@ -257,7 +296,7 @@ require_once("php/connection.php");
             function showDiv(divId) {
                 const divs = ['hire', 'fire', 'branch'];
 
-                divs.forEach(function(id) {
+                divs.forEach(function (id) {
                     const div = document.getElementById(id);
 
                     if (id === divId) {

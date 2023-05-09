@@ -21,11 +21,13 @@ require_once("php/connection.php");
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+        rel="stylesheet">
 
     <!-- Vendor CSS Files -->
-    <!-- <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet"> -->
+    <!-- <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">-->
+    <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet"> 
     <link href="assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
     <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
     <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
@@ -47,9 +49,9 @@ require_once("php/connection.php");
             <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
             <nav id="navbar" class="navbar">
                 <ul>
-                    <li><a href="#hire" class="nav-link">Hire worker</a></li>
+                    <li><a href="hire.php#hire" >Hire worker</a></li>
                     <li><a href="php/viewWorker.php" target="_self">Fire worker</a></li>
-                    <li><a href="#branch" class="nav-link">Add branch</a></li>
+                    <li><a href="addBranches.php" >Add branch</a></li>
                     <li><a class="get-a-quote" href="php/logout.php">Logout</a></li>
                 </ul>
             </nav>
@@ -63,27 +65,38 @@ require_once("php/connection.php");
                     <table class="min-w-full divide-y divide-gray-200">
                         <thead class="bg-gray-800">
                             <tr>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
+                                <th
+                                    class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
                                     Date</th>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
+                                <th
+                                    class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
                                     Time</th>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
+                                <th
+                                    class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
                                     Name</th>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
+                                <th
+                                    class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
                                     password</th>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
+                                <th
+                                    class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
                                     Salary</th>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
+                                <th
+                                    class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
                                     Sector</th>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
+                                <th
+                                    class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
                                     Type</th>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
+                                <th
+                                    class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
                                     Phone Number</th>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
+                                <th
+                                    class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
                                     DOB</th>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
+                                <th
+                                    class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
                                     Action</th>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
+                                <th
+                                    class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
                                 </th>
                             </tr>
                         </thead>
@@ -101,7 +114,8 @@ require_once("php/connection.php");
                                 <td class="px-6 py-4 whitespace-nowrap">Hire</td>
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     <div class="flex justify-center items-center">
-                                        <button class="bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700">Done</button>
+                                        <button
+                                            class="bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700">Done</button>
                                     </div>
                                 </td>
                             </tr>
@@ -137,9 +151,9 @@ require_once("php/connection.php");
                             }
                             $m_id = $all[0][$i]; //m_id
                             echo "<div class='message'>
-                            <h3 class='message-author'>" . $all[3][$i] . " " . $all[2][$i] . /*send_id+name*/ "</h3> 
-                            <p class='message-content'>" . $all[4][$i] ./*message*/ "</p>
-                            <p class='message-timestamp'>" . $all[5][$i] ./*timestamp*/ "</p>
+                            <h3 class='message-author'>" . $all[3][$i] . " " . $all[2][$i] . /*send_id+name*/"</h3> 
+                            <p class='message-content'>" . $all[4][$i] . /*message*/"</p>
+                            <p class='message-timestamp'>" . $all[5][$i] . /*timestamp*/"</p>
                             <button class='btn-msg'>Delete</button>
                         </div>";
                         }
@@ -148,38 +162,52 @@ require_once("php/connection.php");
                 </div>
 
                 <div id="hire" style="display: none;">
-                    <form id="hireForm" action="php/hire.php" method="post" class="php-email-form grid grid-cols-1 gap-6 md:grid-cols-2" style="padding-top: 20px;">
+                    <form id="hireForm" action="php/hire.php" method="post"
+                        class="php-email-form grid grid-cols-1 gap-6 md:grid-cols-2" style="padding-top: 20px;">
                         <h2 class="text-3xl font-bold mb-6">Add Worker</h2>
                         <br>
                         <div>
                             <label class="block text-sm font-medium text-white-700">Name</label>
-                            <input type="text" name="name" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required placeholder="Enter the name">
+                            <input type="text" name="name"
+                                class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                required placeholder="Enter the name">
                         </div>
                         <div>
                             <label class="block text-sm font-medium text-white-700">Email</label>
-                            <input type="email" name="email" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required placeholder="Enter the email">
+                            <input type="email" name="email"
+                                class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                required placeholder="Enter the email">
                         </div>
                         <div>
                             <label class="block text-sm font-medium text-white-700">Password</label>
-                            <input type="password" name="password" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required placeholder="Enter the password">
+                            <input type="password" name="password"
+                                class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                required placeholder="Enter the password">
                         </div>
                         <div>
                             <label class="block text-sm font-medium text-white-700">Salary</label>
-                            <input type="number" name="salary" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required placeholder="Enter the salary">
+                            <input type="number" name="salary"
+                                class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                required placeholder="Enter the salary">
                         </div>
                         <div>
                             <label class="block text-sm font-medium text-white-700">Phone Number</label>
-                            <input type="tel" name="phone" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required placeholder="Enter phone number" pattern="[0-9+\\-]*" onkeypress="return event.charCode >= 48 && event.charCode <= 57 || event.keyCode === 43 || event.keyCode === 45">
+                            <input type="tel" name="phone"
+                                class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                required placeholder="Enter phone number" pattern="[0-9+\\-]*"
+                                onkeypress="return event.charCode >= 48 && event.charCode <= 57 || event.keyCode === 43 || event.keyCode === 45">
                         </div>
                         <div>
                             <label for="dateOfBirth" class="block text-sm font-medium text-white-700">Enter date of
                                 birth:</label>
-                            <input type="date" name="dateOfBirth" id="dateOfBirth" required class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                            <input type="date" name="dateOfBirth" id="dateOfBirth" required
+                                class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                         </div>
 
                         <div>
                             <label class="block text-sm font-medium text-white-700">Sector</label>
-                            <select id="district" name="district" required title="District" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                            <select id="district" name="district" required title="District"
+                                class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                                 <option value="" selected disabled hidden>Select district</option>
                                 <?php
                                 require_once('php/branches.php');
@@ -187,7 +215,8 @@ require_once("php/connection.php");
                                 foreach ($all as $branch) {
                                     $n = trim($branch);
                                     $district = str_replace(" ", "%20", $n); //not text type so space aren't sent in url
-                                    echo "<option value= " . $district . ">" . $branch . " </option>";;
+                                    echo "<option value= " . $district . ">" . $branch . " </option>";
+                                    ;
                                 }
 
                                 ?>
@@ -195,12 +224,18 @@ require_once("php/connection.php");
                         </div>
                         <div>
                             <label class="block text-sm font-medium text-white-700">Type</label>
-                            <select name="type" id="type" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required title="Type">
+                            <select name="type" id="type"
+                                class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                required title="Type">
                                 <option value="" selected disabled hidden>Select the type</option>
                                 <option value="worker">Worker</option>
                                 <option value="BranchManager">Manager</option>
                             </select>
                         </div>
+                        <button type="submit"
+                            class=" md:col-span-2 w-full py-2 px-4 bg-indigo-600 text-white font-semibold rounded-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Hire</button>
+
+
 
                         <!-- cool idea but not used here
                         <div id="branch-location-container" style="display:none;">
@@ -211,112 +246,50 @@ require_once("php/connection.php");
                             </select>
                         </div> -->
 
-                        <div class="md:col-span-2">
-                            <div class="loading">Loading</div>
-
-                            <div class="sent-message">Worker hired successfully!</div>
-
-                            <div class="error-message"></div>
-
-                            <button type="submit" class="w-full py-2 px-4 bg-indigo-600 text-white font-semibold rounded-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Hire</button>
-                        </div>
                     </form>
-                </div>
-                <div id="fire" style="display: none;">
-                    <!-- <form id="fireForm" action="php/search.php" method="post" class="php-email-form grid grid-cols-1 gap-6 md:grid-cols-2" style="padding-top: 20px;"> -->
-                    <h2 class="text-3xl font-bold mb-6">Delete Worker</h2>
-                    <br>
-                    <div class="md:col-span-2 mb-6">
-                        <label class="block text-sm font-medium text-white-700 mb-2">Search Worker by Name:</label>
-                        <div class="flex">
-                            <form id="searchForm" action="php/search.php" method="post">
-                                <input name="worker" type="text" id="searchWorker" placeholder="Enter worker name" class="mt-1 flex-8 py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                                <button name="submit" type="submit" id="searchButton" style="margin-left:1%;" class=" mt-1 flex-4 py-2 px-4 bg-indigo-600 text-white font-semibold rounded-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Search</button>
-                            </form>
+                    <!-- Success Modal -->
+                    <div id="success-modal" class="fixed z-10 hidden inset-0 overflow-y-auto">
+                        <div
+                            class="flex items-center justify-center min-h-screen px-4 py-4 text-center sm:block sm:p-0">
+                            <div class="fixed inset-0 transition-opacity cursor-pointer" aria-hidden="true">
+                                <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
+                            </div>
+                            <div
+                                class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-auto mx-auto my-8 align-middle max-w-md">
+                                <div class="bg-green-500 border-green-600 text-white rounded-lg shadow-lg p-6">
+                                    <p class="font-bold text-xl mb-4">Success!</p>
+                                    <p>Worker hired successfully!</p>
+                                    <button id="close-success-modal"
+                                        class="mt-4 px-4 py-2 bg-green-700 text-white font-semibold rounded hover:bg-green-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
+                                        Close
+                                    </button>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="shadow-lg border-b border-gray-200 sm:rounded-lg mb-8">
-                        <table class="min-w-full divide-y divide-gray-200">
-                            <thead class="bg-gray-800">
-                                <tr>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
-                                        Date Joined</th>
-                                    <!-- <th
-                                            class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
-                                            Time</th> -->
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
-                                        ID</th>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
-                                        Name</th>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
-                                        Salary</th>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
-                                        Sector</th>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
-                                        Type</th>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
-                                        Phone Number</th>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
-                                        DOB</th>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody class="bg-white divide-y divide-gray-200">
-
-                                <!-- <php
-                                require_once('php/connection.php');
-
-                                if (isset($_SESSION['result'])) {
-                                    $result = $_SESSION['result'];
-                                }
-
-
-                                if (($result) && (mysqli_num_rows($result) > 0)) {
-
-                                    while ($row = mysqli_fetch_assoc($result)) {
-
-                                        $rmid = $row["w_id"];
-                                        echo "<tr>   
-                                            <td class=\"px-6 py-4 whitespace-nowrap\">" . $row["timestamp"] . "</td>
-                                                <td class=\"px-6 py-4 whitespace-nowrap\">#" . $row["w_id"] . "</td>
-                                                <td class=\"px-6 py-4 whitespace-nowrap\">" . $row["name"] . "</td>
-                                                <td class=\"px-6 py-4 whitespace-nowrap\">" . $row["salary"] . "$</td>
-                                                <td class=\"px-6 py-4 whitespace-nowrap\">" . $row["branch"] . "</td>
-                                                <td class=\"px-6 py-4 whitespace-nowrap\">" . $row["type"] . "</td>
-                                                <td class=\"px-6 py-4 whitespace-nowrap\">" . $row["phone"] . "</td>
-                                                <td class=\"px-6 py-4 whitespace-nowrap\">" . $row["dateOfBirth"] . "</td>";
-                                        if ($row["type"] == 'CEO') {
-                                            echo "<td class=\"px-6 py-4 whitespace-nowrap\"></td>                
-                                            </tr>";
-                                        } else {
-                                            echo "
-                                                <td class=\"px-6 py-4 whitespace-nowrap\"> <a  name='n' value=$rmid href=http://localhost/seniorProject/php/fireworker.php?rmid=" . $rmid . "> <button type=\"submit\" class=\"btn-danger\">Fire</button></a> </td>                
-                                                </tr>";
-                                        }
-                                    }
-                                }
-                                ?> -->
-
-                                <!-- <div class="flex justify-center items-center">
-                                        <div class="loading">Loading</div>
-
-                                        <div class="sent-message">Worker fired successfully!</div>
-
-                                        <div class="error-message"></div>
-                                        <button
-                                            class="btn-danger bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700">Fire</button>
-                                    </div> -->
-
-
-                            </tbody>
-
-                        </table>
+                    <!-- Error Modal -->
+                    <div id="error-modal" class="fixed z-10 hidden inset-0 overflow-y-auto">
+                        <div
+                            class="flex items-center justify-center min-h-screen px-4 py-4 text-center sm:block sm:p-0">
+                            <div class="fixed inset-0 transition-opacity cursor-pointer" aria-hidden="true">
+                                <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
+                            </div>
+                            <div
+                                class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-auto mx-auto my-8 align-middle max-w-md">
+                                <div class="bg-red-500 border-red-600 text-white rounded-lg shadow-lg p-6">
+                                    <p class="font-bold text-xl mb-4">Error!</p>
+                                    <p></p>
+                                    <button id="close-error-modal"
+                                        class="mt-4 px-4 py-2 bg-red-700 text-white font-semibold rounded hover:bg-red-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
+                                        Close
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <!-- </form> -->
                 </div>
-
+            
                 <div id="branch" style="display: none;">
                     <!-- Add Branch Table -->
                     <h1 class="text-4xl font-bold mb-6" style="padding-left:1%;">Branch Management</h1>
@@ -324,19 +297,26 @@ require_once("php/connection.php");
                         <table class="min-w-full divide-y divide-gray-200">
                             <thead class="bg-gray-800">
                                 <tr>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
+                                    <th
+                                        class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
                                         Date</th>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
+                                    <th
+                                        class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
                                         Time</th>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
+                                    <th
+                                        class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
                                         Branch Location</th>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
+                                    <th
+                                        class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
                                         Branch Manager Name</th>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
+                                    <th
+                                        class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
                                         Branch Manager Email</th>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
+                                    <th
+                                        class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
                                         Branch Manager Status</th>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
+                                    <th
+                                        class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
                                     </th>
                                 </tr>
                             </thead>
@@ -349,7 +329,8 @@ require_once("php/connection.php");
                                 <td class="px-6 py-4 whitespace-nowrap">New</td>
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     <div class="flex justify-center items-center">
-                                        <button class="bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700">Done</button>
+                                        <button
+                                            class="bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700">Done</button>
                                     </div>
                                 </td>
 
@@ -358,15 +339,19 @@ require_once("php/connection.php");
                     </div>
 
                     <!-- Add Branch Form -->
-                    <form action="php/addbranch.php" method="post" class="php-email-form grid grid-cols-1 gap-6 md:grid-cols-2" style="padding-bottom: 100px;">
+                    <form action="php/addbranch.php" method="post"
+                        class="php-email-form grid grid-cols-1 gap-6 md:grid-cols-2" style="padding-bottom: 100px;">
 
                         <div>
                             <label class="block text-sm font-medium text-white-700">Branch Location</label>
-                            <input type="text" name="branch_location" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required placeholder="Enter branch location">
+                            <input type="text" name="branch_location"
+                                class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                required placeholder="Enter branch location">
                         </div>
                         <div>
                             <label class="block text-sm font-medium text-white-700">Branch Manager</label>
-                            <select id="manager" name="manager" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                            <select id="manager" name="manager"
+                                class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                                 <option value="" selected disabled hidden>Select Branch Manager</option>
                                 <?php
                                 require_once('php/employee.php');
@@ -378,7 +363,8 @@ require_once("php/connection.php");
                                         $id = $all[0][$col];
                                         $n = trim($all[1][$col]);
 
-                                        echo "<option value= " . $id . ">" . $n . " </option>";;
+                                        echo "<option value= " . $id . ">" . $n . " </option>";
+                                        ;
                                     }
                                 }
                                 ?>
@@ -393,7 +379,8 @@ require_once("php/connection.php");
 
                             <div class="error-message"></div>
 
-                            <button type="submit" class="w-full py-2 px-4 bg-indigo-600 text-white font-semibold rounded-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Add
+                            <button type="submit"
+                                class="w-full py-2 px-4 bg-indigo-600 text-white font-semibold rounded-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Add
                                 Branch</button>
                         </div>
                     </form>
@@ -403,11 +390,13 @@ require_once("php/connection.php");
     </section>
 
     <script src="assets/vendor/php-email-form/validate.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
+
+    <!-- Dynamic branch manager location select but not used -->
+    <!-- <script>
+        document.addEventListener('DOMContentLoaded', function () {
             const typeElement = document.getElementById('type');
             if (typeElement) {
-                typeElement.addEventListener('change', function() {
+                typeElement.addEventListener('change', function () {
                     const branchLocationContainer = document.getElementById('branch-location-container');
                     if (this.value === 'BranchManager') {
                         branchLocationContainer.style.display = 'block';
@@ -417,51 +406,15 @@ require_once("php/connection.php");
                 });
             }
         });
-    </script>
+    </script> -->
 
-    <!-- <script>
-  document.addEventListener('DOMContentLoaded', function () {
-    document.getElementById('hireLink').addEventListener('click', function (event) {
-        event.preventDefault();
-        console.log('Click event triggered');
-        showDiv('hire');
-    });
-
-    document.getElementById('fireLink').addEventListener('click', function (event) {
-        event.preventDefault();
-        console.log('Click event triggered');
-        showDiv('fire');
-    });
-
-    document.getElementById('branchLink').addEventListener('click', function (event) {
-        event.preventDefault();
-        console.log('Click event triggered');
-        showDiv('branch');
-    });
-    function showDiv(divId) {
-        const divs = ['hire', 'fire', 'branch'];
-
-        divs.forEach(function (id) {
-            const div = document.getElementById(id);
-
-            if (id === divId) {
-                div.style.display = 'grid';
-            } else {
-                div.style.display = 'none';
-            }
-        });
-    }
-});
-
-
-</script> -->
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const navLinks = document.querySelectorAll('.nav-link');
 
             navLinks.forEach(link => {
-                link.addEventListener('click', function(event) {
+                link.addEventListener('click', function (event) {
                     event.preventDefault();
                     showDiv(link.getAttribute('href').substring(1));
                 });
@@ -470,7 +423,7 @@ require_once("php/connection.php");
             function showDiv(divId) {
                 const divs = ['hire', 'branch'];
 
-                divs.forEach(function(id) {
+                divs.forEach(function (id) {
                     const div = document.getElementById(id);
 
                     if (id === divId) {
@@ -480,6 +433,57 @@ require_once("php/connection.php");
                     }
                 });
             }
+        });
+    </script>
+
+    <!-- pop up error / success -->
+    <script>
+        document.getElementById('hireForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            // Hide previous messages
+            document.getElementById('success-modal').classList.add('hidden');
+            document.getElementById('error-modal').classList.add('hidden');
+
+            // Create a FormData object from the form
+            const formData = new FormData(event.target);
+
+            // Send an AJAX request to the PHP file
+            fetch('php/hire.php', {
+                method: 'POST',
+                body: formData,
+            })
+                .then((response) => response.text())
+                .then((result) => {
+                    if (result === 'OK') {
+                        document.getElementById('success-modal').classList.remove('hidden');
+                    } else if (result === 'Already added!') {
+                        document.getElementById('error-modal').classList.remove('hidden');
+                        document.getElementById('error-modal').querySelector('p').textContent = 'Already Registered.';
+                    } else {
+                        document.getElementById('error-modal').classList.remove('hidden');
+                    }
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                });
+        });
+
+        // Close success modal when clicking outside the content
+        document.querySelector('#success-modal .fixed.inset-0').addEventListener('click', function () {
+            document.getElementById('success-modal').classList.add('hidden');
+        });
+
+        // Close error modal when clicking outside the content
+        document.querySelector('#error-modal .fixed.inset-0').addEventListener('click', function () {
+            document.getElementById('error-modal').classList.add('hidden');
+        });
+        // Close error modal when clicking on the close button
+        document.querySelector('#close-error-modal').addEventListener('click', function () {
+            document.getElementById('error-modal').classList.add('hidden');
+        });
+        document.querySelector('#close-success-modal').addEventListener('click', function () {
+            document.getElementById('success-modal').classList.add('hidden');
         });
     </script>
 </body>
