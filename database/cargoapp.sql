@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 25, 2023 at 08:47 AM
+-- Generation Time: May 09, 2023 at 10:13 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.2
 
@@ -41,7 +41,19 @@ INSERT INTO `branches` (`branch`) VALUES
 ('Batroun'),
 ('Beirut'),
 ('delivered'),
-('still at client');
+('hh'),
+('still at client'),
+('Tripoli'),
+('Tripoli2'),
+('Tripoli2e'),
+('Tripoli5'),
+('Tripoli58'),
+('Tripoli589'),
+('Tripoli99'),
+('Tripoli990'),
+('Tripoli9908'),
+('Tripoli99080'),
+('Tripolir');
 
 -- --------------------------------------------------------
 
@@ -69,7 +81,7 @@ CREATE TABLE `clients` (
 --
 
 INSERT INTO `clients` (`c_id`, `u_id`, `pay_id`, `c_name`, `c_phone`, `c_address`, `c_longitude`, `c_latitude`, `c_district`, `c_timestamp`, `guest`, `rating`) VALUES
-(6, 8, NULL, 'test01', 'test01', 'test01', NULL, NULL, 'Batroun', '2023-03-31 12:18:06', 0, 4),
+(6, 8, NULL, 'test01', 'test01', 'test01', NULL, NULL, 'Batroun', '2023-03-31 12:18:06', 0, 5),
 (7, 9, NULL, 'zaher', 'zaher', 'zaher', NULL, NULL, 'Batroun', '2023-04-03 06:04:07', 0, 4),
 (8, 10, NULL, 'client', '555', 'client', NULL, NULL, 'Akkar', '2023-04-23 13:49:36', 0, 4);
 
@@ -93,12 +105,20 @@ CREATE TABLE `deliveries` (
 
 INSERT INTO `deliveries` (`d_id`, `w_id`, `o_id`, `current_location`, `timestamp`) VALUES
 (1, NULL, 1, 'still at client', '2023-04-10 08:07:13'),
-(2, 3, 1, 'Beirut', '2023-04-18 07:19:56'),
+(2, 11, 1, 'Beirut', '2023-04-18 07:19:56'),
 (3, NULL, 4, 'still at client', '2023-04-24 08:11:32'),
 (4, NULL, 5, 'still at client', '2023-04-24 08:24:39'),
 (5, NULL, 6, 'still at client', '2023-04-24 08:40:13'),
 (6, NULL, 7, 'still at client', '2023-04-24 08:41:23'),
-(7, NULL, 8, 'still at client', '2023-04-24 08:43:42');
+(7, NULL, 8, 'still at client', '2023-04-24 08:43:42'),
+(8, NULL, 9, 'still at client', '2023-04-30 17:00:52'),
+(9, NULL, 10, 'still at client', '2023-04-30 17:08:55'),
+(10, NULL, 11, 'still at client', '2023-04-30 17:12:08'),
+(11, NULL, 12, 'still at client', '2023-04-30 17:30:39'),
+(12, NULL, 13, 'still at client', '2023-04-30 17:42:04'),
+(13, NULL, 14, 'still at client', '2023-04-30 18:08:56'),
+(14, NULL, 15, 'still at client', '2023-04-30 18:10:15'),
+(15, NULL, 16, 'still at client', '2023-04-30 18:18:34');
 
 -- --------------------------------------------------------
 
@@ -108,11 +128,19 @@ INSERT INTO `deliveries` (`d_id`, `w_id`, `o_id`, `current_location`, `timestamp
 
 CREATE TABLE `messages` (
   `m_id` int(11) NOT NULL,
-  `send_id` int(11) NOT NULL,
+  `u_id` int(11) NOT NULL,
   `receive_id` int(11) NOT NULL,
   `message` text NOT NULL,
-  `timestamp` timestamp NOT NULL DEFAULT current_timestamp()
+  `m_timestamp` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `messages`
+--
+
+INSERT INTO `messages` (`m_id`, `u_id`, `receive_id`, `message`, `m_timestamp`) VALUES
+(1, 1, 2, 'hi anamessage', '2023-05-02 18:11:45'),
+(2, 1, 2, 'hi ana message2', '2023-05-02 18:15:34');
 
 -- --------------------------------------------------------
 
@@ -140,7 +168,15 @@ INSERT INTO `orders` (`o_id`, `p_id`, `c_id`, `status`, `date`) VALUES
 (5, 8, 6, 'pending', '2023-04-24 08:24:39'),
 (6, 12, 6, 'pending', '2023-04-24 08:40:13'),
 (7, 13, 6, 'pending', '2023-04-24 08:41:22'),
-(8, 14, 6, 'pending', '2023-04-24 08:43:42');
+(8, 14, 6, 'pending', '2023-04-24 08:43:42'),
+(9, 15, 6, 'pending', '2023-04-30 17:00:52'),
+(10, 16, 6, 'pending', '2023-04-30 17:08:55'),
+(11, 17, 6, 'pending', '2023-04-30 17:12:08'),
+(12, 18, 6, 'pending', '2023-04-30 17:30:39'),
+(13, 19, 6, 'pending', '2023-04-30 17:42:04'),
+(14, 20, 6, 'pending', '2023-04-30 18:08:56'),
+(15, 21, 6, 'pending', '2023-04-30 18:10:15'),
+(16, 22, 6, 'pending', '2023-04-30 18:18:33');
 
 -- --------------------------------------------------------
 
@@ -179,7 +215,15 @@ INSERT INTO `packages` (`p_id`, `width`, `height`, `weight`, `message`, `to_name
 (8, 33, 33, 33, 'rr', 'fawze', '33', 'rr', NULL, NULL, 'Beirut', 0, 33.33, 10, 10, 53.33, 0),
 (12, 33, 33, 33, 'f', 'fawz', '33', 'rr', NULL, NULL, 'Al Koura', 0, 33.33, 10, 10, 53.33, 0),
 (13, 33, 33, 33, 'f4 ggg', 'fawz ff', '33', 'rr', NULL, NULL, 'Al Koura', 0, 33.33, 10, 10, 53.33, 0),
-(14, 33, 33, 33, 'f4 ggg', 'fawz ff', '33', 'rr', NULL, NULL, 'Al Koura', 0, 33.33, 10, 10, 53.33, 0);
+(14, 33, 33, 33, 'f4 ggg', 'fawz ff', '33', 'rr', NULL, NULL, 'Al Koura', 0, 33.33, 10, 10, 53.33, 0),
+(15, 33, 33, 33, 'kk', 'fawzp', '33', 'rr', NULL, NULL, 'Al Koura', 0, 33.33, 5, 5, 43.33, 0),
+(16, 33, 33, 33, 'hh', 'fawzp', '33', 'rr', NULL, NULL, 'Batroun', 0, 33.33, 5, 5, 43.33, 0),
+(17, 33, 33, 33, '', 'fawz', '33', 'rr', NULL, NULL, 'Akkar', 1, 33.33, 10, 10, 53.33, 0),
+(18, 33, 33, 33, '', 'fawz', '33', 'rr', NULL, NULL, 'Akkar', 0, 33.33, 5, 5, 43.33, 0),
+(19, 33, 33, 33, '', 'fawz', '33', 'rr', NULL, NULL, 'Al Koura', 0, 33.33, 5, 5, 43.33, 0),
+(20, 33, 33, 33, '', 'fawz', '33', 'rr', NULL, NULL, 'Beirut', 0, 33.33, 5, 5, 43.33, 0),
+(21, 33, 33, 33, '', 'fawz', '33', 'rr', NULL, NULL, 'Al Koura', 0, 0, 5, 5, 10, 0),
+(22, 33, 33, 33, '', 'fawz', '33', 'rr', NULL, NULL, 'Al Koura', 0, 0, 5, 5, 10, 0);
 
 -- --------------------------------------------------------
 
@@ -250,10 +294,12 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`u_id`, `email`, `password`, `type`) VALUES
 (1, 'CEO@hotmail.com', '858904c3e266f5640bfa88f16d2ed50a', 'CEO'),
 (2, 'IT@hotmail.com', 'cd32106bcb6de321930cf34574ea388c', 'IT'),
-(3, 'worker1@hotmail.com', 'ebad64149cc767ba26ef069819279fd5', 'worker'),
 (8, 'test01@wow', '0e698a8ffc1a0af622c7b4db3cb750cc', 'client'),
 (9, 'zaher@hotmail.com', '2a4e7d2de385a10968b001de2bc66adf', 'client'),
-(10, 'client@client.com', '62608e08adc29a8d6dbc9754e659f125', 'client');
+(10, 'client@client.com', '62608e08adc29a8d6dbc9754e659f125', 'client'),
+(14, 'me@hotmail.com', 'ab86a1e1ef70dff97959067b723c5c24', 'worker'),
+(17, 'BranchManager@hotmail.com', '700a7ee3dcca1310355fd89585df38f0', 'BranchManager'),
+(18, 'worker@hotmail.com', 'b61822e8357dcaff77eaaccf348d9134', 'worker');
 
 -- --------------------------------------------------------
 
@@ -279,7 +325,9 @@ CREATE TABLE `workers` (
 INSERT INTO `workers` (`w_id`, `u_id`, `name`, `phone`, `branch`, `dateOfBirth`, `salary`, `timestamp`) VALUES
 (1, 1, 'CEO', '71787766', 'Beirut', '1993-04-01', NULL, '2023-04-10 09:13:59'),
 (2, 2, 'IT', '71787767', 'Beirut', '1993-04-01', 1000, '2023-04-10 09:15:38'),
-(3, 3, 'worker1', '3543345', 'Beirut', '1993-04-01', 1000, '2023-04-12 16:25:08');
+(7, 14, 'me', '8888', 'Tripoli589', '2023-03-16', 0, '2023-05-01 18:36:16'),
+(10, 17, 'BranchManager', '89544848', 'Beirut', '2000-01-01', 5000, '2023-05-03 10:39:08'),
+(11, 18, 'worker', '34454545', 'hh', '2023-05-03', 0, '2023-05-03 10:40:40');
 
 --
 -- Indexes for dumped tables
@@ -314,8 +362,8 @@ ALTER TABLE `deliveries`
 --
 ALTER TABLE `messages`
   ADD PRIMARY KEY (`m_id`),
-  ADD KEY `send_id` (`send_id`),
-  ADD KEY `receive_id` (`receive_id`);
+  ADD KEY `messages_ibfk_1` (`u_id`),
+  ADD KEY `messages_ibfk_2` (`receive_id`);
 
 --
 -- Indexes for table `orders`
@@ -380,19 +428,19 @@ ALTER TABLE `clients`
 -- AUTO_INCREMENT for table `deliveries`
 --
 ALTER TABLE `deliveries`
-  MODIFY `d_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `d_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `o_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `o_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `packages`
 --
 ALTER TABLE `packages`
-  MODIFY `p_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `p_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `payment`
@@ -404,13 +452,13 @@ ALTER TABLE `payment`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `u_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `u_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `workers`
 --
 ALTER TABLE `workers`
-  MODIFY `w_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `w_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- Constraints for dumped tables
@@ -436,8 +484,8 @@ ALTER TABLE `deliveries`
 -- Constraints for table `messages`
 --
 ALTER TABLE `messages`
-  ADD CONSTRAINT `messages_ibfk_1` FOREIGN KEY (`send_id`) REFERENCES `workers` (`w_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `messages_ibfk_2` FOREIGN KEY (`receive_id`) REFERENCES `workers` (`w_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `messages_ibfk_1` FOREIGN KEY (`u_id`) REFERENCES `users` (`u_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `messages_ibfk_2` FOREIGN KEY (`receive_id`) REFERENCES `users` (`u_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `orders`
