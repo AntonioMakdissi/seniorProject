@@ -22,7 +22,9 @@ if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin'] || ($_SESSION['type'
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+    rel="stylesheet">
 
   <!-- Vendor CSS Files -->
   <!-- <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"> -->
@@ -49,7 +51,7 @@ if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin'] || ($_SESSION['type'
       <nav id="navbar" class="navbar">
         <?php
         if ($_SESSION['type'] == 'CEO') {
-        ?>
+          ?>
           <ul>
             <li><a href="../CEO.php" class="active">Home</a></li>
             <li><a href="viewWorker.php">Workers</a></li>
@@ -80,10 +82,12 @@ if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin'] || ($_SESSION['type'
         <form style="z-index: 9999;" id="searchForm" action="viewWorker.php" method="post">
           <div class="search-container">
             <label for="search-input" class="search-label">Search for Worker:</label>
-            <input class="search-input" name="worker" type="text" id="search-input" placeholder="Enter worker name, ID, or branch">
+            <input class="search-input" name="worker" type="text" id="search-input"
+              placeholder="Enter worker name, ID, or branch">
             <button class="search-button" name="submit" type="submit" id="searchButton">Search</button>
         </form>
-        <a href="http://localhost/seniorProject/php/viewWorker.php"><button class="show-all-button" name="show" type="submit" id="showButton">Show All</button> </a>
+        <a href="http://localhost/seniorProject/php/viewWorker.php"><button class="show-all-button" name="show"
+            type="submit" id="showButton">Show All</button> </a>
       </div>
 
       <table class="table table-striped">
@@ -132,12 +136,13 @@ if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin'] || ($_SESSION['type'
                 echo "                <td></td>                
                  </tr>";
               } else {
-          ?>
-                <td> <button type="submit" class="custom-button" onclick="fireWorker('<?php echo $rmid; ?>')">Fire</button></a> </td>
+                ?>
+                <td> <button type="submit" class="custom-button"
+                    onclick="fireWorker('<?php echo $rmid; ?>')">Fire</button></a> </td>
 
 
                 </tr>
-          <?php
+                <?php
               }
             }
           }
