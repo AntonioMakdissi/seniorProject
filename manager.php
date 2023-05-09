@@ -51,7 +51,7 @@ require_once('php/stats.php');
 
 </head>
 
-<body class="bg-gray-100"> 
+<body class="bg-gray-100">
 
   <!-- ======= Header ======= -->
   <header id="header" class="header d-flex align-items-center fixed-top">
@@ -81,7 +81,7 @@ require_once('php/stats.php');
 
   <section id="hero" class="hero d-flex align-items-center" style="padding-top: 20px; height: 100%; ">
     <div class="container mx-auto px-4 py-12">
-      <div class="container" >
+      <div class="container">
         <!-- <h1 style="color:white">Workers</h1> -->
         <h2 style="color:white">Branch Orders</h2>
       </div>
@@ -106,27 +106,46 @@ require_once('php/stats.php');
         <tbody>
           <?php
           $current_location = $_SESSION['branch'];
-          $query = "SELECT * FROM orders NATURAL JOIN packages NATURAL JOIN deliveries WHERE current_location='$current_location' ORDER BY date";
+          $query = "SELECT * FROM orders NATURAL JOIN packages NATURAL JOIN deliveries NATURAL JOIN clients WHERE current_location='$current_location' ORDER BY date";
           $result = mysqli_query($link, $query);
-          if (($result) && (mysqli_num_rows($result) > 0)) {
-
-            while ($row = mysqli_fetch_assoc($result)) {
-
-              echo "<tr>   
-<td>#" . $row["o_id"] . "</td>
-<td>" . $row["date"] . "</td>
-<td>" . $row["cost"] . "$</td>
-<td>" . $row["f_price"] . "</td>
-<td>" . $row["status"] . "</td>
-            
-</tr>";
+          if ($result) {
+            if (mysqli_num_rows($result) > 0) {
+              while ($row = mysqli_fetch_assoc($result)) {
+                $cash = 'yes';
+                if ($row["pay_at_delivery"] == 0) {
+                  $cash = 'no';
+                }
+                echo "<tr>
+          <td>#" . $row["o_id"] . "</td>
+          <td>" . $row["c_name"] . "</td>
+          <td>" . $row["c_phone"] . "</td>
+          <td>" . $row["c_address"] . "</td>
+          <td>" . $row["to_name"] . "</td>
+          <td>" . $row["to_phone"] . "</td>
+          <td>" . $row["to_district"] . "</td>
+          <td>" . $row["to_address"] . "</td>
+          <td>" . $row["f_price"] . "$</td>
+          <td>" . $cash . "</td>
+          <td>" . $row["status"] . "</td>
+          <td>" . $row["timestamp"] . "</td>
+        </tr>";
+              }
+            } else {
+              echo "No results found.";
             }
+          } else {
+            echo "Error: " . mysqli_error($link);
           }
+
           ?>
         </tbody>
       </table>
+
+
     </div>
-    </div>
+
+
+
   </section>
 
   <!-- <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i

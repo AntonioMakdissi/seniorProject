@@ -48,16 +48,11 @@ require_once("php/connection.php");
             <nav id="navbar" class="navbar">
                 <ul>
                     <li><a href="#hire" class="nav-link">Hire worker</a></li>
-                    <li><a href="php/viewWorker.php" class="nav-link">Fire worker</a></li>
+                    <li><a href="php/viewWorker.php" target="_self">Fire worker</a></li>
                     <li><a href="#branch" class="nav-link">Add branch</a></li>
                     <li><a class="get-a-quote" href="php/logout.php">Logout</a></li>
                 </ul>
             </nav>
-
-
-
-
-
         </div>
     </header>
     <section id="hero" class="hero d-flex align-items-center" style="padding-top: 20px; height: 100%; ">
@@ -191,7 +186,7 @@ require_once("php/connection.php");
                                 $all = all_branches($link);
                                 foreach ($all as $branch) {
                                     $n = trim($branch);
-                                    $district = str_replace(" ", "%20", $n);//not text type so space aren't sent in url
+                                    $district = str_replace(" ", "%20", $n); //not text type so space aren't sent in url
                                     echo "<option value= " . $district . ">" . $branch . " </option>";;
                                 }
 
