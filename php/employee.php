@@ -26,6 +26,18 @@ function getEmpUId($link, $w_id)
 	return $u_id;
 }
 
+function getEmpByEmail($link, $email)
+{
+	$query = "SELECT u_id FROM users WHERE email='$email'";
+	if($result = mysqli_query($link, $query)){
+	$row = mysqli_fetch_assoc($result);
+	$u_id = $row['u_id'];
+	return $u_id;
+	}else{
+		return -1;
+	}
+}
+
 function setSalary($link, $w_id, $salary)
 {
 	$query = "UPDATE workers SET 'salary' = '$salary' WHERE w_id= '$w_id' ";
@@ -36,8 +48,7 @@ function setSalary($link, $w_id, $salary)
 
 function promoteManager($link, $w_id, $branch)
 {
-	$query = "UPDATE workers SET branch='$branch',salary = 'salary' * 1.1 WHERE w_id= '$w_id' ";
-
+	$query = "UPDATE workers SET branch='$branch', salary = salary * 1.1 WHERE w_id= '$w_id' ";
 	if (mysqli_query($link, $query)) {
 		$u_id = getEmpUId($link, $w_id);
 

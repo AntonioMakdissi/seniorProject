@@ -1,5 +1,6 @@
 <?php
 require_once 'connection.php';
+require_once 'employee.php';
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
@@ -9,17 +10,28 @@ if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin']) {
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     extract($_POST);
-    $send_id=$_SESSION['w_id'];
+    $send_id = $_SESSION['u_id'];
+    $receive_id = getEmpByEmail($link, $email);
+    if ($receive_id > 0) {
 
-    $query = "INSERT INTO messages('u_id', 'receive_id', 'message') VALUES ('$send_id','$receive_id','$message')";
+        $query = "INSERT INTO messages(u_id, receive_id, message) VALUES ('$send_id','$receive_id','$message')";
 
-    if (mysqli_query($link, $query)) {
-        echo "OK";
+        if (mysqli_query($link, $query)) {
+            echo "OK";
+        } else {
+            echo "Error: " . mysqli_error($link);
+        }
     } else {
-        echo "Error: " . mysqli_error($link);
+        echo "Error: Doesn't exist";
     }
 }
 
+if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+    if (isset($_GET['m_id'])) {
+        $m_id = $_GET['m_id'];
+        deleteMessage($link, $m_id);
+    }
+}
 
 function viewMessages($link, $receive_id)
 {
@@ -42,4 +54,15 @@ function viewMessages($link, $receive_id)
         return -1; //no messages
     }
     return $messages;
+}
+
+function deleteMessage($link, $m_id)
+{
+    $query = "DELETE FROM messages WHERE messages.m_id = '$m_id'";
+    if (mysqli_query($link, $query)) {
+        header('Location: ../viewMessages.php');
+        exit;
+    } else {
+        echo "Error: " . mysqli_error($link);
+    }
 }

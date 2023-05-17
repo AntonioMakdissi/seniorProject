@@ -49,7 +49,7 @@ require_once("php/connection.php");
             <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
             <nav id="navbar" class="navbar">
                 <ul>
-                    <li><a href="hire.php#hire" >Hire worker</a></li>
+                    <li><a href="hire.php" >Hire worker</a></li>
                     <li><a href="php/viewWorker.php" target="_self">Fire worker</a></li>
                     <li><a href="addBranches.php" >Add branch</a></li>
                     <li><a class="get-a-quote" href="php/logout.php">Logout</a></li>

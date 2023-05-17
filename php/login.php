@@ -64,10 +64,10 @@
 						header('Location: ../CEO.php'); //CEO page
 						//echo "CEO";
 					} else if ($_SESSION['type'] == 'worker') {
-						header('Location: ../worker.php'); //worker page
+						header('Location: ../branchOrders.php'); //worker page
 						//echo "worker";
 					} else if ($_SESSION['type'] == 'BranchManager') {
-						header('Location: ../manager.php'); //BranchManager page
+						header('Location: ../branchOrders.php'); //BranchManager page
 						//echo "manager";
 					} else if ($_SESSION['type'] == 'IT') {
 						header('Location: ../IT.php'); //BranchManager page

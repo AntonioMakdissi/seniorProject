@@ -60,10 +60,10 @@ require_once('php/stats.php');
             <!-- <li><a href="client.html" class="active">Home</a></li> -->
             <li><a href="php/history.php">History</a></li>
             <li><a href="php/track.php">Track</a></li>
-            <li><a href="contact.html">Contact</a></li>
+            <li><a href="viewMessages.php">Messages</a></li>
             <li><a class="get-a-quote" href="php/logout.php">Logout</a></li>
           </ul>
-        </nav>#
+        </nav>
       <?php } else {
         ?>
         <a href="branchOrders.php" class="logo d-flex align-items-center">
@@ -76,9 +76,10 @@ require_once('php/stats.php');
         <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
         <nav id="navbar" class="navbar">
           <ul>
-            <li><a href="ViewMessages.php">Contact</a></li>
+          <li><a href="viewMessages.php">Messages</a></li>
             <li><a class="get-a-quote" href="php/logout.php">Logout</a></li>
           </ul>
+        </nav>
         <?php } ?>
     </div>
   </header>
@@ -98,6 +99,7 @@ require_once('php/stats.php');
                 <th>From</th>
                 <th>Phone number</th>
                 <th>Address</th>
+                <th>Current location</th>
                 <th>To</th>
                 <th>Phone number</th>
                 <th>Last stop</th>
@@ -119,7 +121,21 @@ require_once('php/stats.php');
             <tbody>
               <?php
               $current_location = $_SESSION['branch'];
-              $query = "SELECT * FROM orders NATURAL JOIN packages NATURAL JOIN deliveries NATURAL JOIN clients WHERE current_location='$current_location' ORDER BY date";
+              $query = "SELECT *
+              FROM orders
+              NATURAL JOIN packages NATURAL JOIN clients
+              NATURAL JOIN (
+                  SELECT o_id, MAX(d_id) AS max_d_id
+                  FROM deliveries
+                  GROUP BY o_id
+              ) AS last_delivery
+              NATURAL JOIN deliveries
+              WHERE (current_location = '$current_location'
+              OR (current_location='still at client' AND c_district='$current_location'))
+              AND status = 'pending'
+              AND deliveries.d_id = last_delivery.max_d_id
+              ORDER BY date
+              ";
               $result = mysqli_query($link, $query);
               if ($result) {
                 if (mysqli_num_rows($result) > 0) {
@@ -133,6 +149,7 @@ require_once('php/stats.php');
           <td>" . $row["c_name"] . "</td>
           <td>" . $row["c_phone"] . "</td>
           <td>" . $row["c_address"] . "</td>
+          <td>" . $row["current_location"] . "</td>
           <td>" . $row["to_name"] . "</td>
           <td>" . $row["to_phone"] . "</td>
           <td>" . $row["to_district"] . "</td>

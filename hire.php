@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin'] || $_SESSION['type'] != 'IT') {
+if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin'] || ($_SESSION['type'] != 'IT' && $_SESSION['type'] != 'CEO')) {
     header('Location: login.php');
 }
 require_once("php/connection.php");
@@ -47,15 +47,30 @@ require_once("php/connection.php");
 
             <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
             <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
-            <nav id="navbar" class="navbar">
-                <ul>
-                <li><a href="viewMessages.php">Messages</a></li>
-                    <li><a href="#hire" class="nav-link">Hire</a></li>
-                    <li><a href="php/viewWorker.php">Workers</a></li>
-                    <li><a href="addBranches.php">Branches</a></li>
-                    <li><a class="get-a-quote" href="php/logout.php">Logout</a></li>
-                </ul>
-            </nav>
+            <?php if ($_SESSION['type'] == 'CEO') { ?>
+                <nav id="navbar" class="navbar">
+                    <ul>
+                        <li><a href="CEO.php" class="active">Home</a></li>
+                        <li><a href="php/viewWorker.php">Workers</a></li>
+                        <li><a href="hire.php">Hire</a></li>
+                        <li><a href="addBranches.php">Branches</a></li>
+                        <li><a href="php/profit.php">Statistics</a></li>
+                        <li><a href="viewMessages.php">Messages</a></li>
+                        <li><a class="get-a-quote" href="php/logout.php">Logout</a></li>
+                    </ul>
+                </nav><!-- .navbar -->
+            <?php } else { ?>
+                <nav id="navbar" class="navbar">
+                    <ul>
+                        <li><a href="viewMessages.php">Messages</a></li>
+                        <li><a href="hire.php">Hire </a></li>
+                        <li><a href="php/viewWorker.php">Workers</a></li>
+                        <li><a href="addBranches.php">Branches</a></li>
+                        <li><a class="get-a-quote" href="php/logout.php">Logout</a></li>
+                    </ul>
+                </nav>
+            <?php } ?>
+            
 
 
 
@@ -278,7 +293,7 @@ require_once("php/connection.php");
             const formData = new FormData(event.target);
 
             // Send an AJAX request to the PHP file
-            fetch('php/hire.php', {
+            fetch('php/addWorker.php', {
                 method: 'POST',
                 body: formData,
             })

@@ -15,7 +15,7 @@ require_once('php/employee.php');
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>SpeedRun</title>
+  <title>CEO</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -70,9 +70,10 @@ require_once('php/employee.php');
         <ul>
           <li><a href="CEO.php" class="active">Home</a></li>
           <li><a href="php/viewWorker.php">Workers</a></li>
+          <li><a href="hire.php">Hire</a></li>
           <li><a href="addBranches.php">Branches</a></li>
           <li><a href="php/profit.php">Statistics</a></li>
-          <li><a href="viewMessages.php">Contact</a></li>
+          <li><a href="viewMessages.php">Messages</a></li>
           <li><a class="get-a-quote" href="php/logout.php">Logout</a></li>
         </ul>
       </nav><!-- .navbar -->
@@ -86,7 +87,7 @@ require_once('php/employee.php');
     <div class="container">
       <div class="row gy-4 d-flex justify-content-between">
         <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center">
-          <h2 data-aos="fade-up" style="margin-top: -15%;">Journey of a Leading Delivery Company</h2>
+          <h2 data-aos="fade-up" style="margin-top: -15%;">Journey of a Leading Delivery Company <?= $_SESSION['name'] ?>!</h2> 
           <p data-aos="fade-up" data-aos-delay="100">"Success is not final, failure is not fatal: It is the courage to continue that counts." - Winston Churchill. Keep pushing forward and striving for excellence in every delivery, and you will find success in your company.</p>
 
 
@@ -133,7 +134,49 @@ require_once('php/employee.php');
       </div>
     </div>
   </section><!-- End Hero Section -->
- 
+  <main>
+    <div data-aos="fade-up">
+
+      <div class="container" style="margin-top: 100px;">
+        <table>
+          <thead>
+            <tr>
+              <th>Statistic</th>
+              <th>Value</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Number of successful Deliveries</td>
+              <td> <?php
+                    echo successful_deliveries($link);
+                    ?> </td>
+            </tr>
+            <tr>
+              <td>Pending Deliveries</td>
+              <td><?php echo pending_deliveries($link); ?></td>
+            </tr>
+            <tr>
+              <td>Failed Deliveries</td>
+              <td><?php echo failed_deliveries($link); ?></td>
+            </tr>
+            <tr>
+              <td>Customer Satisfaction</td>
+              <td><?php echo rating($link); ?> /5</td>
+            </tr>
+            <tr>
+              <td>Employee with most deliveries</td>
+              <td><?php
+                  $emp = mvp($link);
+                  echo getEmpById($link, $emp); ?></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+
+    </div>
+  </main>
   <!-- Vendor JS Files -->
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>

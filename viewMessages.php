@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin'] || $_SESSION['type'] != 'IT') {
+if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin']) {
     header('Location: login.php');
 }
 require_once("php/connection.php");
@@ -21,9 +21,7 @@ require_once("php/connection.php");
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
 
     <!-- Vendor CSS Files -->
     <!-- <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"> -->
@@ -50,15 +48,59 @@ require_once("php/connection.php");
 
             <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
             <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
-            <nav id="navbar" class="navbar">
-                <ul>
-                    <li><a href="messages.php"></a></li>
-                    <li><a href="hire.php">Hire </a></li>
-                    <li><a href="php/viewWorker.php">Workers</a></li>
-                    <li><a href="addBranches.php">Branches</a></li>
-                    <li><a class="get-a-quote" href="php/logout.php">Logout</a></li>
-                </ul>
-            </nav>
+            <?php if ($_SESSION['type'] == 'CEO') { ?>
+                <nav id="navbar" class="navbar">
+                    <ul>
+                        <li><a href="CEO.php" class="active">Home</a></li>
+                        <li><a href="php/viewWorker.php">Workers</a></li>
+                        <li><a href="hire.php">Hire</a></li>
+                        <li><a href="addBranches.php">Branches</a></li>
+                        <li><a href="php/profit.php">Statistics</a></li>
+                        <li><a href="viewMessages.php">Messages</a></li>
+                        <li><a class="get-a-quote" href="php/logout.php">Logout</a></li>
+                    </ul>
+                </nav><!-- .navbar -->
+            <?php } else  if ($_SESSION['type'] == 'IT') { ?>
+                <nav id="navbar" class="navbar">
+                    <ul>
+                        <li><a href="hire.php">Hire worker</a></li>
+                        <li><a href="php/viewWorker.php" target="_self">Fire worker</a></li>
+                        <li><a href="addBranches.php">Add branch</a></li>
+                        <li><a href="viewMessages.php">Messages</a></li>
+                        <li><a class="get-a-quote" href="php/logout.php">Logout</a></li>
+                    </ul>
+                </nav>
+            <?php } else  if ($_SESSION['type'] == 'BranchManager') { ?>
+                <nav id="navbar" class="navbar">
+                    <ul>
+                        <!-- <li><a href="client.html" class="active">Home</a></li> -->
+                        <li><a href="php/history.php">History</a></li>
+                        <li><a href="php/track.php">Track</a></li>
+                        <li><a href="viewMessages.php">Messages</a></li>
+                        <li><a class="get-a-quote" href="php/logout.php">Logout</a></li>
+                    </ul>
+                </nav>
+            <?php } else  if ($_SESSION['type'] == 'worker') { ?>
+                <nav id="navbar" class="navbar">
+                    <ul>
+                        <li><a href="viewMessages.php">Messages</a></li>
+                        <li><a class="get-a-quote" href="php/logout.php">Logout</a></li>
+                    </ul>
+                </nav>
+            <?php } else  if ($_SESSION['type'] == 'client') { ?>
+                <nav id="navbar" class="navbar">
+                    <ul>
+                        <li><a href="client.html" class="active">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="php/history.php">History</a></li>
+                        <li><a href="php/track.php">Track</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a class="get-a-quote" href="php/logout.php">Logout</a></li>
+                    </ul>
+                </nav><!-- .navbar -->
+            <?php } ?>
+
 
 
 
@@ -68,9 +110,9 @@ require_once("php/connection.php");
     </header>
     <section id="hero" class="hero d-flex align-items-center" style="padding-top: 20px; height: 100%; ">
         <div class="container">
-            
+
             <div class="container mx-auto px-4 py-12">
-            <button class="btn-msg-view"><i class="fas fa-envelope"></i></button>
+                <button class="btn-msg-view"><i class="fas fa-envelope"></i></button>
 
                 <div class="messages-container" id="message_div">
                     <!-- <div class="message">
@@ -88,7 +130,7 @@ require_once("php/connection.php");
 
                     <?php
                     include('php/message.php');
-                    $all = viewMessages($link, $_SESSION['w_id']);
+                    $all = viewMessages($link, $_SESSION['u_id']);
                     if ($all == -1) {
                         echo "no messages";
                     } else {
@@ -97,30 +139,44 @@ require_once("php/connection.php");
                                 //echo "</br>";
                             }
                             $m_id = $all[0][$i]; //m_id
-                            echo "<div class='message'>
-                            <h3 class='message-author'>" . $all[3][$i] . " " . $all[2][$i] . /*send_id+name*/"</h3> 
-                            <p class='message-content'>" . $all[4][$i] . /*message*/"</p>
-                            <p class='message-timestamp'>" . $all[5][$i] . /*timestamp*/"</p>
-                            <button class='btn-msg'>Delete</button>
-                        </div>";
+                    ?>
+                            <div class='message'>
+                                <?php
+                                echo "<h3 class='message-author'>" . $all[3][$i] . " " . $all[2][$i] . /*send_id+name*/ "</h3> 
+                                        <p class='message-content'>" . $all[4][$i] . /*message*/ "</p>
+                                    <p class='message-timestamp'>" . $all[5][$i] . /*timestamp*/ "</p>";
+                                ?>
+                                <button type="submit" class='btn-msg' onclick="deleteMessage('<?php echo $m_id; ?>')">Delete</button></a>
+                            </div>
+                    <?php
                         }
                     }
                     ?>
                 </div>
                 <div class="form-container">
                     <h1 class="text-4xl font-bold mb-6" style="padding-left:1%;">Send Messages</h1>
-                    <form id="messageForm">
+                    <form id="messageForm" method="POST" action="php/message.php">
                         <label for="author">Email:</label>
-                        <input type="text" id="author" name="author" class="form-input"><br>
+                        <input type="email" id="author" name="email" class="form-input"><br>
                         <label for="content">Message:</label>
-                        <textarea id="content" name="content" class="form-input"></textarea><br>
-                        <button type="submit" class="btn-msg" class="btn_submit">Submit</button>
+                        <textarea id="content" name="message" class="form-input"></textarea><br>
+                        <button type="submit" class="btn-msg" class="btn_submit">Send</button>
                     </form>
                 </div>
             </div>
         </div>
     </section>
     <script src="assets/vendor/php-email-form/validate.js"></script>
+
+    <script>
+        function deleteMessage(m_id) {
+            if (confirm('Are you sure you want to delete this message?')) {
+                window.location.href = 'http://localhost/seniorProject/php/message.php?m_id=' + m_id;
+
+            }
+        }
+    </script>
+
     <!-- <script>
         document.getElementById('messageForm').addEventListener('submit', function(event) {
     event.preventDefault(); // to prevent form from submitting and page from reloading

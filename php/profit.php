@@ -51,14 +51,30 @@ if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin']) {
       <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
       <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
       <nav id="navbar" class="navbar">
-        <ul>
-          <li><a href="../CEO.php" class="active">Home</a></li>
-          <li><a href="viewWorker.php">Workers</a></li>
-          <li><a href="../addBranches.php">Branches</a></li>
-          <li><a href="profit.php">Statistics</a></li>
-          <li><a href="../viewMessages.php">Contact</a></li>
-          <li><a class="get-a-quote" href="logout.php">Logout</a></li>
-        </ul>
+        <?php
+        if ($_SESSION['type'] == 'CEO') {
+          ?>
+          <ul>
+            <li><a href="../CEO.php" class="active">Home</a></li>
+            <li><a href="viewWorker.php">Workers</a></li>
+            <li><a href="../hire.php">Hire</a></li>
+            <li><a href="../addBranches.php">Branches</a></li>
+            <li><a href="profit.php">Statistics</a></li>
+            <li><a href="../viewMessages.php">Messages</a></li>
+            <li><a class="get-a-quote" href="logout.php">Logout</a></li>
+          </ul>
+
+        <?php } else { ?>
+          <ul>
+            <li><a href="../IT.php" class="active">Home</a></li>
+            <li><a href="../viewMessages.php">Messages</a></li>
+            <li><a href="viewWorker.php">Workers</a></li>
+            <li><a href="../addBranches.php">Branches</a></li>
+            <li><a href="hire.php">Hire</a></li>
+            <li><a href="../IT.php#IT_message">Contact</a></li>
+            <li><a class="get-a-quote" href="logout.php">Logout</a></li>
+          </ul>
+        <?php } ?>
       </nav><!-- .navbar -->
 
     </div>

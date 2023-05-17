@@ -2,7 +2,7 @@
 require_once 'connection.php';
 session_start();
 if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin']) {
-    header('Location: login.html');
+    header('Location: ../login.php');
 }
 extract($_POST);
 
@@ -14,8 +14,10 @@ if (($result) && (mysqli_num_rows($result) < 1)) {
 
     if (mysqli_query($link, $query)) {
         include_once('employee.php');
-        $output=promoteManager($link, $manager, $branch_location);
+        $output = promoteManager($link, $manager, $branch_location);
         echo $output;
+        header('Location: ../addBranches.php');
+        //exit;
     }
 } else {
     return "Already added!";
