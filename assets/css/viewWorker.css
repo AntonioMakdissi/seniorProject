@@ -3,10 +3,6 @@
   margin-top: 50px;
 }
 
-h1 {
-  text-align: center;
-  margin-bottom: 50px;
-}
 
 .table {
   width: 100%;
@@ -81,19 +77,7 @@ body::before {
   /* Change opacity as needed /
 } */
 
-.navbar {
-  position: relative;
-  z-index: 9999;
-}
 
-.navbar ul {
-  display: flex;
-  flex-direction: row;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  justify-content: flex-end;
-}
 
 .custom-button {
   background-color: #dc3545;
@@ -175,110 +159,3 @@ body::before {
 }
 
 
-#header {
-  background-color: #0e1d34;
-}
-
-/* Navbar lists positioning */
-#navbar ul {
-  display: flex;
-  justify-content: flex-end;
-}
-
-/* Navbar logo positioning */
-.logo {
-  margin-right: auto;
-  padding: auto;
-}
-
-/* Sticky navbar */
-.header.fixed-top {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 1030;
-}
-
-/* Mobile nav toggle */
-.mobile-nav-toggle {
-  font-size: 24px;
-  cursor: pointer;
-  display: none;
-}
-
-@media (max-width: 991px) {
-  .mobile-nav-toggle {
-    display: inline;
-  }
-
-  #navbar {
-    display: none;
-  }
-
-  #navbar.mobile-nav-show {
-    display: block;
-  }
-}
-
-/* Navbar list items styling */
-#navbar ul li {
-  margin-left: 1.5rem;
-}
-
-/* Navbar list items link colors */
-#navbar ul li a {
-  color: #ffffff;
-}
-
-/* Navbar list items link hover colors */
-#navbar ul li a:hover {
-  color: #cccccc;
-}
-
-/* Get a quote button styling */
-.get-a-quote {
-  background-color: #0d42ff;
-  color: #0e1d34;
-  padding: 8px 16px;
-  border-radius: 4px;
-  margin-left: 1.5rem;
-  margin-right: 2rem;
-}
-
-/* Get a quote button hover styling */
-.get-a-quote:hover {
-  background-color: #0a0d13;
-  color: #0e1d34;
-}
-
-.header .logo img {
-  max-height: 40px;
-  margin-right: 6px;
-}
-
-.header .logo h1 {
-  font-size: 30px;
-  margin: 0;
-  font-weight: 700;
-  color: #fff;
-  font-family: var(--font-primary);
-}
-
- .logo {
-line-height: 0;
-margin-bottom: 25px;
-}
-
- .logo img {
-max-height: 40px;
-margin-right: 6px;
-}
-
- .logo span {
-font-size: 30px;
-font-weight: 700;
-letter-spacing: 1px;
-color: #fff;
-font-family: var(--font-primary);
-}

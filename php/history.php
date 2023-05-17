@@ -7,87 +7,44 @@ if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin']) {
 <html>
 
 <head>
-  <title>History</title>
-  <meta charset="UTF-8" />
-  <!-- Template Main CSS File -->
-  <link href="../assets/css/main.css" rel="stylesheet">
-  <style>
-    .container {
-      margin-top: 50px;
-    }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet">
+  <title>
+    Profit
+  </title>
+  <link rel="stylesheet" href="../assets/css/header.css">
+  <link rel="stylesheet" href="../assets/css/manager.css">
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
-    h1 {
-      text-align: center;
-      margin-bottom: 50px;
-    }
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+    rel="stylesheet">
 
-    .table {
-      width: 100%;
-      max-width: 1200px;
-      margin: 0 auto;
-      border-collapse: separate;
-      border-spacing: 0 10px;
-    }
+  <!-- Vendor CSS Files -->
+  <!-- <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">-->
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
 
-    .table th,
-    .table td {
-      padding: 12px;
-      vertical-align: middle;
-      text-align: center;
-    }
-
-    .table th {
-      background-color: #f5f5f5;
-      font-weight: bold;
-      text-transform: uppercase;
-    }
-
-    .table tbody tr {
-      background-color: #fff;
-      border-radius: 4px;
-      box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
-    }
-
-    .table-striped tbody tr:nth-of-type(odd) {
-      background-color: #f5f5f5;
-    }
-
-    body {
-      background: url('https://th.bing.com/th/id/R.44a3fe74fe0a5a6437a615b58c87bdc8?rik=q0SXGZNCCdHWZg&pid=ImgRaw&r=0') center center fixed no-repeat;
-      background-size: cover;
-      position: relative;
-    }
-
-    body::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      bottom: 0;
-      right: 0;
-      background-color: rgba(255, 255, 255, 0.000001);
-      /* Change opacity as needed */
-    }
-
-    .navbar {
-      position: relative;
-      z-index: 9999;
-    }
-    .navbar ul {
-  display: flex;
-  flex-direction: row;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  justify-content: flex-end;
-}
-
-  </style>
 </head>
 
 <body>
-  <header id="header" class="header d-flex align-items-center fixed-top">
-    <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+  <header id="header" class="header d-flex alignems-center fixed-top ">
+    <div class="container-fluid container-xl d-flex alignems-center justify-content-between">
+
+      <a href="index.html" class="logo d-flex alignems-center">
+        <!-- Uncomment the line below if you also wish to use an image logo -->
+        <!-- <img src="assets/img/logo.png" alt=""> -->
+        <h1 style="font-family: 'Libre Baskerville', serif;">SpeedRun</h1>
+      </a>
 
       <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
       <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
@@ -102,42 +59,51 @@ if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin']) {
           <li><a class="get-a-quote" href="logout.php">Logout</a></li>
         </ul>
       </nav><!-- .navbar -->
+
     </div>
   </header><!-- End Header -->
 
-  <div class="container" style="margin-top: 10px">
-    <h1 style="color:white">Order History</h1>
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th>Order Number</th>
-          <th>Date and Time</th>
-          <th>Cost</th>
-          <th>Status</th>
-        </tr>
-      </thead>
-      <tbody>
-        <?php
-        require_once('connection.php');
-        $c_id = $_SESSION['c_id'];
-        $query = "SELECT * FROM orders NATURAL JOIN packages WHERE c_id='$c_id' ORDER BY date";
-        $result = mysqli_query($link, $query);
-        if (($result) && (mysqli_num_rows($result) > 0)) {
+  <section id="hero" class="hero " style="padding-top: 20px; height: 100%; ">
+    <div class="container">
+      <div class="container mx-auto px-4 py-12">
+        <h1 class="text-4xl font-bold mb-6" style="color:white;">Orders history</h1>
+        <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg mb-8">
 
-          while ($row = mysqli_fetch_assoc($result)) {
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Order Number</th>
+                <th>Date and Time</th>
+                <th>Cost</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <?php
+              require_once('connection.php');
+              $c_id = $_SESSION['c_id'];
+              $query = "SELECT * FROM orders NATURAL JOIN packages WHERE c_id='$c_id' ORDER BY date";
+              $result = mysqli_query($link, $query);
+              if (($result) && (mysqli_num_rows($result) > 0)) {
 
-            echo "<tr>   
-<td>#" . $row["o_id"] . "</td>
-<td>" . $row["date"] . "</td>
-<td>" . $row["f_price"] . "$</td>
-<td>" . $row["status"] . "</td>
-							
-</tr>";
-          }
-        }
-        ?>
-      </tbody>
-    </table>
+                while ($row = mysqli_fetch_assoc($result)) {
+
+                  echo "<tr>   
+                  <td>#" . $row["o_id"] . "</td>
+                  <td>" . $row["date"] . "</td>
+                  <td>" . $row["f_price"] . "$</td>
+                  <td>" . $row["status"] . "</td>
+                                
+                  </tr>";
+                }
+              }
+              ?>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
 
 </body>
 

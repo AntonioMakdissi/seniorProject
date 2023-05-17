@@ -49,9 +49,10 @@ require_once("php/connection.php");
             <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
             <nav id="navbar" class="navbar">
                 <ul>
-                    <li><a href="#hire" class="nav-link">Hire worker</a></li>
-                    <li><a href="php/viewWorker.php">Fire worker</a></li>
-                    <li><a href="addBranches.php">Add branch</a></li>
+                <li><a href="viewMessages.php">Messages</a></li>
+                    <li><a href="#hire" class="nav-link">Hire</a></li>
+                    <li><a href="php/viewWorker.php">Workers</a></li>
+                    <li><a href="addBranches.php">Branches</a></li>
                     <li><a class="get-a-quote" href="php/logout.php">Logout</a></li>
                 </ul>
             </nav>
@@ -65,7 +66,7 @@ require_once("php/connection.php");
     <section id="hero" class="hero d-flex align-items-center" style="padding-top: 20px; height: 100%; ">
         <div class="container">
             <div class="container mx-auto px-4 py-12">
-                <h1 class="text-4xl font-bold mb-6">Workers Management</h1>
+                <!-- <h1 class="text-4xl font-bold mb-6">Workers Management</h1>
                 <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg mb-8">
                     <table class="min-w-full divide-y divide-gray-200">
                         <thead class="bg-gray-800">
@@ -129,43 +130,7 @@ require_once("php/connection.php");
                     </table>
                 </div>
 
-                <!-- CEO message -->
-                <div class="messages-container" id="message_div">
-                    <div class="message">
-                        <h3 class="message-author">CEO</h3>
-                        <p class="message-content">This is the first message from the CEO.</p>
-                        <p class="message-timestamp">2023-05-02 10:00</p>
-                        <button class="btn-msg">Delete</button>
-                    </div>
-                    <div class="message">
-                        <h3 class="message-author">CEO</h3>
-                        <p class="message-content">This is the second message from the CEO.</p>
-                        <p class="message-timestamp">2023-05-02 10:05</p>
-                        <button class="btn-msg">Delete</button>
-                    </div>
-
-                    <?php
-                    include('php/message.php');
-                    $all = viewMessages($link, $_SESSION['w_id']);
-                    if ($all == -1) {
-                        echo "no messages";
-                    } else {
-                        for ($i = 0; $i < count($all[0]); ++$i) {
-                            if ($i % 2 == 0) {
-                                //echo "</br>";
-                            }
-                            $m_id = $all[0][$i]; //m_id
-                            echo "<div class='message'>
-                            <h3 class='message-author'>" . $all[3][$i] . " " . $all[2][$i] . /*send_id+name*/"</h3> 
-                            <p class='message-content'>" . $all[4][$i] . /*message*/"</p>
-                            <p class='message-timestamp'>" . $all[5][$i] . /*timestamp*/"</p>
-                            <button class='btn-msg'>Delete</button>
-                        </div>";
-                        }
-                    }
-                    ?>
-                </div>
-
+               -->
                 <div id="hire" >
                     <form id="hireForm" action="php/hire.php" method="post"
                         class="php-email-form grid grid-cols-1 gap-6 md:grid-cols-2" style="padding-top: 20px;">

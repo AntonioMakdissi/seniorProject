@@ -24,138 +24,29 @@
   .form-check-label {
     vertical-align: middle;
   } */
-  #header {
-    background-color: #0e1d34;
-  }
-  
-  .container-fluid.container-xl {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
 
-  /* Navbar lists positioning */
-  #navbar ul {
-    display: flex;
-    justify-content: flex-end;
+  html {
+    height: 100%;
   }
   
-  /* Navbar logo positioning */
-  .logo {
-    margin-right: auto;
-    padding: auto;
+  .hero {
+    width: 100%;
+    min-height: 100vh; /* Change this */
+    background-color: #0e1d34;
+    background-image: url("../img/hero-bg.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    color: rgba(255, 255, 255, 0.8);
+    overflow: auto;
   }
-  
-  /* Sticky navbar */
-  .header.fixed-top {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1030;
-  }
-  
-  /* Mobile nav toggle */
-  .mobile-nav-toggle {
-    font-size: 24px;
-    cursor: pointer;
-    display: none;
-  }
-  
-  @media (max-width: 991px) {
-    .mobile-nav-toggle {
-      display: inline;
-    }
-  
-    #navbar {
-      display: none;
-    }
-  
-    #navbar.mobile-nav-show {
-      display: block;
-    }
-  }
-  
-  /* Navbar list items styling */
-  #navbar ul li {
-    margin-left: 1.5rem;
-  }
-  
-  /* Navbar list items link colors */
-  #navbar ul li a {
-    color: #ffffff;
-  }
-  
-  /* Navbar list items link hover colors */
-  #navbar ul li a:hover {
-    color: #cccccc;
-  }
-  
-  /* Get a quote button styling */
-  .get-a-quote {
-    background-color: #0d42ff;
-    color: #0e1d34;
-    padding: 8px 16px;
-    border-radius: 4px;
-    margin-left: 1.5rem;
-    margin-right: 2rem;
-  }
-  
-  /* Get a quote button hover styling */
-  .get-a-quote:hover {
-    background-color: #0a0d13;
-    color: #0e1d34;
-  }
-  .header .logo img {
-    max-height: 40px;
-    margin-right: 6px;
-  }
-  
-  .header .logo h1 {
-    font-size: 30px;
-    margin: 0;
-    font-weight: 700;
-    color: #fff;
-    font-family: var(--font-primary);
-  }
-   .logo {
-    line-height: 0;
-    margin-bottom: 25px;
-    }
-    
-  .logo img {
-    max-height: 40px;
-    margin-right: 6px;
-    }
-    
-   .logo span {
-    font-size: 30px;
-    font-weight: 700;
-    letter-spacing: 1px;
-    color: #fff;
-    font-family: var(--font-primary);
-    }
 
   html, body {
     margin: 0;
     padding: 0;
     height: 100%;
   }
-  .hero {
-    width: 100%;
-    height: 100%;
-    background-color: #0e1d34;
-    background-image: url("../img/hero-bg.png");
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center center;
-    /* color: rgba(255, 255, 255, 0.8); */
-    overflow: auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
+  
 
   .table {
     width: 100%;
@@ -170,6 +61,7 @@
     padding: 12px;
     vertical-align: middle;
     text-align: center;
+    color:#0e1d34;
   }
   
   .table th {
@@ -187,4 +79,45 @@
   .table-striped tbody tr:nth-of-type(odd) {
     background-color: #f5f5f5;
   }
+  
+  .table td select {
+    width: auto;
+    padding: 5px;
+    border: 1px solid #0e1d34;
+    border-radius: 5px;
+    background-color: #f5f5f5;
+    color: #0e1d34;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.table td select:focus {
+    outline: none;
+    box-shadow: 0 0 4px #0e1d34;
+    width: auto;  /* Allow the select box to expand horizontally */
+     position: relative; 
+}
+
+.submit-button {
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #0d42ff;
+  color: #f5f5f5;
+  font-size: 1rem;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.submit-button:hover {
+  background-color: #0e1d34;
+  color: #f5f5f5;
+}
+
+#colspanTD{
+  text-align: center;
+  color:#0e1d34;
+  font-weight: bolder;
+
+}
+
   

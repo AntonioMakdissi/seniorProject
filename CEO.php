@@ -40,6 +40,7 @@ require_once('php/employee.php');
 
   <!-- Template Main CSS File -->
   <link href="assets/css/main.css" rel="stylesheet">
+  <link href="assets/css/CEO.css" rel="stylesheet">
 
   <!-- =======================================================
   * Template Name: Logis
@@ -49,158 +50,7 @@ require_once('php/employee.php');
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
 
-  <style>
-    table {
-      border-collapse: collapse;
-      width: 100%;
-    }
-
-    th,
-    td {
-      text-align: left;
-      padding: 8px;
-      border: 1px solid #ddd;
-    }
-
-    th {
-      background-color: #333;
-      color: white;
-    }
-
-    tr:nth-child(even) {
-      background-color: #f2f2f2;
-    }
-
-    .image-container {
-      height: 75vh;
-      overflow: hidden;
-    }
-
-    img {
-      height: 100%;
-      width: 100%;
-      object-fit: cover;
-    }
-
-    .card {
-      border: none;
-      border-radius: 10px;
-      box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
-      margin: 50px auto;
-      max-width: 600px;
-    }
-
-    .card-body {
-      padding: 30px;
-    }
-
-    .hire-fire-form {
-      display: flex;
-      flex-direction: column;
-      alignems: center;
-    }
-
-    .form-group {
-      margin-bottom: 20px;
-    }
-
-    .form-label {
-      display: block;
-      margin-bottom: 0.5rem;
-      font-weight: 600;
-    }
-
-    .form-input {
-      display: block;
-      width: 100%;
-      padding: 0.375rem 0.75rem;
-      font-size: 1rem;
-      line-height: 1.5;
-      color: #495057;
-      background-color: #fff;
-      background-clip: padding-box;
-      border: 1px solid #ced4da;
-      border-radius: 0.25rem;
-      transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-    }
-
-    .form-input:focus {
-      border-color: #6c757d;
-      outline: 0;
-      box-shadow: 0 0 0 0.2rem rgba(108, 117, 125, 0.25);
-    }
-
-    .form-button {
-      display: inline-block;
-      font-weight: 400;
-      color: #fff;
-      text-align: center;
-      vertical-align: middle;
-      -webkit-user-select: none;
-      -moz-user-select: none;
-      -ms-user-select: none;
-      user-select: none;
-      background-color: #007bff;
-      border: 1px solid #007bff;
-      padding: 0.375rem 0.75rem;
-      font-size: 1rem;
-      line-height: 1.5;
-    }
-
-
-    .form-button:hover {
-      background-color: #3e8e41;
-    }
-
-    #error-msg {
-      color: red;
-      margin-top: 10px;
-    }
-
-    #message_IT label.form-label {
-      display: block;
-      margin-bottom: 0.5rem;
-      font-weight: 600;
-    }
-
-    #message_IT textarea.form-input {
-      display: block;
-      width: 100%;
-      padding: 0.375rem 0.75rem;
-      font-size: 1rem;
-      line-height: 1.5;
-      color: #495057;
-      background-color: #fff;
-      background-clip: padding-box;
-      border: 1px solid #ced4da;
-      border-radius: 0.25rem;
-      transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-    }
-
-    #message_IT textarea.form-input:focus {
-      border-color: #6c757d;
-      outline: 0;
-      box-shadow: 0 0 0 0.2rem rgba(108, 117, 125, 0.25);
-    }
-
-    #message_IT button.form-button {
-      display: inline-block;
-      font-weight: 400;
-      color: #fff;
-      text-align: center;
-      vertical-align: middle;
-      -webkit-user-select: none;
-      -moz-user-select: none;
-      -ms-user-select: none;
-      user-select: none;
-      background-color: #007bff;
-      border: 1px solid #007bff;
-      padding: 0.375rem 0.75rem;
-      font-size: 1rem;
-      line-height: 1.5;
-    }
-  </style>
-</head>
+ </head>
 
 <body>
 
@@ -222,7 +72,7 @@ require_once('php/employee.php');
           <li><a href="php/viewWorker.php">Workers</a></li>
           <li><a href="addBranches.php">Branches</a></li>
           <li><a href="php/profit.php">Statistics</a></li>
-          <li><a href="#IT_message">Contact</a></li>
+          <li><a href="viewMessages.php">Contact</a></li>
           <li><a class="get-a-quote" href="php/logout.php">Logout</a></li>
         </ul>
       </nav><!-- .navbar -->
@@ -283,140 +133,7 @@ require_once('php/employee.php');
       </div>
     </div>
   </section><!-- End Hero Section -->
-  <main>
-    <div data-aos="fade-up">
-
-      <div class="container" style="margin-top: 100px;">
-        <table>
-          <thead>
-            <tr>
-              <th>Statistic</th>
-              <th>Value</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Number of successful Deliveries</td>
-              <td> <?php
-                    echo successful_deliveries($link);
-                    ?> </td>
-            </tr>
-            <tr>
-              <td>Pending Deliveries</td>
-              <td><?php echo pending_deliveries($link); ?></td>
-            </tr>
-            <tr>
-              <td>Failed Deliveries</td>
-              <td><?php echo failed_deliveries($link); ?></td>
-            </tr>
-            <tr>
-              <td>Customer Satisfaction</td>
-              <td><?php echo rating($link); ?> /5</td>
-            </tr>
-            <tr>
-              <td>Employee with most deliveries</td>
-              <td><?php
-                  $emp = mvp($link);
-                  echo getEmpById($link, $emp); ?></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-
-    </div>
-
-
-    <div data-aos="fade-up">
-      <div class="card">
-        <div class="card-body">
-          <form class="hire-fire-form" action="/submit-form" method="post">
-            <label class="form-label" for="worker-name">Worker Name:</label>
-            <input class="form-input" type="text" id="worker-name" name="worker-name" required>
-
-            <label class="form-label" for="worker-email">Worker Email:</label>
-            <input class="form-input" type="email" id="worker-email" name="worker-email" required>
-
-            <label class="form-label" for="worker-department">Worker Department:</label>
-            <select class="form-input" id="worker-department" name="worker-department" required>
-              <option value="worker">Worker</option>
-              <option value="Manager">Manager</option>
-              <option value="IT">IT</option>
-            </select>
-
-            <div class="form-group">
-              <label class="form-label" for="action">Action:</label>
-              <select class="form-input" id="action" name="action" required>
-                <option value="" selected disabled hidden>Select Action</option>
-                <option value="hire">Hire</option>
-                <option value="fire">Fire</option>
-              </select>
-            </div>
-
-            <div class="form-group" id="salary-field" style="display:none;">
-              <label class="form-label" for="worker-salary">Worker Salary:</label>
-              <input class="form-input" type="number" id="worker-salary" name="worker-salary" min="0" required>
-            </div>
-
-            <button class="form-button" type="submit">Submit</button>
-          </form>
-        </div>
-      </div>
-
-      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-      <script>
-        $(document).ready(function() {
-          $('#action').change(function() {
-            if ($(this).val() === 'hire') {
-              $('#salary-field').show();
-            } else {
-              $('#salary-field').hide();
-            }
-          });
-        });
-      </script>
-    </div>
-    <div data-aos="fade-up">
-      <div class="col-lg-7">
-        <form action="php/message.php" method="post" class="php-email-form">
-          <label class="form-label" for="message">Message:</label>
-          TO:<input type="text" name="receive_id">
-          <textarea class="form-input" id="message" name="message" rows="4"></textarea>
-
-          
-          <div class="col-md-12 text-center">
-            <div class="loading">Loading</div>
-
-            <div class="sent-message">Your order request has been sent successfully. Thank you!</div>
-
-            <div class="error-message"></div>
-
-            <button class="form-button" type="submit">Send</button>
-          </div>
-
-      </div>
-      </form>
-    </div>
-
-    <div data-aos="fade-up">
-      <div class="card">
-        <div class="card-body">
-          <form class="new-branch-form" action="/submit-form" method="post">
-
-            <label class="form-label" for="branch-location">Branch Location:</label>
-            <input class="form-input" type="text" id="branch-location" name="branch-location" required>
-
-            <label class="form-label" for="branch-manager">Branch Manager:</label>
-            <input class="form-input" type="text" id="branch-manager" name="branch-manager" required>
-            <button class="form-button" type="submit">Add branch</button>
-          </form>
-        </div>
-      </div>
-
-
-    </div>
-
-  </main>
+ 
   <!-- Vendor JS Files -->
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>

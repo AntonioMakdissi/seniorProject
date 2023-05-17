@@ -49,9 +49,10 @@ require_once("php/connection.php");
             <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
             <nav id="navbar" class="navbar">
                 <ul>
-                    <li><a href="hire.php">Hire worker</a></li>
-                    <li><a href="php/viewWorker.php">Fire worker</a></li>
-                    <li><a href="addBranches.php">Add branch</a></li>
+                <li><a href="viewMessages.php">Messages</a></li>
+                    <li><a href="hire.php">Hire </a></li>
+                    <li><a href="php/viewWorker.php">Workers</a></li>
+                    <li><a href="addBranches.php">Branches</a></li>
                     <li><a class="get-a-quote" href="php/logout.php">Logout</a></li>
                 </ul>
             </nav>
@@ -65,107 +66,6 @@ require_once("php/connection.php");
     <section id="hero" class="hero d-flex align-items-center" style="padding-top: 20px; height: 100%; ">
         <div class="container">
             <div class="container mx-auto px-4 py-12">
-                <h1 class="text-4xl font-bold mb-6">Workers Management</h1>
-                <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg mb-8">
-                    <table class="min-w-full divide-y divide-gray-200">
-                        <thead class="bg-gray-800">
-                            <tr>
-                                <th
-                                    class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
-                                    Date</th>
-                                <th
-                                    class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
-                                    Time</th>
-                                <th
-                                    class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
-                                    Name</th>
-                                <th
-                                    class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
-                                    password</th>
-                                <th
-                                    class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
-                                    Salary</th>
-                                <th
-                                    class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
-                                    Sector</th>
-                                <th
-                                    class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
-                                    Type</th>
-                                <th
-                                    class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
-                                    Phone Number</th>
-                                <th
-                                    class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
-                                    DOB</th>
-                                <th
-                                    class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
-                                    Action</th>
-                                <th
-                                    class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody class="bg-white divide-y divide-gray-200">
-                            <tr>
-                                <td class="px-6 py-4 whitespace-nowrap">3/3/2023</td>
-                                <td class="px-6 py-4 whitespace-nowrap">7:52 PM</td>
-                                <td class="px-6 py-4 whitespace-nowrap">Milia Habib</td>
-                                <td class="px-6 py-4 whitespace-nowrap">Milia@gmail.com</td>
-                                <td class="px-6 py-4 whitespace-nowrap">10000</td>
-                                <td class="px-6 py-4 whitespace-nowrap">Amioun</td>
-                                <td class="px-6 py-4 whitespace-nowrap">Worker</td>
-                                <td class="px-6 py-4 whitespace-nowrap">03123456</td>
-                                <td>06/06/2001</td>
-                                <td class="px-6 py-4 whitespace-nowrap">Hire</td>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="flex justify-center items-center">
-                                        <button
-                                            class="bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700">Done</button>
-                                    </div>
-                                </td>
-                            </tr>
-                        </tbody>
-
-                    </table>
-                </div>
-
-                <!-- CEO message -->
-                <div class="messages-container" id="message_div">
-                    <div class="message">
-                        <h3 class="message-author">CEO</h3>
-                        <p class="message-content">This is the first message from the CEO.</p>
-                        <p class="message-timestamp">2023-05-02 10:00</p>
-                        <button class="btn-msg">Delete</button>
-                    </div>
-                    <div class="message">
-                        <h3 class="message-author">CEO</h3>
-                        <p class="message-content">This is the second message from the CEO.</p>
-                        <p class="message-timestamp">2023-05-02 10:05</p>
-                        <button class="btn-msg">Delete</button>
-                    </div>
-
-                    <?php
-                    include('php/message.php');
-                    $all = viewMessages($link, $_SESSION['w_id']);
-                    if ($all == -1) {
-                        echo "no messages";
-                    } else {
-                        for ($i = 0; $i < count($all[0]); ++$i) {
-                            if ($i % 2 == 0) {
-                                //echo "</br>";
-                            }
-                            $m_id = $all[0][$i]; //m_id
-                            echo "<div class='message'>
-                            <h3 class='message-author'>" . $all[3][$i] . " " . $all[2][$i] . /*send_id+name*/"</h3> 
-                            <p class='message-content'>" . $all[4][$i] . /*message*/"</p>
-                            <p class='message-timestamp'>" . $all[5][$i] . /*timestamp*/"</p>
-                            <button class='btn-msg'>Delete</button>
-                        </div>";
-                        }
-                    }
-                    ?>
-                </div>
-
                 <div id="branch">
                     <!-- Add Branch Table -->
                     <h1 class="text-4xl font-bold mb-6" style="padding-left:1%;">Branch Management</h1>

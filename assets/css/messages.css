@@ -1,0 +1,245 @@
+input {
+    color: black;
+  }
+  
+  html {
+    height: 100%;
+  }
+  
+  .hero {
+    width: 100%;
+    min-height: 100vh; /* Change this */
+    background-color: #0e1d34;
+    background-image: url("../img/hero-bg.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    color: rgba(255, 255, 255, 0.8);
+    overflow: auto;
+  }
+  .header .logo img {
+    max-height: 40px;
+    margin-right: 6px;
+  }
+  
+  .header .logo h1 {
+    font-size: 30px;
+    margin: 0;
+    font-weight: 700;
+    color: #fff;
+    font-family: var(--font-primary);
+  }
+  
+  .footer .footer-info .logo {
+    line-height: 0;
+    margin-bottom: 25px;
+  }
+  
+  .footer .footer-info .logo img {
+    max-height: 40px;
+    margin-right: 6px;
+  }
+  
+  .footer .footer-info .logo span {
+    font-size: 30px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: #fff;
+    font-family: var(--font-primary);
+  }
+
+  #header {
+    background-color: #0e1d34;
+  }
+  
+  /* Navbar lists positioning */
+  #navbar ul {
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  /* Navbar logo positioning */
+  .logo {
+    margin-right: auto;
+    padding: auto;
+  }
+  
+  /* Sticky navbar */
+  .header.fixed-top {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1030;
+  }
+  
+  /* Mobile nav toggle */
+  .mobile-nav-toggle {
+    font-size: 24px;
+    cursor: pointer;
+    display: none;
+  }
+  
+  @media (max-width: 991px) {
+    .mobile-nav-toggle {
+      display: inline;
+    }
+  
+    #navbar {
+      display: none;
+    }
+  
+    #navbar.mobile-nav-show {
+      display: block;
+    }
+  }
+  
+  /* Navbar list items styling */
+  #navbar ul li {
+    margin-left: 1.5rem;
+  }
+  
+  /* Navbar list items link colors */
+  #navbar ul li a {
+    color: #ffffff;
+  }
+  
+  /* Navbar list items link hover colors */
+  #navbar ul li a:hover {
+    color: #cccccc;
+  }
+  
+  /* Get a quote button styling */
+  .get-a-quote {
+    background-color: #f2a900;
+    color: #0e1d34;
+    padding: 8px 16px;
+    border-radius: 4px;
+    margin-left: 1.5rem;
+    margin-right: 2rem;
+  }
+  
+  /* Get a quote button hover styling */
+  .get-a-quote:hover {
+    background-color: #0a0d13;
+    color: #0e1d34;
+  }
+
+.messages-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1rem;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 1rem;
+  }
+  
+  .message {
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 5px;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .message-author {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    color: #f2a900;
+  }
+  
+  .message-content {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    flex-grow: 1;
+  }
+  
+  .message-timestamp {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.8);
+    align-self: flex-end;
+  }
+  
+  .btn-msg {
+    background-color: #f2a900;
+    border: none;
+    border-radius: 5px;
+    color: #0e1d34;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: bold;
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  .btn-msg:hover {
+    background-color: #ffbe31;
+    color: #ffffff;
+  }
+  
+  /* Add this to your CSS file */
+  @layer utilities {
+    .bg-custom-primary {
+      background-color: #0e1d34;
+    }
+  }
+
+  .form-container {
+    max-width: 800px;
+    margin: 1rem auto;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+label {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    color: #f2a900;
+}
+
+.form-input {
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 5px;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    color: white;
+}
+
+.btn_msg {
+    align-self: center;
+    width: 150px;
+}
+
+.btn-msg-view {
+    background-color: #f2a900;
+    border: none;
+    border-radius: 50%;  /* To make the button completely round */
+    color: #0e1d34;
+    cursor: pointer;
+    font-size: 1.5rem;  /* Adjust size of the icon */
+    padding: 1rem;  /* Adjust size of the button */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s, color 0.3s;
+    width: 50px;  /* Width of the button */
+    height: 50px;  /* Height of the button */
+}
+
+.btn-msg-view:hover {
+    background-color: #ffbe31;
+    color: #ffffff;
+}
