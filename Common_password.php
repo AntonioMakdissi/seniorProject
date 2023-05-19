@@ -133,14 +133,14 @@ if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin'] || ($_SESSION['type'
         <div class="container mx-auto px-4 py-12" style="margin-top:5%;">
             <div class="container" style="margin-top: 5%">
                 <h1 style="color:white; text-align: center; font-size: 2em; padding-bottom: 5%;">Change Password</h1>
-                <form id="changePasswordForm" method="POST" action="php/changePass.php">
+                <form id="changePasswordForm" method="POST" action="php/changePass.php" onsubmit="return changePassword();">
                     <div class="form-group">
                         <label for="newPassword">New Password:</label>
-                        <input type="password" class="form-control" id="newPassword" placeholder="New Password">
+                        <input name="newPassword" type="password" class="form-control" id="newPassword" placeholder="New Password">
                     </div>
                     <div class="form-group">
                         <label for="confirmPassword">Confirm Password:</label>
-                        <input name="newPassword" type="password" class="form-control" id="confirmPassword" placeholder="Confirm Password">
+                        <input name="confirmPassword" type="password" class="form-control" id="confirmPassword" placeholder="Confirm Password">
                     </div>
                     <input type="hidden" name="u_id" value="<?php echo $_SESSION['u_id']; ?>">
 
@@ -180,31 +180,40 @@ if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin'] || ($_SESSION['type'
 
             // Validate and process password change
             function changePassword() {
-                const newPassword = newPasswordInput.val();
-                const confirmPassword = confirmPasswordInput.val();
+                const newPassword = $("#newPassword").val();
+                const confirmPassword = $("#confirmPassword").val();
 
                 if (newPassword === '' || confirmPassword === '') {
                     // Display error message if any of the fields are empty
                     emptyFieldsError.removeClass('hidden');
                     passwordMatchError.addClass('hidden');
                     passwordChangeError.addClass('hidden');
+                    return false;
                 } else if (newPassword !== confirmPassword) {
                     // Display error message if passwords do not match
                     passwordMatchError.removeClass('hidden');
                     passwordChangeError.addClass('hidden');
                     emptyFieldsError.addClass('hidden');
+                    return false;
                 } else {
                     emptyFieldsError.addClass('hidden');
                     passwordMatchError.addClass('hidden');
                     // Simulate AJAX request to server to change password
                     // Replace with your actual AJAX code
                     // success callback
-                    alert('Zabet l php!');
                     resetForm();
+                    // <php 
+                    // if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                    // include_once("php/connection.php");
+                    // include_once("php/changePass.php");
+                    // setpassword($link,$_SESSION['u_id'],$newPassword);
+                    // }
+                    return newPassword;
+                    // ?>
                 }
             }
 
-            changePasswordButton.on('click', changePassword);
+            //changePasswordButton.on('click', changePassword);
             cancelButton.on('click', resetForm);
         });
     </script>

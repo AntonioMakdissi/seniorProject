@@ -207,18 +207,18 @@ if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin'] || ($_SESSION['type'
                     <form id="changePasswordForm" method="POST" action="changePass.php">
                       <div class="form-group">
                         <label for="newPassword" class="block text-sm font-medium text-gray-700">New Password</label>
-                        <input type="password" class="mt-1 form-control block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" id="newPassword" placeholder="New Password">
+                        <input name="newPassword" type="password" class="mt-1 form-control block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" id="newPassword" placeholder="New Password">
                       </div>
                       <div class="form-group">
                         <label for="confirmPassword" class="block text-sm font-medium text-gray-700">Confirm
                           Password</label>
-                        <input name="newPassword" type="password" class="mt-1 form-control block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" id="confirmPassword" placeholder="Confirm Password">
+                        <input name="confirmPassword" type="password" class="mt-1 form-control block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" id="confirmPassword" placeholder="Confirm Password">
                       </div>
                       <p id="passwordMatchError" class="hidden text-red-500 mt-1">Passwords do not match. Please try
                         again.</p>
                       <p id="passwordChangeError" class="hidden text-red-500 mt-1">There was an error changing the
                         password. Please try again.</p>
-                      <input type="hidden" name="u_id" value="<?php echo $_SESSION['u_id']; ?>">
+                      <input type="hidden" name="u_id" value="">
 
                   </div>
                 </div>
@@ -252,8 +252,13 @@ if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin'] || ($_SESSION['type'
   <!-- script for change password popuup -->
   <script>
     $(document).ready(function() {
+      // Event handler for the change password button
       $('.change-password-button').click(function(event) {
+        // Retrieve the worker ID from the data attribute
         var workerId = $(this).data('workerid');
+        // Set the worker ID value in the hidden input field
+        $('#changePasswordForm input[name="u_id"]').val(workerId);
+        
         $('#changePasswordModal').data('workerid', workerId);
         $('#changePasswordModal').removeClass('hidden');
         $('#passwordMatchError').addClass('hidden');

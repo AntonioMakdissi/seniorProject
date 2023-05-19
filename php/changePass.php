@@ -8,9 +8,21 @@ if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin']) {
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $u_id = $_POST['u_id'];
-    $newPassword = $_POST['newPassword'];
-    setpassword($link, $u_id, $newPassword);
+    if (isset($_POST['newPassword']) && !empty($_POST['newPassword'])) {
+        $u_id = $_POST['u_id'];
+        $newPassword = $_POST['newPassword'];
+        $confirmPassword = $_POST['confirmPassword'];
+        if ($newPassword != $confirmPassword) {
+            echo "Password don't match";
+        } else
+            setpassword($link, $u_id, $newPassword);
+    } else {
+        // $newPassword = $_POST['newPassword'];
+        // echo $newPassword . "new pass";//debugging
+        // $confirmPassword = $_POST['confirmPassword'];
+        // echo $confirmPassword . "conf pass";
+        echo "no password";
+    }
 }
 
 function setpassword($link, $u_id, $newPassword)
