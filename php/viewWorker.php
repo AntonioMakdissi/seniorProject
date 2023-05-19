@@ -66,8 +66,8 @@ if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin'] || ($_SESSION['type'
         if ($_SESSION['type'] == 'CEO') {
         ?>
           <ul>
-            <li><a href="../CEO.php" class="active">Home</a></li>
-            <li><a href="viewWorker.php">Workers</a></li>
+            <li><a href="../CEO.php">Home</a></li>
+            <li><a href="viewWorker.php" class="active">Workers</a></li>
             <li><a href="../hire.php">Hire</a></li>
             <li><a href="../addBranches.php">Branches</a></li>
             <li><a href="profit.php">Statistics</a></li>
@@ -77,8 +77,8 @@ if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin'] || ($_SESSION['type'
 
         <?php } else { ?>
           <ul>
-            <li><a href="viewWorker.php">Workers</a></li>
-            <li><a href="hire.php">Hire</a></li>
+            <li><a href="viewWorker.php" class="active">Workers</a></li>
+            <li><a href="../hire.php">Hire</a></li>
             <li><a href="../addBranches.php">Branches</a></li>
             <li><a href="../viewMessages.php">Messages</a></li>
             <li><a href="../common_password.php">Change Password</a></li>
@@ -258,7 +258,7 @@ if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin'] || ($_SESSION['type'
         var workerId = $(this).data('workerid');
         // Set the worker ID value in the hidden input field
         $('#changePasswordForm input[name="u_id"]').val(workerId);
-        
+
         $('#changePasswordModal').data('workerid', workerId);
         $('#changePasswordModal').removeClass('hidden');
         $('#passwordMatchError').addClass('hidden');
