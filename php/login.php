@@ -70,7 +70,7 @@
 						header('Location: ../branchOrders.php'); //BranchManager page
 						//echo "manager";
 					} else if ($_SESSION['type'] == 'IT') {
-						header('Location: ../IT.php'); //BranchManager page
+						header('Location: ../viewMessages.php'); //BranchManager page
 						//echo "manager";
 					}
 				}

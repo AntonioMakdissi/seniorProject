@@ -23,9 +23,7 @@ if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin'] || ($_SESSION['type'
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
 
     <!-- Vendor CSS Files -->
     <!-- <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"> -->
@@ -48,68 +46,86 @@ if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin'] || ($_SESSION['type'
         <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
             <?php
             if ($_SESSION['type'] == 'CEO') {
-                ?>
+            ?>
                 <a href="CEO.php" class="logo d-flex align-items-center">
                     <h1 style="font-family: 'Libre Baskerville', serif; padding-left: 20px;">SpeedRun</h1>
                 </a>
                 <nav id="navbar" class="navbar">
-                <ul>
-                    <li><a href="CEO.php" class="active">Home</a></li>
-                    <li><a href="php/viewWorker.php">Workers</a></li>
-                    <li><a href="hire.php">Hire</a></li>
-                    <li><a href="addBranches.php">Branches</a></li>
-                    <li><a href="php/profit.php">Statistics</a></li>
-                    <li><a href="viewMessages.php">Messages</a></li>
-                    <li><a class="get-a-quote" href="php/logout.php">Logout</a></li>
-                </ul>
-
-            <?php } elseif ($_SESSION['type'] == 'BranchManager') { ?>
-                <a href="branchOrders.php" class="logo d-flex align-items-center">
-                    <h1 style="font-family: 'Libre Baskerville', serif; padding-left: 20px;">SpeedRun</h1>
-                </a>
-
-                <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
-                <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
-                <nav id="navbar" class="navbar">
                     <ul>
-                        <li><a href="php/history.php">History</a></li>
-                        <li><a href="php/track.php">Track</a></li>
+                        <li><a href="CEO.php" class="active">Home</a></li>
+                        <li><a href="php/viewWorker.php">Workers</a></li>
+                        <li><a href="hire.php">Hire</a></li>
+                        <li><a href="addBranches.php">Branches</a></li>
+                        <li><a href="php/profit.php">Statistics</a></li>
                         <li><a href="viewMessages.php">Messages</a></li>
                         <li><a class="get-a-quote" href="php/logout.php">Logout</a></li>
                     </ul>
-                </nav>
-            <?php } elseif ($_SESSION['type'] == 'worker') {?>
-                <a href="branchOrders.php" class="logo d-flex align-items-center">
-          <h1 style="font-family: 'Libre Baskerville', serif; padding-left: 20px;">SpeedRun</h1>
-        </a>
 
-        <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
-        <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
-        <nav id="navbar" class="navbar">
-          <ul>
-          <li><a href="viewMessages.php">Messages</a></li>
-            <li><a class="get-a-quote" href="php/logout.php">Logout</a></li>
-          </ul>
-        </nav>
-                <?php }
-                 else { ?>
+                <?php } else  if ($_SESSION['type'] == 'IT') { ?>
+                    <a href="IT.php" class="logo d-flex align-items-center">
+                        <!-- Uncomment the line below if you also wish to use an image logo -->
+                        <!-- <img src="assets/img/logo.png" alt=""> -->
+                        <h1 style="font-family: 'Libre Baskerville', serif; padding-left: 20px;">SpeedRun</h1>
+                    </a>
+
+                    <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
+                    <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
+                    <nav id="navbar" class="navbar">
+                        <ul>
+                            <li><a href="php/viewWorker.php">Workers</a></li>
+                            <li><a href="hire.php">Hire</a></li>
+                            <li><a href="addBranches.php" class="active">Branches</a></li>
+                            <li><a href="viewMessages.php">Messages</a></li>
+                            <li><a href="common_password.php">Change Password</a></li>
+                            <li><a class="get-a-quote" href="php/logout.php">Logout</a></li>
+                        </ul>
+                    </nav>
+                <?php } else if ($_SESSION['type'] == 'BranchManager') { ?>
+                    <a href="branchOrders.php" class="logo d-flex align-items-center">
+                        <h1 style="font-family: 'Libre Baskerville', serif; padding-left: 20px;">SpeedRun</h1>
+                    </a>
+
+                    <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
+                    <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
+                    <nav id="navbar" class="navbar">
+                        <ul>
+                            <li><a href="php/history.php">History</a></li>
+                            <li><a href="php/track.php">Track</a></li>
+                            <li><a href="viewMessages.php">Messages</a></li>
+                            <li><a class="get-a-quote" href="php/logout.php">Logout</a></li>
+                        </ul>
+                    </nav>
+                <?php } else if ($_SESSION['type'] == 'worker') { ?>
+                    <a href="branchOrders.php" class="logo d-flex align-items-center">
+                        <h1 style="font-family: 'Libre Baskerville', serif; padding-left: 20px;">SpeedRun</h1>
+                    </a>
+
+                    <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
+                    <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
+                    <nav id="navbar" class="navbar">
+                        <ul>
+                            <li><a href="viewMessages.php">Messages</a></li>
+                            <li><a class="get-a-quote" href="php/logout.php">Logout</a></li>
+                        </ul>
+                    </nav>
+                <?php } else { ?>
                     <a href="client.php" class="logo d-flex align-items-center">
-        <h1>SpeedRun</h1>
-      </a>
+                        <h1>SpeedRun</h1>
+                    </a>
 
-      <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
-      <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
-      <nav id="navbar" class="navbar">
-        <ul>
-          <li><a href="client.html" class="active">Home</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="services.html">Services</a></li>
-          <li><a href="php/history.php">History</a></li>
-          <li><a href="php/track.php">Track</a></li>
-          <li><a href="contact.html">Contact</a></li>
-          <li><a class="get-a-quote" href="php/logout.php">Logout</a></li>
-        </ul>
-      </nav>
+                    <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
+                    <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
+                    <nav id="navbar" class="navbar">
+                        <ul>
+                            <li><a href="client.html" class="active">Home</a></li>
+                            <li><a href="about.html">About</a></li>
+                            <li><a href="services.html">Services</a></li>
+                            <li><a href="php/history.php">History</a></li>
+                            <li><a href="php/track.php">Track</a></li>
+                            <li><a href="contact.html">Contact</a></li>
+                            <li><a class="get-a-quote" href="php/logout.php">Logout</a></li>
+                        </ul>
+                    </nav>
                 <?php } ?>
         </div>
     </header><!-- End Header -->
@@ -117,16 +133,19 @@ if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin'] || ($_SESSION['type'
         <div class="container mx-auto px-4 py-12" style="margin-top:5%;">
             <div class="container" style="margin-top: 5%">
                 <h1 style="color:white; text-align: center; font-size: 2em; padding-bottom: 5%;">Change Password</h1>
-                <form id="changePasswordForm">
+                <form id="changePasswordForm" method="POST" action="php/changePass.php">
                     <div class="form-group">
                         <label for="newPassword">New Password:</label>
                         <input type="password" class="form-control" id="newPassword" placeholder="New Password">
                     </div>
                     <div class="form-group">
                         <label for="confirmPassword">Confirm Password:</label>
-                        <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm Password">
+                        <input name="newPassword" type="password" class="form-control" id="confirmPassword" placeholder="Confirm Password">
                     </div>
-                    <button type="button" id="submitChangePassword" class="btn">Change Password</button>
+                    <input type="hidden" name="u_id" value="<?php echo $_SESSION['u_id']; ?>">
+
+                    <button type="submit" id="submitChangePassword" class="btn">Change Password</button>
+
                     <button type="button" id="cancelChangePassword" class="btn btn-secondary">Cancel</button>
                 </form>
                 <div id="passwordMatchError" class="error-message hidden">Passwords do not match. Please try again.
@@ -141,7 +160,7 @@ if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin'] || ($_SESSION['type'
     </section>
 
     <script>
-        $(document).ready(function () {
+        $(document).ready(function() {
             const changePasswordButton = $('#submitChangePassword');
             const cancelButton = $('#cancelChangePassword');
             const passwordMatchError = $('#passwordMatchError');
@@ -188,7 +207,6 @@ if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin'] || ($_SESSION['type'
             changePasswordButton.on('click', changePassword);
             cancelButton.on('click', resetForm);
         });
-
     </script>
 </body>
 

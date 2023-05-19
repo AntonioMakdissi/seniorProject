@@ -37,16 +37,16 @@ require_once("php/connection.php");
     <header id="header" class="header d-flex align-items-center fixed-top">
         <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
 
-            
+
             <?php if ($_SESSION['type'] == 'CEO') { ?>
                 <a href="CEO.php" class="logo d-flex align-items-center">
-                <!-- Uncomment the line below if you also wish to use an image logo -->
-                <!-- <img src="assets/img/logo.png" alt=""> -->
-                <h1 style="font-family: 'Libre Baskerville', serif; padding-left: 20px;">SpeedRun</h1>
-            </a>
+                    <!-- Uncomment the line below if you also wish to use an image logo -->
+                    <!-- <img src="assets/img/logo.png" alt=""> -->
+                    <h1 style="font-family: 'Libre Baskerville', serif; padding-left: 20px;">SpeedRun</h1>
+                </a>
 
-            <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
-            <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
+                <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
+                <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
                 <nav id="navbar" class="navbar">
                     <ul>
                         <li><a href="CEO.php" class="active">Home</a></li>
@@ -60,19 +60,20 @@ require_once("php/connection.php");
                 </nav><!-- .navbar -->
             <?php } else { ?>
                 <a href="IT.php" class="logo d-flex align-items-center">
-                <!-- Uncomment the line below if you also wish to use an image logo -->
-                <!-- <img src="assets/img/logo.png" alt=""> -->
-                <h1 style="font-family: 'Libre Baskerville', serif; padding-left: 20px;">SpeedRun</h1>
-            </a>
+                    <!-- Uncomment the line below if you also wish to use an image logo -->
+                    <!-- <img src="assets/img/logo.png" alt=""> -->
+                    <h1 style="font-family: 'Libre Baskerville', serif; padding-left: 20px;">SpeedRun</h1>
+                </a>
 
-            <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
-            <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
+                <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
+                <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
                 <nav id="navbar" class="navbar">
-                    <ul>
-                        <li><a href="viewMessages.php">Messages</a></li>
-                        <li><a href="hire.php">Hire </a></li>
+                    <ul>                    
                         <li><a href="php/viewWorker.php">Workers</a></li>
-                        <li><a href="addBranches.php">Branches</a></li>
+                        <li><a href="hire.php">Hire</a></li>
+                        <li><a href="addBranches.php" class="active">Branches</a></li>
+                        <li><a href="viewMessages.php">Messages</a></li>
+                        <li><a href="common_password.php" >Change Password</a></li>
                         <li><a class="get-a-quote" href="php/logout.php">Logout</a></li>
                     </ul>
                 </nav>
@@ -119,8 +120,8 @@ require_once("php/connection.php");
                                          <div class="flex justify-center items-center">
                                         <button class="bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700">Done</button>
                                     </div> -->
-                                    </td>
-                                </tr> 
+                                </td>
+                                </tr>
                                 <?php
                                 include('php/branches.php');
                                 $all = branchesinfo($link);
@@ -129,10 +130,10 @@ require_once("php/connection.php");
                                 } else {
                                     for ($i = 0; $i < count($all[0]); ++$i) {
                                         echo "<tr>";
-                                        echo "<td class='px-6 py-4 whitespace-nowrap'>".$all[0][$i]."</td>";
-                                        echo "<td class='px-6 py-4 whitespace-nowrap'>".$all[1][$i]."</td>";
-                                        echo "<td class='px-6 py-4 whitespace-nowrap'>".$all[2][$i]."</td>";
-                                        echo "<td class='px-6 py-4 whitespace-nowrap'>".$all[3][$i]."</td>";
+                                        echo "<td class='px-6 py-4 whitespace-nowrap'>" . $all[0][$i] . "</td>";
+                                        echo "<td class='px-6 py-4 whitespace-nowrap'>" . $all[1][$i] . "</td>";
+                                        echo "<td class='px-6 py-4 whitespace-nowrap'>" . $all[2][$i] . "</td>";
+                                        echo "<td class='px-6 py-4 whitespace-nowrap'>" . $all[3][$i] . "</td>";
                                         echo "</tr>";
                                     }
                                 }
