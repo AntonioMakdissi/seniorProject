@@ -42,7 +42,7 @@ if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin']) {
   <header id="header" class="header d-flex alignems-center fixed-top ">
     <div class="container-fluid container-xl d-flex alignems-center justify-content-between">
 
-      <a href="index.html" class="logo d-flex alignems-center">
+      <a href="../CEO.php" class="logo d-flex alignems-center">
         <!-- Uncomment the line below if you also wish to use an image logo -->
         <!-- <img src="assets/img/logo.png" alt=""> -->
         <h1 style="font-family: 'Libre Baskerville', serif;">SpeedRun</h1>

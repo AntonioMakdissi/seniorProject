@@ -35,25 +35,31 @@ if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin'] || ($_SESSION['type'
   <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
   <link href="assets/vendor/aos/aos.css" rel="stylesheet">
 
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  
+
+  <style>
+
+  </style>
 </head>
 
 <body class="bg-gray-100">
   <header id="header" class="header d-flex align-items-center fixed-top">
     <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
-    <?php
-        if ($_SESSION['type'] == 'CEO') {
-          ?>
-      <a href="../CEO.php" class="logo d-flex align-items-center" >
-        <!-- Uncomment the line below if you also wish to use an image logo -->
-        <!-- <img src="assets/img/logo.png" alt=""> -->
-        <h1 style="font-family: 'Libre Baskerville', serif; padding-left: 20px;">SpeedRun</h1>
-      </a>
+      <?php
+      if ($_SESSION['type'] == 'CEO') {
+        ?>
+        <a href="../CEO.php" class="logo d-flex align-items-center">
+          <!-- Uncomment the line below if you also wish to use an image logo -->
+          <!-- <img src="assets/img/logo.png" alt=""> -->
+          <h1 style="font-family: 'Libre Baskerville', serif; padding-left: 20px;">SpeedRun</h1>
+        </a>
       <?php } else { ?>
         <a href="../IT.php" class="logo d-flex align-items-center">
-        <!-- Uncomment the line below if you also wish to use an image logo -->
-        <!-- <img src="assets/img/logo.png" alt=""> -->
-        <h1 style="font-family: 'Libre Baskerville', serif; padding-left: 20px; padding-top: 20px;">SpeedRun</h1>
-      </a>
+          <!-- Uncomment the line below if you also wish to use an image logo -->
+          <!-- <img src="assets/img/logo.png" alt=""> -->
+          <h1 style="font-family: 'Libre Baskerville', serif; padding-left: 20px; padding-top: 20px;">SpeedRun</h1>
+        </a>
       <?php } ?>
       <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
       <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
@@ -78,7 +84,6 @@ if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin'] || ($_SESSION['type'
             <li><a href="viewWorker.php">Workers</a></li>
             <li><a href="../addBranches.php">Branches</a></li>
             <li><a href="hire.php">Hire</a></li>
-            <li><a href="../IT.php#IT_message">Contact</a></li>
             <li><a class="get-a-quote" href="logout.php">Logout</a></li>
           </ul>
         <?php } ?>
@@ -86,10 +91,10 @@ if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin'] || ($_SESSION['type'
     </div>
   </header><!-- End Header -->
 
-  
+
   <section id="hero" class="hero d-flex align-items-center" style="padding-top: 20px; height: 100%; ">
     <div class="container mx-auto px-4 py-12">
-      <div class="container" style="margin-top: 10px">
+      <div class="container" style="margin-top: 5%">
         <h1 style="color:white ;text-align: center; font-size:2em; ">Workers</h1>
 
         <form style="z-index: 9999;" id="searchForm" action="viewWorker.php" method="post">
@@ -114,6 +119,11 @@ if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin'] || ($_SESSION['type'
             <th>Branch</th>
             <th>Salary</th>
             <th>Date joined</th>
+            <?php
+      if ($_SESSION['type'] == 'IT') {
+        ?>
+            <th>Passwords</th>
+            <?php } ?>
             <th>Action</th>
           </tr>
         </thead>
@@ -145,6 +155,24 @@ if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin'] || ($_SESSION['type'
                 <td>" . $row["branch"] . "</td>
                 <td>" . $row["salary"] . "$</td>
                 <td>" . $row["timestamp"] . "</td> ";
+              ?>
+
+              <!-- Change password button -->
+              <?php
+      if ($_SESSION['type'] == 'IT') {
+        ?>
+              <td>
+                <!-- The button that will trigger the modal -->
+                <button type="button" class="btn btn-primary change-password-button" data-toggle="modal"
+                  data-target="#changePasswordModal" data-workerid="<?php echo $row["w_id"]; ?>">
+                  Change
+                </button>
+              </td>
+
+              <?php } ?>
+
+
+              <?php
               if ($row["type"] == 'CEO' || $row["w_id"] == $_SESSION['w_id']) {
                 echo "                <td></td>                
                  </tr>";
@@ -163,6 +191,63 @@ if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin'] || ($_SESSION['type'
           ?>
         </tbody>
       </table>
+
+
+      <!-- Popup modal change password-->
+      <div class="fixed z-10 inset-0 overflow-y-auto hidden" id="changePasswordModal">
+        <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+          <div class="fixed inset-0 transition-opacity" aria-hidden="true">
+            <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
+          </div>
+          <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+          <div
+            class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full"
+            role="dialog" aria-modal="true" aria-labelledby="modal-headline">
+            <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+              <div class="sm:flex sm:items-start">
+                <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+                  <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-headline">
+                    Change Password
+                  </h3>
+                  <div class="mt-2">
+                    <form id="changePasswordForm">
+                      <div class="form-group">
+                        <label for="newPassword" class="block text-sm font-medium text-gray-700">New Password</label>
+                        <input type="password"
+                          class="mt-1 form-control block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                          id="newPassword" placeholder="New Password">
+                      </div>
+                      <div class="form-group">
+                        <label for="confirmPassword" class="block text-sm font-medium text-gray-700">Confirm
+                          Password</label>
+                        <input type="password"
+                          class="mt-1 form-control block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                          id="confirmPassword" placeholder="Confirm Password">
+                      </div>
+                      <p id="passwordMatchError" class="hidden text-red-500 mt-1">Passwords do not match. Please try
+                        again.</p>
+                      <p id="passwordChangeError" class="hidden text-red-500 mt-1">There was an error changing the
+                        password. Please try again.</p>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+              <button type="button" id="submitChangePassword"
+                class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-indigo-600 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:ml-3 sm:w-auto sm:text-sm">
+                Save changes
+              </button>
+              <button type="button"
+                class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
+                id="modalCloseButton">
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
     </div>
   </section>
@@ -174,6 +259,68 @@ if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin'] || ($_SESSION['type'
       }
     }
   </script>
+
+  <!-- script for change password popuup -->
+  <script>
+    $(document).ready(function () {
+      $('.change-password-button').click(function (event) {
+        var workerId = $(this).data('workerid');
+        $('#changePasswordModal').data('workerid', workerId);
+        $('#changePasswordModal').removeClass('hidden');
+        $('#passwordMatchError').addClass('hidden');
+        $('#passwordChangeError').addClass('hidden');
+        $('#newPassword').val(''); // Clear newPassword field
+        $('#confirmPassword').val(''); // Clear confirmPassword field
+      });
+
+      $('#submitChangePassword').click(function (event) {
+        var workerId = $('#changePasswordModal').data('workerid');
+        var newPassword = $('#newPassword').val();
+        var confirmPassword = $('#confirmPassword').val();
+        var hasError = false;
+
+        if (newPassword !== confirmPassword) {
+          $('#passwordMatchError').removeClass('hidden');
+          $('#passwordChangeError').addClass('hidden');
+          hasError = true;
+        } else {
+          $('#passwordMatchError').addClass('hidden');
+        }
+
+        if (!hasError) {
+          // Make AJAX request to server to change password
+          $.ajax({
+            type: 'POST',
+            url: '/change-password',  // Update this to your server's change password URL
+            data: {
+              workerId: workerId,
+              newPassword: newPassword
+            },
+            success: function (response) {
+              alert("Password changed successfully!");
+              $('#changePasswordModal').addClass('hidden');
+              $('#newPassword').val(''); // Clear newPassword field
+              $('#confirmPassword').val(''); // Clear confirmPassword field
+            },
+            error: function (err) {
+              $('#passwordChangeError').removeClass('hidden');
+              $('#passwordMatchError').addClass('hidden');
+            }
+          });
+        }
+      });
+
+      $('#modalCloseButton').click(function (event) {
+        $('#changePasswordModal').addClass('hidden');
+        $('#passwordMatchError').addClass('hidden');
+        $('#passwordChangeError').addClass('hidden');
+        $('#newPassword').val(''); // Clear newPassword field
+        $('#confirmPassword').val(''); // Clear confirmPassword field
+      });
+    });
+
+  </script>
+
 
 </body>
 

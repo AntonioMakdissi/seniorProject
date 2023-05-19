@@ -40,15 +40,16 @@ require_once("php/connection.php");
     <header id="header" class="header d-flex align-items-center fixed-top">
         <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
 
-            <a href="IT.php" class="logo d-flex align-items-center">
-                <!-- Uncomment the line below if you also wish to use an image logo -->
-                <!-- <img src="assets/img/logo.png" alt=""> -->
-                <h1 style="font-family: 'Libre Baskerville', serif; padding-left: 20px;">SpeedRun</h1>
-            </a>
+            
 
             <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
             <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
             <?php if ($_SESSION['type'] == 'CEO') { ?>
+                <a href="CEO.php" class="logo d-flex align-items-center">
+                <!-- Uncomment the line below if you also wish to use an image logo -->
+                <!-- <img src="assets/img/logo.png" alt=""> -->
+                <h1 style="font-family: 'Libre Baskerville', serif; padding-left: 20px;">SpeedRun</h1>
+            </a>
                 <nav id="navbar" class="navbar">
                     <ul>
                         <li><a href="CEO.php" class="active">Home</a></li>
@@ -61,6 +62,11 @@ require_once("php/connection.php");
                     </ul>
                 </nav><!-- .navbar -->
             <?php } else  if ($_SESSION['type'] == 'IT') { ?>
+                <a href="IT.php" class="logo d-flex align-items-center">
+                <!-- Uncomment the line below if you also wish to use an image logo -->
+                <!-- <img src="assets/img/logo.png" alt=""> -->
+                <h1 style="font-family: 'Libre Baskerville', serif; padding-left: 20px;">SpeedRun</h1>
+            </a>
                 <nav id="navbar" class="navbar">
                     <ul>
                         <li><a href="hire.php">Hire worker</a></li>
@@ -71,6 +77,11 @@ require_once("php/connection.php");
                     </ul>
                 </nav>
             <?php } else  if ($_SESSION['type'] == 'BranchManager') { ?>
+                <a href="manager.php" class="logo d-flex align-items-center">
+                <!-- Uncomment the line below if you also wish to use an image logo -->
+                <!-- <img src="assets/img/logo.png" alt=""> -->
+                <h1 style="font-family: 'Libre Baskerville', serif; padding-left: 20px;">SpeedRun</h1>
+            </a>
                 <nav id="navbar" class="navbar">
                     <ul>
                         <!-- <li><a href="client.html" class="active">Home</a></li> -->
@@ -81,6 +92,11 @@ require_once("php/connection.php");
                     </ul>
                 </nav>
             <?php } else  if ($_SESSION['type'] == 'worker') { ?>
+                <a href="branchOrders.php" class="logo d-flex align-items-center">
+                <!-- Uncomment the line below if you also wish to use an image logo -->
+                <!-- <img src="assets/img/logo.png" alt=""> -->
+                <h1 style="font-family: 'Libre Baskerville', serif; padding-left: 20px;">SpeedRun</h1>
+            </a>
                 <nav id="navbar" class="navbar">
                     <ul>
                         <li><a href="viewMessages.php">Messages</a></li>
@@ -88,6 +104,11 @@ require_once("php/connection.php");
                     </ul>
                 </nav>
             <?php } else  if ($_SESSION['type'] == 'client') { ?>
+                <a href="client.php" class="logo d-flex align-items-center">
+                <!-- Uncomment the line below if you also wish to use an image logo -->
+                <!-- <img src="assets/img/logo.png" alt=""> -->
+                <h1 style="font-family: 'Libre Baskerville', serif; padding-left: 20px;">SpeedRun</h1>
+            </a>
                 <nav id="navbar" class="navbar">
                     <ul>
                         <li><a href="client.html" class="active">Home</a></li>
