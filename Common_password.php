@@ -136,11 +136,11 @@ if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin'] || ($_SESSION['type'
                 <form id="changePasswordForm" method="POST" action="php/changePass.php" onsubmit="return changePassword();">
                     <div class="form-group">
                         <label for="newPassword">New Password:</label>
-                        <input name="newPassword" type="password" class="form-control" id="newPassword" placeholder="New Password">
+                        <input required name="newPassword" type="password" class="form-control" id="newPassword" placeholder="New Password">
                     </div>
                     <div class="form-group">
                         <label for="confirmPassword">Confirm Password:</label>
-                        <input name="confirmPassword" type="password" class="form-control" id="confirmPassword" placeholder="Confirm Password">
+                        <input required name="confirmPassword" type="password" class="form-control" id="confirmPassword" placeholder="Confirm Password">
                     </div>
                     <input type="hidden" name="u_id" value="<?php echo $_SESSION['u_id']; ?>">
 

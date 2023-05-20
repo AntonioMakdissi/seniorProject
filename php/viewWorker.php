@@ -207,12 +207,12 @@ if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin'] || ($_SESSION['type'
                     <form id="changePasswordForm" method="POST" action="changePass.php">
                       <div class="form-group">
                         <label for="newPassword" class="block text-sm font-medium text-gray-700">New Password</label>
-                        <input name="newPassword" type="password" class="mt-1 form-control block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" id="newPassword" placeholder="New Password">
+                        <input name="newPassword" type="password" required class="mt-1 form-control block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" id="newPassword" placeholder="New Password">
                       </div>
                       <div class="form-group">
                         <label for="confirmPassword" class="block text-sm font-medium text-gray-700">Confirm
                           Password</label>
-                        <input name="confirmPassword" type="password" class="mt-1 form-control block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" id="confirmPassword" placeholder="Confirm Password">
+                        <input name="confirmPassword" type="password" required class="mt-1 form-control block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" id="confirmPassword" placeholder="Confirm Password">
                       </div>
                       <p id="passwordMatchError" class="hidden text-red-500 mt-1">Passwords do not match. Please try
                         again.</p>
