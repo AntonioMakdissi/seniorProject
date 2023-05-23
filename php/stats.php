@@ -1,10 +1,10 @@
 <?php
 require_once 'connection.php';
 if (session_status() == PHP_SESSION_NONE) {
-    session_start();
+	session_start();
 }
 if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin']) {
-    header('Location: login.html');
+	header('Location: login.html');
 }
 
 //total deliveries
@@ -27,6 +27,16 @@ function successful_deliveries($link)
 	return $success;
 }
 
+function successful_deliveriesm($link)
+{
+	$month = date('n');
+	$query = "SELECT COUNT(o_id) AS success FROM orders WHERE MONTH(orders.date) = $month AND status='successful'";
+	$result = mysqli_query($link, $query);
+	$row = mysqli_fetch_assoc($result);
+	$success = $row['success'];
+	return $success;
+}
+
 //pending deliveries
 function pending_deliveries($link)
 {
@@ -38,9 +48,32 @@ function pending_deliveries($link)
 
 	//failed deliveries
 }
+
+function pending_deliveriesm($link)
+{
+	$month = date('n');
+	$query = "SELECT COUNT(o_id) AS pending FROM orders WHERE MONTH(orders.date) = $month AND status='pending'";
+	$result = mysqli_query($link, $query);
+	$row = mysqli_fetch_assoc($result);
+	$pending = $row['pending'];
+	return $pending;
+
+	//failed deliveries
+}
 function failed_deliveries($link)
 {
 	$query = "SELECT COUNT(o_id) AS failed FROM orders WHERE status='failed'";
+	$result = mysqli_query($link, $query);
+	$row = mysqli_fetch_assoc($result);
+	$failed = $row['failed'];
+	return $failed;
+
+	//rating
+}
+function failed_deliveriesm($link)
+{
+	$month = date('n'); //current month
+	$query = "SELECT COUNT(o_id) AS failed FROM orders WHERE MONTH(orders.date) = $month AND status='failed'";
 	$result = mysqli_query($link, $query);
 	$row = mysqli_fetch_assoc($result);
 	$failed = $row['failed'];
@@ -77,10 +110,10 @@ LIMIT 1;
 	//number of workers
 }
 
-function mvpm($link)//employee of the month
+function mvpm($link) //employee of the month
 {
-	$month=date('n');//current month
-    $query = "SELECT workers.w_id, COUNT(deliveries.w_id) AS count
+	$month = date('n'); //current month
+	$query = "SELECT workers.w_id, COUNT(deliveries.w_id) AS count
         FROM deliveries
         JOIN workers ON deliveries.w_id = workers.w_id
         JOIN users ON workers.u_id = users.u_id
@@ -90,12 +123,25 @@ function mvpm($link)//employee of the month
         ORDER BY count DESC
         LIMIT 1;
     ";
-    $result = mysqli_query($link, $query);
-    $row = mysqli_fetch_assoc($result);
-    $emp = $row['w_id'];
-    return $emp;
+	$result = mysqli_query($link, $query);
+	$row = mysqli_fetch_assoc($result);
+	$emp = $row['w_id'];
+	return $emp;
 }
 
+function delm($link) //deliveries this month
+{
+	$month = date('n'); //current month
+	$query = "SELECT COUNT(o_id) AS count
+        FROM orders
+        WHERE MONTH(orders.date) = $month
+        ;
+    ";
+	$result = mysqli_query($link, $query);
+	$row = mysqli_fetch_assoc($result);
+	$delm = $row['count'];
+	return $delm;
+}
 
 function nbr_workers($link)
 {

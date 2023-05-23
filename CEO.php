@@ -142,7 +142,49 @@ require_once('php/employee.php');
         <table>
           <thead>
             <tr>
-              <th>Statistic</th>
+              <th>Statistics of the month(recent 30 days)</th>
+              <th>Value</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Number of successful Deliveries</td>
+              <td> <?php
+                    echo successful_deliveriesm($link);
+                    ?> </td>
+            </tr>
+            <tr>
+              <td>Pending Deliveries</td>
+              <td><?php echo pending_deliveriesm($link); ?></td>
+            </tr>
+            <tr>
+              <td>Failed Deliveries</td>
+              <td><?php echo failed_deliveriesm($link); ?></td>
+            </tr>
+            <tr>
+              <td>Number of deliveries this month</td>
+              <td><?php
+                  $delm = delm($link);
+                  echo $delm; ?></td>
+            </tr>
+            
+            
+            <tr>
+              <td>Employee of the month</td>
+              <td><?php
+                  $emp = mvpm($link);
+                  echo getEmpById($link, $emp); ?></td>
+            </tr>
+            
+          </tbody>
+        </table>
+      </div>
+      <!--  -->
+      <div class="container" style="margin-top: 100px;">
+        <table>
+          <thead>
+            <tr>
+              <th>Statistics(lifetime)</th>
               <th>Value</th>
             </tr>
           </thead>
@@ -162,6 +204,10 @@ require_once('php/employee.php');
               <td><?php echo failed_deliveries($link); ?></td>
             </tr>
             <tr>
+              <td>Total Deliveries</td>
+              <td><?php echo total_deliveries($link); ?></td>
+            </tr>
+            <tr>
               <td>Customer Satisfaction</td>
               <td><?php echo rating($link); ?> /5</td>
             </tr>
@@ -171,16 +217,9 @@ require_once('php/employee.php');
                   $emp = mvp($link);
                   echo getEmpById($link, $emp); ?></td>
             </tr>
-            <tr>
-              <td>Employee of the month</td>
-              <td><?php
-                  $emp = mvpm($link);
-                  echo getEmpById($link, $emp); ?></td>
-            </tr>
           </tbody>
         </table>
       </div>
-
 
     </div>
   </main>
