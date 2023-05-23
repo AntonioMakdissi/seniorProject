@@ -5,7 +5,7 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin']) {
-    header('Location: login.php');
+    header('Location: ../login.php');
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -35,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
 function viewMessages($link, $receive_id)
 {
-    $query = "SELECT * FROM messages NATURAL JOIN workers NATURAL JOIN users WHERE receive_id='$receive_id'";
+    $query = "SELECT * FROM messages NATURAL JOIN workers NATURAL JOIN users WHERE receive_id='$receive_id' ORDER BY m_timestamp DESC";
     $result = mysqli_query($link, $query);
     $messages[0][0] = 0;
     if (($result) && (mysqli_num_rows($result) > 0)) {

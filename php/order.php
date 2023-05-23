@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin']) {
-    header('Location: ../login.html');
+    header('Location: ../login.php');
 }
 require_once 'connection.php';
 extract($_POST);
@@ -48,28 +48,21 @@ if (mysqli_query($link, $query)) {
         $query = "INSERT INTO deliveries (o_id) VALUES ('$o_id');";
         if (mysqli_query($link, $query)) {
             //echo mysqli_insert_id($link);
-            //echo "order placed";
-            //$_SESSION['sms'] = "done";
-            echo "OK";
-            //header('client.php');
+            http_response_code(200);
+            echo "OK $o_id";
+            exit;
+            
         } else {
-            //mysqli_rollback($link);
+    
             echo "Failed to insert into deliveries";
         }
     } else {
-        //mysqli_rollback($link);
+
         echo "Failed to insert into orders";
     }
 } else {
-    //mysqli_rollback($link);
     echo "Failed to insert into packages";
 }
-
-
-
-/*$name = $_GET['name'];
-$name = str_replace("%20"," ",$name);*/
-
 /*code with GPS
 $query = "INSERT into packages(width, height, weight, message, to_address, p_longitude, p_latitude, to_district, fragile, o_price, cost, f_price, pay_at_delivery) 
 values('$width','$height','$weight', '$message', '$to_address', '$p_longitude', '$p_latitude', '$to_district', '$fragile', '$o_price', '$cost', '$f_price', '$pay_at_delivery')";

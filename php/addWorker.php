@@ -4,7 +4,7 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin']) {
-    header('Location: login.html');
+    header('Location: ../login.php');
 }
 extract($_POST);
 $branch = str_replace("%20", " ", $_POST['district']);

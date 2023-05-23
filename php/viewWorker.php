@@ -92,7 +92,7 @@ if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin'] || ($_SESSION['type'
 
   <section id="hero" class="hero d-flex align-items-center" style="padding-top: 20px; height: 100%; ">
     <div class="container mx-auto px-4 py-12">
-      <div class="container" style="margin-top: 5%">
+      <div class="container" style="margin-top: 20%">
         <h1 style="color:white ;text-align: center; font-size:2em; ">Workers</h1>
 
         <form style="z-index: 9999;" id="searchForm" action="viewWorker.php" method="post">

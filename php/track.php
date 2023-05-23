@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin']) {
-  header('Location: ../login.html');
+  header('Location: ../login.php');
 }
 require_once 'connection.php';
 require_once('employee.php'); ?>
@@ -12,6 +12,7 @@ require_once('employee.php'); ?>
   <title>Track</title>
   <meta charset="UTF-8" />
   <link href="../assets/css/track.css" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
 <body>
@@ -75,75 +76,103 @@ require_once('employee.php'); ?>
     if (isset($_POST['o_id'])) {
       $o_id = $_POST['o_id'];
     }
-    require_once('connection.php');
+
     $c_id = $_SESSION['c_id'];
+    $status = "successful";
+    $query = "SELECT * FROM orders NATURAL JOIN packages WHERE c_id='$c_id' AND o_id='$o_id' ";
+    $result = mysqli_query($link, $query);
+    if (($result) && (mysqli_num_rows($result) > 0)) {
+      $row = mysqli_fetch_assoc($result)
     ?>
+      Order number: <?php echo $row['o_id']; ?>
+      </br>
+      Status: <?php echo $row['status']; ?>
+      </br>
+      Cost: <?php echo $row['f_price']; ?>
+      </br>
+      Cash on delivery: <?php echo $row['pay_at_delivery'] ? "yes" : "no"; ?>
 
-    <table class="table table-striped">
-      <thead>
-        <tr>
+      <table class="table table-striped">
+        <thead>
+          <tr>
 
-          <th>Date and time</th>
-          <th>Location</th>
-          <th>By</th>
-        </tr>
-      </thead>
-      <tbody>
+            <th>Date and time</th>
+            <th>Location</th>
+            <th>By</th>
+          </tr>
+        </thead>
+        <tbody>
         <?php
-
-
         $query = "SELECT * FROM orders NATURAL JOIN deliveries WHERE c_id='$c_id' AND o_id='$o_id' ORDER BY timestamp";
         $result = mysqli_query($link, $query);
-        if (($result) && (mysqli_num_rows($result) > 0)) {
-
-          while ($row = mysqli_fetch_assoc($result)) {
-            $emp = 0;
-            if (is_null($row["w_id"])) {
-              $emp = $_SESSION['c_name'] . "(you)";
-            } else {
-              $emp = getEmpById($link, $row["w_id"]);
-            }
-
-            echo "<tr>   
+        while ($row = mysqli_fetch_assoc($result)) {
+          $emp = 0;
+          if (is_null($row["w_id"])) {
+            $emp = $_SESSION['c_name'] . "(you)";
+          } else {
+            $emp = getEmpById($link, $row["w_id"]);
+          }
+          $status = $row["status"];
+          $o_id = $row["o_id"];
+          echo "<tr>   
 							<td>" . $row["timestamp"] . "</td>
 							<td>" . $row["current_location"] . "</td>
 							<td>" . $emp . "</td>
 							</tr>";
+        }
+      }
+        ?>
+        </tbody>
+      </table>
+      <?php
+      if ($status == "pending") {
+      ?>
+        <button type="submit" class="custom-button" onclick="markFailed('<?php echo $o_id; ?>')">
+          Mark as failed
+        </button>
+      <?php } ?>
+      <?php
+      if (isset($_SESSION['mess'])) {
+        echo $_SESSION['mess'];
+        unset($_SESSION['mess']);
+      }
+      ?>
+
+      <script>
+        function markFailed(o_id) {
+          if (confirm('Are you sure you want to mark it as failed?')) {
+            window.location.href = 'http://localhost/seniorProject/php/markFailed.php?o_id=' + o_id;
           }
         }
-        ?>
-      </tbody>
-    </table>
-
-
-    <!-- rating -->
-    <script>
-      $(document).ready(function() {
-        $('input[type="radio"]').click(function() {
-          $.post('rating.php', {
-            rating: $(this).val()
+      </script>
+      <!-- rating -->
+      <script>
+        $(document).ready(function() {
+          $('input[type="radio"]').click(function() {
+            $.post('rating.php', {
+              rating: $(this).val()
+            });
           });
         });
-      });
-    </script>
-    <fieldset class="rating">
-      <legend>Rate our company:</legend>
-      <form method="post" action="rating.php">
-        <input type="radio" id="star5" name="rating" value="5" /><label for="star5" title="5 stars">5 stars</label>
-        <input type="radio" id="star4" name="rating" value="4" /><label for="star4" title="4 stars">4 stars</label>
-        <input type="radio" id="star3" name="rating" value="3" /><label for="star3" title="3 stars">3 stars</label>
-        <input type="radio" id="star2" name="rating" value="2" /><label for="star2" title="2 stars">2 stars</label>
-        <input type="radio" id="star1" name="rating" value="1" /><label for="star1" title="1 star">1 star</label>
-    </fieldset>
-    <input type="submit" value="Submit Rating">
-    </form>
-    </br>
-    <?php
-    if (isset($_SESSION['message'])) {
-      echo $_SESSION['message'];
-      unset($_SESSION['message']);
-    }
-    ?>
+      </script>
+      <fieldset class="rating">
+        <legend>Rate our company:</legend>
+        <form method="post" action="rating.php">
+          <input type="radio" id="star5" name="rating" value="5" /><label for="star5" title="5 stars">5 stars</label>
+          <input type="radio" id="star4" name="rating" value="4" /><label for="star4" title="4 stars">4 stars</label>
+          <input type="radio" id="star3" name="rating" value="3" /><label for="star3" title="3 stars">3 stars</label>
+          <input type="radio" id="star2" name="rating" value="2" /><label for="star2" title="2 stars">2 stars</label>
+          <input type="radio" id="star1" name="rating" value="1" /><label for="star1" title="1 star">1 star</label>
+      </fieldset>
+      <input type="submit" value="Submit Rating">
+      </form>
+      </br>
+      <?php
+      if (isset($_SESSION['message'])) {
+        echo $_SESSION['message'];
+        unset($_SESSION['message']);
+      }
+      ?>
 
 </body>
 

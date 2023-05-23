@@ -22,9 +22,7 @@ if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin']) {
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
-    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
 
   <!-- Vendor CSS Files -->
   <!-- <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">-->
@@ -53,7 +51,7 @@ if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin']) {
       <nav id="navbar" class="navbar">
         <?php
         if ($_SESSION['type'] == 'CEO') {
-          ?>
+        ?>
           <ul>
             <li><a href="../CEO.php" class="active">Home</a></li>
             <li><a href="viewWorker.php">Workers</a></li>
@@ -86,6 +84,12 @@ if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin']) {
         <h1 class="text-4xl font-bold mb-6" style="color:white;">Orders history</h1>
         <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg mb-8">
 
+          <a href="http://localhost/seniorProject/php/profit.php?status=pending"><button class="show-all-button" name="show" type="submit" id="showButton">Show pending</button> </a>
+          <a href="http://localhost/seniorProject/php/profit.php?status=successful"><button class="show-all-button" name="show" type="submit" id="showButton">Show delivered</button> </a>
+          <a href="http://localhost/seniorProject/php/profit.php?status=failed"><button class="show-all-button" name="show" type="submit" id="showButton">Show failed</button> </a>
+          <a href="http://localhost/seniorProject/php/profit.php"><button class="show-all-button" name="show" type="submit" id="showButton">Show All</button> </a>
+
+
           <table class="table table-striped">
             <thead>
               <tr>
@@ -100,7 +104,14 @@ if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin']) {
             <tbody>
               <?php
               require_once('connection.php');
-              $query = "SELECT * FROM orders NATURAL JOIN packages ORDER BY date";
+              $query = 0;
+              if (isset($_GET['status'])) {
+                $status = $_GET['status'];
+
+                $query = "SELECT * FROM orders NATURAL JOIN packages WHERE status='$status' ORDER BY date";
+              } else {
+                $query = "SELECT * FROM orders NATURAL JOIN packages ORDER BY date";
+              }
               $result = mysqli_query($link, $query);
               if (($result) && (mysqli_num_rows($result) > 0)) {
 
@@ -124,7 +135,7 @@ if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin']) {
     </div>
   </section>
 
-  
+
 
 
 </body>

@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin'] || $_SESSION['type'] != 'CEO') {
-  header('Location: ../login.php');
+  header('Location: login.php');
 }
 
 require_once 'php/connection.php';
@@ -50,7 +50,7 @@ require_once('php/employee.php');
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
 
- </head>
+</head>
 
 <body>
 
@@ -74,6 +74,7 @@ require_once('php/employee.php');
           <li><a href="addBranches.php">Branches</a></li>
           <li><a href="php/profit.php">Statistics</a></li>
           <li><a href="viewMessages.php">Messages</a></li>
+          <li><a href="common_password.php">Change Password</a></li>
           <li><a class="get-a-quote" href="php/logout.php">Logout</a></li>
         </ul>
       </nav><!-- .navbar -->
@@ -87,7 +88,7 @@ require_once('php/employee.php');
     <div class="container">
       <div class="row gy-4 d-flex justify-content-between">
         <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center">
-          <h2 data-aos="fade-up" style="margin-top: -15%;">Journey of a Leading Delivery Company <?= $_SESSION['name'] ?>!</h2> 
+          <h2 data-aos="fade-up" style="margin-top: -15%;">Journey of a Leading Delivery Company <?= $_SESSION['name'] ?>!</h2>
           <p data-aos="fade-up" data-aos-delay="100">"Success is not final, failure is not fatal: It is the courage to continue that counts." - Winston Churchill. Keep pushing forward and striving for excellence in every delivery, and you will find success in your company.</p>
 
 
@@ -165,9 +166,15 @@ require_once('php/employee.php');
               <td><?php echo rating($link); ?> /5</td>
             </tr>
             <tr>
-              <td>Employee with most deliveries</td>
+              <td>Employee with most deliveries(lifetime)</td>
               <td><?php
                   $emp = mvp($link);
+                  echo getEmpById($link, $emp); ?></td>
+            </tr>
+            <tr>
+              <td>Employee of the month</td>
+              <td><?php
+                  $emp = mvpm($link);
                   echo getEmpById($link, $emp); ?></td>
             </tr>
           </tbody>

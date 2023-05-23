@@ -100,7 +100,9 @@ require_once("php/connection.php");
                 </a>
                 <nav id="navbar" class="navbar">
                     <ul>
+                        <li><a href="branchOrders.php">Home</a></li>
                         <li><a href="viewMessages.php">Messages</a></li>
+                        <li><a href="common_password.php">Change Password</a></li>
                         <li><a class="get-a-quote" href="php/logout.php">Logout</a></li>
                     </ul>
                 </nav>

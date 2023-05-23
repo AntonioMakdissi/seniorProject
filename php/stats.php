@@ -76,6 +76,27 @@ LIMIT 1;
 
 	//number of workers
 }
+
+function mvpm($link)//employee of the month
+{
+	$month=date('n');//current month
+    $query = "SELECT workers.w_id, COUNT(deliveries.w_id) AS count
+        FROM deliveries
+        JOIN workers ON deliveries.w_id = workers.w_id
+        JOIN users ON workers.u_id = users.u_id
+        WHERE users.type='worker'
+        AND MONTH(deliveries.timestamp) = $month
+        GROUP BY workers.w_id
+        ORDER BY count DESC
+        LIMIT 1;
+    ";
+    $result = mysqli_query($link, $query);
+    $row = mysqli_fetch_assoc($result);
+    $emp = $row['w_id'];
+    return $emp;
+}
+
+
 function nbr_workers($link)
 {
 	$query = "SELECT COUNT(w_id) AS workers FROM workers";
