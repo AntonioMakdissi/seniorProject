@@ -1,0 +1,56 @@
+<resources>
+    <string name="app_name">SpeedRun</string>
+
+    <string name="title_activity_available_orders">Available Orders</string>
+    <string name="title_activity_details">Details</string>
+
+
+    <string name="action_save">Save</string>
+    <string name="action_load">Load</string>
+    <string name="action_messages">button</string>
+
+    <string name="action_signup">Sign Up</string>
+    <string name="action_login">Log In</string>
+
+
+    <string name="tv_pass">Password: </string>
+    <string name="tv_name">Email: </string>
+    <string name="tv_ip">Server IP: </string>
+    <string name="h_ip">IP address: </string>
+    <string name="h_name">Email@example.com</string>
+    <string name="h_pass">Password</string>
+    <string name="tv_or">- OR -</string>
+
+    <string name="bt_details">Details</string>
+    <string name="tvt">Title:</string>
+    <string name="tve">To:</string>
+    <string name="tvl">Address:</string>
+    <string name="bt_delete">Delete</string>
+    <string name="bt_add">Add</string>
+
+    <string name="welcome">Welcome to SpeedRun</string>
+
+
+    <string name="title_activity_login">Login</string>
+
+    <string name="o_id">Order Number:</string>
+    <string name="from">From:</string>
+    <string name="phone">Phone Number:</string>
+    <string name="district">District:</string>
+    <string name="address">Address:</string>
+    <string name="to_name">To:</string>
+    <string name="to_phone">Phone Number:</string>
+    <string name="to_district">Last Stop:</string>
+    <string name="to_address">Drop off address:</string>
+    <string name="price">Price:</string>
+    <string name="cash">Cash?</string>
+    <string name="fragile">Fragile?</string>
+    <string name="loc">Current Location</string>
+    <string name="bt_submit">Submit</string>
+    <string name="current_location">Current Location:</string>
+
+    <string-array name="districts">
+        <item>Beirut</item>
+
+    </string-array>
+</resources>
