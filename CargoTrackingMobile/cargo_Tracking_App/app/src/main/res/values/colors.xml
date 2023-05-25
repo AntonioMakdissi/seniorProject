@@ -7,8 +7,10 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#F5F5F5</color>
-    <color name="dark_blue">#0e1d34</color>
-    <color name="button">#0d42ff</color>
-    <color name="secondarydefault">#0a0d13</color>
-    <color name="btn_danger">#dc3545</color>
+
+    <color name="dark_blue">#0E1D34</color>
+    <color name="button">#0D42FF</color>
+    <color name="secondarydefault">#0A0D13</color>
+    <color name="btn_danger">#DC3545</color>
+
 </resources>

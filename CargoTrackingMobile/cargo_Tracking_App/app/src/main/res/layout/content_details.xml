@@ -15,10 +15,10 @@
             android:layout_marginHorizontal="5dp"
             android:layout_weight="1"
             android:fontFamily="@font/ubuntubold"
+            android:padding="5dp"
             android:text="@string/o_id"
-            android:textSize="16sp"
-            android:textColor="#F5F5F5"
-            android:padding="5dp" />
+            android:textColor="@color/black"
+            android:textSize="16sp" />
 
         <!--just a label-->
 
@@ -29,9 +29,9 @@
             android:layout_marginHorizontal="5dp"
             android:layout_weight="1"
             android:fontFamily="@font/ubuntubold"
-            android:textSize="16sp"
-            android:textColor="#0D42FF"
-            android:padding="5dp" />
+            android:padding="5dp"
+
+            android:textSize="16sp" />
         <!--  actual display-->
 
     </TableRow>
@@ -46,10 +46,10 @@
             android:layout_marginHorizontal="5dp"
             android:layout_weight="1"
             android:fontFamily="@font/ubuntubold"
+            android:padding="5dp"
             android:text="@string/from"
-            android:textSize="16sp"
-            android:textColor="#F5F5F5"
-            android:padding="5dp" />
+            android:textColor="@color/black"
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/from"
@@ -58,9 +58,9 @@
             android:layout_marginHorizontal="5dp"
             android:layout_weight="1"
             android:fontFamily="@font/ubuntubold"
-            android:textSize="16sp"
-            android:textColor="#0D42FF"
-            android:padding="5dp" />
+            android:padding="5dp"
+
+            android:textSize="16sp" />
     </TableRow>
 
     <!-- Phone Number -->
@@ -73,10 +73,10 @@
             android:layout_marginHorizontal="5dp"
             android:layout_weight="1"
             android:fontFamily="@font/ubuntubold"
+            android:padding="5dp"
             android:text="@string/phone"
-            android:textSize="16sp"
-            android:textColor="#F5F5F5"
-            android:padding="5dp" />
+            android:textColor="@color/black"
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/phone"
@@ -85,9 +85,9 @@
             android:layout_marginHorizontal="5dp"
             android:layout_weight="1"
             android:fontFamily="@font/ubuntubold"
-            android:textSize="16sp"
-            android:textColor="#0D42FF"
-            android:padding="5dp" />
+            android:padding="5dp"
+
+            android:textSize="16sp" />
     </TableRow>
 
     <!-- District -->
@@ -100,10 +100,10 @@
             android:layout_marginHorizontal="5dp"
             android:layout_weight="1"
             android:fontFamily="@font/ubuntubold"
+            android:padding="5dp"
             android:text="@string/district"
-            android:textSize="16sp"
-            android:textColor="#F5F5F5"
-            android:padding="5dp" />
+            android:textColor="@color/black"
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/district"
@@ -112,9 +112,9 @@
             android:layout_marginHorizontal="5dp"
             android:layout_weight="1"
             android:fontFamily="@font/ubuntubold"
-            android:textSize="16sp"
-            android:textColor="#0D42FF"
-            android:padding="5dp" />
+            android:padding="5dp"
+
+            android:textSize="16sp" />
     </TableRow>
 
     <!-- Address -->
@@ -127,10 +127,10 @@
             android:layout_marginHorizontal="5dp"
             android:layout_weight="1"
             android:fontFamily="@font/ubuntubold"
+            android:padding="5dp"
             android:text="@string/address"
-            android:textSize="16sp"
-            android:textColor="#F5F5F5"
-            android:padding="5dp" />
+            android:textColor="@color/black"
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/address"
@@ -139,9 +139,9 @@
             android:layout_marginHorizontal="5dp"
             android:layout_weight="1"
             android:fontFamily="@font/ubuntubold"
-            android:textSize="16sp"
-            android:textColor="#0D42FF"
-            android:padding="5dp" />
+            android:padding="5dp"
+
+            android:textSize="16sp" />
     </TableRow>
 
     <TableRow>
@@ -153,10 +153,10 @@
             android:layout_marginHorizontal="5dp"
             android:layout_weight="1"
             android:fontFamily="@font/ubuntubold"
+            android:padding="5dp"
             android:text="@string/current_location"
-            android:textSize="16sp"
-            android:textColor="#F5F5F5"
-            android:padding="5dp" />
+            android:textColor="@color/black"
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/current_location"
@@ -165,9 +165,9 @@
             android:layout_marginHorizontal="5dp"
             android:layout_weight="1"
             android:fontFamily="@font/ubuntubold"
-            android:textSize="16sp"
-            android:textColor="#0D42FF"
-            android:padding="5dp" />
+            android:padding="5dp"
+
+            android:textSize="16sp" />
     </TableRow>
 
     <!-- To -->
@@ -180,10 +180,11 @@
             android:layout_marginHorizontal="5dp"
             android:layout_weight="1"
             android:fontFamily="@font/ubuntubold"
+            android:padding="5dp"
             android:text="@string/to_name"
-            android:textSize="16sp"
-            android:textColor="#F5F5F5"
-            android:padding="5dp" />
+            android:textColor="@color/black"
+
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/to_name"
@@ -192,9 +193,9 @@
             android:layout_marginHorizontal="5dp"
             android:layout_weight="1"
             android:fontFamily="@font/ubuntubold"
-            android:textSize="16sp"
-            android:textColor="#0D42FF"
-            android:padding="5dp" />
+            android:padding="5dp"
+
+            android:textSize="16sp" />
     </TableRow>
 
     <!-- To Phone Number -->
@@ -207,10 +208,10 @@
             android:layout_marginHorizontal="5dp"
             android:layout_weight="1"
             android:fontFamily="@font/ubuntubold"
+            android:padding="5dp"
             android:text="@string/phone"
-            android:textSize="16sp"
-            android:textColor="#F5F5F5"
-            android:padding="5dp" />
+            android:textColor="@color/black"
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/to_phone"
@@ -219,9 +220,9 @@
             android:layout_marginHorizontal="5dp"
             android:layout_weight="1"
             android:fontFamily="@font/ubuntubold"
-            android:textSize="16sp"
-            android:textColor="#0D42FF"
-            android:padding="5dp" />
+            android:padding="5dp"
+
+            android:textSize="16sp" />
     </TableRow>
 
     <!-- To District -->
@@ -234,10 +235,10 @@
             android:layout_marginHorizontal="5dp"
             android:layout_weight="1"
             android:fontFamily="@font/ubuntubold"
+            android:padding="5dp"
             android:text="@string/to_district"
-            android:textSize="16sp"
-            android:textColor="#F5F5F5"
-            android:padding="5dp" />
+            android:textColor="@color/black"
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/to_district"
@@ -246,9 +247,9 @@
             android:layout_marginHorizontal="5dp"
             android:layout_weight="1"
             android:fontFamily="@font/ubuntubold"
-            android:textSize="16sp"
-            android:textColor="#0D42FF"
-            android:padding="5dp" />
+            android:padding="5dp"
+
+            android:textSize="16sp" />
     </TableRow>
 
     <!-- To Address -->
@@ -261,10 +262,10 @@
             android:layout_marginHorizontal="5dp"
             android:layout_weight="1"
             android:fontFamily="@font/ubuntubold"
+            android:padding="5dp"
             android:text="@string/to_address"
-            android:textSize="16sp"
-            android:textColor="#F5F5F5"
-            android:padding="5dp" />
+            android:textColor="@color/black"
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/to_address"
@@ -273,9 +274,9 @@
             android:layout_marginHorizontal="5dp"
             android:layout_weight="1"
             android:fontFamily="@font/ubuntubold"
-            android:textSize="16sp"
-            android:textColor="#0D42FF"
-            android:padding="5dp" />
+            android:padding="5dp"
+
+            android:textSize="16sp" />
     </TableRow>
 
     <!-- Price -->
@@ -288,10 +289,10 @@
             android:layout_marginHorizontal="5dp"
             android:layout_weight="1"
             android:fontFamily="@font/ubuntubold"
+            android:padding="5dp"
             android:text="@string/price"
-            android:textSize="16sp"
-            android:textColor="#F5F5F5"
-            android:padding="5dp" />
+            android:textColor="@color/black"
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/price"
@@ -300,9 +301,9 @@
             android:layout_marginHorizontal="5dp"
             android:layout_weight="1"
             android:fontFamily="@font/ubuntubold"
-            android:textSize="16sp"
-            android:textColor="#0D42FF"
-            android:padding="5dp" />
+            android:padding="5dp"
+
+            android:textSize="16sp" />
     </TableRow>
 
     <!-- Cash -->
@@ -315,10 +316,10 @@
             android:layout_marginHorizontal="5dp"
             android:layout_weight="1"
             android:fontFamily="@font/ubuntubold"
+            android:padding="5dp"
             android:text="@string/cash"
-            android:textSize="16sp"
-            android:textColor="#F5F5F5"
-            android:padding="5dp" />
+            android:textColor="@color/black"
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/cash"
@@ -327,9 +328,9 @@
             android:layout_marginHorizontal="5dp"
             android:layout_weight="1"
             android:fontFamily="@font/ubuntubold"
-            android:textSize="16sp"
-            android:textColor="#0D42FF"
-            android:padding="5dp" />
+            android:padding="5dp"
+
+            android:textSize="16sp" />
     </TableRow>
 
     <!-- Fragile -->
@@ -342,10 +343,10 @@
             android:layout_marginHorizontal="5dp"
             android:layout_weight="1"
             android:fontFamily="@font/ubuntubold"
+            android:padding="5dp"
             android:text="@string/fragile"
-            android:textSize="16sp"
-            android:textColor="#F5F5F5"
-            android:padding="5dp" />
+            android:textColor="@color/black"
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/fragile"
@@ -354,9 +355,9 @@
             android:layout_marginHorizontal="5dp"
             android:layout_weight="1"
             android:fontFamily="@font/ubuntubold"
-            android:textSize="16sp"
-            android:textColor="#0D42FF"
-            android:padding="5dp" />
+            android:padding="5dp"
+
+            android:textSize="16sp" />
     </TableRow>
 
     <TableRow>
@@ -369,7 +370,7 @@
             android:layout_margin="10dp"
             android:layout_weight="1"
             android:fontFamily="@font/ubuntubold"
-            android:textColor="#0D42FF"
+
             android:padding="5dp" />
 
         <Button
@@ -380,11 +381,9 @@
             android:layout_weight="1"
             android:fontFamily="@font/ubuntubold"
             android:onClick="submit"
+            android:padding="10dp"
             android:text="@string/bt_submit"
-            android:textSize="16sp"
-            android:textColor="#FFFFFF"
-            android:background="@drawable/background_button"
-            android:padding="10dp" /> <!-- Set the background drawable here -->
+            android:textSize="16sp" /> <!-- Set the background drawable here -->
 
     </TableRow>
 </TableLayout>

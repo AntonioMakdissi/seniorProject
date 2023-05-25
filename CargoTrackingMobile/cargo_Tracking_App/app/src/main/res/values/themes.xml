@@ -2,9 +2,9 @@
     <!-- Base application theme. -->
     <style name="Theme.Cargo_Tracking_App" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Primary brand color (Buttons) -->
-        <item name="colorPrimary">#0D42FF</item>
-        <item name="colorPrimaryVariant">#0D42FF</item>
-        <item name="colorOnPrimary">#FFFFFF</item>
+        <item name="colorPrimary">@color/button</item>
+        <item name="colorPrimaryVariant">@color/button</item>
+        <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color (Navbar) -->
         <item name="colorSecondary">#0E1D34</item>
         <item name="colorSecondaryVariant">#0E1D34</item>
@@ -12,6 +12,7 @@
         <!-- Status bar color (same as Navbar) -->
         <item name="android:statusBarColor">#0E1D34</item>
         <!-- Customize your theme here. -->
+
     </style>
 
     <style name="Theme.Cargo_Tracking_App.NoActionBar">

@@ -1,71 +1,103 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal">
 
-    <TableRow>
+    <!-- Add any other views or layouts here -->
 
-        <TextView
-            android:id="@+id/tvt"
-            android:layout_width="119dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="5"
-            android:text="O_ID"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:padding="8dp"
-            />
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-        <Button
-            android:id="@+id/bt_details"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:backgroundTint="@color/purple_500"
-            android:text="@string/bt_details"
-            android:textColor="@color/white"
-            android:padding="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp" />
-    </TableRow>
+        <TableRow>
 
-    <TableRow>
+            <TextView
+                android:id="@+id/tvt"
+                android:layout_width="119dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="5"
+                android:fontFamily="@font/ubuntubold"
+                android:padding="8dp"
+                android:text="O_ID"
+                android:textColor="@color/dark_blue"
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/tv1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/tve"
-            android:textSize="16sp"
-            android:padding="8dp" />
+            <Button
+                android:id="@+id/bt_details"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_weight="1"
 
-        <TextView
-            android:id="@+id/tve"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="left"
-            android:textSize="16sp"
-            android:padding="8dp" />
+                android:fontFamily="@font/ubuntubold"
+                android:padding="8dp"
+                android:text="@string/bt_details"
+                android:textColor="@color/white" />
+        </TableRow>
 
-        <TextView
-            android:id="@+id/tv2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/tvl"
-            android:textSize="16sp"
-            android:padding="8dp" />
+        <TableRow>
 
-        <TextView
-            android:id="@+id/tvl"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textSize="16sp"
-            android:padding="8dp" />
-    </TableRow>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="horizontal">
 
-</TableLayout>
+                <TextView
+                    android:id="@+id/tv1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/ubuntubold"
+                    android:gravity="left"
+                    android:padding="1dp"
+                    android:text="@string/tve"
+                    android:textColor="@color/dark_blue"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/tve"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/ubuntubold"
+                    android:gravity="center"
+                    android:padding="1dp"
+                    android:textSize="15sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/ubuntubold"
+                    android:gravity="left"
+                    android:padding="1dp"
+                    android:text="@string/tvl"
+                    android:textColor="@color/dark_blue"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/tvl"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/ubuntubold"
+                    android:gravity="center"
+                    android:padding="1dp"
+                    android:textSize="15sp" />
+            </LinearLayout>
+
+        </TableRow>
+
+    </TableLayout>
+
+    <!-- Add any other views or layouts here -->
+
+</LinearLayout>
