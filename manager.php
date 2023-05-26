@@ -150,21 +150,23 @@ if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin']) {
         ";
               ?>
                   <td>
-                    <!-- The button that will trigger the modal -->
-                    <button type="submit" class="custom-button" onclick="resendOrder('<?php echo $row['o_id']; ?>')">
-                      Resend order
-                    </button>
+                    <!-- <php if ($row['status'] == "failed") { ?> -->
+                      <!-- The button that will trigger the modal -->
+                      <button type="submit" class="custom-button" onclick="resendOrder('<?php echo $row['o_id']; ?>')">
+                        Resend order
+                      </button>
                   </td>
-                  </tr>
+                <!-- <php } ?> -->
+                </tr>
 
-              <?php
+            <?php
                 }
               } else {
                 echo "<tr>
                 <td id=\"colspanTD\"> No results found.</td>";
               }
 
-              ?>
+            ?>
             </tbody>
           </table>
         </div>

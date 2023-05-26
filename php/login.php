@@ -9,6 +9,20 @@
 	if (isset($_POST['email']) && isset($_POST['password'])) {
 		require('connection.php');
 		extract($_POST); //$email and $password
+
+		$recaptcha_response = $_POST['g-recaptcha-response'];
+		$recaptcha_secret = '6LcKXUAmAAAAANJrDtZklxuRxjZytaxwxQNB_J3r'; // Replace with your secret key obtained from the reCAPTCHA admin console
+		$recaptcha_url = 'https://www.google.com/recaptcha/api/siteverify';
+
+		$recaptcha = file_get_contents($recaptcha_url . '?secret=' . $recaptcha_secret . '&response=' . $recaptcha_response);
+		$recaptcha_data = json_decode($recaptcha);
+
+		if (!$recaptcha_data->success) {
+			echo 'Failed to verify reCAPTCHA. Please try again.';
+			exit;
+		}
+		// Proceed with your signup logic if reCAPTCHA is verified successfully
+
 		$email = mysqli_real_escape_string($link, $email); //strip email from escape charcters
 
 		$query = "SELECT * FROM users WHERE email = '$email';"; //get its info
