@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "329779994327",
+    "project_id": "seniorproject-24355",
+    "storage_bucket": "seniorproject-24355.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:329779994327:android:4afca04a8a695ec1189a92",
+        "android_client_info": {
+          "package_name": "com.example.cargo_tracking_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDkxo3CLeSmDk4c4I-56-WMcoNQhLBTdO4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

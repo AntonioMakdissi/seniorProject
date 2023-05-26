@@ -139,7 +139,7 @@ require_once('php/stats.php');
           OR (current_location='still at client' AND c_district='$current_location'))
           AND status = 'pending'
           AND deliveries.d_id = last_delivery.max_d_id
-          ORDER BY urgent DESC, date DESC";
+          ORDER BY urgent DESC, date";
 
               $result = mysqli_query($link, $query);
               if ($result) {

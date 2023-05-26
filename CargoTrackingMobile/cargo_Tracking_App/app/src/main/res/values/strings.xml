@@ -48,6 +48,8 @@
     <string name="loc">Current Location</string>
     <string name="bt_submit">Submit</string>
     <string name="current_location">Current Location:</string>
+    <string name="payer">Payer:</string>
+    <string name="urgent">Urgent?</string>
 
     <string-array name="districts">
         <item>Beirut</item>

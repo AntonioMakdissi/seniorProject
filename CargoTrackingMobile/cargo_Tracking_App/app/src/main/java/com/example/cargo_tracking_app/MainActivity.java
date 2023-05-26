@@ -4,6 +4,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -11,24 +19,9 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.google.android.material.snackbar.Snackbar;
-
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.text.TextUtils;
-import android.view.View;
-
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
-
 import com.example.cargo_tracking_app.databinding.ActivityMainBinding;
-
-import android.view.Menu;
-import android.view.MenuItem;
-import android.widget.EditText;
-import android.widget.Toast;
+import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -56,6 +49,17 @@ public class MainActivity extends AppCompatActivity {
                 Snackbar.make(view, "Authorized Personnel Only", Snackbar.LENGTH_LONG).setAction("Action", null).show();
             }
         });
+
+        // Obtain the device token
+        /*FirebaseMessaging.getInstance().getToken()
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful() && task.getResult() != null) {
+                        String token = task.getResult();
+                        // TODO: Send the token to your server for targeting devices
+                    } else {
+                        // TODO: Handle token retrieval error
+                    }
+                });*/
     }
 
     @Override
@@ -97,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void mySave2(String w_id) {//save credentials on phone
-        sharedPref = getSharedPreferences("keys",Context.MODE_PRIVATE);//getSharedPreferences if we have many
+        sharedPref = getSharedPreferences("keys", Context.MODE_PRIVATE);//getSharedPreferences if we have many
         SharedPreferences.Editor editor = sharedPref.edit();
         editor.putString(keyName, edName.getText().toString());//save as key-value
         editor.putString(keyPass, edPassword.getText().toString());
@@ -108,7 +112,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void myLoad() { //load credentials from phone
-        sharedPref = getSharedPreferences("keys",Context.MODE_PRIVATE); //getSharedPreferences if we have many
+        sharedPref = getSharedPreferences("keys", Context.MODE_PRIVATE); //getSharedPreferences if we have many
         if (sharedPref.contains(keyName)) {
             String name = sharedPref.getString(keyName, "test"); //default is test
             edName.setText(name);
@@ -137,13 +141,13 @@ public class MainActivity extends AppCompatActivity {
             StringRequest request = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
                 @Override
                 public void onResponse(String response) {
-                    if (response.matches("\\d+")){
-                        String w_id= response;//parse int?
+                    if (response.matches("\\d+")) {
+                        String w_id = response;//parse int?
                         mySave2(w_id);//save credentials with w_id
                         Toast.makeText(getApplicationContext(), "Credentials saved\nWelcome!", Toast.LENGTH_SHORT).show();
                         Intent i = new Intent(getApplicationContext(), availableOrders.class);
                         startActivity(i);
-                    } else{
+                    } else {
                         Toast.makeText(getApplicationContext(), response, Toast.LENGTH_LONG).show();
                     }
                 }

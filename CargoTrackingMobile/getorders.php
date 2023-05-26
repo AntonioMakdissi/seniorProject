@@ -20,7 +20,7 @@ if (($result) && (mysqli_num_rows($result) > 0)) {
     OR (current_location='still at client' AND c_district='$branch'))
     AND status = 'pending'
     AND deliveries.d_id = last_delivery.max_d_id
-    ORDER BY date
+    ORDER BY urgent DESC, date
     ";
 
     $result = mysqli_query($con, $getallorders);

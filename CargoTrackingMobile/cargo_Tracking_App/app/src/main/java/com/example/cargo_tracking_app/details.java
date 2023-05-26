@@ -28,9 +28,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class details extends AppCompatActivity {
 
     private AppBarConfiguration appBarConfiguration;
@@ -83,6 +80,8 @@ public class details extends AppCompatActivity {
         TextView priceTv = findViewById(R.id.price);
         TextView cashTv = findViewById(R.id.cash);
         TextView fragileTv = findViewById(R.id.fragile);
+        TextView urgentTv = findViewById(R.id.urgent);
+        TextView payerTv = findViewById(R.id.payer);
         //TextView locTv = findViewById(R.id.loc);
 
         // Make a request to the server to get the order details
@@ -107,6 +106,8 @@ public class details extends AppCompatActivity {
                     priceTv.setText(jsonObject.getDouble("f_price") + " $");
                     cashTv.setText(jsonObject.getString("pay_at_delivery").equals("1") ? "yes" : "no");
                     fragileTv.setText(jsonObject.getString("fragile").equals("1") ? "yes" : "no");
+                    payerTv.setText(jsonObject.getString("sender_pays").equals("1") ? "Sender" : "Receiver");
+                    urgentTv.setText(jsonObject.getString("urgent").equals("1") ? "yes" : "no");
                     //locTv.setText(getString(R.string.loc) + " " + jsonObject.getString("current_location"));
                 } catch (JSONException e) {
                     e.printStackTrace();

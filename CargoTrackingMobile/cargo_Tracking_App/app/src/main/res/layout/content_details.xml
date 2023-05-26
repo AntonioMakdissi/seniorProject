@@ -359,7 +359,57 @@
 
             android:textSize="16sp" />
     </TableRow>
+    <!-- payer -->
+    <TableRow>
 
+        <TextView
+            android:id="@+id/payer_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="5dp"
+            android:layout_weight="1"
+            android:fontFamily="@font/ubuntubold"
+            android:padding="5dp"
+            android:text="@string/payer"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/payer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="5dp"
+            android:layout_weight="1"
+            android:fontFamily="@font/ubuntubold"
+            android:padding="5dp"
+
+            android:textSize="16sp" />
+    </TableRow><!-- urgent -->
+    <TableRow>
+
+        <TextView
+            android:id="@+id/urgent_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="5dp"
+            android:layout_weight="1"
+            android:fontFamily="@font/ubuntubold"
+            android:padding="5dp"
+            android:text="@string/urgent"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/urgent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="5dp"
+            android:layout_weight="1"
+            android:fontFamily="@font/ubuntubold"
+            android:padding="5dp"
+
+            android:textSize="16sp" />
+    </TableRow>
     <TableRow>
 
         <Spinner

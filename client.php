@@ -213,7 +213,7 @@ require_once('php/stats.php');
                   <div class="form-group">
                     <div class="form-check">
                       <input class="form-check-input" type="checkbox" id="fragile" name="fragile" value="true">
-                      <label class="form-check-label" for="fragile">Is your item fragile?</label>
+                      <label class="form-check-label" for="fragile">Is your item fragile?(extra cost)</label>
                     </div>
                   </div>
                 </div>
@@ -221,7 +221,7 @@ require_once('php/stats.php');
                   <div class="form-group">
                     <div class="form-check">
                       <input class="form-check-input" type="checkbox" id="urgent" name="urgent" value="true">
-                      <label class="form-check-label" for="urgent">Same day delivery</label>
+                      <label class="form-check-label" for="urgent">Same day delivery(extra cost)</label>
                     </div>
                   </div>
                 </div>

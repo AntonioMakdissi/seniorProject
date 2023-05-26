@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 23, 2023 at 08:36 PM
+-- Generation Time: May 26, 2023 at 02:13 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.2
 
@@ -80,7 +80,8 @@ INSERT INTO `clients` (`c_id`, `u_id`, `pay_id`, `c_name`, `c_phone`, `c_address
 (6, 8, NULL, 'test01', 'test01', 'test01', NULL, NULL, 'Beirut', '2023-03-31 12:18:06', 0, 5),
 (7, 9, NULL, 'zaher', 'zaher', 'zaher', NULL, NULL, 'Batroun', '2023-04-03 06:04:07', 0, 4),
 (8, 10, NULL, 'client', '555', 'client', NULL, NULL, 'Akkar', '2023-04-23 13:49:36', 0, 4),
-(9, 23, NULL, 'client2', '71758821', 'client2', NULL, NULL, 'Beirut', '2023-05-23 14:24:53', 0, NULL);
+(9, 23, NULL, 'client2', '71758821', 'client2', NULL, NULL, 'Beirut', '2023-05-23 14:24:53', 0, NULL),
+(10, NULL, NULL, 'example1', '22222', 'example1', NULL, NULL, 'Beirut', '2023-05-26 07:47:08', 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -143,7 +144,11 @@ INSERT INTO `deliveries` (`d_id`, `w_id`, `o_id`, `current_location`, `timestamp
 (201, NULL, 35, 'still at client', '2023-05-23 17:43:29'),
 (202, NULL, 36, 'still at client', '2023-05-23 17:43:48'),
 (203, NULL, 37, 'still at client', '2023-05-23 17:46:50'),
-(204, NULL, 38, 'still at client', '2023-05-23 17:47:42');
+(204, NULL, 38, 'still at client', '2023-05-23 17:47:42'),
+(205, 10, 38, 'delivered', '2023-05-25 11:52:23'),
+(206, NULL, 39, 'still at client', '2023-05-26 07:47:08'),
+(207, NULL, 40, 'still at client', '2023-05-26 11:14:22'),
+(208, NULL, 41, 'still at client', '2023-05-26 12:11:11');
 
 -- --------------------------------------------------------
 
@@ -190,7 +195,6 @@ CREATE TABLE `orders` (
 INSERT INTO `orders` (`o_id`, `p_id`, `c_id`, `status`, `date`, `pic`) VALUES
 (1, 1, 6, 'successful', '2023-04-10 07:17:10', NULL),
 (2, 2, 7, 'successful', '2023-04-10 07:59:42', NULL),
-(3, 1, 6, 'successful', '2023-04-23 15:14:54', NULL),
 (4, 6, 6, 'pending', '2023-04-24 08:11:32', NULL),
 (5, 8, 6, 'pending', '2023-04-24 08:24:39', NULL),
 (6, 12, 6, 'pending', '2023-04-24 08:40:13', NULL),
@@ -225,7 +229,10 @@ INSERT INTO `orders` (`o_id`, `p_id`, `c_id`, `status`, `date`, `pic`) VALUES
 (35, 41, 6, 'pending', '2023-05-23 17:43:29', NULL),
 (36, 42, 6, 'pending', '2023-05-23 17:43:48', NULL),
 (37, 43, 6, 'pending', '2023-05-23 17:46:50', NULL),
-(38, 44, 6, 'pending', '2023-05-23 17:47:42', NULL);
+(38, 44, 6, 'successful', '2023-05-23 17:47:42', NULL),
+(39, 45, 10, 'pending', '2023-05-26 07:47:08', NULL),
+(40, 46, 6, 'pending', '2023-05-26 11:14:22', NULL),
+(41, 47, 6, 'pending', '2023-05-26 12:11:11', NULL);
 
 -- --------------------------------------------------------
 
@@ -246,6 +253,8 @@ CREATE TABLE `packages` (
   `p_latitude` decimal(10,8) DEFAULT NULL,
   `to_district` varchar(255) NOT NULL,
   `fragile` tinyint(1) NOT NULL DEFAULT 0,
+  `urgent` tinyint(1) NOT NULL DEFAULT 0,
+  `sender_pays` tinyint(1) NOT NULL DEFAULT 1,
   `o_price` float NOT NULL DEFAULT 0,
   `cost` float NOT NULL,
   `charge` float NOT NULL DEFAULT 5,
@@ -257,44 +266,47 @@ CREATE TABLE `packages` (
 -- Dumping data for table `packages`
 --
 
-INSERT INTO `packages` (`p_id`, `width`, `height`, `weight`, `message`, `to_name`, `to_phone`, `to_address`, `p_longitude`, `p_latitude`, `to_district`, `fragile`, `o_price`, `cost`, `charge`, `f_price`, `pay_at_delivery`) VALUES
-(1, 30, 30, 5, 'to my love', 'friend1', '878787', 'kfaraaka', NULL, NULL, 'Al Koura', 0, 0, 5, 5, 5, 1),
-(2, 50, 100, 20, NULL, NULL, NULL, 'kfarsaroun', NULL, NULL, 'Al Koura', 0, 0, 7, 5, 7, 1),
-(6, 33, 33, 33, 'p', 'fawz', '33', 'rr', NULL, NULL, 'Akkar', 0, 33.33, 10, 10, 53.33, 0),
-(8, 33, 33, 33, 'rr', 'fawze', '33', 'rr', NULL, NULL, 'Beirut', 0, 33.33, 10, 10, 53.33, 0),
-(12, 33, 33, 33, 'f', 'fawz', '33', 'rr', NULL, NULL, 'Al Koura', 0, 33.33, 10, 10, 53.33, 0),
-(13, 33, 33, 33, 'f4 ggg', 'fawz ff', '33', 'rr', NULL, NULL, 'Al Koura', 0, 33.33, 10, 10, 53.33, 0),
-(14, 33, 33, 33, 'f4 ggg', 'fawz ff', '33', 'rr', NULL, NULL, 'Al Koura', 0, 33.33, 10, 10, 53.33, 0),
-(15, 33, 33, 33, 'kk', 'fawzp', '33', 'rr', NULL, NULL, 'Al Koura', 0, 33.33, 5, 5, 43.33, 0),
-(16, 33, 33, 33, 'hh', 'fawzp', '33', 'rr', NULL, NULL, 'Batroun', 0, 33.33, 5, 5, 43.33, 0),
-(17, 33, 33, 33, '', 'fawz', '33', 'rr', NULL, NULL, 'Akkar', 1, 33.33, 10, 10, 53.33, 0),
-(18, 33, 33, 33, '', 'fawz', '33', 'rr', NULL, NULL, 'Akkar', 0, 33.33, 5, 5, 43.33, 0),
-(19, 33, 33, 33, '', 'fawz', '33', 'rr', NULL, NULL, 'Al Koura', 0, 33.33, 5, 5, 43.33, 0),
-(20, 33, 33, 33, '', 'fawz', '33', 'rr', NULL, NULL, 'Beirut', 0, 33.33, 5, 5, 43.33, 0),
-(21, 33, 33, 33, '', 'fawz', '33', 'rr', NULL, NULL, 'Al Koura', 0, 0, 5, 5, 10, 0),
-(22, 33, 33, 33, '', 'fawz', '33', 'rr', NULL, NULL, 'Al Koura', 0, 0, 5, 5, 10, 0),
-(23, 33, 33, 33, 'you', 'fawzp', '33', 'koura', NULL, NULL, 'Al Koura', 1, 33.33, 10, 10, 53.33, 0),
-(24, 33, 33, 33, 'example', 'fawze', '33', 'here', NULL, NULL, 'Beirut', 1, 80, 10, 10, 100, 1),
-(25, 33, 33, 33, '', 'fawz', '33', 'koura', NULL, NULL, 'Al Koura', 0, 0, 5, 5, 10, 0),
-(26, 33, 33, 33, '', 'fawz', '33', 'koura', NULL, NULL, 'Al Koura', 0, 0, 5, 5, 10, 0),
-(27, 33, 33, 33, '', 'fawz', '33', 'koura', NULL, NULL, 'Al Koura', 0, 0, 5, 5, 10, 0),
-(28, 33, 33, 33, '', 'fawz', '33', 'rr', NULL, NULL, 'Batroun', 0, 0, 5, 5, 10, 0),
-(29, 33, 33, 33, '', 'fawz', '33', 'koura', NULL, NULL, 'Al Koura', 0, 0, 5, 5, 10, 0),
-(30, 33, 33, 33, '', 'fawz', '33', 'koura', NULL, NULL, 'Al Koura', 0, 0, 5, 5, 10, 0),
-(31, 33, 33, 33, '', 'fawz', '33', 'rr', NULL, NULL, 'Al Koura', 0, 0, 5, 5, 10, 0),
-(32, 33, 33, 33, '', 'fawz', '33', 'rr', NULL, NULL, 'Al Koura', 0, 0, 5, 5, 10, 0),
-(33, 33, 33, 33, '', 'fawz', '33', 'rr', NULL, NULL, 'Al Koura', 0, 0, 5, 5, 10, 0),
-(34, 33, 33, 33, '', 'fawz', '33', 'koura', NULL, NULL, 'Al Koura', 0, 0, 5, 5, 10, 0),
-(35, 33, 33, 33, '', 'fawz', '33', 'koura', NULL, NULL, 'Al Koura', 0, 0, 5, 5, 10, 0),
-(36, 33, 33, 33, '', 'fawz', '33', 'koura', NULL, NULL, 'Al Koura', 0, 0, 5, 5, 10, 0),
-(37, 33, 33, 33, '', 'fawz', '33', 'koura', NULL, NULL, 'Akkar', 0, 0, 5, 5, 10, 0),
-(38, 33, 33, 33, '', 'fawz', '33', 'koura', NULL, NULL, 'Akkar', 0, 0, 5, 5, 10, 0),
-(39, 33, 33, 33, '', 'fawz', '33', 'koura', NULL, NULL, 'Al Koura', 0, 0, 5, 5, 10, 0),
-(40, 33, 33, 33, '', 'fawz', '33', 'koura', NULL, NULL, 'Al Koura', 0, 0, 5, 5, 10, 0),
-(41, 33, 33, 33, '', 'fawz', '33', 'koura', NULL, NULL, 'Al Koura', 0, 0, 5, 5, 10, 0),
-(42, 33, 33, 33, '', 'fawz', '33', 'koura', NULL, NULL, 'Batroun', 0, 0, 5, 5, 10, 0),
-(43, 33, 33, 33, '', 'fawz', '33', 'rr', NULL, NULL, 'Batroun', 0, 0, 5, 5, 10, 0),
-(44, 33, 33, 33, '', 'fawz', '33', 'ffgfg', NULL, NULL, 'Akkar', 0, 0, 5, 5, 10, 0);
+INSERT INTO `packages` (`p_id`, `width`, `height`, `weight`, `message`, `to_name`, `to_phone`, `to_address`, `p_longitude`, `p_latitude`, `to_district`, `fragile`, `urgent`, `sender_pays`, `o_price`, `cost`, `charge`, `f_price`, `pay_at_delivery`) VALUES
+(1, 30, 30, 5, 'to my love', 'friend1', '878787', 'kfaraaka', NULL, NULL, 'Al Koura', 0, 0, 1, 0, 5, 5, 5, 1),
+(2, 50, 100, 20, NULL, NULL, NULL, 'kfarsaroun', NULL, NULL, 'Al Koura', 0, 0, 1, 0, 7, 5, 7, 1),
+(6, 33, 33, 33, 'p', 'fawz', '33', 'rr', NULL, NULL, 'Akkar', 0, 0, 1, 33.33, 10, 10, 53.33, 0),
+(8, 33, 33, 33, 'rr', 'fawze', '33', 'rr', NULL, NULL, 'Beirut', 0, 0, 1, 33.33, 10, 10, 53.33, 0),
+(12, 33, 33, 33, 'f', 'fawz', '33', 'rr', NULL, NULL, 'Al Koura', 0, 0, 1, 33.33, 10, 10, 53.33, 0),
+(13, 33, 33, 33, 'f4 ggg', 'fawz ff', '33', 'rr', NULL, NULL, 'Al Koura', 0, 0, 1, 33.33, 10, 10, 53.33, 0),
+(14, 33, 33, 33, 'f4 ggg', 'fawz ff', '33', 'rr', NULL, NULL, 'Al Koura', 0, 0, 1, 33.33, 10, 10, 53.33, 0),
+(15, 33, 33, 33, 'kk', 'fawzp', '33', 'rr', NULL, NULL, 'Al Koura', 0, 0, 1, 33.33, 5, 5, 43.33, 0),
+(16, 33, 33, 33, 'hh', 'fawzp', '33', 'rr', NULL, NULL, 'Batroun', 0, 0, 1, 33.33, 5, 5, 43.33, 0),
+(17, 33, 33, 33, '', 'fawz', '33', 'rr', NULL, NULL, 'Akkar', 1, 0, 1, 33.33, 10, 10, 53.33, 0),
+(18, 33, 33, 33, '', 'fawz', '33', 'rr', NULL, NULL, 'Akkar', 0, 0, 1, 33.33, 5, 5, 43.33, 0),
+(19, 33, 33, 33, '', 'fawz', '33', 'rr', NULL, NULL, 'Al Koura', 0, 0, 1, 33.33, 5, 5, 43.33, 0),
+(20, 33, 33, 33, '', 'fawz', '33', 'rr', NULL, NULL, 'Beirut', 0, 0, 1, 33.33, 5, 5, 43.33, 0),
+(21, 33, 33, 33, '', 'fawz', '33', 'rr', NULL, NULL, 'Al Koura', 0, 0, 1, 0, 5, 5, 10, 0),
+(22, 33, 33, 33, '', 'fawz', '33', 'rr', NULL, NULL, 'Al Koura', 0, 0, 1, 0, 5, 5, 10, 0),
+(23, 33, 33, 33, 'you', 'fawzp', '33', 'koura', NULL, NULL, 'Al Koura', 1, 0, 1, 33.33, 10, 10, 53.33, 0),
+(24, 33, 33, 33, 'example', 'fawze', '33', 'here', NULL, NULL, 'Beirut', 1, 0, 1, 80, 10, 10, 100, 1),
+(25, 33, 33, 33, '', 'fawz', '33', 'koura', NULL, NULL, 'Al Koura', 0, 0, 1, 0, 5, 5, 10, 0),
+(26, 33, 33, 33, '', 'fawz', '33', 'koura', NULL, NULL, 'Al Koura', 0, 0, 1, 0, 5, 5, 10, 0),
+(27, 33, 33, 33, '', 'fawz', '33', 'koura', NULL, NULL, 'Al Koura', 0, 0, 1, 0, 5, 5, 10, 0),
+(28, 33, 33, 33, '', 'fawz', '33', 'rr', NULL, NULL, 'Batroun', 0, 0, 1, 0, 5, 5, 10, 0),
+(29, 33, 33, 33, '', 'fawz', '33', 'koura', NULL, NULL, 'Al Koura', 0, 0, 1, 0, 5, 5, 10, 0),
+(30, 33, 33, 33, '', 'fawz', '33', 'koura', NULL, NULL, 'Al Koura', 0, 0, 1, 0, 5, 5, 10, 0),
+(31, 33, 33, 33, '', 'fawz', '33', 'rr', NULL, NULL, 'Al Koura', 0, 0, 1, 0, 5, 5, 10, 0),
+(32, 33, 33, 33, '', 'fawz', '33', 'rr', NULL, NULL, 'Al Koura', 0, 0, 1, 0, 5, 5, 10, 0),
+(33, 33, 33, 33, '', 'fawz', '33', 'rr', NULL, NULL, 'Al Koura', 0, 0, 1, 0, 5, 5, 10, 0),
+(34, 33, 33, 33, '', 'fawz', '33', 'koura', NULL, NULL, 'Al Koura', 0, 0, 1, 0, 5, 5, 10, 0),
+(35, 33, 33, 33, '', 'fawz', '33', 'koura', NULL, NULL, 'Al Koura', 0, 0, 1, 0, 5, 5, 10, 0),
+(36, 33, 33, 33, '', 'fawz', '33', 'koura', NULL, NULL, 'Al Koura', 0, 0, 1, 0, 5, 5, 10, 0),
+(37, 33, 33, 33, '', 'fawz', '33', 'koura', NULL, NULL, 'Akkar', 0, 0, 1, 0, 5, 5, 10, 0),
+(38, 33, 33, 33, '', 'fawz', '33', 'koura', NULL, NULL, 'Akkar', 0, 0, 1, 0, 5, 5, 10, 0),
+(39, 33, 33, 33, '', 'fawz', '33', 'koura', NULL, NULL, 'Al Koura', 0, 0, 1, 0, 5, 5, 10, 0),
+(40, 33, 33, 33, '', 'fawz', '33', 'koura', NULL, NULL, 'Al Koura', 0, 0, 1, 0, 5, 5, 10, 0),
+(41, 33, 33, 33, '', 'fawz', '33', 'koura', NULL, NULL, 'Al Koura', 0, 0, 1, 0, 5, 5, 10, 0),
+(42, 33, 33, 33, '', 'fawz', '33', 'koura', NULL, NULL, 'Batroun', 0, 0, 1, 0, 5, 5, 10, 0),
+(43, 33, 33, 33, '', 'fawz', '33', 'rr', NULL, NULL, 'Batroun', 0, 0, 1, 0, 5, 5, 10, 0),
+(44, 33, 33, 33, '', 'fawz', '33', 'ffgfg', NULL, NULL, 'Akkar', 0, 0, 1, 0, 5, 5, 10, 0),
+(45, 33, 33, 33, '', 'example2', '333333', 'example2', NULL, NULL, 'Akkar', 0, 0, 1, 0, 5, 5, 10, 1),
+(46, 33, 33, 33, '', 'example2', '333333', 'example2', NULL, NULL, 'Al Koura', 0, 0, 0, 0, 5, 5, 10, 0),
+(47, 33, 33, 33, '', 'example3', '71827262', 'example3', NULL, NULL, 'Tripoli', 1, 1, 1, 0, 10, 10, 20, 0);
 
 -- --------------------------------------------------------
 
@@ -500,13 +512,13 @@ ALTER TABLE `workers`
 -- AUTO_INCREMENT for table `clients`
 --
 ALTER TABLE `clients`
-  MODIFY `c_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `c_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `deliveries`
 --
 ALTER TABLE `deliveries`
-  MODIFY `d_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=205;
+  MODIFY `d_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=209;
 
 --
 -- AUTO_INCREMENT for table `messages`
@@ -518,13 +530,13 @@ ALTER TABLE `messages`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `o_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `o_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- AUTO_INCREMENT for table `packages`
 --
 ALTER TABLE `packages`
-  MODIFY `p_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `p_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
 -- AUTO_INCREMENT for table `payment`
