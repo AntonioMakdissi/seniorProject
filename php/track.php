@@ -91,7 +91,9 @@ require_once('employee.php'); ?>
       Cost: <?php echo $row['f_price']; ?>
       </br>
       Cash on delivery: <?php echo $row['pay_at_delivery'] ? "yes" : "no"; ?>
-
+      </br>
+      Sender pays: <?php echo $row['sender_pays'] ? "yes" : "no"; ?>
+      
       <table class="table table-striped">
         <thead>
           <tr>

@@ -9,7 +9,8 @@ extract($_POST);
 //check checkboxes
 $fragile = isset($_POST['fragile']) ? true : false;
 $pay_at_delivery = isset($_POST['pay_at_delivery']) ? true : false;
-
+$urgent = isset($_POST['urgent']) ? true : false;
+$sender_pays = isset($_POST['receiver_pays']) ? false : true;
 
 $to_district = str_replace("%20", " ", $_POST['to_district']);
 
@@ -31,8 +32,8 @@ if ($o_price=="") {
 $f_price = $o_price + $cost + $charge;
 
 
-$query = "INSERT into packages(width, height, weight, message, to_name, to_phone, to_address,to_district, fragile, o_price, cost, charge, f_price, pay_at_delivery) 
-values('$width','$height','$weight', '$message', '$to_name', '$to_phone', '$to_address', '$to_district', '$fragile', '$o_price', '$cost', '$charge', '$f_price', '$pay_at_delivery')";
+$query = "INSERT into packages(width, height, weight, message, to_name, to_phone, to_address,to_district, fragile, urgent, sender_pays, o_price, cost, charge, f_price, pay_at_delivery) 
+values('$width','$height','$weight', '$message', '$to_name', '$to_phone', '$to_address', '$to_district', '$fragile', '$urgent', '$sender_pays', '$o_price', '$cost', '$charge', '$f_price', '$pay_at_delivery')";
 
 if (mysqli_query($link, $query)) {
     //echo mysqli_insert_id($link); //debug

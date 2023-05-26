@@ -20,6 +20,8 @@ require_once('php/connection.php'); ?>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
 
+  <!-- captcha -->
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 
 <body>
@@ -81,7 +83,9 @@ require_once('php/connection.php'); ?>
                       <label for="password"><i class="fa fa-lock"></i> Password</label>
                       <input type="password" required name="password" class="form-control" id="password" placeholder="Enter password">
                     </div>
-
+                    <div class="form-group">
+                      <div class="g-recaptcha" data-sitekey="6LcKXUAmAAAAAHoTU54hnMb9KwAu-fDz00wvgfsD"></div>
+                    </div>
                     <div class="col-md-12 text-center">
 
                       <div class="loading">Loading</div>
@@ -151,7 +155,9 @@ require_once('php/connection.php'); ?>
                       <label for="phone_number"><i class="fa fa-phone"></i> Phone Number</label>
                       <input type="tel" class="form-control" name="phone" id="phone" required placeholder="Enter phone number" pattern="[0-9+\\-]*" onkeypress="return event.charCode >= 48 && event.charCode <= 57 || event.keyCode === 43 || event.keyCode === 45">
                     </div>
-
+                    <div class="form-group">
+                      <div class="g-recaptcha" data-sitekey="6LcKXUAmAAAAAHoTU54hnMb9KwAu-fDz00wvgfsD"></div>
+                    </div>
                     <div class="col-md-12 text-center">
                       <div class="loading">Loading</div>
 

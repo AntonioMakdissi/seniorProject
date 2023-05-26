@@ -108,7 +108,9 @@ require_once('php/stats.php');
                 <th>Drop off</th>
                 <th>Price</th>
                 <th>Cash?</th>
+                <th>Payer</th>
                 <th>Fragile?</th>
+                <th>Urgent?</th>
                 <th>Status</th>
                 <th colspan="2">Date and time</th>
                 <?php
@@ -125,31 +127,39 @@ require_once('php/stats.php');
               <?php
               $current_location = $_SESSION['branch'];
               $query = "SELECT *
-              FROM orders
-              NATURAL JOIN packages NATURAL JOIN clients
-              NATURAL JOIN (
-                  SELECT o_id, MAX(d_id) AS max_d_id
-                  FROM deliveries
-                  GROUP BY o_id
-              ) AS last_delivery
-              NATURAL JOIN deliveries
-              WHERE (current_location = '$current_location'
-              OR (current_location='still at client' AND c_district='$current_location'))
-              AND status = 'pending'
-              AND deliveries.d_id = last_delivery.max_d_id
-              ORDER BY date
-              ";
+          FROM orders
+          NATURAL JOIN packages NATURAL JOIN clients
+          NATURAL JOIN (
+              SELECT o_id, MAX(d_id) AS max_d_id
+              FROM deliveries
+              GROUP BY o_id
+          ) AS last_delivery
+          NATURAL JOIN deliveries
+          WHERE (current_location = '$current_location'
+          OR (current_location='still at client' AND c_district='$current_location'))
+          AND status = 'pending'
+          AND deliveries.d_id = last_delivery.max_d_id
+          ORDER BY urgent DESC, date DESC";
+
               $result = mysqli_query($link, $query);
               if ($result) {
                 if (mysqli_num_rows($result) > 0) {
                   while ($row = mysqli_fetch_assoc($result)) {
                     $cash = 'yes';
-                    $fragile= 'yes';
+                    $fragile = 'yes';
+                    $payer = 'sender';
+                    $urgent = 'yes';
                     if ($row["pay_at_delivery"] == 0) {
                       $cash = 'no';
                     }
                     if ($row["fragile"] == 0) {
-                      $fragile= 'no';
+                      $fragile = 'no';
+                    }
+                    if ($row["urgent"] == 0) {
+                      $urgent = 'no';
+                    }
+                    if ($row["sender_pays"] == 0) {
+                      $payer = 'receiver';
                     }
                     echo "<tr>
           <td>#" . $row["o_id"] . "</td>
@@ -163,7 +173,9 @@ require_once('php/stats.php');
           <td>" . $row["to_address"] . "</td>
           <td>" . $row["f_price"] . "$</td>
           <td>" . $cash . "</td>
+          <td>" . $payer . "</td>
           <td>" . $fragile . "</td>
+          <td>" . $urgent . "</td>
           <td>" . $row["status"] . "</td>
           <td  colspan=\"2\">" . $row["timestamp"] . "</td>
         </tr>";

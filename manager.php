@@ -107,7 +107,7 @@ if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin']) {
                 OR (current_location='still at client' AND c_district='$current_location'))
                 AND status = '$status'
                 AND deliveries.d_id = last_delivery.max_d_id
-                ORDER BY date";
+                ORDER BY urgent DESC, date";
               } else {
                 $query = "SELECT * FROM orders NATURAL JOIN packages NATURAL JOIN clients
                 NATURAL JOIN (
@@ -119,20 +119,28 @@ if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin']) {
                 WHERE (current_location = '$current_location'
                 OR (current_location='still at client' AND c_district='$current_location'))
                 AND status != 'pending'
-                AND deliveries.d_id = last_delivery.max_d_id ORDER BY date DESC";
+                AND deliveries.d_id = last_delivery.max_d_id ORDER BY urgent DESC, date DESC";
               }
               $result = mysqli_query($link, $query);
               if (($result) && (mysqli_num_rows($result) > 0)) {
 
                 while ($row = mysqli_fetch_assoc($result)) {
-                  $fragile = 'yes';
-                  if ($row["fragile"] == 0) {
-                    $fragile = 'no';
-                  }
                   $cash = 'yes';
-                  if ($row["pay_at_delivery"] == 0) {
-                    $cash = 'no';
-                  }
+                    $fragile = 'yes';
+                    $payer = 'sender';
+                    $urgent = 'yes';
+                    if ($row["pay_at_delivery"] == 0) {
+                      $cash = 'no';
+                    }
+                    if ($row["fragile"] == 0) {
+                      $fragile = 'no';
+                    }
+                    if ($row["urgent"] == 0) {
+                      $urgent = 'no';
+                    }
+                    if ($row["sender_pays"] == 0) {
+                      $payer = 'receiver';
+                    }
                   echo "<tr>
           <td >#" . $row["o_id"] . "</td>
           <td >" . $row["c_name"] . "</td>
@@ -144,14 +152,24 @@ if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin']) {
           <td >" . $row["to_district"] . "</td>
           <td >" . $row["to_address"] . "</td>
           <td >" . $row["f_price"] . "$</td>
-          <td >" . $cash . "</td>
-          <td >" . $fragile . "</td>
-          <td >" . $row["status"] . "</td>
+          <td>" . $cash . "</td>
+          <td>" . $payer . "</td>
+          <td>" . $fragile . "</td>
+          <td>" . $urgent . "</td>
+          <td>" . $row["status"] . "</td>
           <td colspan=\"2\">" . $row["timestamp"] . "</td>
         ";
               ?>
-                  
-
+                  <?php if ($row['status'] == "failed") { ?>
+                    <!-- The button that will trigger the modal -->
+                    <td colspan="2">
+                      <!-- The button that will trigger the modal -->
+                      <button type="submit" class="submit-button" onclick="resendOrder('<?php echo $row['o_id']; ?>')">
+                        Resend order
+                      </button>
+                    </td>
+                  <?php } ?>
+                  </tr>
               <?php
                 }
               } else {

@@ -226,7 +226,22 @@
                     </div>
                   </div>
                 </div>
-
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" id="urgent" name="urgent" value="true">
+                      <label class="form-check-label" for="urgent">Same day delivery</label>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" id="receiver_pays" name="receiver_pays" value="true">
+                      <label class="form-check-label" for="receiver_pays">Receiver pays</label>
+                    </div>
+                  </div>
+                </div>
                 <div class="col-md-12">
                   <div class="form-group">
                     <div class="form-check">
