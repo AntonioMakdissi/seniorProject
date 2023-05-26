@@ -63,7 +63,7 @@ require_once("php/connection.php");
                     </ul>
                 </nav><!-- .navbar -->
             <?php } else { ?>
-                <a href="IT.php" class="logo d-flex align-items-center">
+                <a href="viewMessages.php" class="logo d-flex align-items-center">
                     <!-- Uncomment the line below if you also wish to use an image logo -->
                     <!-- <img src="assets/img/logo.png" alt=""> -->
                     <h1 style="font-family: 'Libre Baskerville', serif; padding-left: 20px;">SpeedRun</h1>

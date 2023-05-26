@@ -62,7 +62,7 @@ if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin']) {
                     </ul>
 
                 <?php } else  if ($_SESSION['type'] == 'IT') { ?>
-                    <a href="IT.php" class="logo d-flex align-items-center">
+                    <a href="viewMessages.php" class="logo d-flex align-items-center">
                         <!-- Uncomment the line below if you also wish to use an image logo -->
                         <!-- <img src="assets/img/logo.png" alt=""> -->
                         <h1 style="font-family: 'Libre Baskerville', serif; padding-left: 20px;">SpeedRun</h1>
@@ -88,12 +88,15 @@ if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin']) {
                     <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
                     <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
                     <nav id="navbar" class="navbar">
-                        <ul>
-                            <li><a href="php/history.php">History</a></li>
-                            <li><a href="php/track.php">Track</a></li>
-                            <li><a href="viewMessages.php">Messages</a></li>
-                            <li><a class="get-a-quote" href="php/logout.php">Logout</a></li>
-                        </ul>
+                    <ul>
+            <!-- <li><a href="client.html" class="active">Home</a></li> -->
+            <li><a href="branchOrders.php">Home</a></li>
+            <li><a href="manager.php">History</a></li>
+            <li><a href="outsidetrack.php">Track</a></li>
+            <li><a href="viewMessages.php">Messages</a></li>
+            <li><a href="common_password.php">Change Password</a></li>
+            <li><a class="get-a-quote" href="php/logout.php">Logout</a></li>
+          </ul>
                     </nav>
                 <?php } else if ($_SESSION['type'] == 'worker') { ?>
                     <a href="branchOrders.php" class="logo d-flex align-items-center">

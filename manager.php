@@ -11,12 +11,12 @@ if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin']) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet">
   <title>
-    Profit
+    History
   </title>
-  <link rel="stylesheet" href="../assets/css/header.css">
-  <link rel="stylesheet" href="../assets/css/manager.css">
+  <link rel="stylesheet" href="assets/css/header.css">
+  <link rel="stylesheet" href="assets/css/manager.css">
   <!-- Favicons -->
-  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/icon.jfif" rel="icon">
   <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
@@ -38,7 +38,7 @@ if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin']) {
   <header id="header" class="header d-flex alignems-center fixed-top ">
     <div class="container-fluid container-xl d-flex alignems-center justify-content-between">
 
-      <a href="index.html" class="logo d-flex alignems-center">
+      <a href="branchOrders.php" class="logo d-flex alignems-center">
         <!-- Uncomment the line below if you also wish to use an image logo -->
         <!-- <img src="assets/img/logo.png" alt=""> -->
         <h1 style="font-family: 'Libre Baskerville', serif;">SpeedRun</h1>
@@ -48,14 +48,15 @@ if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin']) {
       <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
       <nav id="navbar" class="navbar">
         <ul>
-          <!-- <li><a href="client.html" class="active">Home</a></li> -->
-          <li><a href="branchOrders.php">Home</a></li>
-          <li><a href="php/manager.php">History</a></li>
-          <li><a href="php/track.php">Track</a></li>
-          <li><a href="viewMessages.php">Messages</a></li>
-          <li><a href="common_password.php">Change Password</a></li>
-          <li><a class="get-a-quote" href="php/logout.php">Logout</a></li>
-        </ul>
+        <ul>
+            <!-- <li><a href="client.html" class="active">Home</a></li> -->
+            <li><a href="branchOrders.php">Home</a></li>
+            <li><a href="manager.php">History</a></li>
+            <li><a href="outsidetrack.php">Track</a></li>
+            <li><a href="viewMessages.php">Messages</a></li>
+            <li><a href="common_password.php">Change Password</a></li>
+            <li><a class="get-a-quote" href="php/logout.php">Logout</a></li>
+          </ul>
       </nav><!-- .navbar -->
 
     </div>
@@ -70,21 +71,21 @@ if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin']) {
           <table class="table table-striped">
             <thead>
               <tr>
-                <th>Order number </th>
+              <th>Order number </th>
                 <th>From</th>
-                <th>Phone number</th>
+                <th>Phone sender</th>
                 <th>Address</th>
                 <th>Current location</th>
                 <th>To</th>
-                <th>Phone number</th>
+                <th>Phone receiver</th>
                 <th>Last stop</th>
-                <th>Drop off address</th>
-                <th>Price for customer</th>
+                <th>Drop off</th>
+                <th>Price</th>
                 <th>Cash?</th>
                 <th>Fragile?</th>
                 <th>Status</th>
-                <th>Date and time</th>
-                <th>Action</th>
+                <th colspan="2">Date and time</th>
+                <th colspan="2">Action</th>
               </tr>
             </thead>
             <tbody>
@@ -133,25 +134,25 @@ if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin']) {
                     $cash = 'no';
                   }
                   echo "<tr>
-          <td>#" . $row["o_id"] . "</td>
-          <td>" . $row["c_name"] . "</td>
-          <td>" . $row["c_phone"] . "</td>
-          <td>" . $row["c_address"] . "</td>
-          <td>" . $row["current_location"] . "</td>
-          <td>" . $row["to_name"] . "</td>
-          <td>" . $row["to_phone"] . "</td>
-          <td>" . $row["to_district"] . "</td>
-          <td>" . $row["to_address"] . "</td>
-          <td>" . $row["f_price"] . "$</td>
-          <td>" . $cash . "</td>
-          <td>" . $fragile . "</td>
-          <td>" . $row["status"] . "</td>
-          <td>" . $row["timestamp"] . "</td>
+          <td >#" . $row["o_id"] . "</td>
+          <td >" . $row["c_name"] . "</td>
+          <td >" . $row["c_phone"] . "</td>
+          <td >" . $row["c_address"] . "</td>
+          <td >" . $row["current_location"] . "</td>
+          <td >" . $row["to_name"] . "</td>
+          <td >" . $row["to_phone"] . "</td>
+          <td >" . $row["to_district"] . "</td>
+          <td >" . $row["to_address"] . "</td>
+          <td >" . $row["f_price"] . "$</td>
+          <td >" . $cash . "</td>
+          <td >" . $fragile . "</td>
+          <td >" . $row["status"] . "</td>
+          <td colspan=\"2\">" . $row["timestamp"] . "</td>
         ";
               ?>
-                  <td>
+                  <td colspan="2">
                     <!-- The button that will trigger the modal -->
-                    <button type="submit" class="custom-button" onclick="resendOrder('<?php echo $row['o_id']; ?>')">
+                    <button type="submit" class="submit-button" onclick="resendOrder('<?php echo $row['o_id']; ?>')">
                       Resend order
                     </button>
                   </td>
