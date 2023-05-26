@@ -92,7 +92,7 @@ require_once('php/stats.php');
       <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a href="client.html" class="active">Home</a></li>
+          <li><a href="client.php" class="active">Home</a></li>
           <li><a href="services.php">Services</a></li>
           <li><a href="php/history.php">History</a></li>
           <li><a href="php/track.php">Track</a></li>

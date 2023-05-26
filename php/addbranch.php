@@ -2,7 +2,9 @@
 require_once 'connection.php';
 session_start();
 if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin']) {
-    header('Location: ../login.php');
+    header('Content-Type: application/json');
+    echo json_encode(['error' => 'Not logged in']);
+    exit;
 }
 extract($_POST);
 
@@ -15,10 +17,22 @@ if (($result) && (mysqli_num_rows($result) < 1)) {
     if (mysqli_query($link, $query)) {
         include_once('employee.php');
         $output = promoteManager($link, $manager, $branch_location);
-        echo $output;
-        header('Location: ../addBranches.php');
-        //exit;
+        
+        // After the branch is added, fetch updated branch list
+        $query = "SELECT * FROM branches";
+        $result = mysqli_query($link, $query);
+
+        $branches = [];
+        while($row = mysqli_fetch_assoc($result)) {
+            $branches[] = $row;
+        }
+
+        header('Content-Type: application/json');
+        echo json_encode(['success' => $output, 'branches' => $branches]);
+        exit;
     }
 } else {
-    return "Already added!";
+    header('Content-Type: application/json');
+    echo json_encode(['error' => 'Already added!']);
+    exit;
 }
