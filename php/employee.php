@@ -3,9 +3,7 @@ require_once 'connection.php';
 if (session_status() == PHP_SESSION_NONE) {
 	session_start();
 }
-if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin']) {
-	header('Location: ../login.php');
-}
+
 
 //total deliveries
 function getEmpById($link, $w_id)

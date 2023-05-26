@@ -4,6 +4,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ListView;
+import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -12,22 +17,8 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.google.android.material.snackbar.Snackbar;
-
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.ListView;
-import android.widget.Toast;
-
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
-
 import com.example.cargo_tracking_app.databinding.ActivityAvailableOrdersBinding;
+import com.google.android.material.snackbar.Snackbar;
 
 import org.json.JSONArray;
 
@@ -70,19 +61,18 @@ public class availableOrders extends AppCompatActivity {
                 Snackbar.make(view, "Today's orders", Snackbar.LENGTH_LONG).setAction("Action", null).show();
 
 
-
             }
         });
     }
 
-    public boolean onCreateOptionsMenu(Menu menu) {
+    /*public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_orders, menu);
         return true;
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+        @Override
+        public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
@@ -93,13 +83,13 @@ public class availableOrders extends AppCompatActivity {
             myAdd();
 
             return true;
-        } /*else if (id == R.id.action_logout) {
+        } *//*else if (id == R.id.action_logout) {
 
             return true;
         }
-*/
+*//*
         return super.onOptionsItemSelected(item);
-    }
+    }*/
 
     public void getdatafromdb() {
         String url = "http://" + ip.trim() + "/seniorProject/CargoTrackingMobile/getorders.php?w_id=" + Integer.parseInt(w_id.trim());

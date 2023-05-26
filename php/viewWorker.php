@@ -142,6 +142,7 @@ if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin'] || ($_SESSION['type'
             while ($row = mysqli_fetch_assoc($result)) {
 
               $rmid = $row["u_id"];
+              $salary=number_format($row["salary"], 2);
               echo "<tr>   
                 <td>#" . $row["w_id"] . "</td>
                 <td>" . $row["name"] . "</td>
@@ -149,7 +150,7 @@ if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin'] || ($_SESSION['type'
                 <td>" . $row["type"] . "</td>
                 <td>" . $row["phone"] . "</td>
                 <td>" . $row["branch"] . "</td>
-                <td>" . $row["salary"] . "$</td>
+                <td>" . $salary . "$</td>
                 <td>" . $row["timestamp"] . "</td> ";
           ?>
 
