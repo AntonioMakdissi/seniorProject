@@ -25,7 +25,7 @@ if ($fragile) { //extra for fragile
 }
 
 //if price not set 
-if ($o_price=="") {
+if ($o_price == "") {
     $o_price = 0;
 }
 
@@ -49,12 +49,16 @@ if (mysqli_query($link, $query)) {
         $query = "INSERT INTO deliveries (o_id) VALUES ('$o_id');";
         if (mysqli_query($link, $query)) {
             //echo mysqli_insert_id($link);
+
             http_response_code(200);
             echo "OK $o_id";
+            if ($urgent) {
+                include_once('../notification.php');
+                notif($o_id);
+            }
             exit;
-            
         } else {
-    
+
             echo "Failed to insert into deliveries";
         }
     } else {

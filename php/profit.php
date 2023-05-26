@@ -96,6 +96,7 @@ if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin']) {
               <tr>
                 <th>Order number </th>
                 <th>Date and time</th>
+
                 <th>Fragile</th>
                 <th>Urgent</th>
                 <th>Cost</th>
@@ -119,13 +120,27 @@ if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin']) {
               if (($result) && (mysqli_num_rows($result) > 0)) {
 
                 while ($row = mysqli_fetch_assoc($result)) {
-
+                  $cash = 'yes';
+                  $fragile = 'yes';
+                  $payer = 'sender';
+                  $urgent = 'yes';
+                  if ($row["pay_at_delivery"] == 0) {
+                    $cash = 'no';
+                  }
+                  if ($row["fragile"] == 0) {
+                    $fragile = 'no';
+                  }
+                  if ($row["urgent"] == 0) {
+                    $urgent = 'no';
+                  }
+                  if ($row["sender_pays"] == 0) {
+                    $payer = 'receiver';
+                  }
                   echo "<tr>   
                   <td>#" . $row["o_id"] . "</td>
                   <td>" . $row["date"] . "</td>
-                  <td>" . $cash . "</td>
-          <td>" . $fragile . "</td>
-          <td>" . $urgent . "</td>
+                  <td>" . $fragile . "</td>
+                  <td>" . $urgent . "</td>
                   <td>" . $row["cost"] . "$</td>
                   <td>" . $row["charge"] . "</td>
                   <td>" . $row["f_price"] . "</td>

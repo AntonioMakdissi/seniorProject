@@ -1,8 +1,12 @@
 package com.example.cargo_tracking_app;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.Menu;
@@ -11,7 +15,9 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -20,6 +26,8 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.cargo_tracking_app.databinding.ActivityMainBinding;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.messaging.FirebaseMessaging;
 
@@ -52,12 +60,23 @@ public class MainActivity extends AppCompatActivity {
 
         // Obtain the device token
         /*FirebaseMessaging.getInstance().getToken()
-                .addOnCompleteListener(task -> {
-                    if (task.isSuccessful() && task.getResult() != null) {
+                .addOnCompleteListener(new OnCompleteListener<String>() {
+                    @Override
+                    public void onComplete(@NonNull Task<String> task) {
+                        if (!task.isSuccessful()) {
+                            System.out.println("Fetching FCM registration token failed");
+                            return;
+                        }
+
+                        // Get new FCM registration token
                         String token = task.getResult();
-                        // TODO: Send the token to your server for targeting devices
-                    } else {
-                        // TODO: Handle token retrieval error
+
+                        // Log and toast
+
+                        System.out.println(token);
+                        Toast.makeText(MainActivity.this, token, Toast.LENGTH_SHORT).show();
+                        EditText edToken=(EditText) findViewById(R.id.token);
+                        edToken.setText(token+"");
                     }
                 });*/
     }
@@ -197,5 +216,34 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
         return false;
+    }
+
+    public void sendNotification(View v) {
+        int notificationId = 1;
+// Create an intent to launch when the user taps the notification
+        Intent intent = new Intent(getApplicationContext(), availableOrders.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext(), 0, intent, 0);
+
+// Build the notification
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext(), "channel_id").setSmallIcon(R.drawable.icon).setContentTitle("New Urgent Order").setContentText("Click here").setContentIntent(pendingIntent).setAutoCancel(true);
+
+// Get the NotificationManager
+        NotificationManager notificationManager = (NotificationManager) getApplicationContext().getSystemService(Context.NOTIFICATION_SERVICE);
+
+// Check if the device is running Android 8.0 (Oreo) or higher
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            // Create a notification channel (required for Android 8.0 and above)
+            String channelId = "channel_id";
+            String channelName = "Channel Name";
+            NotificationChannel channel = new NotificationChannel(channelId, channelName, NotificationManager.IMPORTANCE_DEFAULT);
+            notificationManager.createNotificationChannel(channel);
+            builder.setChannelId(channelId);
+        }
+
+// Send the notification
+        notificationManager.notify(notificationId, builder.build());
+
+
     }
 }

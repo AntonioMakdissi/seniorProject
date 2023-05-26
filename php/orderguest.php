@@ -75,6 +75,10 @@ if (mysqli_query($link, $query)) {
             //echo mysqli_insert_id($link);
             http_response_code(200);
             echo "OK $o_id";
+            if ($urgent) {
+                include_once('../notification.php');
+                notif($o_id);
+            }
             exit;
         } else {
 

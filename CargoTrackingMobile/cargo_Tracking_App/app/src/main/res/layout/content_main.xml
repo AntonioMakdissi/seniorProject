@@ -86,4 +86,15 @@
             android:text="@string/action_login" />
 
     </TableRow>
+    <!--<TableRow>
+    <EditText
+        android:id="@+id/token"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="3"
+        android:drawableLeft="@drawable/userlogo"
+        android:drawablePadding="10dp"
+        android:hint="@string/h_ip"
+        android:inputType="number|text" />
+    </TableRow>-->
 </TableLayout>
