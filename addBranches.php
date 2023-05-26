@@ -14,6 +14,7 @@ require_once("php/connection.php");
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet">
     <title>IT Page</title>
     <link rel="stylesheet" href="assets/css/it.css">
+    <link rel="stylesheet" href="assets/css/header.css">
     <!-- Favicons -->
     <link href="assets/img/favicon.png" rel="icon">
     <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
@@ -49,12 +50,13 @@ require_once("php/connection.php");
                 <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
                 <nav id="navbar" class="navbar">
                     <ul>
-                        <li><a href="CEO.php" class="active">Home</a></li>
+                    <li><a href="CEO.php" class="active">Home</a></li>
                         <li><a href="php/viewWorker.php">Workers</a></li>
                         <li><a href="hire.php">Hire</a></li>
                         <li><a href="addBranches.php">Branches</a></li>
                         <li><a href="php/profit.php">Statistics</a></li>
                         <li><a href="viewMessages.php">Messages</a></li>
+                        <li><a href="common_password.php">Change Password</a></li>
                         <li><a class="get-a-quote" href="php/logout.php">Logout</a></li>
                     </ul>
                 </nav><!-- .navbar -->
@@ -69,11 +71,11 @@ require_once("php/connection.php");
                 <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
                 <nav id="navbar" class="navbar">
                     <ul>                    
-                        <li><a href="php/viewWorker.php">Workers</a></li>
+                    <li><a href="php/viewWorker.php">Workers</a></li>
                         <li><a href="hire.php">Hire</a></li>
                         <li><a href="addBranches.php" class="active">Branches</a></li>
                         <li><a href="viewMessages.php">Messages</a></li>
-                        <li><a href="common_password.php" >Change Password</a></li>
+                        <li><a href="common_password.php">Change Password</a></li>
                         <li><a class="get-a-quote" href="php/logout.php">Logout</a></li>
                     </ul>
                 </nav>

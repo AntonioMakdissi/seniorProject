@@ -54,12 +54,13 @@ if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin']) {
         ?>
           <ul>
             <li><a href="../CEO.php" class="active">Home</a></li>
-            <li><a href="viewWorker.php">Workers</a></li>
-            <li><a href="../hire.php">Hire</a></li>
-            <li><a href="../addBranches.php">Branches</a></li>
-            <li><a href="profit.php">Statistics</a></li>
-            <li><a href="../viewMessages.php">Messages</a></li>
-            <li><a class="get-a-quote" href="logout.php">Logout</a></li>
+          <li><a href="viewWorker.php">Workers</a></li>
+          <li><a href="../hire.php">Hire</a></li>
+          <li><a href="../addBranches.php">Branches</a></li>
+          <li><a href="profit.php">Statistics</a></li>
+          <li><a href="../viewMessages.php">Messages</a></li>
+          <li><a href="../common_password.php">Change Password</a></li>
+          <li><a class="get-a-quote" href="logout.php">Logout</a></li>
           </ul>
 
         <?php } else { ?>

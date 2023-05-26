@@ -20,7 +20,7 @@ require_once('php/stats.php');
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/icon.jfif" rel="icon">
   <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
@@ -93,10 +93,9 @@ require_once('php/stats.php');
       <nav id="navbar" class="navbar">
         <ul>
           <li><a href="client.html" class="active">Home</a></li>
-          <li><a href="services.html">Services</a></li>
+          <li><a href="services.php">Services</a></li>
           <li><a href="php/history.php">History</a></li>
           <li><a href="php/track.php">Track</a></li>
-          <li><a href="contact.html">Contact</a></li>
           <li><a href="viewMessages.php">Messages</a></li>
           <li><a href="common_password.php">Change Password</a></li>
           <li><a class="get-a-quote" href="php/logout.php">Logout</a></li>

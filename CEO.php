@@ -39,8 +39,8 @@ require_once('php/employee.php');
   <link href="assets/vendor/aos/aos.css" rel="stylesheet">
 
   <!-- Template Main CSS File -->
-  <link href="assets/css/main.css" rel="stylesheet">
-  <link href="assets/css/CEO.css" rel="stylesheet">
+  <link href="assets/css/navbar.css" rel="stylesheet">
+  <!-- <link href="assets/css/CEO.css" rel="stylesheet"> -->
 
   <!-- =======================================================
   * Template Name: Logis
@@ -58,7 +58,7 @@ require_once('php/employee.php');
   <header id="header" class="header d-flex alignems-center fixed-top">
     <div class="container-fluid container-xl d-flex alignems-center justify-content-between">
 
-      <a href="index.html" class="logo d-flex alignems-center">
+      <a href="CEO.php" class="logo d-flex alignems-center">
         <!-- Uncomment the line below if you also wish to use an image logo -->
         <!-- <img src="assets/img/logo.png" alt=""> -->
         <h1 style="font-family: 'Libre Baskerville', serif;">SpeedRun</h1>
@@ -84,7 +84,7 @@ require_once('php/employee.php');
   <!-- End Header -->
 
   <!-- ======= Hero Section ======= -->
-  <section id="hero" class="hero d-flex alignems-center">
+  <section id="hero" class="hero d-flex alignems-center" style="padding-top: 10%; height: 100%; ">
     <div class="container">
       <div class="row gy-4 d-flex justify-content-between">
         <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center">
@@ -139,7 +139,7 @@ require_once('php/employee.php');
     <div data-aos="fade-up">
 
       <div class="container" style="margin-top: 100px;">
-        <table>
+        <table class="statistics-table">
           <thead>
             <tr>
               <th>Statistics of the month(recent 30 days)</th>
@@ -180,8 +180,8 @@ require_once('php/employee.php');
         </table>
       </div>
       <!--  -->
-      <div class="container" style="margin-top: 100px;">
-        <table>
+      <div class="container" style="margin-top: 5%; margin-bottom:5%;">
+        <table class="statistics-table">
           <thead>
             <tr>
               <th>Statistics(lifetime)</th>
@@ -223,18 +223,20 @@ require_once('php/employee.php');
 
     </div>
   </main>
-  <!-- Vendor JS Files -->
-  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
-  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-  <script src="assets/vendor/aos/aos.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
+  <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
-  <!-- Template Main JS File -->
-  <script src="assets/js/main.js"></script>
-  <!--  Modified scripts-->
-  <script src="index.js"></script>
+<div id="preloader"></div>
+
+<!-- Vendor JS Files -->
+<script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+<script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+<script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+<script src="assets/vendor/aos/aos.js"></script>
+<script src="assets/vendor/php-email-form/validate.js"></script>
+
+<!-- Template Main JS File -->
+<script src="assets/js/main.js"></script>
 </body>
 
 </html>
