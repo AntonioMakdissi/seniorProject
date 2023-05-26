@@ -19,7 +19,7 @@ require_once('php/stats.php');
   <link rel="stylesheet" href="assets/css/header.css">
   <link rel="stylesheet" href="assets/css/manager.css">
   <!-- Favicons -->
-  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/icon.jfif" rel="icon">
   <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
@@ -45,7 +45,7 @@ require_once('php/stats.php');
       <?php
       if ($_SESSION['type'] == 'BranchManager') {
       ?>
-        <a href="manager.php" class="logo d-flex align-items-center">
+        <a href="branchOrders.php" class="logo d-flex align-items-center">
           <!-- Uncomment the line below if you also wish to use an image logo -->
           <!-- <img src="assets/img/logo.png" alt=""> -->
           <h1 style="font-family: 'Libre Baskerville', serif; padding-left: 20px;">SpeedRun</h1>
@@ -99,18 +99,18 @@ require_once('php/stats.php');
               <tr>
                 <th>Order number </th>
                 <th>From</th>
-                <th>Phone number</th>
+                <th>Phone sender</th>
                 <th>Address</th>
                 <th>Current location</th>
                 <th>To</th>
-                <th>Phone number</th>
+                <th>Phone receiver</th>
                 <th>Last stop</th>
-                <th>Drop off address</th>
-                <th>Price for customer</th>
+                <th>Drop off</th>
+                <th>Price</th>
                 <th>Cash?</th>
                 <th>Fragile?</th>
                 <th>Status</th>
-                <th>Date and time</th>
+                <th colspan="2">Date and time</th>
                 <?php
                 if ($_SESSION['type'] == 'worker') {
                 ?>
@@ -165,7 +165,7 @@ require_once('php/stats.php');
           <td>" . $cash . "</td>
           <td>" . $fragile . "</td>
           <td>" . $row["status"] . "</td>
-          <td>" . $row["timestamp"] . "</td>
+          <td  colspan=\"2\">" . $row["timestamp"] . "</td>
         </tr>";
                   }
                 } else {
