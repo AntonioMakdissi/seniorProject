@@ -12,7 +12,6 @@ if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin'] || ($_SESSION['type'
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet">
-  <title>IT Page</title>
   <link rel="stylesheet" href="../assets/css/header.css">
   <link href="../assets/css/viewWorker.css" rel="stylesheet">
 
@@ -65,16 +64,16 @@ if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin'] || ($_SESSION['type'
         <?php
         if ($_SESSION['type'] == 'CEO') {
         ?>
-          <ul>
-            <li><a href="../CEO.php">Home</a></li>
-            <li><a href="viewWorker.php" class="active">Workers</a></li>
-            <li><a href="../hire.php">Hire</a></li>
-            <li><a href="../addBranches.php">Branches</a></li>
-            <li><a href="profit.php">Statistics</a></li>
-            <li><a href="../viewMessages.php">Messages</a></li>
-            <li><a class="get-a-quote" href="logout.php">Logout</a></li>
-          </ul>
-
+        <ul>
+       <li><a href="../CEO.php" class="active">Home</a></li>
+          <li><a href="viewWorker.php">Workers</a></li>
+          <li><a href="../hire.php">Hire</a></li>
+          <li><a href="../addBranches.php">Branches</a></li>
+          <li><a href="profit.php">Statistics</a></li>
+          <li><a href="../viewMessages.php">Messages</a></li>
+          <li><a href="../common_password.php">Change Password</a></li>
+          <li><a class="get-a-quote" href="logout.php">Logout</a></li>
+        </ul>
         <?php } else { ?>
           <ul>
             <li><a href="viewWorker.php" class="active">Workers</a></li>
@@ -90,9 +89,9 @@ if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin'] || ($_SESSION['type'
   </header><!-- End Header -->
 
 
-  <section id="hero" class="hero d-flex align-items-center" style="padding-top: 20px; height: 100%; ">
+  <section id="hero" class="hero d-flex align-items-center" style="padding-top: ; height: 100%; ">
     <div class="container mx-auto px-4 py-12">
-      <div class="container" style="margin-top: 20%">
+      <div class="container" style="margin-top: 5%">
         <h1 style="color:white ;text-align: center; font-size:2em; ">Workers</h1>
 
         <form style="z-index: 9999;" id="searchForm" action="viewWorker.php" method="post">

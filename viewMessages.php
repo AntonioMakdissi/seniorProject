@@ -12,11 +12,11 @@ require_once("php/connection.php");
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet">
-    <title>IT Page</title>
+    <title>Messages Page</title>
     <link rel="stylesheet" href="assets/css/messages.css">
-    <!-- Favicons -->
-    <link href="assets/img/favicon.png" rel="icon">
-    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <!-- Favicons -->
+  <link href="assets/img/icon.jfif" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -52,17 +52,18 @@ require_once("php/connection.php");
                 </a>
                 <nav id="navbar" class="navbar">
                     <ul>
-                        <li><a href="CEO.php" class="active">Home</a></li>
-                        <li><a href="php/viewWorker.php">Workers</a></li>
-                        <li><a href="hire.php">Hire</a></li>
-                        <li><a href="addBranches.php">Branches</a></li>
-                        <li><a href="php/profit.php">Statistics</a></li>
-                        <li><a href="viewMessages.php">Messages</a></li>
-                        <li><a class="get-a-quote" href="php/logout.php">Logout</a></li>
+                    <li><a href="CEO.php" class="active">Home</a></li>
+          <li><a href="php/viewWorker.php">Workers</a></li>
+          <li><a href="hire.php">Hire</a></li>
+          <li><a href="addBranches.php">Branches</a></li>
+          <li><a href="php/profit.php">Statistics</a></li>
+          <li><a href="viewMessages.php">Messages</a></li>
+          <li><a href="common_password.php">Change Password</a></li>
+          <li><a class="get-a-quote" href="php/logout.php">Logout</a></li>
                     </ul>
                 </nav><!-- .navbar -->
             <?php } else  if ($_SESSION['type'] == 'IT') { ?>
-                <a href="IT.php" class="logo d-flex align-items-center">
+                <a href="ViewMessages.php" class="logo d-flex align-items-center">
                     <!-- Uncomment the line below if you also wish to use an image logo -->
                     <!-- <img src="assets/img/logo.png" alt=""> -->
                     <h1 style="font-family: 'Libre Baskerville', serif; padding-left: 20px;">SpeedRun</h1>

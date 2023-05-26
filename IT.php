@@ -14,6 +14,7 @@ require_once("php/connection.php");
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet">
     <title>IT Page</title>
     <link rel="stylesheet" href="assets/css/it.css">
+    <link rel="stylesheet" href="assets/css/header.css">
     <!-- Favicons -->
     <link href="assets/img/favicon.png" rel="icon">
     <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">

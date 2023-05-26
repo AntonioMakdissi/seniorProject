@@ -8,17 +8,17 @@ if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin']) {
 <html>
 
 <head>
-    <title>Workers</title>
+    <title>Passwords</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet">
-    <title>IT Page</title>
+    <title>Password Page</title>
     <link rel="stylesheet" href="assets/css/header.css">
     <link rel="stylesheet" href="assets/css/password.css">
 
-    <!-- Favicons -->
-    <link href="assets/img/favicon.png" rel="icon">
-    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+      <!-- Favicons -->
+  <link href="assets/img/icon.jfif" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -51,14 +51,14 @@ if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin']) {
                     <h1 style="font-family: 'Libre Baskerville', serif; padding-left: 20px;">SpeedRun</h1>
                 </a>
                 <nav id="navbar" class="navbar">
-                    <ul>
-                        <li><a href="CEO.php" class="active">Home</a></li>
-                        <li><a href="php/viewWorker.php">Workers</a></li>
-                        <li><a href="hire.php">Hire</a></li>
-                        <li><a href="addBranches.php">Branches</a></li>
-                        <li><a href="php/profit.php">Statistics</a></li>
-                        <li><a href="viewMessages.php">Messages</a></li>
-                        <li><a class="get-a-quote" href="php/logout.php">Logout</a></li>
+                    <ul><li><a href="CEO.php" class="active">Home</a></li>
+          <li><a href="php/viewWorker.php">Workers</a></li>
+          <li><a href="hire.php">Hire</a></li>
+          <li><a href="addBranches.php">Branches</a></li>
+          <li><a href="php/profit.php">Statistics</a></li>
+          <li><a href="viewMessages.php">Messages</a></li>
+          <li><a href="common_password.php">Change Password</a></li>
+          <li><a class="get-a-quote" href="php/logout.php">Logout</a></li>
                     </ul>
 
                 <?php } else  if ($_SESSION['type'] == 'IT') { ?>
