@@ -147,7 +147,9 @@ require_once('php/stats.php');
               <h3>Make an order</h3>
               <p>To place an order, please fill out the order form and submit it.</p>
               <div class="row gy-4">
-
+              <div class="col-lg-12">
+                  <h4>Receiver's Details</h4>
+                </div>
                 <div class="col-md-6">
                   <input type="text" name="to_name" class="form-control" placeholder="Recipient's name" required>
                 </div>
@@ -180,7 +182,9 @@ require_once('php/stats.php');
 
                   </select>
                 </div>
-
+                <div class="col-lg-12">
+                  <h4>Shippment Details</h4>
+                </div>
                 <div class="col-md-6">
                   <input type="tel" name="width" class="form-control" placeholder="Total width (cm)" required pattern="[0-9+\\-]*" onkeypress="return event.charCode >= 48 && event.charCode <= 57 || event.keyCode === 43 || event.keyCode === 45">
                 </div>
