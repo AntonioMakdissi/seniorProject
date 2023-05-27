@@ -22,7 +22,9 @@ if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin'] || ($_SESSION['type'
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+    rel="stylesheet">
 
   <!-- Vendor CSS Files -->
   <!-- <link href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"> -->
@@ -45,7 +47,7 @@ if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin'] || ($_SESSION['type'
     <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
       <?php
       if ($_SESSION['type'] == 'CEO') {
-      ?>
+        ?>
         <a href="../CEO.php" class="logo d-flex align-items-center">
           <!-- Uncomment the line below if you also wish to use an image logo -->
           <!-- <img src="../assets/img/logo.png" alt=""> -->
@@ -63,7 +65,7 @@ if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin'] || ($_SESSION['type'
       <nav id="navbar" class="navbar">
         <?php
         if ($_SESSION['type'] == 'CEO') {
-        ?>
+          ?>
           <ul>
             <li><a href="../CEO.php" class="active">Home</a></li>
             <li><a href="viewWorker.php">Workers</a></li>
@@ -96,10 +98,13 @@ if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin'] || ($_SESSION['type'
         <form style="z-index: 9999;" id="searchForm" action="viewWorker.php" method="GET">
           <div class="search-container">
             <label for="search-input" class="search-label">Search for Worker:</label>
-            <input class="search-input" name="worker" type="text" id="search-input" placeholder="Enter worker name, ID, or branch" value="<?php echo isset($_GET['worker']) ? $_GET['worker'] : ''; ?>">
+            <input class="search-input" name="worker" type="text" id="search-input"
+              placeholder="Enter worker name, ID, or branch"
+              value="<?php echo isset($_GET['worker']) ? $_GET['worker'] : ''; ?>">
             <button class="search-button" name="submit" type="submit" id="searchButton">Search</button>
         </form>
-        <a href="http://localhost/seniorProject/php/viewWorker.php"><button class="show-all-button" name="show" type="button" id="showButton">Show All</button> </a>
+        <a href="http://localhost/seniorProject/php/viewWorker.php"><button class="show-all-button" name="show"
+            type="button" id="showButton">Show All</button> </a>
       </div>
       <table class="table table-striped">
         <thead>
@@ -114,7 +119,7 @@ if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin'] || ($_SESSION['type'
             <th>Date joined</th>
             <?php
             if ($_SESSION['type'] == 'IT') {
-            ?>
+              ?>
               <th>Passwords</th>
             <?php } ?>
             <th>Action</th>
@@ -134,7 +139,7 @@ if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin'] || ($_SESSION['type'
           }
 
           $perPage = 10; // Change this to how many items you would like per page
-
+          
           if (isset($_GET['page']) && !empty($_GET['page'])) {
             $page = $_GET['page'];
           } else {
@@ -192,8 +197,10 @@ if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin'] || ($_SESSION['type'
       </table>
 
       <div class="flex justify-center mt-4">
-        <?php for ($i = 1; $i <= $totalPages; $i++) : ?>
-          <a style="text-decoration: none;" href="?page=<?= $i; ?>&worker=<?php echo isset($_GET['worker']) ? $_GET['worker'] : ''; ?>" class="mx-2 px-4 py-2 text-white bg-blue-500 hover:bg-blue-700 rounded-full <?= $i == $page ? 'bg-green-500' : '' ?>"><?= $i; ?></a>
+        <?php for ($i = 1; $i <= $totalPages; $i++): ?>
+          <a style="text-decoration: none;"
+            href="?page=<?= $i; ?>&worker=<?php echo isset($_GET['worker']) ? $_GET['worker'] : ''; ?>"
+            class="mx-2 px-4 py-2 text-white bg-blue-500 hover:bg-blue-700 rounded-full <?= $i == $page ? 'bg-green-500' : '' ?>"><?= $i; ?></a>
         <?php endfor; ?>
       </div>
 
@@ -204,7 +211,9 @@ if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin'] || ($_SESSION['type'
             <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
           </div>
           <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
-          <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full" role="dialog" aria-modal="true" aria-labelledby="modal-headline">
+          <div
+            class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full"
+            role="dialog" aria-modal="true" aria-labelledby="modal-headline">
             <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
               <div class="sm:flex sm:items-start">
                 <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
@@ -215,17 +224,24 @@ if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin'] || ($_SESSION['type'
                     <form id="changePasswordForm" method="POST" action="changePass.php">
                       <div class="form-group">
                         <label for="newPassword" class="block text-sm font-medium text-gray-700">New Password</label>
-                        <input name="newPassword" type="password" required class="mt-1 form-control block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" id="newPassword" placeholder="New Password">
+                        <input name="newPassword" type="password" required
+                          class="mt-1 form-control block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                          id="newPassword" placeholder="New Password">
                       </div>
                       <div class="form-group">
                         <label for="confirmPassword" class="block text-sm font-medium text-gray-700">Confirm
                           Password</label>
-                        <input name="confirmPassword" type="password" required class="mt-1 form-control block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" id="confirmPassword" placeholder="Confirm Password">
+                        <input name="confirmPassword" type="password" required
+                          class="mt-1 form-control block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                          id="confirmPassword" placeholder="Confirm Password">
                       </div>
                       <p id="passwordMatchError" class="hidden text-red-500 mt-1">Passwords do not match. Please try
                         again.</p>
                       <p id="passwordChangeError" class="hidden text-red-500 mt-1">There was an error changing the
                         password. Please try again.</p>
+                      <p id="passwordChangeSuccess" class="hidden text-green-500 mt-1">Password changed successfully!
+                      </p>
+
                       <input type="hidden" name="u_id" value="">
 
                   </div>
@@ -233,10 +249,13 @@ if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin'] || ($_SESSION['type'
               </div>
             </div>
             <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
-              <button type="submit" id="submitChangePassword" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-indigo-600 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:ml-3 sm:w-auto sm:text-sm">
+              <button type="submit" id="submitChangePassword"
+                class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-indigo-600 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:ml-3 sm:w-auto sm:text-sm">
                 Save changes
               </button>
-              <button type="button" class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm" id="modalCloseButton">
+              <button type="button"
+                class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
+                id="modalCloseButton">
                 Cancel
               </button>
               </form>
@@ -244,20 +263,76 @@ if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin'] || ($_SESSION['type'
           </div>
         </div>
       </div>
+      <!-- Popup modal fire worker -->
+      <div class="fixed z-10 inset-0 overflow-y-auto hidden" id="fireWorkerModal">
+        <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+          <div class="fixed inset-0 transition-opacity" aria-hidden="true">
+            <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
+          </div>
+          <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+          <div
+            class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full"
+            role="dialog" aria-modal="true" aria-labelledby="modal-headline">
+            <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+              <div class="sm:flex sm:items-start">
+                <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+                  <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-headline">
+                    Confirm Worker Firing
+                  </h3>
+                  <div class="mt-2">
+                    <p>Are you sure you want to fire this worker?</p>
+                    <input type="hidden" id="workerToFire" value="">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+              <button type="button" id="submitFireWorker"
+                class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:ml-3 sm:w-auto sm:text-sm">
+                Yes, Fire
+              </button>
+              <button type="button"
+                class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
+                id="modalCloseButtonFireWorker">
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
 
     </div>
 
   </section>
 
-  <script>
+  <!-- <script>
     function fireWorker(rmid) {
       if (confirm('Are you sure you want to fire this worker?')) {
         window.location.href = 'http://localhost/seniorProject/php/fireworker.php?rmid=' + rmid;
       }
     }
-  </script>
+  </script> -->
   <script>
-    document.addEventListener('keydown', function(e) {
+    function fireWorker(rmid) {
+      // Display the firing modal
+      $('#workerToFire').val(rmid);
+      $('#fireWorkerModal').removeClass('hidden');
+    }
+
+    $('#submitFireWorker').click(function (event) {
+      var workerId = $('#workerToFire').val();
+      // Redirect to the firing url
+      window.location.href = 'http://localhost/seniorProject/php/fireworker.php?rmid=' + workerId;
+    });
+
+    $('#modalCloseButtonFireWorker').click(function (event) {
+      $('#fireWorkerModal').addClass('hidden');
+    });
+  </script>
+
+  <script>
+    document.addEventListener('keydown', function (e) {
       switch (e.key) {
         case '+':
           if (<?= $page ?> < <?= $totalPages ?>) {
@@ -337,7 +412,6 @@ if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin'] || ($_SESSION['type'
       });
     });
   </script>
-
 
 </body>
 
