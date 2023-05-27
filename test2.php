@@ -237,7 +237,6 @@ document.getElementById('showMsg').addEventListener('click', function() {
 </script>
 
 <script>
-$(document).ready(function(){
     function loadMessages(){
         $.ajax({
             url: 'php/getMessages.php',
@@ -248,10 +247,12 @@ $(document).ready(function(){
         });
     }
 
-    loadMessages(); // Load messages immediately
-    setInterval(loadMessages, 15000); // Repeat every 15 seconds
-});
+    $(document).ready(function(){
+        loadMessages(); // Load messages immediately
+        setInterval(loadMessages, 15000); // Repeat every 15 seconds
+    });
 </script>
+
 
 
 </body>
