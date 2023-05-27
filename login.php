@@ -38,13 +38,12 @@ require_once('php/connection.php'); ?>
       <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
       <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
       <nav id="navbar" class="navbar">
-        <ul>
+      <ul>
           <li><a href="index.html" class="active">Home</a></li>
           <li><a href="about.html">About</a></li>
           <li><a href="services.html">Services</a></li>
-          <li><a href="pricing.html">Pricing</a></li>
+          <li><a href="outsidetrack.php">Track</a></li>
           <li><a href="login.php">Login</a></li>
-          <li><a href="contact.html">Contact</a></li>
           <li><a class="get-a-quote" href="outsideorder.php">Place order</a></li>
         </ul>
       </nav><!-- .navbar -->

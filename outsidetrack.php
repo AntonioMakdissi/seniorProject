@@ -71,6 +71,11 @@ require_once('php/employee.php'); ?>
           <?php
           } else { //worker
           ?>
+           <a href="branchOrders.php" class="logo d-flex align-items-center" style="text-decoration:none;">
+              <!-- Uncomment the line below if you also wish to use an image logo -->
+              <!-- <img src="assets/img/logo.png" alt=""> -->
+              <h1 style="font-family: 'Libre Baskerville', serif;">SpeedRun</h1>
+            </a>
             <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
             <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
             <nav id="navbar" class="navbar">
@@ -87,19 +92,22 @@ require_once('php/employee.php'); ?>
           // Handle case when user is not logged in or the type is not valid
           //index navbar
           ?>
+          <a href="index.html" class="logo d-flex align-items-center" style="text-decoration:none;">
+              <!-- Uncomment the line below if you also wish to use an image logo -->
+              <!-- <img src="assets/img/logo.png" alt=""> -->
+              <h1 style="font-family: 'Libre Baskerville', serif;">SpeedRun</h1>
+            </a>
           <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
           <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
           <nav id="navbar" class="navbar">
-            <ul>
-              <li><a href="index.html">Home</a></li>
-              <li><a href="about.html">About</a></li>
-              <li><a href="services.html">Services</a></li>
-              <li><a href="pricing.html">Pricing</a></li>
-              <li><a href="outsidetrack.php" class="active">Track</a></li>
-              <li><a href="login.php">Login</a></li>
-              <li><a href="contact.html">Contact</a></li>
-              <li><a class="get-a-quote" href="outsideorder.php">Place order</a></li>
-            </ul>
+          <ul>
+          <li><a href="index.html" class="active">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="outsidetrack.php">Track</a></li>
+          <li><a href="login.php">Login</a></li>
+          <li><a class="get-a-quote" href="outsideorder.php">Place order</a></li>
+        </ul>
           </nav>
         <?php
         }
@@ -116,16 +124,14 @@ require_once('php/employee.php'); ?>
             <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
             <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
             <nav id="navbar" class="navbar">
-              <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="services.html">Services</a></li>
-                <li><a href="pricing.html">Pricing</a></li>
-                <li><a href="outsidetrack.php" class="active">Track</a></li>
-                <li><a href="login.php">Login</a></li>
-                <li><a href="contact.html">Contact</a></li>
-                <li><a class="get-a-quote" href="outsideorder.php">Place order</a></li>
-              </ul>
+            <ul>
+          <li><a href="index.html" class="active">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="outsidetrack.php">Track</a></li>
+          <li><a href="login.php">Login</a></li>
+          <li><a class="get-a-quote" href="outsideorder.php">Place order</a></li>
+        </ul>
             </nav>
           <?php
         }

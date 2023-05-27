@@ -18,9 +18,45 @@
 		$recaptcha_data = json_decode($recaptcha);
 
 		if (!$recaptcha_data->success) {
-			echo 'Failed to verify reCAPTCHA. Please try again.';
+			?>
+			<div style="
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				height: 100vh;
+				background-color: #0e1d34;
+				background-image: url('../assets/img/hero-bg.png');
+				background-position: center;
+				background-repeat: no-repeat;
+				background-size: cover;
+			">
+				<div style="
+					width: 300px;
+					padding: 20px;
+					border-radius: 5px;
+					background-color: rgba(255, 255, 255, 0.8);
+					box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+					text-align: center;
+				">
+					<p style="
+						margin-bottom: 20px;
+						font-size: 16px;
+						color: #333;
+					">Failed to verify reCAPTCHA. Please try again.</p>
+					<a href="../login.php" style="
+						display: inline-block;
+						padding: 10px 20px;
+						background: #0e1d34;
+						color: #fff;
+						text-decoration: none;
+						border-radius: 3px;
+					">Back</a>
+				</div>
+			</div>
+			<?php
 			exit;
 		}
+		
 		// Proceed with your signup logic if reCAPTCHA is verified successfully
 
 		$email = mysqli_real_escape_string($link, $email); //strip email from escape charcters
@@ -89,16 +125,121 @@
 					}
 				}
 			} else {
-				echo "Check email or password";
+				?>
+			<div style="
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				height: 100vh;
+				background-color: #0e1d34;
+				background-image: url('../assets/img/hero-bg.png');
+				background-position: center;
+				background-repeat: no-repeat;
+				background-size: cover;
+			">
+				<div style="
+					width: 300px;
+					padding: 20px;
+					border-radius: 5px;
+					background-color: rgba(255, 255, 255, 0.8);
+					box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+					text-align: center;
+				">
+					<p style="
+						margin-bottom: 20px;
+						font-size: 16px;
+						color: #333;
+					">Check email or password. </p>
+					<a href="../login.php" style="
+						display: inline-block;
+						padding: 10px 20px;
+						background: #0e1d34;
+						color: #fff;
+						text-decoration: none;
+						border-radius: 3px;
+					">Back</a>
+				</div>
+			</div>
+			<?php
 				//header('Location: ../login.html'); //if wrong password
 			}
 		} else {
 
-			echo "Please sign up first!";
+			?>
+			<div style="
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				height: 100vh;
+				background-color: #0e1d34;
+				background-image: url('../assets/img/hero-bg.png');
+				background-position: center;
+				background-repeat: no-repeat;
+				background-size: cover;
+			">
+				<div style="
+					width: 300px;
+					padding: 20px;
+					border-radius: 5px;
+					background-color: rgba(255, 255, 255, 0.8);
+					box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+					text-align: center;
+				">
+					<p style="
+						margin-bottom: 20px;
+						font-size: 16px;
+						color: #333;
+					">Please sign up first!</p>
+					<a href="../login.php" style="
+						display: inline-block;
+						padding: 10px 20px;
+						background: #0e1d34;
+						color: #fff;
+						text-decoration: none;
+						border-radius: 3px;
+					">Back</a>
+				</div>
+			</div>
+			<?php
 		}
 		mysqli_close($link); //close if error
 	} else {
-		echo "Error fetching information"; //if no email and password
+		?>
+			<div style="
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				height: 100vh;
+				background-color: #0e1d34;
+				background-image: url('../assets/img/hero-bg.png');
+				background-position: center;
+				background-repeat: no-repeat;
+				background-size: cover;
+			">
+				<div style="
+					width: 300px;
+					padding: 20px;
+					border-radius: 5px;
+					background-color: rgba(255, 255, 255, 0.8);
+					box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+					text-align: center;
+				">
+					<p style="
+						margin-bottom: 20px;
+						font-size: 16px;
+						color: #333;
+					">Error fetching information.</p>
+					<a href="../login.php" style="
+						display: inline-block;
+						padding: 10px 20px;
+						background: #0e1d34;
+						color: #fff;
+						text-decoration: none;
+						border-radius: 3px;
+					">Back</a>
+				</div>
+			</div>
+			<?php //if no email and password
 
 	}
 
