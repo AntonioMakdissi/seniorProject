@@ -36,6 +36,8 @@
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
+  <!-- captcha -->
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 
 <body>
@@ -249,6 +251,9 @@
                       <label class="form-check-label" for="pay_at_delivery">pay at delivery?</label>
                     </div>
                   </div>
+                </div>
+                <div class="form-group">
+                  <div class="g-recaptcha" data-sitekey="6LcKXUAmAAAAAHoTU54hnMb9KwAu-fDz00wvgfsD"></div>
                 </div>
                 <div class="col-md-12 text-center">
                   <div class="loading">Loading</div>

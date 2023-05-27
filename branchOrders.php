@@ -25,9 +25,7 @@ require_once('php/stats.php');
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
 
     <!-- Vendor CSS Files -->
     <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -46,7 +44,7 @@ require_once('php/stats.php');
         <div class="container-fluid container-xl d-flex alignems-center justify-content-between">
             <?php
             if ($_SESSION['type'] == 'BranchManager') {
-                ?>
+            ?>
                 <a href="branchOrders.php" class="logo d-flex align-items-center" style="text-decoration: none;">
                     <!-- Uncomment the line below if you also wish to use an image logo -->
                     <!-- <img src="assets/img/logo.png" alt=""> -->
@@ -66,8 +64,8 @@ require_once('php/stats.php');
                         <li><a class="get-a-quote" href="php/logout.php">Logout</a></li>
                     </ul>
                 </nav>
-            <?php } else {
-                ?>
+            <?php } else {//worker
+            ?>
                 <a href="branchOrders.php" class="logo d-flex align-items-center">
                     <!-- Uncomment the line below if you also wish to use an image logo -->
                     <!-- <img src="assets/img/logo.png" alt=""> -->
@@ -116,10 +114,10 @@ require_once('php/stats.php');
                                 <th scope="col">Date and time</th>
                                 <?php
                                 if ($_SESSION['type'] == 'worker') {
-                                    ?>
+                                ?>
                                     <th>Branch</th>
                                     <!-- <th>Action</th> -->
-                                    <?php
+                                <?php
                                 }
                                 ?>
                             </tr>
@@ -138,29 +136,39 @@ require_once('php/stats.php');
 
                             // This is your original query
                             $query = "SELECT *
-FROM orders
-NATURAL JOIN packages NATURAL JOIN clients
-NATURAL JOIN (
-    SELECT o_id, MAX(d_id) AS max_d_id
-    FROM deliveries
-    GROUP BY o_id
-) AS last_delivery
-NATURAL JOIN deliveries
-WHERE (current_location = '$current_location'
-OR (current_location='still at client' AND c_district='$current_location'))
-AND status = 'pending'
-AND deliveries.d_id = last_delivery.max_d_id
-ORDER BY urgent DESC, date LIMIT $start, $perPage";
+                            FROM orders
+                            NATURAL JOIN packages NATURAL JOIN clients
+                            NATURAL JOIN (
+                                SELECT o_id, MAX(d_id) AS max_d_id
+                                FROM deliveries
+                                GROUP BY o_id
+                            ) AS last_delivery
+                            NATURAL JOIN deliveries
+                            WHERE (current_location = '$current_location'
+                            OR (current_location='still at client' AND c_district='$current_location'))
+                            AND status = 'pending'
+                            AND deliveries.d_id = last_delivery.max_d_id
+                            ORDER BY urgent DESC, date LIMIT $start, $perPage";
 
                             // Perform the query
                             $result = mysqli_query($link, $query);
 
                             // Count total records
-                            $countQuery = "SELECT COUNT(*) as totalCount FROM orders";
+                            $countQuery = "SELECT COUNT(*) as totalCount FROM orders
+                            NATURAL JOIN packages NATURAL JOIN clients
+                            NATURAL JOIN (
+                                SELECT o_id, MAX(d_id) AS max_d_id
+                                FROM deliveries
+                                GROUP BY o_id
+                            ) AS last_delivery
+                            NATURAL JOIN deliveries
+                            WHERE (current_location = '$current_location'
+                            OR (current_location='still at client' AND c_district='$current_location'))
+                            AND status = 'pending'
+                            AND deliveries.d_id = last_delivery.max_d_id";
                             $countResult = mysqli_query($link, $countQuery);
                             $totalCount = mysqli_fetch_assoc($countResult)['totalCount'];
                             $totalPages = ceil($totalCount / $perPage);
-
 
                             if ($result) {
                                 if (mysqli_num_rows($result) > 0) {
@@ -182,27 +190,27 @@ ORDER BY urgent DESC, date LIMIT $start, $perPage";
                                             $payer = 'receiver';
                                         }
                                         echo "<tr>
-          <td scope=\"row\">#" . $row["o_id"] . "</td>
-          <td>" . $row["c_name"] . "</td>
-          <td>" . $row["c_phone"] . "</td>
-          <td>" . $row["c_address"] . "</td>
-          <td>" . $row["current_location"] . "</td>
-          <td>" . $row["to_name"] . "</td>
-          <td>" . $row["to_phone"] . "</td>
-          <td>" . $row["to_district"] . "</td>
-          <td>" . $row["to_address"] . "</td>
-          <td>" . $row["f_price"] . "$</td>
-          <td>" . $cash . "</td>
-          <td>" . $payer . "</td>
-          <td>" . $fragile . "</td>
-          <td>" . $urgent . "</td>
-          <td>" . $row["status"] . "</td>
-          <td  >" . $row["timestamp"] . "</td>
-        </tr>";
+                                      <td scope=\"row\">#" . $row["o_id"] . "</td>
+                                      <td>" . $row["c_name"] . "</td>
+                                      <td>" . $row["c_phone"] . "</td>
+                                      <td>" . $row["c_address"] . "</td>
+                                      <td>" . $row["current_location"] . "</td>
+                                      <td>" . $row["to_name"] . "</td>
+                                      <td>" . $row["to_phone"] . "</td>
+                                      <td>" . $row["to_district"] . "</td>
+                                      <td>" . $row["to_address"] . "</td>
+                                      <td>" . $row["f_price"] . "$</td>
+                                      <td>" . $cash . "</td>
+                                      <td>" . $payer . "</td>
+                                      <td>" . $fragile . "</td>
+                                      <td>" . $urgent . "</td>
+                                      <td>" . $row["status"] . "</td>
+                                      <td  >" . $row["timestamp"] . "</td>
+                                    </tr>";
                                     }
                                 } else {
                                     echo "<tr>
-                  <td colspan=\"17 \"id=\"colspanTD\"> No results found.</td>";
+                                    <td colspan=\"17\" id=\"colspanTD\"> No results found.</td>";
                                 }
                             } else {
                                 echo "Error: " . mysqli_error($link);
@@ -228,16 +236,15 @@ ORDER BY urgent DESC, date LIMIT $start, $perPage";
                         <!-- Hidden input to pass the row id or any other needed data -->
                     </table>
                     <!-- Pagination -->
-                    
+
 
 
                 </div>
                 <div class="flex justify-center mt-4">
-                        <?php for ($i = 1; $i <= $totalPages; $i++): ?>
-                            <a  style="text-decoration: none;" href="?page=<?= $i; ?>"
-                                class="mx-2 px-4 py-2 text-white bg-blue-500 hover:bg-blue-700 rounded-full <?= $i == $page ? 'bg-green-500' : '' ?>"><?= $i; ?></a>
-                        <?php endfor; ?>
-                    </div>
+                    <?php for ($i = 1; $i <= $totalPages; $i++) : ?>
+                        <a style="text-decoration: none;" href="?page=<?= $i; ?>" class="mx-2 px-4 py-2 text-white bg-blue-500 hover:bg-blue-700 rounded-full <?= $i == $page ? 'bg-green-500' : '' ?>"><?= $i; ?></a>
+                    <?php endfor; ?>
+                </div>
             </div>
 
 
@@ -248,7 +255,7 @@ ORDER BY urgent DESC, date LIMIT $start, $perPage";
     </section>
 
     <script>
-        window.onload = function () {
+        window.onload = function() {
             var table = document.getElementById("myTable");
             var thCount = table.getElementsByTagName("th").length;
             var td = document.getElementById("colspanTD");
@@ -256,7 +263,7 @@ ORDER BY urgent DESC, date LIMIT $start, $perPage";
         }
     </script>
     <script>
-        window.addEventListener('keydown', function (e) {
+        window.addEventListener('keydown', function(e) {
             // Get the table container
             var tableContainer = document.querySelector('.table-responsive');
 
@@ -275,28 +282,26 @@ ORDER BY urgent DESC, date LIMIT $start, $perPage";
                     break;
             }
         });
-
     </script>
     <script>
-    document.addEventListener('keydown', function(e) {
-        switch(e.key) {
-            case '+':
-                if (<?= $page ?> < <?= $totalPages ?>) {
-                    window.location.href = "?page=" + (<?= $page ?> + 1);
-                }
-                break;
-            case '-':
-                if (<?= $page ?> > 1) {
-                    window.location.href = "?page=" + (<?= $page ?> - 1);
-                }
-                break;
-        }
-    });
-</script>
+        document.addEventListener('keydown', function(e) {
+            switch (e.key) {
+                case '+':
+                    if (<?= $page ?> < <?= $totalPages ?>) {
+                        window.location.href = "?page=" + (<?= $page ?> + 1);
+                    }
+                    break;
+                case '-':
+                    if (<?= $page ?> > 1) {
+                        window.location.href = "?page=" + (<?= $page ?> - 1);
+                    }
+                    break;
+            }
+        });
+    </script>
 
 
-    <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i
-            class="bi bi-arrow-up-short"></i></a>
+    <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
     <div id="preloader"></div>
 

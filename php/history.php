@@ -22,9 +22,7 @@ if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin']) {
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
-    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
 
   <!-- Vendor CSS Files -->
   <!-- <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">-->
@@ -82,22 +80,49 @@ if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin']) {
               <?php
               require_once('connection.php');
               $c_id = $_SESSION['c_id'];
-              $query = "SELECT * FROM orders NATURAL JOIN packages WHERE c_id='$c_id' ORDER BY date DESC";
+              $perPage = 10; // Change this to set the number of items per page
+
+              // Get the total number of rows
+              $countQuery = "SELECT COUNT(*) as totalCount FROM orders NATURAL JOIN packages WHERE c_id='$c_id'";
+              $countResult = mysqli_query($link, $countQuery);
+              $totalCount = mysqli_fetch_assoc($countResult)['totalCount'];
+
+              // Calculate the total number of pages
+              $totalPages = ceil($totalCount / $perPage);
+
+              // Get the current page from the query string
+              if (isset($_GET['page']) && !empty($_GET['page'])) {
+                $currentPage = $_GET['page'];
+              } else {
+                $currentPage = 1;
+              }
+
+              // Calculate the offset for the current page
+              $offset = ($currentPage - 1) * $perPage;
+
+              // Query with pagination
+              $query = "SELECT * FROM orders NATURAL JOIN packages WHERE c_id='$c_id' ORDER BY date DESC LIMIT $offset, $perPage";
               $result = mysqli_query($link, $query);
+
               if (($result) && (mysqli_num_rows($result) > 0)) {
-
                 while ($row = mysqli_fetch_assoc($result)) {
-
                   echo "<tr>   
-                  <td>#" . $row["o_id"] . "</td>
-                  <td>" . $row["date"] . "</td>
-                  <td>" . $row["f_price"] . "$</td>
-                  <td>" . $row["status"] . "</td>
-                                
-                  </tr>";
+      <td>#" . $row["o_id"] . "</td>
+      <td>" . $row["date"] . "</td>
+      <td>" . $row["f_price"] . "$</td>
+      <td>" . $row["status"] . "</td>              
+    </tr>";
                 }
               }
+
+              // Display pagination links
+              echo '<div class="pagination">';
+              for ($i = 1; $i <= $totalPages; $i++) {
+                echo '<a href="?page=' . $i . '">' . $i . '</a> ';
+              }
+              echo '</div>';
               ?>
+
             </tbody>
           </table>
         </div>

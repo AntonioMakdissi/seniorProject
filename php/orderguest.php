@@ -1,7 +1,18 @@
 <?php
 require_once 'connection.php';
 extract($_POST);
+$recaptcha_response = $_POST['g-recaptcha-response'];
+$recaptcha_secret = '6LcKXUAmAAAAANJrDtZklxuRxjZytaxwxQNB_J3r'; // Replace with your secret key obtained from the reCAPTCHA admin console
+$recaptcha_url = 'https://www.google.com/recaptcha/api/siteverify';
 
+$recaptcha = file_get_contents($recaptcha_url . '?secret=' . $recaptcha_secret . '&response=' . $recaptcha_response);
+$recaptcha_data = json_decode($recaptcha);
+
+if (!$recaptcha_data->success) {
+    echo 'Failed to verify reCAPTCHA. Please try again.';
+    exit;
+}
+// Proceed with your signup logic if reCAPTCHA is verified successfully
 //check checkboxes
 $fragile = isset($_POST['fragile']) ? true : false;
 $pay_at_delivery = isset($_POST['pay_at_delivery']) ? true : false;
