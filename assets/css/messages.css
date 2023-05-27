@@ -111,7 +111,7 @@ input {
   
   /* Get a quote button styling */
   .get-a-quote {
-    background-color: #f2a900;
+    background-color: #0d42ff;
     color: #0e1d34;
     padding: 8px 16px;
     border-radius: 4px;
@@ -125,29 +125,31 @@ input {
     color: #0e1d34;
   }
 
-.messages-container {
+  .messages-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 1rem;
     max-width: 800px;
     margin: 0 auto;
     padding: 1rem;
-  }
+    grid-auto-rows: min-content; /* Adding this to control the height of the grid items */
+}
   
-  .message {
+.message {
     background-color: rgba(255, 255, 255, 0.1);
     border: 1px solid rgba(255, 255, 255, 0.3);
     border-radius: 5px;
     padding: 1rem;
-    display: flex;
-    flex-direction: column;
-  }
+    display: grid; /* Change from flex to grid */
+    grid-template-rows: auto 1fr auto; /* Adding this to control the rows */
+}
+
   
   .message-author {
     font-size: 1.2rem;
     font-weight: bold;
     margin-bottom: 0.5rem;
-    color: #f2a900;
+    color: #f5f5f5;
   }
   
   .message-content {
@@ -163,10 +165,10 @@ input {
   }
   
   .btn-msg {
-    background-color: #f2a900;
+    background-color: #0d42ff;
+     color: #0e1d34;
     border: none;
     border-radius: 5px;
-    color: #0e1d34;
     cursor: pointer;
     font-size: 0.9rem;
     font-weight: bold;
@@ -176,7 +178,7 @@ input {
   }
   
   .btn-msg:hover {
-    background-color: #ffbe31;
+    background-color: #0d42ff;
     color: #ffffff;
   }
   
@@ -206,7 +208,7 @@ label {
     font-size: 1.2rem;
     font-weight: bold;
     margin-bottom: 0.5rem;
-    color: #f2a900;
+    color: #f5f5f5;
 }
 
 .form-input {
@@ -224,7 +226,7 @@ label {
 }
 
 .btn-msg-view {
-    background-color: #f2a900;
+    background-color: #f5f5f5;
     border: none;
     border-radius: 50%;  /* To make the button completely round */
     color: #0e1d34;
@@ -240,6 +242,99 @@ label {
 }
 
 .btn-msg-view:hover {
-    background-color: #ffbe31;
+    background-color: #0d42ff;
     color: #ffffff;
+}
+.container {
+  display: flex;
+}
+.form-container {
+  position: fixed;
+  top: 80px; /* Adjust this value based on the height of your header */
+  left: 0;
+  width: 50%; /* Adjust this value to suit your design */
+  padding: 1em;
+  /* overflow: auto; */
+  height: calc(100vh - 80px); /* Adjust this value based on the height of your header */
+}
+.messages-container {
+  margin-left: 50%; /* This should be equal to the width of .form-container */
+  padding: 1em;
+  overflow: auto;
+  /* height: calc(100vh - 80px); */
+}
+.hidden {
+display: none;
+}
+
+/* center-aligned styles for the form container */
+.form-container-center {
+position: fixed;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+width: 50%; 
+padding: 1em;
+}
+
+
+.form-container-left {
+position: fixed;
+top: 80px;
+left: 0;
+width: 50%; 
+padding: 1em;
+}
+#showMsg {
+z-index: 9999; /* you can adjust this number as needed */
+position: relative;
+}
+
+
+.form-header {
+  display: flex;
+  align-items: center;
+}
+
+.form-header > div {
+  display: flex;
+  align-items: center;
+}
+
+
+.btn-danger {
+  color: #fff;
+  background-color: #dc3545;
+  border-color: #dc3545;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: bold;
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.btn-danger:hover {
+  color: #fff;
+  background-color: #c82333;
+  border-color: #bd2130;
+}
+
+.btn-danger:focus,
+.btn-danger.focus {
+  color: #fff;
+  background-color: #c82333;
+  border-color: #bd2130;
+  box-shadow: 0 0 0 0.2rem rgba(225, 83, 97, 0.5);
+}
+
+.btn-danger.disabled,
+.btn-danger:disabled {
+  color: #fff;
+  background-color: #dc3545;
+  border-color: #dc3545;
+  pointer-events: none;
+  opacity: 0.65;
 }
