@@ -135,7 +135,7 @@ require_once('php/employee.php');
       </div>
     </div>
   </section><!-- End Hero Section -->
-  <main>
+  <main style="background-color:transparent;">
     <div data-aos="fade-up">
 
       <div class="container" style="margin-top: 100px;">

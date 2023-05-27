@@ -38,66 +38,7 @@
     background-color: #f5f5f5;
   }
 
-  body {
-    margin: 0;
-    padding: 0;
-  }
 
-  .navbar {
-    position: relative;
-    z-index: 9999;
-    background-color: #0e1d34;
-    padding: 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
-    justify-content: flex-end;
-  }
-
-  .navbar ul {
-
-    display: flex;
-    flex-direction: row;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    justify-content: flex-end;
-  }
-
-  .navbar ul li {
-    margin-left: 20px;
-  }
-
-  .navbar ul li:first-child {
-    margin-left: 0;
-  }
-
-  .navbar ul li a {
-    color: #fff;
-    text-decoration: none;
-    font-size: 18px;
-    transition: all 0.3s ease-in-out;
-  }
-
-  .navbar ul li a:hover {
-    color: #1c8adb;
-  }
-
-  .navbar .get-a-quote,
-  .navbar .get-a-quote:focus {
-    background: #0d42ff;
-    padding: 8px 20px;
-    border-radius: 4px;
-    margin: 15px;
-    color: #fff;
-  }
-
-  .navbar .get-a-quote:hover,
-  .navbar .get-a-quote:focus:hover {
-    color: #fff;
-    background: rgba(13, 66, 255, 0.8);
-  }
 
   .h1 {
     color: #fff;
@@ -130,19 +71,19 @@
   .li {
     color: black;
   }
-
   .rating {
     display: flex;
     flex-direction: row-reverse;
     justify-content: center;
     align-items: center;
     margin-bottom: 10px;
+    text-align: center;
   }
-
+  
   .rating input[type="radio"] {
     display: none;
   }
-
+  
   .rating label {
     display: inline-block;
     color: #BBB;
@@ -152,19 +93,14 @@
     font-size: 20px;
     text-shadow: 0px 0px 5px rgba(255, 255, 255, 0.7);
   }
-
-  .rating label:hover,
-  .rating label:hover~label,
-  .rating input[type="radio"]:checked~label {
-    color: #333;
-    text-shadow: none;
-  }
-
+  
   .rating label:before {
     content: "\2605";
     text-shadow: 0px 0px 5px rgba(255, 255, 255, 0.7);
+    display: inline-block;
+    vertical-align: middle; /* Added to center the stars vertically */
   }
-
+  
   .rating label:hover:before,
   .rating label:hover~label:before,
   .rating input[type="radio"]:checked~label:before {
@@ -172,3 +108,4 @@
     color: #ffca08;
     text-shadow: none;
   }
+  
