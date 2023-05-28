@@ -112,8 +112,8 @@ if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin'] || ($_SESSION['type'
             <th>Worker ID</th>
             <th>Name</th>
             <th>BirthDate</th>
-            <th>Phone</th>
             <th>Type</th>
+            <th>Phone</th>
             <th>Branch</th>
             <th>Salary</th>
             <th>Date joined</th>

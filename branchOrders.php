@@ -66,7 +66,7 @@ require_once('php/stats.php');
                 </nav>
             <?php } else {//worker
             ?>
-                <a href="branchOrders.php" class="logo d-flex align-items-center">
+                <a style="text-decoration:none;" href="branchOrders.php" class="logo d-flex align-items-center">
                     <!-- Uncomment the line below if you also wish to use an image logo -->
                     <!-- <img src="assets/img/logo.png" alt=""> -->
                     <h1 style="font-family: 'Libre Baskerville', serif; padding-left: 20px;">SpeedRun</h1>

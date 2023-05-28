@@ -106,10 +106,12 @@ if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin']) {
                     <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
                     <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
                     <nav id="navbar" class="navbar">
-                        <ul>
-                            <li><a href="viewMessages.php">Messages</a></li>
-                            <li><a class="get-a-quote" href="php/logout.php">Logout</a></li>
-                        </ul>
+                    <ul>
+                        <li><a href="branchOrders.php">Home</a></li>
+                        <li><a href="viewMessages.php">Messages</a></li>
+                        <li><a href="common_password.php">Change Password</a></li>
+                        <li><a class="get-a-quote" href="php/logout.php">Logout</a></li>
+                    </ul>
                     </nav>
                 <?php } else { ?>
                     <a href="client.php" class="logo d-flex align-items-center">
