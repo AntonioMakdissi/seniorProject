@@ -1,260 +1,404 @@
 <?php
 session_start();
-if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin']) {
+if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin'] || $_SESSION['type'] != 'CEO') {
     header('Location: login.php');
 }
-require_once("php/connection.php");
-//include_once 'php/search.php';
+
+require_once 'php/connection.php';
+require_once('php/stats.php');
+require_once('php/employee.php');
 ?>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet">
-    <title>Messages Page</title>
-    <link rel="stylesheet" href="assets/css/messages.css">
-  <!-- Favicons -->
-  <link href="assets/img/icon.jfif" rel="icon">
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>CEO</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+    <!-- Favicons -->
+    <link href="assets/img/icon.jfif" rel="icon">
+    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@700&display=swap" rel="stylesheet">
+
 
     <!-- Vendor CSS Files -->
-    <!-- <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"> -->
+    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
     <link href="assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
     <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
     <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
     <link href="assets/vendor/aos/aos.css" rel="stylesheet">
 
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <!-- Template Main CSS File -->
+    <link href="assets/css/navbar.css" rel="stylesheet">
+    <!-- <link href="assets/css/CEO.css" rel="stylesheet"> -->
 
     <style>
-    /* .container {
-        display: flex; 
-    }
-    .messages-container,
-    .form-container {
-        flex: 1;
-        padding: 1em; 
-    } */
-    
-  
+        body {
+            font-family: Arial, sans-serif;
+        }
 
-</style>
+        .chart-container {
+            width: 50%;
+            height: 50vh;
+            margin: auto;
+        }
+        .row {
+    display: flex;
+}
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+.chart-container {
+    flex: 1;  /* makes it take up half the width */
+    max-width: 50%; /* restrict the maximum width to 50% */
+}
+.purecounter {
+    font-size: 50px;
+}
+
+
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 </head>
 
-<body class="bg-gray-100">
-    <header id="header" class="header d-flex align-items-center fixed-top">
-        <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+<body>
 
+    <!-- ======= Header ======= -->
+    <header id="header" class="header d-flex alignems-center fixed-top">
+        <div class="container-fluid container-xl d-flex alignems-center justify-content-between">
 
+            <a href="CEO.php" class="logo d-flex alignems-center">
+                <!-- Uncomment the line below if you also wish to use an image logo -->
+                <!-- <img src="assets/img/logo.png" alt=""> -->
+                <h1 style="font-family: 'Libre Baskerville', serif;">SpeedRun</h1>
+            </a>
 
             <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
             <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
-            <?php if ($_SESSION['type'] == 'CEO') { ?>
-                <a href="CEO.php" class="logo d-flex align-items-center">
-                    <!-- Uncomment the line below if you also wish to use an image logo -->
-                    <!-- <img src="assets/img/logo.png" alt=""> -->
-                    <h1 style="font-family: 'Libre Baskerville', serif; padding-left: 20px;">SpeedRun</h1>
-                </a>
-                <nav id="navbar" class="navbar">
-                    <ul>
-                    <li><a href="CEO.php" class="active">Home</a></li>
-          <li><a href="php/viewWorker.php">Workers</a></li>
-          <li><a href="hire.php">Hire</a></li>
-          <li><a href="addBranches.php">Branches</a></li>
-          <li><a href="php/profit.php">Statistics</a></li>
-          <li><a href="viewMessages.php">Messages</a></li>
-          <li><a href="common_password.php">Change Password</a></li>
-          <li><a class="get-a-quote" href="php/logout.php">Logout</a></li>
-                    </ul>
-                </nav><!-- .navbar -->
-            <?php } else  if ($_SESSION['type'] == 'IT') { ?>
-                <a href="ViewMessages.php" class="logo d-flex align-items-center">
-                    <!-- Uncomment the line below if you also wish to use an image logo -->
-                    <!-- <img src="assets/img/logo.png" alt=""> -->
-                    <h1 style="font-family: 'Libre Baskerville', serif; padding-left: 20px;">SpeedRun</h1>
-                </a>
-                <nav id="navbar" class="navbar">
-                    <ul>
-                        <li><a href="php/viewWorker.php">Workers</a></li>
-                        <li><a href="hire.php">Hire</a></li>
-                        <li><a href="addBranches.php" class="active">Branches</a></li>
-                        <li><a href="viewMessages.php">Messages</a></li>
-                        <li><a href="common_password.php">Change Password</a></li>
-                        <li><a class="get-a-quote" href="php/logout.php">Logout</a></li>
-                    </ul>
-                </nav>
-            <?php } else  if ($_SESSION['type'] == 'BranchManager') { ?>
-                <a href="branchOrders.php" class="logo d-flex align-items-center">
-                    <!-- Uncomment the line below if you also wish to use an image logo -->
-                    <!-- <img src="assets/img/logo.png" alt=""> -->
-                    <h1 style="font-family: 'Libre Baskerville', serif; padding-left: 20px;">SpeedRun</h1>
-                </a>
-                <nav id="navbar" class="navbar">
+            <nav id="navbar" class="navbar">
                 <ul>
-            <!-- <li><a href="client.html" class="active">Home</a></li> -->
-            <li><a href="branchOrders.php">Home</a></li>
-            <li><a href="manager.php">History</a></li>
-            <li><a href="outsidetrack.php">Track</a></li>
-            <li><a href="viewMessages.php">Messages</a></li>
-            <li><a href="common_password.php">Change Password</a></li>
-            <li><a class="get-a-quote" href="php/logout.php">Logout</a></li>
-          </ul>
-                </nav>
-            <?php } else  if ($_SESSION['type'] == 'worker') { ?>
-                <a href="branchOrders.php" class="logo d-flex align-items-center">
-                    <!-- Uncomment the line below if you also wish to use an image logo -->
-                    <!-- <img src="assets/img/logo.png" alt=""> -->
-                    <h1 style="font-family: 'Libre Baskerville', serif; padding-left: 20px;">SpeedRun</h1>
-                </a>
-                <nav id="navbar" class="navbar">
-                    <ul>
-                        <li><a href="branchOrders.php">Home</a></li>
-                        <li><a href="viewMessages.php">Messages</a></li>
-                        <li><a href="common_password.php">Change Password</a></li>
-                        <li><a class="get-a-quote" href="php/logout.php">Logout</a></li>
-                    </ul>
-                </nav>
-            <?php } else  if ($_SESSION['type'] == 'client') { ?>
-                <a href="client.php" class="logo d-flex align-items-center">
-                    <!-- Uncomment the line below if you also wish to use an image logo -->
-                    <!-- <img src="assets/img/logo.png" alt=""> -->
-                    <h1 style="font-family: 'Libre Baskerville', serif; padding-left: 20px;">SpeedRun</h1>
-                </a>
-                <nav id="navbar" class="navbar">
-                    <ul>
-                        <li><a href="client.html" class="active">Home</a></li>
-                        <li><a href="about.html">About</a></li>
-                        <li><a href="services.html">Services</a></li>
-                        <li><a href="php/history.php">History</a></li>
-                        <li><a href="php/track.php">Track</a></li>
-                        <li><a href="contact.html">Contact</a></li>
-                        <li><a class="get-a-quote" href="php/logout.php">Logout</a></li>
-                    </ul>
-                </nav><!-- .navbar -->
-            <?php } ?>
-
-
-
-
-
+                    <li><a href="CEO.php" class="active">Home</a></li>
+                    <li><a href="php/viewWorker.php">Workers</a></li>
+                    <li><a href="hire.php">Hire</a></li>
+                    <li><a href="addBranches.php">Branches</a></li>
+                    <li><a href="php/profit.php">Statistics</a></li>
+                    <li><a href="viewMessages.php">Messages</a></li>
+                    <li><a href="common_password.php">Change Password</a></li>
+                    <li><a class="get-a-quote" href="php/logout.php">Logout</a></li>
+                </ul>
+            </nav><!-- .navbar -->
 
         </div>
-    </header>
-    <section id="hero" class="hero d-flex align-items-center" style="padding-top: 20px; height: 100%; ">
-    <div class="container mx-auto px-4 py-12 flex">
+    </header><!-- End Header -->
+    <!-- End Header -->
 
-            <div class="container mx-auto px-4 py-12">
-            <div class="form-container" id="form_container">
-  <div class="form-header">
-    <div>
-      <button class="btn-msg-view" id="showMsg"><i class="fas fa-envelope"></i></button>
-      <h1 class="text-4xl font-bold" style="margin-left: 10px;">Send Messages</h1>
-    </div>
-  </div>
-  <form id="messageForm" method="POST" action="php/message.php">
-    <label for="author">Email:</label>
-    <input type="email" id="author" name="email" class="form-input"><br>
-    <label for="content">Message:</label>
-    <textarea id="content" name="message" class="form-input"></textarea><br>
-    <button type="submit" class="btn-msg" class="btn_submit">Send</button>
-  </form>
-</div>
-                <div class="messages-container" id="message_div">
-                
-                    <?php
-                    include('php/message.php');
-                    $all = viewMessages($link, $_SESSION['u_id']);
-                    if ($all == -1) {
-                        echo "<div class=\"message\">
-                        <h3 class=\"message-author\">System</h3>
-                        <p class=\"message-content\">Checking messages...</p>
-                        <p class=\"message-timestamp\">Now</p>
-                        <button class=\"btn-danger\" >No messages</button>
-                    </div>";
-                    } else {
-                        for ($i = 0; $i < count($all[0]); ++$i) {
-                            if ($i % 2 == 0) {
-                                //echo "</br>";
-                            }
-                            $m_id = $all[0][$i]; //m_id
-                    ?>
-                            <div class='message'>
-                                <?php
-                                echo "<h3 class='message-author'>" . $all[3][$i] . " " . $all[2][$i] . /*send_id+name*/ "</h3> 
-                                        <p class='message-content'>" . $all[4][$i] . /*message*/ "</p>
-                                    <p class='message-timestamp'>" . $all[5][$i] . /*timestamp*/ "</p>";
-                                ?>
-                                <button type="submit" class='btn-msg' onclick="deleteMessage('<?php echo $m_id; ?>')">Delete</button></a>
+    <!-- ======= Hero Section ======= -->
+    <section id="hero" class="hero d-flex alignems-center" style="padding-top: 10%; height: 100%; ">
+        <div class="container">
+            <div class="row gy-4 d-flex justify-content-between">
+                <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center">
+                    <h2 data-aos="fade-up" style="margin-top: -15%;">Journey of a Leading Delivery Company
+                        <?= $_SESSION['name'] ?>!
+                    </h2>
+                    <p data-aos="fade-up" data-aos-delay="100">"Success is not final, failure is not fatal: It is the
+                        courage to continue that counts." - Winston Churchill. Keep pushing forward and striving for
+                        excellence in every delivery, and you will find success in your company.</p>
+
+
+
+                    <div class="row gy-4" data-aos="fade-up" data-aos-delay="400">
+
+                            <div class="col-lg-3 col-6">
+                                <div class="statsem text-center w-100 h-100">
+                                    <span data-purecounter-start="0" data-purecounter-end=<?php echo nbr_clients($link); ?>
+                                        data-purecounter-duration="1" class="purecounter"></span>
+                                    <p>Clients</p>
+                                </div>
+                            </div><!-- End Stats Item -->
+
+                        <div class="col-lg-3 col-6">
+                            <div class="statsem text-center w-100 h-100">
+                                <span data-purecounter-start="0" data-purecounter-end=<?php echo total_deliveries($link); ?> data-purecounter-duration="1"
+                                    class="purecounter"></span>
+                                <p>Deliveries</p>
                             </div>
-                    <?php
-                        }
-                    }
-                    ?>
+                        </div><!-- End Stats Item -->
+
+                        <div class="col-lg-3 col-6">
+                            <div class="statsem text-center w-100 h-100">
+                                <span data-purecounter-start="0" data-purecounter-end=<?php echo nbr_branches($link); ?>
+                                    data-purecounter-duration="1" class="purecounter"></span>
+                                <p>Branches</p>
+                            </div>
+                        </div><!-- End Stats Item -->
+
+                        <div class="col-lg-3 col-6">
+                            <div class="statsem text-center w-100 h-100">
+                                <span data-purecounter-start="0" data-purecounter-end=<?php echo nbr_workers($link); ?>
+                                    data-purecounter-duration="1" class="purecounter"></span>
+                                <p>Workers</p>
+                            </div>
+                        </div><!-- End Stats Item -->
+
+                    </div>
                 </div>
-             </div>
+
+                <div class="col-lg-5 order-1 order-lg-2 hero-img" data-aos="zoom-out">
+                    <div class="image-container">
+                        <img src="assets/img/hero-img.svg" class="img-fluid mb-3 mb-lg-0" alt="">
+                    </div>
+                </div>
+
+            </div>
         </div>
-    </section>
-    <script src="assets/vendor/php-email-form/validate.js"></script>
+    </section><!-- End Hero Section -->
+    <main style="background-color:transparent;">
+        <div data-aos="fade-up">
 
-    <script>
-        function deleteMessage(m_id) {
-            if (confirm('Are you sure you want to delete this message?')) {
-                window.location.href = 'http://localhost/seniorProject/php/message.php?m_id=' + m_id;
+        <div class="row">
+    <div class="chart-container">
+        <canvas id="myChart1" width="700" height="400"></canvas>
+    </div>
+    <div class="chart-container" style="margin-top: 5%; margin-bottom:5%;">
+        <canvas id="myChart2" width="700" height="400"></canvas>
+    </div> 
+</div>
 
-            }
+            <div class="container" style="margin-top: 100px;">
+                <table class="statistics-table">
+                    <thead>
+                        <tr>
+                            <th>Statistics of the month(recent 30 days)</th>
+                            <th>Value</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Number of successful Deliveries</td>
+                            <td>
+                                <?php
+                                echo successful_deliveriesm($link);
+                                ?>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Pending Deliveries</td>
+                            <td>
+                                <?php echo pending_deliveriesm($link); ?>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Failed Deliveries</td>
+                            <td>
+                                <?php echo failed_deliveriesm($link); ?>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Number of deliveries this month</td>
+                            <td>
+                                <?php
+                                $delm = delm($link);
+                                echo $delm; ?>
+                            </td>
+                        </tr>
+
+
+                        <tr>
+                            <td>Employee of the month</td>
+                            <td>
+                                <?php
+                                $emp = mvpm($link);
+                                echo getEmpById($link, $emp); ?>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+            <!--  -->
+            <div class="container" style="margin-top: 5%; margin-bottom:5%;">
+                <table class="statistics-table">
+                    <thead>
+                        <tr>
+                            <th>Statistics(lifetime)</th>
+                            <th>Value</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Number of successful Deliveries</td>
+                            <td>
+                                <?php
+                                echo successful_deliveries($link);
+                                ?>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Pending Deliveries</td>
+                            <td>
+                                <?php echo pending_deliveries($link); ?>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Failed Deliveries</td>
+                            <td>
+                                <?php echo failed_deliveries($link); ?>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Total Deliveries</td>
+                            <td>
+                                <?php echo total_deliveries($link); ?>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Customer Satisfaction</td>
+                            <td>
+                                <?php echo rating($link); ?> /5
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Employee with most deliveries(lifetime)</td>
+                            <td>
+                                <?php
+                                $emp = mvp($link);
+                                echo getEmpById($link, $emp); ?>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+           
+        </div>
+    </main>
+    <?php
+    require_once('php/connection.php');
+    $query = "SELECT MONTH(orders.date) AS month, COUNT(o_id) AS count FROM orders WHERE orders.date >= DATE_SUB(CURDATE(), INTERVAL 12 MONTH) GROUP BY MONTH(orders.date) ORDER BY MONTH(orders.date) ASC";
+    $result = mysqli_query($link, $query);
+    if ($result && mysqli_num_rows($result) > 0) {
+        $rows = mysqli_fetch_all($result, MYSQLI_ASSOC);
+        // Process the result rows
+        $months = [];
+        $orderCounts = [];
+        for ($i = 1; $i <= 12; $i++) {
+            $months[] = date('F', mktime(0, 0, 0, $i, 1));
+            $orderCounts[] = 0;
         }
-    </script>
+        foreach ($rows as $row) {
+            $monthIndex = intval($row['month']) - 1;
+            $orderCounts[$monthIndex] = intval($row['count']);
+        }
 
-<!-- js for showMsg button -->
-<script>
-document.getElementById('showMsg').addEventListener('click', function() {
-  var formContainer = document.getElementById('form_container');
-  var messageContainer = document.getElementById('message_div');
-
-  if (messageContainer.classList.contains('hidden')) {
-    messageContainer.classList.remove('hidden');
-    formContainer.classList.remove('form-container-center');
-    formContainer.classList.add('form-container-left');
-  } else {
-    messageContainer.classList.add('hidden');
-    formContainer.classList.remove('form-container-left');
-    formContainer.classList.add('form-container-center');
-  }
-});
-
-
-</script>
-
-<script>
-    function loadMessages(){
-        $.ajax({
-            url: 'php/getMessages.php',
-            type: 'GET',
-            success: function(data){
-                $("#message-container").html(data);
-            }
-        });
+        // Save the PHP arrays as JSON strings
+        $monthsJSON = json_encode($months);
+        $orderCountsJSON = json_encode($orderCounts);
+        // $deliveriesJSON = json_encode($deliveries);
+        // $salesJSON = json_encode($sales);
+    } else {
+        echo 'No data available.';
     }
 
-    $(document).ready(function(){
-        loadMessages(); // Load messages immediately
-        setInterval(loadMessages, 15000); // Repeat every 15 seconds
-    });
-</script>
+    $query2 = "SELECT MONTH(orders.date) AS month, SUM(charge) AS total_profit FROM orders NATURAL JOIN packages WHERE orders.date >= DATE_SUB(CURDATE(), INTERVAL 12 MONTH) GROUP BY MONTH(orders.date) ORDER BY MONTH(orders.date) ASC";
+    $result2 = mysqli_query($link, $query2);
+    if ($result2 && mysqli_num_rows($result2) > 0) {
+        $rows = mysqli_fetch_all($result2, MYSQLI_ASSOC);
+        // Process the result rows
+        $months = [];
+        $profitData = [];
+        for ($i = 1; $i <= 12; $i++) {
+            $months[] = date('F', mktime(0, 0, 0, $i, 1));
+            $profitData[] = 0;
+        }
+        foreach ($rows as $row) {
+            $monthIndex = intval($row['month']) - 1;
+            $profitData[$monthIndex] = intval($row['total_profit']);
+        }
+        // Save the PHP arrays as JSON strings
+        $monthsJSON = json_encode($months);
+        $profitDataJSON = json_encode($profitData);
+    } else {
+        echo 'No data available.';
+    }
+    ?>
+
+    <script>
+        // Parse the PHP JSON strings into JavaScript arrays
+        var months = JSON.parse('<?= $monthsJSON ?>');
+        // var deliveries = JSON.parse('<= $deliveriesJSON ?>');
+        var profitData = JSON.parse('<?= $profitDataJSON ?>');
+        var orderCounts = JSON.parse('<?= $orderCountsJSON ?>');
+
+        var ctx = document.getElementById('myChart1').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: months,
+                datasets: [{
+                    label: 'Number of Orders',
+                    data: orderCounts,
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
 
 
+        var ctx2 = document.getElementById('myChart2').getContext('2d');
+        var myChart2 = new Chart(ctx2, {
+            type: 'bar',
+            data: {
+                labels: months,
+                datasets: [{
+                    label: 'Profit',
+                    data: profitData,
+                    backgroundColor: 'rgba(153, 102, 255, 0.2)',
+                    borderColor: 'rgba(153, 102, 255, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+    <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i
+            class="bi bi-arrow-up-short"></i></a>
 
+    <div id="preloader"></div>
+
+    <!-- Vendor JS Files -->
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+    <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+    <script src="assets/vendor/aos/aos.js"></script>
+    <script src="assets/vendor/php-email-form/validate.js"></script>
+
+    <!-- Template Main JS File -->
+    <script src="assets/js/main.js"></script>
 </body>
 
 </html>

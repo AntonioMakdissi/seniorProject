@@ -54,6 +54,19 @@ require_once('php/employee.php');
             height: 50vh;
             margin: auto;
         }
+        .row {
+    display: flex;
+}
+
+.chart-container {
+    flex: 1;  /* makes it take up half the width */
+    max-width: 50%; /* restrict the maximum width to 50% */
+}
+.purecounter {
+    font-size: 50px;
+}
+
+
     </style>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
@@ -106,13 +119,13 @@ require_once('php/employee.php');
 
                     <div class="row gy-4" data-aos="fade-up" data-aos-delay="400">
 
-                        <div class="col-lg-3 col-6">
-                            <div class="statsem text-center w-100 h-100">
-                                <span data-purecounter-start="0" data-purecounter-end=<?php echo nbr_clients($link); ?>
-                                    data-purecounter-duration="1" class="purecounter"></span>
-                                <p>Clients</p>
-                            </div>
-                        </div><!-- End Stats Item -->
+                            <div class="col-lg-3 col-6">
+                                <div class="statsem text-center w-100 h-100">
+                                    <span data-purecounter-start="0" data-purecounter-end=<?php echo nbr_clients($link); ?>
+                                        data-purecounter-duration="1" class="purecounter"></span>
+                                    <p>Clients</p>
+                                </div>
+                            </div><!-- End Stats Item -->
 
                         <div class="col-lg-3 col-6">
                             <div class="statsem text-center w-100 h-100">
@@ -152,6 +165,15 @@ require_once('php/employee.php');
     </section><!-- End Hero Section -->
     <main style="background-color:transparent;">
         <div data-aos="fade-up">
+
+        <div class="row">
+    <div class="chart-container">
+        <canvas id="myChart1" width="700" height="400"></canvas>
+    </div>
+    <div class="chart-container" style="margin-top: 5%; margin-bottom:5%;">
+        <canvas id="myChart2" width="700" height="400"></canvas>
+    </div> 
+</div>
 
             <div class="container" style="margin-top: 100px;">
                 <table class="statistics-table">
@@ -257,14 +279,7 @@ require_once('php/employee.php');
                     </tbody>
                 </table>
             </div>
-            <div class="chart-container">
-                <canvas id="myChart1" width="700" height="400"></canvas>
-                </canvas>
-            </div>
-
-            <div class="chart-container" style="margin-top: 5%; margin-bottom:5%;">
-                <canvas id="myChart2" width="700" height="400"></canvas>
-            </div>
+           
         </div>
     </main>
     <?php
