@@ -54,7 +54,7 @@ if ($fragile) { //extra for fragile
     $cost = $cost + 5;
     $charge = $charge + 5;
 }
-if ($urgent) { //extra for fragile
+if ($urgent) { //extra for urgent
     $cost = $cost + 10;
     $charge = $charge + 10;
 }

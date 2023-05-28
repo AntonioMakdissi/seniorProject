@@ -231,7 +231,7 @@
                   <div class="form-group">
                     <div class="form-check">
                       <input class="form-check-input" type="checkbox" id="pay_at_delivery" name="pay_at_delivery" value="true">
-                      <label class="form-check-label" for="pay_at_delivery">pay at delivery?</label>
+                      <label class="form-check-label" for="pay_at_delivery">pay at delivery?(cash)</label>
                     </div>
                   </div>
                 </div>
