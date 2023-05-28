@@ -16,9 +16,9 @@ if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin']) {
     <link rel="stylesheet" href="assets/css/header.css">
     <link rel="stylesheet" href="assets/css/password.css">
 
-      <!-- Favicons -->
-  <link href="assets/img/icon.jfif" rel="icon">
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+    <!-- Favicons -->
+    <link href="assets/img/icon.jfif" rel="icon">
+    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -51,14 +51,15 @@ if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin']) {
                     <h1 style="font-family: 'Libre Baskerville', serif; padding-left: 20px;">SpeedRun</h1>
                 </a>
                 <nav id="navbar" class="navbar">
-                    <ul><li><a href="CEO.php" class="active">Home</a></li>
-          <li><a href="php/viewWorker.php">Workers</a></li>
-          <li><a href="hire.php">Hire</a></li>
-          <li><a href="addBranches.php">Branches</a></li>
-          <li><a href="php/profit.php">Statistics</a></li>
-          <li><a href="viewMessages.php">Messages</a></li>
-          <li><a href="common_password.php">Change Password</a></li>
-          <li><a class="get-a-quote" href="php/logout.php">Logout</a></li>
+                    <ul>
+                        <li><a href="CEO.php" class="active">Home</a></li>
+                        <li><a href="php/viewWorker.php">Workers</a></li>
+                        <li><a href="hire.php">Hire</a></li>
+                        <li><a href="addBranches.php">Branches</a></li>
+                        <li><a href="php/profit.php">Statistics</a></li>
+                        <li><a href="viewMessages.php">Messages</a></li>
+                        <li><a href="common_password.php">Change Password</a></li>
+                        <li><a class="get-a-quote" href="php/logout.php">Logout</a></li>
                     </ul>
 
                 <?php } else  if ($_SESSION['type'] == 'IT') { ?>
@@ -88,15 +89,15 @@ if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin']) {
                     <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
                     <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
                     <nav id="navbar" class="navbar">
-                    <ul>
-            <!-- <li><a href="client.html" class="active">Home</a></li> -->
-            <li><a href="branchOrders.php">Home</a></li>
-            <li><a href="manager.php">History</a></li>
-            <li><a href="outsidetrack.php">Track</a></li>
-            <li><a href="viewMessages.php">Messages</a></li>
-            <li><a href="common_password.php">Change Password</a></li>
-            <li><a class="get-a-quote" href="php/logout.php">Logout</a></li>
-          </ul>
+                        <ul>
+                            <!-- <li><a href="client.html" class="active">Home</a></li> -->
+                            <li><a href="branchOrders.php">Home</a></li>
+                            <li><a href="manager.php">History</a></li>
+                            <li><a href="outsidetrack.php">Track</a></li>
+                            <li><a href="viewMessages.php">Messages</a></li>
+                            <li><a href="common_password.php">Change Password</a></li>
+                            <li><a class="get-a-quote" href="php/logout.php">Logout</a></li>
+                        </ul>
                     </nav>
                 <?php } else if ($_SESSION['type'] == 'worker') { ?>
                     <a href="branchOrders.php" class="logo d-flex align-items-center">
@@ -106,12 +107,12 @@ if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin']) {
                     <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
                     <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
                     <nav id="navbar" class="navbar">
-                    <ul>
-                        <li><a href="branchOrders.php">Home</a></li>
-                        <li><a href="viewMessages.php">Messages</a></li>
-                        <li><a href="common_password.php">Change Password</a></li>
-                        <li><a class="get-a-quote" href="php/logout.php">Logout</a></li>
-                    </ul>
+                        <ul>
+                            <li><a href="branchOrders.php">Home</a></li>
+                            <li><a href="viewMessages.php">Messages</a></li>
+                            <li><a href="common_password.php">Change Password</a></li>
+                            <li><a class="get-a-quote" href="php/logout.php">Logout</a></li>
+                        </ul>
                     </nav>
                 <?php } else { ?>
                     <a href="client.php" class="logo d-flex align-items-center">
@@ -122,12 +123,12 @@ if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin']) {
                     <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
                     <nav id="navbar" class="navbar">
                         <ul>
-                            <li><a href="client.html" class="active">Home</a></li>
-                            <li><a href="about.html">About</a></li>
-                            <li><a href="services.html">Services</a></li>
+                            <li><a href="client.php" class="active">Home</a></li>
+                            <li><a href="services.php">Services</a></li>
                             <li><a href="php/history.php">History</a></li>
                             <li><a href="php/track.php">Track</a></li>
-                            <li><a href="contact.html">Contact</a></li>
+                            <li><a href="viewMessages.php">Messages</a></li>
+                            <li><a href="common_password.php">Change Password</a></li>
                             <li><a class="get-a-quote" href="php/logout.php">Logout</a></li>
                         </ul>
                     </nav>
