@@ -28,6 +28,7 @@ if (($result) && (mysqli_num_rows($result) > 0)) {
         $return_array = array();
         while ($row = mysqli_fetch_assoc($result)) {
             $row_array['o_id'] = $row['o_id'];
+            $row_array['urgent'] = $row['urgent'];
             $row_array['to_name'] = $row['to_name'];
             $row_array['to_district'] = $row['to_district'];
             $row_array['to_address'] = $row['to_address'];

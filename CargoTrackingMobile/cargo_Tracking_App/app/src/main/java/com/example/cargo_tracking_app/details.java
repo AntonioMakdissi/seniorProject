@@ -3,6 +3,7 @@ package com.example.cargo_tracking_app;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.navigation.ui.AppBarConfiguration;
 
 import com.android.volley.Request;
@@ -108,6 +110,11 @@ public class details extends AppCompatActivity {
                     fragileTv.setText(jsonObject.getString("fragile").equals("1") ? "yes" : "no");
                     payerTv.setText(jsonObject.getString("sender_pays").equals("1") ? "Sender" : "Receiver");
                     urgentTv.setText(jsonObject.getString("urgent").equals("1") ? "yes" : "no");
+                    if (jsonObject.getString("urgent").equals("1")) {
+
+                        int color = ContextCompat.getColor(getApplicationContext(), R.color.danger);
+                        urgentTv.setTextColor(color);
+                    }
                     //locTv.setText(getString(R.string.loc) + " " + jsonObject.getString("current_location"));
                 } catch (JSONException e) {
                     e.printStackTrace();

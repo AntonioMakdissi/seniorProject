@@ -64,7 +64,7 @@ require_once('php/stats.php');
                         <li><a class="get-a-quote" href="php/logout.php">Logout</a></li>
                     </ul>
                 </nav>
-            <?php } else {//worker
+            <?php } else { //worker
             ?>
                 <a href="branchOrders.php" class="logo d-flex align-items-center">
                     <!-- Uncomment the line below if you also wish to use an image logo -->
@@ -97,6 +97,7 @@ require_once('php/stats.php');
                         <thead>
                             <tr>
                                 <th scope="col">Order number </th>
+                                <th scope="col">Urgent?</th>
                                 <th scope="col">From</th>
                                 <th scope="col">Phone sender</th>
                                 <th scope="col">Address</th>
@@ -108,14 +109,13 @@ require_once('php/stats.php');
                                 <th scope="col">Price</th>
                                 <th scope="col">Cash?</th>
                                 <th scope="col">Payer</th>
-                                <th scope="col">Fragile?</th>
-                                <th scope="col">Urgent?</th>
+                                <th scope="col">Fragile?</th>                                
                                 <th scope="col">Status</th>
                                 <th scope="col">Date and time</th>
                                 <?php
                                 if ($_SESSION['type'] == 'worker') {
                                 ?>
-                                    <th>Branch</th>
+                                    <!-- <th>Branch</th> -->
                                     <!-- <th>Action</th> -->
                                 <?php
                                 }
@@ -191,6 +191,14 @@ require_once('php/stats.php');
                                         }
                                         echo "<tr>
                                       <td scope=\"row\">#" . $row["o_id"] . "</td>
+                                      ";
+                                        if ($urgent == 'yes') {
+                                            ?> <td style="color: red !important; font-weight: bold;"><?php echo $urgent; ?></td><?php 
+
+                                        } else {
+                                            echo "<td>" . $urgent . "</td>";
+                                        }
+                                        echo " 
                                       <td>" . $row["c_name"] . "</td>
                                       <td>" . $row["c_phone"] . "</td>
                                       <td>" . $row["c_address"] . "</td>
@@ -202,8 +210,7 @@ require_once('php/stats.php');
                                       <td>" . $row["f_price"] . "$</td>
                                       <td>" . $cash . "</td>
                                       <td>" . $payer . "</td>
-                                      <td>" . $fragile . "</td>
-                                      <td>" . $urgent . "</td>
+                                      <td>" . $fragile . "</td>                                     
                                       <td>" . $row["status"] . "</td>
                                       <td  >" . $row["timestamp"] . "</td>
                                     </tr>";

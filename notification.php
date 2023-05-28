@@ -10,7 +10,8 @@ function sendNotification($deviceTokens, $title, $message, $apiKey)
         'title' => $title,
         'body' => $message,
         'sound' => 'default',
-        'click_action' => '.MainActivity'
+        'click_action' => '.MainActivity',
+        'priority' => 'high'
     );
 
     // Create the data payload (optional)

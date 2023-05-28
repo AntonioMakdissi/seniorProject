@@ -2,6 +2,8 @@ package com.example.cargo_tracking_app;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +11,8 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.core.content.ContextCompat;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -71,6 +75,12 @@ public class CustomAdapter extends BaseAdapter {
             String n = ob.getString("to_address");
             int id = ob.getInt("o_id");
             tv_t.setText("#" + id);
+            if (ob.getString("urgent").equals("1")) {
+                tv_t.setText("#" + id+" !");
+                int color = ContextCompat.getColor(context, R.color.danger);
+                tv_t.setTextColor(color);
+                //tv_t.setTextColor(Color.RED);
+            }
             tv_e.setText(ob.getString("to_name"));
             tv_l.setText(ob.getString("to_district"));
             rowView.setOnClickListener(new View.OnClickListener() {

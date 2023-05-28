@@ -37,7 +37,7 @@ import org.json.JSONArray;
 
 public class availableOrders extends AppCompatActivity {
 
-    private static final long REFRESH_INTERVAL = 15000; // 30 seconds
+    private static final long REFRESH_INTERVAL = 30000; // 30 seconds
     private Handler handler;
     private Runnable refreshRunnable;
     private static final int notificationId = 1;
