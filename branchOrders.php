@@ -90,7 +90,7 @@ require_once('php/stats.php');
     <section id="hero" class="hero " style="padding-top: 20px; height: 100%; ">
         <div class="container">
             <div class="container mx-auto px-4 py-12">
-                <h1 class="text-4xl font-bold mb-6" style="color:white; margin-top:5%;">Orders history</h1>
+                <h1 class="text-4xl font-bold mb-6" style="color:white; margin-top:5%;">Branch Orders</h1>
                 <!-- <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg mb-8"> -->
                 <div class="table-responsive">
                     <table class="table extreme-table">

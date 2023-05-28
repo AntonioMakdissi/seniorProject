@@ -121,15 +121,15 @@ if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin']) {
                     <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
                     <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
                     <nav id="navbar" class="navbar">
-                    <ul>
-          <li><a href="client.php" class="active">Home</a></li>
-          <li><a href="services.php">Services</a></li>
-          <li><a href="php/history.php">History</a></li>
-          <li><a href="php/track.php">Track</a></li>
-          <li><a href="viewMessages.php">Messages</a></li>
-          <li><a href="common_password.php">Change Password</a></li>
-          <li><a class="get-a-quote" href="php/logout.php">Logout</a></li>
-        </ul>
+                        <ul>
+                            <li><a href="client.html" class="active">Home</a></li>
+                            <li><a href="about.html">About</a></li>
+                            <li><a href="services.html">Services</a></li>
+                            <li><a href="php/history.php">History</a></li>
+                            <li><a href="php/track.php">Track</a></li>
+                            <li><a href="contact.html">Contact</a></li>
+                            <li><a class="get-a-quote" href="php/logout.php">Logout</a></li>
+                        </ul>
                     </nav>
                 <?php } ?>
         </div>

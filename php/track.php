@@ -82,7 +82,7 @@ require_once('employee.php'); ?>
           <?php
           require_once('connection.php');
           $c_id = $_SESSION['c_id'];
-          $query = "SELECT o_id FROM orders WHERE c_id='$c_id' ORDER BY o_id";
+          $query = "SELECT o_id FROM orders WHERE c_id='$c_id' ORDER BY o_id DESC";
           $result = mysqli_query($link, $query);
           if (($result) && (mysqli_num_rows($result) > 0)) {
             ?>
@@ -145,6 +145,12 @@ require_once('employee.php'); ?>
                 </br>
                 Sender pays:
                 <?php echo $row['sender_pays'] ? "yes" : "no"; ?>
+                </br>
+                Fragile:
+                <?php echo $row['fragile'] ? "yes" : "no"; ?>
+                </br>
+                Same day delivery:
+                <?php echo $row['urgent'] ? "yes" : "no"; ?>
               </p>
             </div>
           </div>
@@ -179,6 +185,8 @@ require_once('employee.php'); ?>
 							<td>" . $emp . "</td>
               
 							</tr>";
+                
+                }
                 if ($status == "pending") { ?>
                   <tr>
                     <td colspan="3"><button type="submit" class="custom-button" onclick="markFailed('<?php echo $o_id; ?>')">
@@ -186,7 +194,6 @@ require_once('employee.php'); ?>
                       </button></td>
                   </tr>
                   <?php
-                }
               }
               ?>
             </tbody>
