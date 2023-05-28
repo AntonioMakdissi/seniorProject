@@ -11,6 +11,6 @@
     <color name="dark_blue">#0E1D34</color>
     <color name="button">#0D42FF</color>
     <color name="secondarydefault">#0A0D13</color>
-    <color name="btn_danger">#DC3545</color>
+    <color name="danger">#DC3545</color>
 
 </resources>
