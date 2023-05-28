@@ -235,15 +235,17 @@ require_once('employee.php'); ?>
             <input type="submit" class="btn btn-primary" value="Submit Rating">
           </div>
         </form>
+        <?php
+    if (isset($_SESSION['message'])) {
+        echo '<p style="text-align: center; font-size: 30px; color: white;">' . $_SESSION['message'] . '</p>';
+        unset($_SESSION['message']);
+    }
+?>
+
         </div>
         </section>
 
-        <?php
-        if (isset($_SESSION['message'])) {
-          echo $_SESSION['message'];
-          unset($_SESSION['message']);
-        }
-        ?>
+       
 <script>
   function updateTable() {
     var selectedValue = document.getElementById("mySelect").value;
