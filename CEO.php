@@ -409,7 +409,7 @@ require_once('php/employee.php');
       strings: ['Welcome Back <?= $_SESSION['name'] ?>!', 'Journey of a Leading Delivery Company'],
       typeSpeed: 60,
       backSpeed: 20,
-      backDelay: 1000,
+      backDelay: 1500,
       loop: true
     });
   </script>
