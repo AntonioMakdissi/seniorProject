@@ -108,8 +108,11 @@ require_once('php/employee.php');
         <div class="container">
             <div class="row gy-4 d-flex justify-content-between">
                 <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center">
-                    <h2 data-aos="fade-up" style="margin-top: -15%;">Journey of a Leading Delivery Company
-                        <?= $_SESSION['name'] ?>!
+                   
+                <h2 data-aos="fade-up" style="margin-top: -15%;">
+                       
+                        <span id="typed-text"></span>
+          <span id="typed-cursor"></span>
                     </h2>
                     <p data-aos="fade-up" data-aos-delay="100">"Success is not final, failure is not fatal: It is the
                         courage to continue that counts." - Winston Churchill. Keep pushing forward and striving for
@@ -399,6 +402,17 @@ require_once('php/employee.php');
 
     <!-- Template Main JS File -->
     <script src="assets/js/main.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.12/typed.min.js"></script>
+  <script>
+    var typed = new Typed('#typed-text', {
+      strings: ['Welcome Back <?= $_SESSION['name'] ?>!', 'Journey of a Leading Delivery Company'],
+      typeSpeed: 60,
+      backSpeed: 20,
+      backDelay: 1000,
+      loop: true
+    });
+  </script>
 </body>
 
 </html>

@@ -39,7 +39,14 @@
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
 
-  
+  <style>
+    #particles-js {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+  </style>
 </head>
 
 <body>
@@ -72,18 +79,18 @@
   <!-- End Header -->
 
   <!-- ======= Hero Section ======= -->
-  <section id="hero" class="hero d-flex align-items-center">
+  <section id="hero" class="hero d-flex align-items-center" >
     <div class="container">
       <div class="row gy-4 d-flex justify-content-between">
         <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center">
-          <h2 data-aos="fade-up">Your Lightning Fast Delivery Partner</h2>
-          <p data-aos="fade-up" data-aos-delay="100">Welcome to our delivery company website! We provide fast and reliable delivery services for all your needs. Trust us to deliver your items on time and in great condition. Thank you for choosing us.</p>
-
+          <h2 >Your Lightning Fast Delivery Partner</h2>
+          <p>Welcome to our delivery company website! We provide fast and reliable delivery services for all your needs. Trust us to deliver your items on time and in great condition. Thank you for choosing us.</p>
+         
           <!-- <form action="#" class="form-search d-flex align-items-stretch mb-3" data-aos="fade-up" data-aos-delay="200">
             <input type="text" class="form-control" placeholder="ZIP code or CitY">
             <button type="submit" class="btn btn-primary">Search</button>
           </form> -->
-
+ <div id="particles-js"></div>
           <div class="row gy-4" data-aos="fade-up" data-aos-delay="400">
 
             <div class="col-lg-3 col-6">
@@ -717,6 +724,104 @@
   <script src="assets/js/main.js"></script>
   <!--  Modified scripts-->
 <script src="index.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/ScrollMagic.min.js"></script>
+<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+
+<script>
+$(document).ready(function() {
+  // Header animation
+  gsap.from('header', { duration: 1, y: '0%', ease: 'bounce', delay: 0.5 });
+
+  // ScrollMagic scenes
+  const controller = new ScrollMagic.Controller();
+
+  // Hero text animation
+  const heroAnimation = gsap.timeline()
+    .from('#hero h2', { duration: 1, y: '0%', opacity: 1 })
+    .from('#hero p', { duration: 1, y: '0%', opacity: 1 });
+  new ScrollMagic.Scene({
+    triggerElement: '#hero',
+    triggerHook: 0.5
+  })
+  .setTween(heroAnimation)
+  .addTo(controller);
+
+  // Product list animation
+  const productsAnimation = gsap.timeline()
+    .staggerFrom('.product-item', 1, { opacity: 1, y: '0', ease: 'power2.out' }, 0.2);
+  new ScrollMagic.Scene({
+    triggerElement: '#products',
+    triggerHook: 0.5
+  })
+  .setTween(productsAnimation)
+  .addTo(controller);
+
+  // Parallax effect
+  $(document).mousemove(function(e) {
+    const moveX = (e.pageX * -1 / 15);
+    const moveY = (e.pageY * -1 / 15);
+    $('#hero').css('background-position', moveX + 'px ' + moveY + 'px');
+  });
+});
+
+particlesJS('particles-js', {
+  particles: {
+    number: { value: 80, density: { enable: true, value_area: 800 } },
+    color: { value: '#ffffff' },
+    shape: {
+      type: 'circle',
+      stroke: { width: 0, color: '#000000' },
+      polygon: { nb_sides: 5 }
+    },
+    opacity: {
+      value: 0.5,
+      random: false,
+      anim: { enable: false, speed: 1, opacity_min: 0.1, sync: false }
+    },
+    size: {
+      value: 5,
+      random: true,
+      anim: { enable: false, speed: 40, size_min: 0.1, sync: false }
+    },
+    line_linked: {
+      enable: true,
+      distance: 150,
+      color: '#ffffff',
+      opacity: 0.4,
+      width: 1
+    },
+    move: {
+      enable: true,
+      speed: 6,
+      direction: 'none',
+      random: false,
+      straight: false,
+      out_mode: 'out',
+      bounce: false,
+      attract: { enable: false, rotateX: 600, rotateY: 1200 }
+    }
+  },
+  interactivity: {
+    detect_on: 'canvas',
+    events: {
+      onhover: { enable: true, mode: 'repulse' },
+      onclick: { enable: true, mode: 'push' },
+      resize: true
+    },
+    modes: {
+      grab: { distance: 400, line_linked: { opacity: 1 } },
+      bubble: { distance: 400, size: 40, duration: 2, opacity: 8, speed: 3 },
+      repulse: { distance: 200, duration: 0.4 },
+      push: { particles_nb: 4 },
+      remove: { particles_nb: 2 }
+    }
+  },
+  retina_detect: true
+});
+
+</script>
 
 </body>
 
