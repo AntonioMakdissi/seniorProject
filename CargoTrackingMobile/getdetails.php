@@ -3,7 +3,12 @@ require_once 'connection.php';
 $o_id = $_GET['o_id'];
 
 
-$getallorders = "SELECT * FROM orders NATURAL JOIN packages NATURAL JOIN deliveries NATURAL JOIN clients WHERE o_id='$o_id'";
+$getallorders = "SELECT * FROM orders NATURAL JOIN packages NATURAL JOIN clients NATURAL JOIN (
+    SELECT o_id, MAX(d_id) AS max_d_id
+    FROM deliveries
+    GROUP BY o_id
+) AS last_delivery
+NATURAL JOIN deliveries WHERE o_id='$o_id' AND deliveries.d_id = last_delivery.max_d_id";
 
 $result = mysqli_query($con, $getallorders);
 if ($result) {
