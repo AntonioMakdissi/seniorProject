@@ -235,12 +235,12 @@ if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin'] || ($_SESSION['type'
                           class="mt-1 form-control block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                           id="confirmPassword" placeholder="Confirm Password">
                       </div>
-                      <p id="passwordMatchError" class="hidden text-red-500 mt-1">Passwords do not match. Please try
+                      <!-- <p id="passwordMatchError" class="hidden text-red-500 mt-1">Passwords do not match. Please try
                         again.</p>
                       <p id="passwordChangeError" class="hidden text-red-500 mt-1">There was an error changing the
                         password. Please try again.</p>
                       <p id="passwordChangeSuccess" class="hidden text-green-500 mt-1">Password changed successfully!
-                      </p>
+                      </p> -->
 
                       <input type="hidden" name="u_id" value="">
 
