@@ -13,7 +13,47 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $newPassword = $_POST['newPassword'];
         $confirmPassword = $_POST['confirmPassword'];
         if ($newPassword != $confirmPassword) {
-            echo "Password don't match";
+            ?>
+			<div style="
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				height: 100vh;
+				background-color: #0e1d34;
+				background-image: url('../assets/img/hero-bg.png');
+				background-position: center;
+				background-repeat: no-repeat;
+				background-size: cover;
+			">
+				<div style="
+					width: 300px;
+					padding: 20px;
+					border-radius: 5px;
+					background-color: rgba(255, 255, 255, 0.8);
+					box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+					text-align: center;
+				">
+					<p style="
+						margin-bottom: 20px;
+						font-size: 16px;
+						color: #333;
+					">Passwords don't match.</p>
+					<button href="" onclick="goBack()" style="
+						display: inline-block;
+						padding: 10px 20px;
+						background: #0e1d34;
+						color: #fff;
+						text-decoration: none;
+						border-radius: 3px;
+					">Back</button>
+				</div>
+			</div>
+            <script>
+            function goBack() {
+                window.history.back();
+            }
+        </script>
+			<?php
         } else
             setpassword($link, $u_id, $newPassword);
     } else {
