@@ -119,7 +119,7 @@ require_once("php/connection.php");
                 if ($all == -1) {
                   echo "no branches";
                 } else {
-                  $perPage = 15; // Change this to how many items you would like per page
+                  $perPage = 10; // Change this to how many items you would like per page
                 
                   if (isset($_GET['page']) && !empty($_GET['page'])) {
                     $page = $_GET['page'];
